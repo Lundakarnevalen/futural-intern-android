@@ -36,7 +36,7 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		
 		TextView tv = new TextView(context);
 		tv.setText(item.title);
-		tv.setTextSize(15);
+		tv.setTextSize(25);
 		
 		return tv;
 	}
