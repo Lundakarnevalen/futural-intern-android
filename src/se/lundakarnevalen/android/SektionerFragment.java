@@ -11,7 +11,7 @@ public class SektionerFragment extends LKFragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		TextView tv = new TextView(getActivity());
-		tv.setText("Sektioner");
+		tv.setText("Sektioner hej");
 		return tv;
 	}
 	
