@@ -13,6 +13,6 @@ public class InboxFragment extends LKFragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		TextView tv = new TextView(getActivity());
 		tv.setText("Inbox");
-		return tv;
+		return tv; 
 	}
 }
