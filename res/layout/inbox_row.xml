@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/horizontal_margin"
+    android:paddingRight="@dimen/horizontal_margin"
+    android:paddingTop="@dimen/horizontal_margin">
+
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/inbox_message_row_bg"
+	    android:padding="@dimen/horizontal_margin">
+	    
+	    <ImageView android:id="@+id/inbox_message_thumbnail"
+	        android:layout_height="50dp"
+	      	android:layout_width="50dp"
+	      	android:layout_alignParentLeft="true"
+	      	android:layout_centerVertical="true"/>
+	    
+	    <RelativeLayout android:id="@+id/inbox_message_text_container"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	  		android:layout_centerVertical="true"
+	  		android:layout_toRightOf="@id/inbox_message_thumbnail"
+	  		android:layout_marginLeft="@dimen/horizontal_margin">
+	  		
+		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_title"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="@dimen/title_text_size"
+		        android:layout_toRightOf="@id/inbox_message_thumbnail"/>
+		    
+		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_preview"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="@dimen/message_preview_text_size"
+		        android:layout_toRightOf="@id/inbox_message_thumbnail"
+		        android:layout_below="@id/inbox_message_title"/>
+		    
+	    </RelativeLayout>
+	    
+	    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_date"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		   	android:textSize="@dimen/small_date_text_size"
+		   	android:layout_alignParentRight="true"/>
+	    
+		<ImageView android:id="@+id/inbox_message_arrow"
+		    android:layout_height="wrap_content"
+		    android:layout_width="wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:layout_below="@id/inbox_message_date"/>
+		    
+	</RelativeLayout>
+	
+</RelativeLayout>
