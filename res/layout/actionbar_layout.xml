@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="fill_horizontal"
-    android:background="#EDEDED">
-    
-    <se.lundakarnevalen.widget.LKTextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textColor="#FFFFFF"
-        android:text="Testing"/>
-    
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:layout_gravity="fill_horizontal">
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/wrapper">
+        <RelativeLayout 
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:id="@+id/menu_drawer_toggle_wrapper"
+            android:layout_alignParentLeft="true">
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="#EDEDED"
+                android:layout_marginLeft="@dimen/horizontal_margin"/> <!-- TODO: Replace with nice icon and number sign -->
+        </RelativeLayout>
+	    <se.lundakarnevalen.widget.LKTextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/title"
+	        android:textColor="#FFFFFF"
+	        android:gravity="center"
+	        android:layout_centerHorizontal="true"
+	        android:layout_centerVertical="true"
+	        android:textSize="15sp"
+	        android:text="Lundakarnevalen"/>
+    </RelativeLayout>
 </RelativeLayout>

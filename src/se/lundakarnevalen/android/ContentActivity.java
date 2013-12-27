@@ -31,6 +31,7 @@ public class ContentActivity extends ActionBarActivity{
 	private DrawerLayout drawerLayout;
 	private ListView menuList;
 	private FragmentManager fragmentMgr;
+	private RelativeLayout menuButtonWrapper;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -60,7 +61,7 @@ public class ContentActivity extends ActionBarActivity{
 		
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuLogo));
-		listItems.add(new LKMenuListItem("Start", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem("Start", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SektionerFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
 		listItems.add(new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isInboxRow(true));
 		listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
@@ -121,14 +122,29 @@ public class ContentActivity extends ActionBarActivity{
 	        	Log.d(LOG_TAG, "open");
 	        }
 		};
-		drawerLayout.setDrawerListener(drawerToggle);
-		actionBar.setDisplayUseLogoEnabled(false);
-		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.setDisplayShowCustomEnabled(true);
-		actionBar.setDisplayHomeAsUpEnabled(false);
-		actionBar.setHomeButtonEnabled(false);
 		
+		drawerLayout.setDrawerListener(drawerToggle);
+		//actionBar.setDisplayHomeAsUpEnabled(false);
+		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		actionBar.setCustomView(inflater.inflate(R.layout.actionbar_layout, null));
+		View root = inflater.inflate(R.layout.actionbar_layout, null);
+		// Get references for actionbar setup
+		menuButtonWrapper = (RelativeLayout) root.findViewById(R.id.menu_drawer_toggle_wrapper);	
+		menuButtonWrapper.setOnClickListener(menuToggleListener);
+		
+		actionBar.setCustomView(root);
+		
 	}
+	
+	private View.OnClickListener menuToggleListener = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			if(drawerOpen)
+				drawerLayout.closeDrawers();
+		}
+	};
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import se.lundakarnevalen.android.R;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -41,9 +40,14 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		final LKMenuListItem item = getItem(pos);
 		
 		if(item.isStatic)
-			return item.staticView;
-		
+			return item.staticView;	
+				
 		RelativeLayout wrapper = (RelativeLayout) inflater.inflate(R.layout.menu_row, null);
+		if(item.isActive){
+			wrapper.setSelected(true);
+			Log.d(LOG_TAG, "was selecete");
+		}
+		
 		TextView text = (TextView) wrapper.findViewById(R.id.text);
 		text.setText(item.title);
 
@@ -54,6 +58,10 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 			TextView textCounter = (TextView) wrapper.findViewById(R.id.inbox_ctr);
 			textCounter.setText("1"); // TODO: Set to some serious value
 		}
+		
+		if(item.isActive)
+			wrapper.setSelected(true);
+		
 		return wrapper;
 	}
 	
@@ -87,6 +95,7 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		View staticView;
 		boolean closeDrawerOnClick = false;
 		boolean isInboxRow = false;
+		boolean isActive = false;
 		
 		/**
 		 * std. constr.
@@ -103,6 +112,11 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		public LKMenuListItem(String title, int icon){
 			this.title = title;
 			this.icon = icon;
+		}
+		
+		public LKMenuListItem isActive(boolean isActive){
+			this.isActive = isActive;
+			return this;
 		}
 		
 		/**
