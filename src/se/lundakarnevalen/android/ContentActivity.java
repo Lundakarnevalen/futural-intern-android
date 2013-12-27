@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class ContentActivity extends ActionBarActivity{
 	
@@ -32,6 +33,7 @@ public class ContentActivity extends ActionBarActivity{
 	private ListView menuList;
 	private FragmentManager fragmentMgr;
 	private RelativeLayout menuButtonWrapper;
+	private TextView title;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -46,6 +48,14 @@ public class ContentActivity extends ActionBarActivity{
 		
 		setupActionBar(); 
 		populateMenu();
+	}
+	
+	/**
+	 * Set title in actionbar
+	 * @param title The new title to set. 
+	 */
+	public void setTitle(String title){
+		this.title.setText(title);
 	}
 	
 	/**
@@ -104,13 +114,15 @@ public class ContentActivity extends ActionBarActivity{
 	 * Sets up the actionbar with listener and its UI. 
 	 */
 	private void setupActionBar(){		
-		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, 0, 0){
+		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.drawer_toggle_icon, 0, 0){
 			
 			/**
 			 * Drawer closed
 			 * */
 	        public void onDrawerClosed(View view) {
 	            // TODO: Fix UI in actionBar
+	        	setTitle("closed");
+	        	drawerOpen = false;
 	        	Log.d(LOG_TAG, "closed");
 	        }
 
@@ -119,12 +131,13 @@ public class ContentActivity extends ActionBarActivity{
 	         * */
 	        public void onDrawerOpened(View drawerView) {
 	            // TODO: Fix UI in actionBar
+	        	setTitle("open");
+	        	drawerOpen = true;
 	        	Log.d(LOG_TAG, "open");
 	        }
 		};
 		
 		drawerLayout.setDrawerListener(drawerToggle);
-		//actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayShowCustomEnabled(true);
 		actionBar.setDisplayShowTitleEnabled(false);
@@ -133,10 +146,10 @@ public class ContentActivity extends ActionBarActivity{
 		View root = inflater.inflate(R.layout.actionbar_layout, null);
 		// Get references for actionbar setup
 		menuButtonWrapper = (RelativeLayout) root.findViewById(R.id.menu_drawer_toggle_wrapper);	
+		title = (TextView) root.findViewById(R.id.title);
+		
 		menuButtonWrapper.setOnClickListener(menuToggleListener);
-		
 		actionBar.setCustomView(root);
-		
 	}
 	
 	private View.OnClickListener menuToggleListener = new View.OnClickListener() {
@@ -145,6 +158,8 @@ public class ContentActivity extends ActionBarActivity{
 		public void onClick(View v) {
 			if(drawerOpen)
 				drawerLayout.closeDrawers();
+			else
+				drawerLayout.openDrawer(menuList);
 		}
 	};
 }
