@@ -21,14 +21,14 @@
                 android:layout_marginLeft="@dimen/horizontal_margin"
                 android:id="@+id/drawer_toggle_icon"/>
             <RelativeLayout
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
                 android:background="@drawable/inbox_indicator_bg"
                 android:id="@+id/inbox_indicator_wrapper"
                 android:layout_toRightOf="@id/drawer_toggle_icon"
                 android:layout_above="@id/drawer_toggle_icon"
-                android:layout_marginLeft="-8dp"
-                android:layout_marginBottom="-8dp">
+                android:layout_marginLeft="-9dp"
+                android:layout_marginBottom="-9dp">
                 <se.lundakarnevalen.widget.LKTextView 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -1,6 +1,7 @@
 package se.lundakarnevalen.widget;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -10,17 +11,28 @@ import android.widget.TextView;
  *
  */
 public class LKTextView extends TextView{
-
+	Context context;
+	
 	public LKTextView(Context context) {
 		super(context);
+		this.context = context;
+		font();
 	}
 	
 	public LKTextView(Context context, AttributeSet attrs){
 		super(context, attrs);
+		this.context = context;
+		font();
 	}
 	
 	public LKTextView(Context context, AttributeSet attrs, int defStyle){
 		super(context, attrs, defStyle);
+		this.context = context;
+		font();
 	}
-
+	
+	private void font(){
+		Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf");
+		setTypeface(tf);
+	}
 }
