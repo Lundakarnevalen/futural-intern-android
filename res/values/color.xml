@@ -8,4 +8,6 @@
     <color name="menu_divider">#959595</color>
     
     <color name="base_pink">#EF6860</color>
+    <color name="peach">#FAA69C</color>
+    <color name="light_peach">#FEEDEB</color>
 </resources>
