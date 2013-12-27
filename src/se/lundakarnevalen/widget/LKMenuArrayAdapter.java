@@ -4,15 +4,19 @@ import java.util.List;
 
 import se.lundakarnevalen.android.R;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -24,21 +28,33 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 	
 	private final String LOG_TAG = "ArrayAdapter";
 	Context context;
+	LayoutInflater inflater;
 	
 	public LKMenuArrayAdapter(Context context, List<LKMenuListItem> items){
 		super(context, android.R.layout.simple_list_item_1, items);
 		this.context = context;
+		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent){
 		final LKMenuListItem item = getItem(pos);
 		
-		TextView tv = new TextView(context);
-		tv.setText(item.title);
-		tv.setTextSize(25);
+		if(item.isStatic)
+			return item.staticView;
 		
-		return tv;
+		RelativeLayout wrapper = (RelativeLayout) inflater.inflate(R.layout.menu_row, null);
+		TextView text = (TextView) wrapper.findViewById(R.id.text);
+		text.setText(item.title);
+
+		// For inbox row
+		if(item.isInboxRow){
+			RelativeLayout inboxWrapper = (RelativeLayout) wrapper.findViewById(R.id.inbox_ctr_wrapper);
+			inboxWrapper.setVisibility(View.VISIBLE);
+			TextView textCounter = (TextView) wrapper.findViewById(R.id.inbox_ctr);
+			textCounter.setText("1"); // TODO: Set to some serious value
+		}
+		return wrapper;
 	}
 	
 	@Override
@@ -46,12 +62,17 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		final LKMenuListItem item = getItem(pos);
 		Log.d(LOG_TAG, "clicked: "+pos);
 		OnClickListener listener = item.listener;
-		if(listener != null)
+		if(listener != null){
 			listener.onClick(view);
+			view.setSelected(true);
+			if(item.navDrawer != null && item.closeDrawerOnClick)
+				item.navDrawer.closeDrawers();
+			Log.d(LOG_TAG, "click");
+		}
 		else
 			Log.d(LOG_TAG, "no listener for list item");
 	}
-	
+		
 	/**
 	 * Class representing a single row in the menu. Used with the LKMenuArrayAdapter.
 	 * @author alexander
@@ -61,6 +82,18 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		public int icon;
 		public String title;
 		OnClickListener listener;
+		DrawerLayout navDrawer;
+		boolean isStatic = false;
+		View staticView;
+		boolean closeDrawerOnClick = false;
+		boolean isInboxRow = false;
+		
+		/**
+		 * std. constr.
+		 */
+		public LKMenuListItem(){
+			
+		}
 		
 		/**
 		 * Creates list item with no click listener.
@@ -70,6 +103,35 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		public LKMenuListItem(String title, int icon){
 			this.title = title;
 			this.icon = icon;
+		}
+		
+		/**
+		 * To be used with statics in listview.
+		 * @param isStatic
+		 * @return
+		 */
+		public LKMenuListItem isStatic(boolean isStatic){
+			this.isStatic = isStatic;
+			return this;
+		}
+		
+		/**
+		 * If isStatic is true, this view will be shown.
+		 * @param view
+		 * @return
+		 */
+		public LKMenuListItem showView(View view){
+			this.staticView = view;
+			return this;
+		}
+		
+		/**
+		 * Only to use with inbox fragment
+		 * @param isInboxRow sets to show the inbox counter.
+		 */
+		public LKMenuListItem isInboxRow(boolean isInboxRow){
+			this.isInboxRow = isInboxRow;
+			return this;
 		}
 		
 		/**
@@ -101,6 +163,17 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 					fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment).commit();
 				}
 			};
+		}
+		
+		/**
+		 * Call this to close the navigationdrawer when item is clicked. 
+		 * @param closeDrawerOnClick If true the drawer will close.
+		 * @param layout The drawerlayout to be closed. 
+		 */
+		public LKMenuListItem closeDrawerOnClick(boolean closeDrawerOnClick, DrawerLayout layout){
+			this.closeDrawerOnClick = closeDrawerOnClick;
+			this.navDrawer = layout;
+			return this;
 		}
 	}
 }

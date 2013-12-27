@@ -2,5 +2,6 @@
 <resources>
 
     <string name="app_name">Lundakarnevalen</string>
-
+	
+    <string name="sign_in_button">Logga in</string>
 </resources>
