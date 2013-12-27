@@ -5,6 +5,7 @@ import java.util.List;
 
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -13,9 +14,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 public class ContentActivity extends ActionBarActivity{
 	
@@ -39,7 +43,7 @@ public class ContentActivity extends ActionBarActivity{
 		
 		fragmentMgr = getSupportFragmentManager();
 		
-		setupActionBar();
+		setupActionBar(); 
 		populateMenu();
 	}
 	
@@ -47,10 +51,20 @@ public class ContentActivity extends ActionBarActivity{
 	 * Sets up the ListView in the navigationdrawer menu.
 	 */
 	private void populateMenu(){
+		// Create logo and sigill objects. 
+		ImageView menuLogo = new ImageView(this);
+		ImageView menuSigill = new ImageView(this);
+		ListView.LayoutParams params = new ListView.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+		menuLogo.setLayoutParams(params);
+		menuSigill.setLayoutParams(params);
+		
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
-		listItems.add(new LKMenuListItem("Registrering", 0, new RegistrationFragment(), fragmentMgr));
-		listItems.add(new LKMenuListItem("Sektioner", 0, new SektionerFragment(), fragmentMgr));
-		listItems.add(new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr));
+		listItems.add(new LKMenuListItem().isStatic(true).showView(menuLogo));
+		listItems.add(new LKMenuListItem("Start", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem("Sektioner", 0, new SektionerFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isInboxRow(true));
+		listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
 		
 		LKMenuArrayAdapter adapter = new LKMenuArrayAdapter(this, listItems);
 		menuList.setAdapter(adapter);
@@ -108,10 +122,13 @@ public class ContentActivity extends ActionBarActivity{
 	        }
 		};
 		drawerLayout.setDrawerListener(drawerToggle);
-		
 		actionBar.setDisplayUseLogoEnabled(false);
-		actionBar.setDisplayShowTitleEnabled(true);
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setHomeButtonEnabled(true);
+		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(false);
+		actionBar.setHomeButtonEnabled(false);
+		
+		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		actionBar.setCustomView(inflater.inflate(R.layout.actionbar_layout, null));
 	}
 }

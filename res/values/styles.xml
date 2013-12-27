@@ -1,7 +1,13 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
-        
+    <!-- App theme -->
+    <style name="ActionBarTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
     </style>
-
+    
+    <!-- Style for actionbar -->
+    <style name="ActionBarStyle">
+        <item name="background">@drawable/ic_launcher</item>
+    </style>
+    
 </resources>
