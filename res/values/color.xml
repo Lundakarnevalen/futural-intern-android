@@ -7,7 +7,9 @@
     <color name="menu_item_selected">#22231E</color>
     <color name="menu_divider">#959595</color>
     
+    <color name="tanted_peach">#F7897E</color>
     <color name="base_pink">#EF6860</color>
     <color name="bg_peach">#FAA69C</color>
     <color name="purple">#BEBDE1</color>
+    <color name="hint_peach">#FAD2CB</color>
 </resources>

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Lundakarnevalen</string>
-	
     <string name="sign_in_button">Logga in</string>
     
     <string name="registration_hurra">HURRA!</string>
@@ -11,8 +9,6 @@
     <string name="registration_informationafterorigressbar">karnevalist. Vi behöver bara veta vem du är.</string>
     <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
     <string name="registration_mobilenbr">Mobilnummer</string>
-    <string name="registration_password">Lösenord</string>
-    <string name="registration_email">Email</string>
     
     <string name="registration_choosesection">JAG VILL ENGAGERA MIG I</string>
     <string name="registration_shirtsize">TRÖJSTORLEK</string>
@@ -75,4 +71,12 @@
         <item>Vieriet</item>
     </string-array>
     
+    <string name="password">Lösenord</string>
+    <string name="email">E-post</string>
+    <string name="login_welcome_desc_f">Välkommen in i värmen.&#160;</string>
+    <string name="login_welcome_desc_l">Vänligen logga in.</string>
+    <string name="login_welcome_desc_fail_f">Glömt ditt lösenord?&#160;</string>
+    <string name="login_welcome_desc_fail_l">Lugn, återställ det.</string>
+    <string name="reset_password_desc_f">Oroa dig inte.&#160;</string>
+    <string name="reset_password_desc_l">Ange din mailadress.</string>
 </resources>

@@ -2,12 +2,14 @@ package se.lundakarnevalen.android;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.TypedValue;
 
 public class LKFragment extends Fragment{
-	private final String LOG_TAG = "LKFragment";
+	protected final String LOG_TAG = "LKFragment";
 	
 	Messanger messanger;
 	
@@ -40,6 +42,18 @@ public class LKFragment extends Fragment{
 	}
 	
 	/**
+	 * Converts dp to pixels.
+	 * @param dp The number of dp.
+	 * @param context The application context.
+	 * @return The number of dp.
+	 */
+	public static float dpToPx(int dp, Context context){
+		Resources r = context.getResources();
+		float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics());
+		return px;
+	}
+	
+	/**
 	 * Updates UI inbox count in actionbar and menu.
 	 * @param count Number of unread messages. 
 	 */
@@ -57,6 +71,15 @@ public class LKFragment extends Fragment{
 		Bundle data = new Bundle();
 		data.putBoolean("show", show);
 		messanger.message(MessangerMessage.SHOW_ACTION_BAR_LOGO, data);
+	}
+	
+	/**
+	 * Loads fragment into framlayout.
+	 * @param fragment The fragment to launch
+	 * @param addToBackstack If true it will be added to backstack on launch. 
+	 */
+	public void loadFragment(Fragment fragment, boolean addToBackstack){
+		messanger.loadFragment(fragment, addToBackstack);
 	}
 	
 	/**
