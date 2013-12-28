@@ -39,6 +39,7 @@ public class LKFragment extends Fragment{
 		Bundle data = new Bundle();
 		data.putString("title", title);
 		messanger.message(MessangerMessage.SET_TITLE, data);
+		showActionBarLogo(false);
 	}
 	
 	/**

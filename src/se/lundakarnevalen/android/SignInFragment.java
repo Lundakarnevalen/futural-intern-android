@@ -22,7 +22,8 @@ public class SignInFragment extends LKFragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
-		setTitle("Inkorg");
+		showActionBarLogo(true);
+		
 		if(forgotPasswordButtons[0] != null && forgotPasswordButtons[1] != null){
 			forgotPasswordButtons[0].setOnClickListener(fogotPasswordClickListener);
 			forgotPasswordButtons[1].setOnClickListener(fogotPasswordClickListener);
