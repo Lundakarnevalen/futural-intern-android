@@ -50,6 +50,16 @@ public class LKFragment extends Fragment{
 	}
 	
 	/**
+	 * Show or hide actionbar logo.
+	 * @param show If true the logo will be shown, if false the text will be shown. 
+	 */
+	public void showActionBarLogo(boolean show){
+		Bundle data = new Bundle();
+		data.putBoolean("show", show);
+		messanger.message(MessangerMessage.SHOW_ACTION_BAR_LOGO, data);
+	}
+	
+	/**
 	 * Interface to be implemented by activity containing the fragment.
 	 * @author alexander
 	 *
@@ -65,6 +75,6 @@ public class LKFragment extends Fragment{
 	 *
 	 */
 	public enum MessangerMessage{
-		SET_TITLE, SET_INBOX_COUNT;
+		SET_TITLE, SET_INBOX_COUNT, SHOW_ACTION_BAR_LOGO;
 	}
 }

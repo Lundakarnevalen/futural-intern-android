@@ -11,8 +11,12 @@ public class RegistrationFragment extends LKFragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		TextView tv = new TextView(getActivity());
 		tv.setText("Registrering");
-		setTitle("Registrering");
-		setInboxCount(0);
 		return tv;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState){
+		super.onActivityCreated(savedInstanceState);
+		setTitle("Registrering");
 	}
 }
