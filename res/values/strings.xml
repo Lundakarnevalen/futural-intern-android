@@ -2,6 +2,77 @@
 <resources>
     <string name="app_name">Lundakarnevalen</string>
     <string name="sign_in_button">Logga in</string>
+    
+    <string name="registration_hurra">HURRA!</string>
+    <string name="registration_status">Du vill bli karnevalist.</string>
+    <string name="registration_informationb4progessbar">Du är för tillfället</string>
+    <string name="registration_informationafterorigressbar">karnevalist. Vi behöver bara veta vem du är.</string>
+    <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
+    <string name="registration_mobilenbr">Mobilnummer</string>
+    
+    <string name="registration_choosesection">JAG VILL ENGAGERA MIG I</string>
+    <string name="registration_shirtsize">TRÖJSTORLEK</string>
+    <string name="registration_submit">Skicka in</string>
+    <string name="registration_submitinfo">Genom att klicka på knappen, förbinder du dig att ha kul under karnevalstiden.</string>
+    
+    
+    <string name="sektion_barnevalen">Barnevalen</string>
+    <string name="sektion_biljetteriet">Biljetteriet</string>
+    <string name="sektion_bladderiet">Blädderiet</string>
+    <string name="sektion_cirkusen">Cirkusen</string>   
+    <string name="sektion_dansen">Dansen</string>
+    <string name="sektion_ekonomi">Ekonomi</string>
+    <string name="sektion_fabriken">Fabriken</string>
+    <string name="sektion_festmasteriet">Festmästeriet</string>   
+    <string name="sektion_filmen">Filmen</string>
+    <string name="sektion_kabare">Kabaré</string>
+    <string name="sektion_klipperiet">Klipperiet</string>
+    <string name="sektion_kommunikation">Kommunikation</string>   
+    <string name="sektion_krogarna">Krogarna</string>
+    <string name="sektion_omradet">Området</string>
+    <string name="sektion_musiken">Musiken</string>
+    <string name="sektion_nojessektionen">Nöjessektionen</string>   
+    <string name="sektion_radion">Radion</string>
+    <string name="sektion_revyn">Revyn</string>
+    <string name="sektion_shoppen">Shoppen</string>
+    <string name="sektion_showen">Showen</string>
+    <string name="sektion_snaxeriet">Snaxeriet</string>
+    <string name="sektion_sakerhet">Säkerhet</string>
+    <string name="sektion_tombola">Tombola</string>
+    <string name="sektion_taget">Tåget</string>
+    <string name="sektion_taltnojen">Tältnöjen</string>
+    <string name="sektion_vieriet">Vieriet</string>
+    
+    <string-array
+        name="sektion_alphabetic_array">
+        <item>Barnevalen</item>
+        <item>Biljetteriet</item>
+        <item>Blädderiet</item>
+        <item>Cirkusen</item>
+        <item>Dansen</item>
+        <item>Ekonomi</item>
+        <item>Fabriken</item>
+        <item>Festmästeriet</item>
+        <item>Filmen</item>
+        <item>Kabaré</item>        
+        <item>Klipperiet</item>
+        <item>Kommunikation</item>
+        <item>Krogarna</item>
+        <item>Området</item>
+        <item>Musiken</item>
+        <item>Nöjessektionen</item>
+        <item>Radion</item>
+        <item>Revyn</item>
+        <item>Shoppen</item>
+        <item>Showen</item>        
+        <item>Snaxeriet</item>
+        <item>Säkerhet</item>
+        <item>Tombola</item>
+        <item>Tåget</item>
+        <item>Tältnöjen</item>
+        <item>Vieriet</item>
+    </string-array>
+    
     <string name="password">Lösenord</string>
     <string name="email">E-post</string>
     <string name="login_welcome_desc_f">Välkommen in i värmen.&#160;</string>
