@@ -10,4 +10,8 @@
     <string name="login_welcome_desc_fail_l">Lugn, återställ det.</string>
     <string name="reset_password_desc_f">Oroa dig inte.&#160;</string>
     <string name="reset_password_desc_l">Ange din mailadress.</string>
+    <string name="register_me">Registrera mig</string>
+    <string name="register_desc">Det verkar som du inte är karnevalist än.\nJag Tycker du ska bli det.\nOmedelbums.</string>
+    <string name="register_desc_login_f">Är du redan karnevalist?&#160;</string>
+    <string name="register_desc_login_l">Logg in här.</string>
 </resources>
