@@ -1,6 +1,5 @@
 package se.lundakarnevalen.widget;
 
-import se.lundakarnevalen.android.LKFragment;
 import se.lundakarnevalen.android.R;
 import android.content.Context;
 import android.graphics.Color;
