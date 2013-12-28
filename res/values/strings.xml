@@ -6,7 +6,12 @@
     <string name="registration_hurra">HURRA!</string>
     <string name="registration_status">Du vill bli karnevalist.</string>
     <string name="registration_informationb4progessbar">Du är för tillfället</string>
-    <string name="registration_informationafterorigressbar">karnevalist. Vi behöver bara veta vem du är.</string>
+    <string name="registration_informationafterorigressbar1">karnevalist. Vi behöver bara veta vem du är.</string>
+    <string name="registration_informationafterorigressbar2">karnevalist. Vi behöver bara en bild på dig.</string>
+    
+   	<string name="registration_informationbild1">Den tar du lägst fram i</string>
+    <string name="registration_informationbild2">disken inuti AF-Borgen.</string>
+        
     <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
     <string name="registration_mobilenbr">Mobilnummer</string>
     
