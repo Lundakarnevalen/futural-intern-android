@@ -13,6 +13,8 @@
     <string name="registration_choosesection">JAG VILL ENGAGERA MIG I</string>
     <string name="registration_shirtsize">TRÖJSTORLEK</string>
     <string name="registration_submit">Skicka in</string>
+    <string name="registration_submitinfo">Genom att klicka på knappen, förbinder du dig att ha kul under karnevalstiden.</string>
+    
     
     <string name="sektion_barnevalen">Barnevalen</string>
     <string name="sektion_biljetteriet">Biljetteriet</string>

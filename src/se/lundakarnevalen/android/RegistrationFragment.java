@@ -22,7 +22,7 @@ public class RegistrationFragment extends LKFragment{
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.activity_registration_layout, null);
+		View root = (View) inflater.inflate(R.layout.activity_registration_layout, null);
 		
 		return root;
 	}
