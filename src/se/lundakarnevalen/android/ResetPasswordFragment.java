@@ -11,10 +11,6 @@ public class ResetPasswordFragment extends LKFragment{
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		TextView tv = new TextView(getActivity());
-		tv.setText("Inbox");
-		setTitle("Inbox");
-		setInboxCount(15);
-		return tv;
+		return inflater.inflate(R.layout.reset_password_layout, null);
 	}
 }
