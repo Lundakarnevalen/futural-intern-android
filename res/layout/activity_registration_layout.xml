@@ -12,23 +12,20 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:background="@color/bg_peach" >
-		
 	    <ImageView 
 	        android:id="@+id/imageView1"
-	    	android:src = "@drawable/top_logo_white"
+	    	android:src="@drawable/top_logo_white"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
 			android:layout_alignParentTop="true" 
 	    	android:contentDescription="@string/registration_hurra" />
-	    
 	    <RelativeLayout 
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:layout_centerHorizontal="true"
 	        android:layout_width="wrap_content"
 	      	android:layout_height="wrap_content"
 	      	android:id="@+id/lKCombinedTexts"
-			android:layout_below="@+id/imageView1" >
-	       
+			android:layout_below="@id/imageView1" >  
 	    	<se.lundakarnevalen.widget.LKTextViewBold
 	        	android:id="@+id/lKTextViewBold1"
 	        	android:layout_width="wrap_content"
@@ -44,24 +41,37 @@
 	        	android:textColor="#ffffff"
 	        	android:text="@string/registration_informationb4progessbar" /> 	
 	    </RelativeLayout>
+	    <LinearLayout
+	        android:id="@+id/progress_bar_wrapper"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_below="@id/lKCombinedTexts"	        
+	        android:layout_marginTop="@dimen/vertical_margin_half" >
+	       	<se.lundakarnevalen.widget.LKProgressBar
+	    		android:id="@+id/progressBar1"
+	    		android:layout_width="wrap_content"
+	    		android:layout_weight="1.0"
+	    		android:layout_gravity="center_vertical"
+	    		android:layout_height="@dimen/progress_bar_height"
+	    		android:progress="1" /> 
+	    	<se.lundakarnevalen.widget.LKTextView
+	    	    android:textColor="#ffffff"
+	    	    android:id="@+id/progress_value"	    		
+	    	    android:layout_gravity="center_vertical"
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_marginLeft="@dimen/horizontal_margin_half"
+	    	    android:text="1 %"/>
+	    </LinearLayout>
 	    
-	    
-	    <ProgressBar
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	    	android:id="@+id/progressBar1"
-	    	style="?android:attr/progressBarStyleHorizontal"
-	    	android:progressDrawable="@drawable/custom_progressbar"         
-	    	android:layout_width="wrap_content"
-			android:layout_below="@+id/lKCombinedTexts"
-			android:layout_centerHorizontal="true"
-	    	android:layout_height="wrap_content"  />
 	    
 	    <se.lundakarnevalen.widget.LKTextView
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:id="@+id/lKTextView2"
 	       	android:layout_width="wrap_content"
 	       	android:layout_height="wrap_content"
-	       	android:layout_below="@+id/progressBar1"
+	       	android:layout_below="@id/progress_bar_wrapper"
 	       	android:layout_centerHorizontal="true"
 	       	android:textColor="#ffffff"
 	       	android:text="@string/registration_informationafterorigressbar1"  />
@@ -71,7 +81,7 @@
 	        android:id="@+id/lKTextViewBold2"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/lKTextView2"
+	        android:layout_below="@id/lKTextView2"
 	        android:textColor="#ffffff"
 	        android:text="@string/registration_yourcreedentials" />
 	    
@@ -80,7 +90,7 @@
 	        android:id="@+id/lKEditText1"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/lKTextViewBold2" 
+	        android:layout_below="@id/lKTextViewBold2" 
 	        android:textColor="#ffffff"
 	        android:textColorHint="@color/bg_peach"
 	        android:hint="@string/email" />
@@ -90,7 +100,7 @@
 	        android:id="@+id/lKEditText2"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/lKEditText1"
+	        android:layout_below="@id/lKEditText1"
 	        android:textColor="#ffffff"
 			android:textColorHint="@color/bg_peach"
 	        android:hint="@string/password" />
@@ -101,7 +111,7 @@
 	        android:id="@+id/lKEditText3"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/lKEditText2"
+	        android:layout_below="@id/lKEditText2"
 	        android:textColor="#ffffff"
 			android:textColorHint="@color/bg_peach"
 	        android:hint="@string/registration_mobilenbr" />
@@ -111,7 +121,7 @@
 	        android:id="@+id/lKTextViewBold3"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/lKEditText3"
+	        android:layout_below="@id/lKEditText3"
 	        android:textColor="#ffffff"
 	        android:text="@string/registration_choosesection" />
 	    
@@ -122,7 +132,7 @@
 	        android:id="@+id/lKTextViewBold4"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/lKTextViewBold3"
+	        android:layout_below="@id/lKTextViewBold3"
 	        android:textColor="#ffffff"
 	        android:text="@string/registration_shirtsize" />
 	    
@@ -133,7 +143,7 @@
 	        android:id="@+id/lKButton1"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/lKTextViewBold4"
+	        android:layout_below="@id/lKTextViewBold4"
 	        android:textColor="#ffffff"
 	        android:text="@string/registration_submit" />
 	    
@@ -142,11 +152,11 @@
 	        android:id="@+id/lKTextView3"
 	       	android:layout_width="wrap_content"
 	       	android:layout_height="wrap_content"
-	       	android:layout_below="@+id/lKButton1"
+	       	android:layout_below="@id/lKButton1"
 	       	android:layout_centerHorizontal="true"
 	       	android:textColor="#ffffff"
 	       	android:textSize="10sp"
-	       	android:lines="2"
+	    	android:gravity="center"
 	       	android:text="@string/registration_submitinfo" />
 	    
 	    
