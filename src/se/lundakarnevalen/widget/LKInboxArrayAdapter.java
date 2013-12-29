@@ -4,9 +4,10 @@ import java.util.List;
 
 import se.lundakarnevalen.android.LKFragment;
 import se.lundakarnevalen.android.MessageFragment;
+import se.lundakarnevalen.android.R;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class LKInboxArrayAdapter extends ArrayAdapter<LKInboxArrayAdapter.LKMenu
 	Context context;
 	LayoutInflater inflater;
 	LKFragment fragment;
+	FragmentManager fragmentManager;
 	
 	public LKInboxArrayAdapter(Context context, List<LKMenuListItem> items, LKFragment fragment) {
 		super(context, android.R.layout.simple_list_item_1, items);
@@ -27,6 +29,10 @@ public class LKInboxArrayAdapter extends ArrayAdapter<LKInboxArrayAdapter.LKMenu
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.fragment = fragment;
 		
+	}
+	
+	public void setFragmentManager(FragmentManager fragmentManager) {
+		this.fragmentManager = fragmentManager;
 	}
 	
 	@Override
@@ -40,7 +46,7 @@ public class LKInboxArrayAdapter extends ArrayAdapter<LKInboxArrayAdapter.LKMenu
 		LKMenuListItem item = getItem(pos);
 		MessageFragment fragment = new MessageFragment();
 		fragment.setListItem(item);
-		fragment.loadFragment(fragment, true);
+		fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack(null).commit();
 	}
 	
 	public static class LKMenuListItem {
