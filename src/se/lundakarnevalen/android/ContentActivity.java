@@ -59,6 +59,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		
 		setupActionBar();
 		populateMenu();
+		loadFragment(new RegistrationOhNoFragment(), false);
 	}
 	
 	
