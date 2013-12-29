@@ -47,7 +47,7 @@
         android:text="@string/register_me"
         android:id="@+id/register"
         android:layout_below="@id/register_desc"/>
-    <RelativeLayout 
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/register"
