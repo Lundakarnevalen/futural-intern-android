@@ -47,6 +47,8 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		Bundle inData = getIntent().getExtras();
+		
 		setContentView(R.layout.content_wrapper);
 		actionBar = getSupportActionBar();
 		

@@ -13,6 +13,16 @@ public class LKFragment extends Fragment{
 	
 	public Messanger messanger;
 	
+	public static final int ABOUT_FRAGMENT = 0x001;
+	public static final int INBOX_FRAGMENT = 0x002;
+	public static final int MESSAGE_FRAGMENT = 0x003;
+	public static final int REGISTRATION_FRAGMENT = 0x004;
+	public static final int REGISTRATION_OH_NO_FRAGMENT = 0x005;
+	public static final int REGISTRATION_PROGRESS_FRAGMENT = 0x006;
+	public static final int RESET_PASSWORD_FRAGMENT = 0x007;
+	public static final int SEKTIONER_FRAGMENT = 0x008;
+	public static final int SIGN_IN_FRAGMENT = 0x009;
+	
 	/**
 	 * Gets the application context
 	 * @return The context.
