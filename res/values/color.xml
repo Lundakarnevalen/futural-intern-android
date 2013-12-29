@@ -6,11 +6,11 @@
     <color name="menu_inbox_ctr_box">#4c4c4c</color>
     <color name="menu_item_selected">#22231E</color>
     <color name="menu_divider">#959595</color>
-    
     <color name="tanted_peach">#F7897E</color>
     <color name="base_pink">#EF6860</color>
+    <color name="peach">#FAA69C</color>
+    <color name="light_peach">#FEEDEB</color>
     <color name="bg_peach">#FAA69C</color>
     <color name="purple">#BEBDE1</color>
     <color name="hint_peach">#FAD2CB</color>
-    <color name="light_peach">#FFDFD3</color>
 </resources>
