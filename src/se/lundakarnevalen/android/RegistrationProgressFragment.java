@@ -6,18 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class SektionerFragment extends LKFragment{
+
+public class RegistrationProgressFragment extends LKFragment{
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		TextView tv = new TextView(getActivity());
-		tv.setText("Sektioner");
-		return tv;
+		View root = (View) inflater.inflate(R.layout.activity_registrationprogress_layout, null);
+		
+		return root;
 	}
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
-		setTitle("Sektioner");
+		setTitle("Registrering");
 	}
 }

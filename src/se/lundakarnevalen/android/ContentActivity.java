@@ -41,6 +41,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	private RelativeLayout inboxIndicatorWrapper;
 	private TextView actionbarInboxCounter;
 	
+	private ImageView actionBarLogo;
 	private TextView title;
 	
 	@Override
@@ -71,7 +72,24 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			case SET_INBOX_COUNT:
 				setInboxCount(data.getInt("count", 0));
 				break;
+			case SHOW_ACTION_BAR_LOGO:
+				showActionBarLogo(data.getBoolean("show", false));
+				break;
 			}
+	}
+	
+	/**
+	 * Show actionbar logo or text
+	 * @param show If true, the logo will be visible if false, the text will be shown. 
+	 */
+	private void showActionBarLogo(boolean show){
+		if(!show){
+			actionBarLogo.setVisibility(View.GONE);
+			title.setVisibility(View.VISIBLE);
+		}else{
+			title.setVisibility(View.GONE);
+			actionBarLogo.setVisibility(View.VISIBLE);
+		}
 	}
 	
 	private void setInboxCount(int count){
@@ -113,19 +131,18 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	 */
 	private void populateMenu(){
 		// Create logo and sigill objects. 
-		ImageView menuLogo = new ImageView(this);
 		ImageView menuSigill = new ImageView(this);
 		ListView.LayoutParams params = new ListView.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-		menuLogo.setLayoutParams(params);
 		menuSigill.setLayoutParams(params);
 		
 		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
-		listItems.add(new LKMenuListItem().isStatic(true).showView(menuLogo));
 		listItems.add(new LKMenuListItem("Start", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SektionerFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
 		listItems.add(inboxListItem);
-		listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
+
+		listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationProgressFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
+
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
 		
 		LKMenuArrayAdapter adapter = new LKMenuArrayAdapter(this, listItems);
@@ -197,6 +214,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		menuButtonWrapper = (RelativeLayout) root.findViewById(R.id.menu_drawer_toggle_wrapper);	
 		inboxIndicatorWrapper = (RelativeLayout) root.findViewById(R.id.inbox_indicator_wrapper);
 		actionbarInboxCounter = (TextView) root.findViewById(R.id.inbox_indicator);
+		actionBarLogo = (ImageView) root.findViewById(R.id.action_bar_logo);
 		
 		title = (TextView) root.findViewById(R.id.title);
 		

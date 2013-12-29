@@ -133,5 +133,6 @@ public class InboxFragment extends LKFragment{
 			progressCircle.setVisibility(View.GONE);
 			listView.setAdapter(adapt);
 		}
+
 	}
 }

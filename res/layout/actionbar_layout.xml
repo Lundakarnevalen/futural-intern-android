@@ -51,5 +51,15 @@
 	        android:layout_centerVertical="true"
 	        android:textSize="15sp"
 	        android:text="Lundakarnevalen"/>
+         <ImageView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/action_bar_logo"
+	        android:layout_marginTop="@dimen/vertical_margin"
+	        android:layout_marginBottom="2dp"
+	        android:layout_centerHorizontal="true"
+			android:layout_alignParentBottom="true"
+	        android:src="@drawable/top_logo_white"
+	        android:visibility="gone"/>
     </RelativeLayout>
 </RelativeLayout>
