@@ -65,6 +65,10 @@ public class LKInboxArrayAdapter extends ArrayAdapter<LKInboxArrayAdapter.LKMenu
 			this.image = image;
 			this.unread = unread;
 		}
+		
+		public String toString(){
+			return "title: "+this.title;
+		}
 	}
 
 }

@@ -1,11 +1,15 @@
 package se.lundakarnevalen.android;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKTextView;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -29,17 +33,18 @@ public class InboxFragment extends LKFragment{
 	ProgressBar progressCircle;
 	LKFragment fragment;
 	FragmentManager fragmentManager;
+	LKSQLiteDB db;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-
+		
 		RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.inbox_layout, null);
 		this.fragment = this;
 		listView = (ListView) root.findViewById(R.id.inbox_list_view);
 		context = getContext();
 		progressCircle = (ProgressBar) root.findViewById(R.id.inbox_progress_circle);
 
-		return root; 
+		return root;
 	}
 	
 	@Override
@@ -47,6 +52,10 @@ public class InboxFragment extends LKFragment{
 		super.onActivityCreated(savedInstanceState);
 		fragmentManager = getActivity().getSupportFragmentManager();
 		new RenderingTask().execute(context);
+		
+		// Code to add dummy data into database.
+		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
+		//dbDummy.addItem(new LKMenuListItem("Title", "This is a short message.", "2015-15-34", true, null));
 	}
 	
 	public class RenderingTask extends AsyncTask<Context,Void,Void> {
@@ -54,12 +63,14 @@ public class InboxFragment extends LKFragment{
 		
 		protected void onPreExecute(Context... context) {
 			progressCircle.setVisibility(View.VISIBLE);
-			
 			Log.d("RenderingTask", "Completed onPreExecute()");
 		}
 		
 		@Override
 		protected Void doInBackground(Context... context) {
+			db = new LKSQLiteDB(context[0]);
+			List<LKMenuListItem> data = db.getMessages();
+			
 			//Get inflater
 			LayoutInflater inflater = (LayoutInflater) context[0].getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
@@ -72,15 +83,9 @@ public class InboxFragment extends LKFragment{
 			l.isStatic = true;
 			items.add(l);
 			
-			//TODO: Replace with code fetching message data from server.
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",true, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",true, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",true, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
+			for(LKMenuListItem message : data){
+				items.add(message);
+			}
 			
 			//Populate rowList with data from items
 			for(LKInboxArrayAdapter.LKMenuListItem item:items) {
@@ -110,11 +115,16 @@ public class InboxFragment extends LKFragment{
 				int counter = 0;
 				int currentWidth = 0;
 				Log.d("RenderingTask","widthOfView = "+widthOfView);
+				boolean dots = true;
 				while(currentWidth < (widthOfView) && widths.length > 0) {
 					currentWidth += widths[counter];
 					counter++;
+					if(counter >= message.length()){
+						dots = false;
+						break;
+					}
 				}
-				String previewMessage = message.substring(0, counter)+"...";
+				String previewMessage = message.substring(0, counter)+((dots) ? "..." : "");
 				messagePreviewTextView.setText(previewMessage);
 				messagePreviewTextView.setTextColor(context[0].getResources().getColor((R.color.peach)));
 				

@@ -47,6 +47,8 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		Bundle inData = getIntent().getExtras();
+		
 		setContentView(R.layout.content_wrapper);
 		actionBar = getSupportActionBar();
 		
@@ -141,7 +143,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SektionerFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
 		listItems.add(inboxListItem);
 
-		listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationProgressFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
 
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
 		

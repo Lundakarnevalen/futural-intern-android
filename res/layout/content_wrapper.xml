@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <FrameLayout
+        class="se.lundakarnevalen.android.RegistrationOhNoFragment" 
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_peach"/>
+        android:background="@color/bg_peach" />
     <ListView android:id="@+id/menu_list"
-        android:layout_width="280dp"
+        android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:choiceMode="singleChoice"
