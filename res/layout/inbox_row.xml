@@ -41,7 +41,8 @@
 			        android:layout_height="wrap_content"
 			        android:textSize="@dimen/message_preview_text_size"
 			        android:layout_below="@id/inbox_message_title"
-			        android:layout_alignParentLeft="true"/> 
+			        android:layout_alignParentLeft="true"
+			        android:layout_marginTop="-4dp"/> 
 		    </RelativeLayout>
 	    </RelativeLayout>
 	    

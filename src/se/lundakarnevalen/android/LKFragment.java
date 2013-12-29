@@ -11,7 +11,7 @@ import android.util.TypedValue;
 public class LKFragment extends Fragment{
 	protected final String LOG_TAG = "LKFragment";
 	
-	Messanger messanger;
+	public Messanger messanger;
 	
 	/**
 	 * Gets the application context
@@ -80,6 +80,7 @@ public class LKFragment extends Fragment{
 	 * @param addToBackstack If true it will be added to backstack on launch. 
 	 */
 	public void loadFragment(Fragment fragment, boolean addToBackstack){
+		Log.d(LOG_TAG, "messenger was" + ((messanger == null) ? "null" : "not null"));
 		messanger.loadFragment(fragment, addToBackstack);
 	}
 	

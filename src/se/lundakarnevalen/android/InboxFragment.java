@@ -8,6 +8,7 @@ import se.lundakarnevalen.widget.LKTextView;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,16 +26,17 @@ public class InboxFragment extends LKFragment{
 	ListView listView;
 	Context context;
 	ProgressBar progressCircle;
+	LKFragment fragment;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
 		RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.inbox_layout, null);
-		
+		this.fragment = this;
 		listView = (ListView) root.findViewById(R.id.inbox_list_view);
 		context = getContext();
 		progressCircle = (ProgressBar) root.findViewById(R.id.inbox_progress_circle);
-		
+
 		return root; 
 	}
 	
@@ -46,8 +48,6 @@ public class InboxFragment extends LKFragment{
 	}
 	
 	public class RenderingTask extends AsyncTask<Context,Void,Void> {
-		
-		ArrayList<RelativeLayout> rowList = new ArrayList<RelativeLayout>();
 		ArrayList<LKMenuListItem> items = new ArrayList<LKMenuListItem>();
 		
 		protected void onPreExecute(Context... context) {
@@ -61,6 +61,15 @@ public class InboxFragment extends LKFragment{
 			//Get inflater
 			LayoutInflater inflater = (LayoutInflater) context[0].getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
+			//Add empty view to beginning of list as top margin
+			ListView.LayoutParams lp = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, context[0].getResources().getDimensionPixelSize(R.dimen.horizontal_margin));
+			RelativeLayout r = new RelativeLayout(context[0]);
+			r.setLayoutParams(lp);
+			LKMenuListItem l = new LKMenuListItem("","","",false,null);
+			l.layout = r;
+			l.isStatic = true;
+			items.add(l);
+			
 			//TODO: Replace with code fetching message data from server.
 			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",true, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
 			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",true, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
@@ -71,15 +80,10 @@ public class InboxFragment extends LKFragment{
 			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",true, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
 			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
 			
-			
-			//Add empty view to beginning of list as top margin
-			ListView.LayoutParams lp = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, context[0].getResources().getDimensionPixelSize(R.dimen.horizontal_margin));
-			RelativeLayout r = new RelativeLayout(context[0]);
-			r.setLayoutParams(lp);
-			rowList.add(r);
-			
 			//Populate rowList with data from items
-			for(LKInboxArrayAdapter.LKMenuListItem item:items) {	
+			for(LKInboxArrayAdapter.LKMenuListItem item:items) {
+				if(item.isStatic)
+					continue;
 				RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.inbox_row, null);
 				// Find child views of row
 				LKTextView titleTextView = (LKTextView) root.findViewById(R.id.inbox_message_title);
@@ -90,6 +94,10 @@ public class InboxFragment extends LKFragment{
 				titleTextView.setText(item.title);
 				titleTextView.setTextColor(context[0].getResources().getColor((R.color.base_pink)));
 				//TODO: Set bold text if item.unread == true
+				if(item.unread) {
+					Typeface tf = Typeface.createFromAsset(context[0].getAssets(), "fonts/Roboto-Bold.ttf");
+					titleTextView.setTypeface(tf);
+				}
 				
 				int screenWidth = context[0].getResources().getDisplayMetrics().widthPixels;
 				int widthOfView = (int) (screenWidth * 0.5);
@@ -100,7 +108,7 @@ public class InboxFragment extends LKFragment{
 				int counter = 0;
 				int currentWidth = 0;
 				Log.d("RenderingTask","widthOfView = "+widthOfView);
-				while(currentWidth < (widthOfView)) {
+				while(currentWidth < (widthOfView) && widths.length > 0) {
 					currentWidth += widths[counter];
 					counter++;
 				}
@@ -112,14 +120,16 @@ public class InboxFragment extends LKFragment{
 				dateTextView.setTextColor(context[0].getResources().getColor((R.color.peach)));
 				thumbnailImageView.setImageBitmap(item.image);
 				
-				rowList.add(root);
+				item.layout = root;
 			}
 			
 			//Add empty view to end of list as bottom margin. Only half of top margin since every row has a built in bottom margin of horizontal_margin_half.
 			lp = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, context[0].getResources().getDimensionPixelSize(R.dimen.horizontal_margin_half));
 			r = new RelativeLayout(context[0]);
 			r.setLayoutParams(lp);
-			rowList.add(r);
+			l = new LKMenuListItem("","","",false,null);
+			l.layout = r;
+			items.add(l);
 			
 			Log.d("RenderingTask", "Completed doInBackground()");
 			return null;
@@ -127,9 +137,13 @@ public class InboxFragment extends LKFragment{
 		
 		@Override
 		protected void onPostExecute(Void v) {
-			Log.d("RenderingTask", rowList.size()+"");
-			LKInboxArrayAdapter adapt = new LKInboxArrayAdapter(getActivity(), rowList);
-			
+			Log.d("RenderingTask", items.size()+"");
+			if(fragment == null)
+				Log.e(LOG_TAG, "Fragment was null");
+			if(fragment.messanger == null)
+				Log.e(LOG_TAG, "messanger was null");
+			LKInboxArrayAdapter adapt = new LKInboxArrayAdapter(getActivity(), items, fragment);
+			listView.setOnItemClickListener(adapt);
 			progressCircle.setVisibility(View.GONE);
 			listView.setAdapter(adapt);
 		}
