@@ -6,8 +6,10 @@
     <color name="menu_inbox_ctr_box">#4c4c4c</color>
     <color name="menu_item_selected">#22231E</color>
     <color name="menu_divider">#959595</color>
-    
     <color name="base_pink">#EF6860</color>
     <color name="peach">#FAA69C</color>
     <color name="light_peach">#FEEDEB</color>
+    <color name="bg_peach">#FAA69C</color>
+    <color name="purple">#BEBDE1</color>
+
 </resources>

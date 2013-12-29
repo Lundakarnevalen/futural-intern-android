@@ -7,9 +7,10 @@
     
     <!-- Style for actionbar -->
     <style name="ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
-        <item name="android:background">@color/base_pink</item> <!-- TODO: Change to real png. -->
+       	<item name="android:background">@drawable/actionbar_bg</item>
         <item name="android:titleTextStyle">@style/ActionBarTitleTextStyle</item>
         <item name="android:displayOptions">showTitle</item>
+        <item name="android:height">50dp</item>
     </style>
     
     <!-- Style for title text -->

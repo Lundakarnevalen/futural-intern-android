@@ -8,6 +8,14 @@
         android:layout_height="match_parent"
         android:id="@+id/inbox_list_view"
         android:divider="@null"/>
+    
+    <ProgressBar android:id="@+id/inbox_progress_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        style="?android:attr/progressBarStyleLarge"
+        />
   		
 
 </RelativeLayout>

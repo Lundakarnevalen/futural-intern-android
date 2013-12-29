@@ -14,37 +14,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-public class LKInboxArrayAdapter extends ArrayAdapter<LKInboxArrayAdapter.LKMenuListItem> implements OnItemClickListener{
+public class LKInboxArrayAdapter extends ArrayAdapter<RelativeLayout> implements OnItemClickListener{
 	
 	Context context;
 	LayoutInflater inflater;
 	
-	public LKInboxArrayAdapter(Context context, List<LKMenuListItem> items) {
+	public LKInboxArrayAdapter(Context context, List<RelativeLayout> items) {
 		super(context, android.R.layout.simple_list_item_1, items);
 		this.context = context;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
 	@Override
-	public View getView(int pos, View convertView, ViewGroup parent) {
-		LKMenuListItem item = getItem(pos);
-		RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.inbox_row, null);
-		LKTextView titleTextView = (LKTextView) root.findViewById(R.id.inbox_message_title);
-		LKTextView messagePreviewTextView = (LKTextView) root.findViewById(R.id.inbox_message_preview);
-		LKTextView dateTextView = (LKTextView) root.findViewById(R.id.inbox_message_date);
-		ImageView thumbnailView = (ImageView) root.findViewById(R.id.inbox_message_thumbnail);
-		
-		titleTextView.setText(item.title);
-		
-		String messagePreview = item.message.substring(0,40)+"...";
-		messagePreviewTextView.setText(messagePreview);
-		
-		dateTextView.setText(item.date);
-		
-		Bitmap bitmap = item.image;
-		thumbnailView.setImageBitmap(bitmap);
-		
-		return root;
+	public View getView(int pos, View convertView, ViewGroup parent) {		
+		RelativeLayout row = getItem(pos);
+		return row;
 	}
 	
 	@Override
@@ -57,12 +41,14 @@ public class LKInboxArrayAdapter extends ArrayAdapter<LKInboxArrayAdapter.LKMenu
 		public String title;
 		public String date;
 		public Bitmap image;
+		public boolean unread;
 		
-		public LKMenuListItem(String title, String message, String date, Bitmap image) {
+		public LKMenuListItem(String title, String message, String date, boolean unread, Bitmap image) {
 			this.message = message;
 			this.title = title;
 			this.date = date;
 			this.image = image;
+			this.unread = unread;
 		}
 	}
 

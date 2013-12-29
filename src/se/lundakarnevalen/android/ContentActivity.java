@@ -3,13 +3,16 @@ package se.lundakarnevalen.android;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.lundakarnevalen.android.LKFragment.MessangerMessage;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -20,8 +23,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-public class ContentActivity extends ActionBarActivity{
+public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger{
 	
 	private final String LOG_TAG = "ContentActivity";
 	
@@ -31,7 +35,13 @@ public class ContentActivity extends ActionBarActivity{
 	private DrawerLayout drawerLayout;
 	private ListView menuList;
 	private FragmentManager fragmentMgr;
+	LKMenuListItem inboxListItem;
+	
 	private RelativeLayout menuButtonWrapper;
+	private RelativeLayout inboxIndicatorWrapper;
+	private TextView actionbarInboxCounter;
+	
+	private TextView title;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -44,8 +54,58 @@ public class ContentActivity extends ActionBarActivity{
 		
 		fragmentMgr = getSupportFragmentManager();
 		
-		setupActionBar(); 
+		setupActionBar();
 		populateMenu();
+	}
+	
+	
+	/**
+	 * Called when a fragment messages the activity.
+	 */
+	@Override
+	public void message(MessangerMessage message, Bundle data) {
+			switch(message){
+			case SET_TITLE:
+				setTitle(data.getString("title"));
+				break;
+			case SET_INBOX_COUNT:
+				setInboxCount(data.getInt("count", 0));
+				break;
+			}
+	}
+	
+	private void setInboxCount(int count){
+		if(count <= 0){
+			// Hide UI elements
+			inboxIndicatorWrapper.setVisibility(View.GONE);
+			inboxListItem.inboxCounterWrapper.setVisibility(View.GONE);	
+		}else{
+			// set values and show UI elements
+			inboxIndicatorWrapper.setVisibility(View.VISIBLE);
+			inboxListItem.inboxCounterWrapper.setVisibility(View.VISIBLE);
+			
+			actionbarInboxCounter.setText(String.valueOf(count));
+			inboxListItem.inboxCounter.setText(String.valueOf(count));
+		}
+	}
+	
+	/**
+	 * Loads new fragment into the frame.
+	 */
+	@Override
+	public void loadFragment(Fragment fragment, boolean addToBackstack){
+		FragmentTransaction transaction = fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment);
+		if(addToBackstack)
+			transaction.addToBackStack(null);
+		transaction.commit();
+	}
+	
+	/**
+	 * Set title in actionbar
+	 * @param title The new title to set. 
+	 */
+	public void setTitle(String title){
+		this.title.setText(title);
 	}
 	
 	/**
@@ -59,11 +119,12 @@ public class ContentActivity extends ActionBarActivity{
 		menuLogo.setLayoutParams(params);
 		menuSigill.setLayoutParams(params);
 		
+		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuLogo));
 		listItems.add(new LKMenuListItem("Start", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SektionerFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
-		listItems.add(new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isInboxRow(true));
+		listItems.add(inboxListItem);
 		listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
 		
@@ -104,13 +165,14 @@ public class ContentActivity extends ActionBarActivity{
 	 * Sets up the actionbar with listener and its UI. 
 	 */
 	private void setupActionBar(){		
-		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, 0, 0){
+		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.drawer_toggle_icon, 0, 0){
 			
 			/**
 			 * Drawer closed
 			 * */
 	        public void onDrawerClosed(View view) {
 	            // TODO: Fix UI in actionBar
+	        	drawerOpen = false;
 	        	Log.d(LOG_TAG, "closed");
 	        }
 
@@ -119,12 +181,12 @@ public class ContentActivity extends ActionBarActivity{
 	         * */
 	        public void onDrawerOpened(View drawerView) {
 	            // TODO: Fix UI in actionBar
+	        	drawerOpen = true;
 	        	Log.d(LOG_TAG, "open");
 	        }
 		};
 		
 		drawerLayout.setDrawerListener(drawerToggle);
-		//actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayShowCustomEnabled(true);
 		actionBar.setDisplayShowTitleEnabled(false);
@@ -133,10 +195,13 @@ public class ContentActivity extends ActionBarActivity{
 		View root = inflater.inflate(R.layout.actionbar_layout, null);
 		// Get references for actionbar setup
 		menuButtonWrapper = (RelativeLayout) root.findViewById(R.id.menu_drawer_toggle_wrapper);	
+		inboxIndicatorWrapper = (RelativeLayout) root.findViewById(R.id.inbox_indicator_wrapper);
+		actionbarInboxCounter = (TextView) root.findViewById(R.id.inbox_indicator);
+		
+		title = (TextView) root.findViewById(R.id.title);
+		
 		menuButtonWrapper.setOnClickListener(menuToggleListener);
-		
 		actionBar.setCustomView(root);
-		
 	}
 	
 	private View.OnClickListener menuToggleListener = new View.OnClickListener() {
@@ -145,6 +210,8 @@ public class ContentActivity extends ActionBarActivity{
 		public void onClick(View v) {
 			if(drawerOpen)
 				drawerLayout.closeDrawers();
+			else
+				drawerLayout.openDrawer(menuList);
 		}
 	};
 }

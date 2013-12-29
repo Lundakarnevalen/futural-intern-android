@@ -2,49 +2,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/horizontal_margin"
-    android:paddingRight="@dimen/horizontal_margin"
-    android:paddingTop="@dimen/horizontal_margin">
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingBottom="10dp">
 
-	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:layout_width="match_parent"
+	<RelativeLayout android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:background="@drawable/inbox_message_row_bg"
-	    android:padding="@dimen/horizontal_margin">
+	    android:paddingBottom="12dp"
+	    android:paddingLeft="17dp">
 	    
-	    <ImageView android:id="@+id/inbox_message_thumbnail"
-	        android:layout_height="50dp"
-	      	android:layout_width="50dp"
-	      	android:layout_alignParentLeft="true"
-	      	android:layout_centerVertical="true"/>
+	    <RelativeLayout android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/inbox_message_row_bg"
+		    android:layout_marginTop="12dp">
 	    
-	    <RelativeLayout android:id="@+id/inbox_message_text_container"
-	        android:layout_height="wrap_content"
-	        android:layout_width="wrap_content"
-	  		android:layout_centerVertical="true"
-	  		android:layout_toRightOf="@id/inbox_message_thumbnail"
-	  		android:layout_marginLeft="@dimen/horizontal_margin">
-	  		
-		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_title"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:textSize="@dimen/title_text_size"
-		        android:layout_toRightOf="@id/inbox_message_thumbnail"/>
+		    <ImageView android:id="@+id/inbox_message_thumbnail"
+		        android:layout_height="60dp"
+		      	android:layout_width="60dp"
+		      	android:layout_alignParentLeft="true"
+		      	android:layout_centerVertical="true"/>
 		    
-		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_preview"
-		        android:layout_width="wrap_content"
+		    <RelativeLayout android:id="@+id/inbox_message_text_container"
 		        android:layout_height="wrap_content"
-		        android:textSize="@dimen/message_preview_text_size"
-		        android:layout_toRightOf="@id/inbox_message_thumbnail"
-		        android:layout_below="@id/inbox_message_title"/>
-		    
+		        android:layout_width="wrap_content"
+		  		android:layout_centerVertical="true"
+		  		android:layout_toRightOf="@id/inbox_message_thumbnail"
+		  		android:layout_marginLeft="25dp">
+		  		
+			    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_title"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:textSize="@dimen/title_text_size"
+			        android:layout_alignParentLeft="true"/>
+			    
+			    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_preview"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:textSize="@dimen/message_preview_text_size"
+			        android:layout_below="@id/inbox_message_title"
+			        android:layout_alignParentLeft="true"/> 
+		    </RelativeLayout>
 	    </RelativeLayout>
 	    
 	    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_date"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		   	android:textSize="@dimen/small_date_text_size"
-		   	android:layout_alignParentRight="true"/>
+		   	android:layout_alignParentRight="true"
+		   	android:layout_marginRight="@dimen/horizontal_margin_half"
+		   	android:layout_marginTop="2dp"/>
 	    
 		<ImageView android:id="@+id/inbox_message_arrow"
 		    android:layout_height="wrap_content"

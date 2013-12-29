@@ -2,9 +2,9 @@ package se.lundakarnevalen.widget;
 
 import java.util.List;
 
+import se.lundakarnevalen.android.LKFragment;
 import se.lundakarnevalen.android.R;
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -28,6 +28,8 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 	private final String LOG_TAG = "ArrayAdapter";
 	Context context;
 	LayoutInflater inflater;
+	public RelativeLayout inboxCounterWrapper;
+	public TextView inboxCounter;
 	
 	public LKMenuArrayAdapter(Context context, List<LKMenuListItem> items){
 		super(context, android.R.layout.simple_list_item_1, items);
@@ -53,10 +55,12 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 
 		// For inbox row
 		if(item.isInboxRow){
-			RelativeLayout inboxWrapper = (RelativeLayout) wrapper.findViewById(R.id.inbox_ctr_wrapper);
-			inboxWrapper.setVisibility(View.VISIBLE);
-			TextView textCounter = (TextView) wrapper.findViewById(R.id.inbox_ctr);
-			textCounter.setText("1"); // TODO: Set to some serious value
+			inboxCounterWrapper = (RelativeLayout) wrapper.findViewById(R.id.inbox_ctr_wrapper);
+			item.inboxCounterWrapper = inboxCounterWrapper; // Do not move
+			inboxCounterWrapper.setVisibility(View.VISIBLE);
+			inboxCounter = (TextView) wrapper.findViewById(R.id.inbox_ctr);
+			item.inboxCounter = inboxCounter; // Do not move
+			inboxCounter.setText("1"); // TODO: Set to some serious value
 		}
 		
 		if(item.isActive)
@@ -96,6 +100,8 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		boolean closeDrawerOnClick = false;
 		boolean isInboxRow = false;
 		boolean isActive = false;
+		public RelativeLayout inboxCounterWrapper;
+		public TextView inboxCounter;
 		
 		/**
 		 * std. constr.
@@ -166,7 +172,7 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		 * @param icon Icon next to text
 		 * @param fragment Fragment to show
 		 */
-		public LKMenuListItem(String title, int icon, final Fragment fragment, final FragmentManager fragmentMgr){
+		public LKMenuListItem(final String title, int icon, final LKFragment fragment, final FragmentManager fragmentMgr){
 			this.title = title;
 			this.icon = icon;
 			
