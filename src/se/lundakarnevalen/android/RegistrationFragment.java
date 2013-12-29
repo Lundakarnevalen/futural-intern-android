@@ -12,18 +12,40 @@ public class RegistrationFragment extends LKFragment{
 	private int progesslevel;
 	private SharedPreferences shpref;
 	
+	
 	public boolean isRegistationCorrect(){
 		return false;
 	}
 	
-	public void saveRegistration() {
+	public boolean validEmail(){
+		return false;
+	}
+	
+	public boolean validPassword(){
+		return false;
+	}
+	
+	public boolean validMobileNumber(){
+		return false;
+	}
+	
+	public boolean sectionChosen(){
+		return false;
+	}
+	
+	public boolean shirtChosen() {
+		return false;
+	}
+	public void saveRegistration() {	
+	}
+	
+	public void updateProgessBar() {
 		
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View root = (View) inflater.inflate(R.layout.activity_registration_layout, null);
-		
 		return root;
 	}
 	

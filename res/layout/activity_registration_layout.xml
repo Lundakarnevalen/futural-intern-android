@@ -5,10 +5,10 @@
 	android:layout_height="match_parent" >
 	
 	<RelativeLayout
-	    android:paddingLeft="@dimen/horizontal_margin_half"
-    	android:paddingRight="@dimen/horizontal_margin_half"
-    	android:paddingTop="@dimen/vertical_margin_half"
-    	android:paddingBottom="@dimen/vertical_margin_half"
+	    android:paddingLeft="@dimen/horizontal_margin"
+    	android:paddingRight="@dimen/horizontal_margin"
+    	android:paddingTop="@dimen/vertical_margin"
+    	android:paddingBottom="@dimen/vertical_margin"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:background="@color/bg_peach" >
@@ -103,6 +103,7 @@
 	        android:layout_below="@id/lKEditText1"
 	        android:textColor="#ffffff"
 			android:textColorHint="@color/bg_peach"
+			android:inputType="textPassword"
 	        android:hint="@string/password" />
 	    
 	
@@ -114,6 +115,8 @@
 	        android:layout_below="@id/lKEditText2"
 	        android:textColor="#ffffff"
 			android:textColorHint="@color/bg_peach"
+			android:inputType="phone"
+			android:digits="0123456789"
 	        android:hint="@string/registration_mobilenbr" />
 	    
 	    <se.lundakarnevalen.widget.LKTextViewBold
@@ -136,14 +139,39 @@
 	        android:textColor="#ffffff"
 	        android:text="@string/registration_shirtsize" />
 	    
-	    <!-- lägg in lista av tröjstorlekar -->
+	    <RadioGroup 
+	        android:id="@+id/radioGroup1"
+	        android:layout_marginTop="@dimen/vertical_margin"
+	        android:layout_below="@id/lKTextViewBold4" 
+    		android:layout_width="fill_parent"
+  			android:layout_height="wrap_content"
+    		android:orientation="vertical">
+    		<RadioButton android:id="@+id/radio_large"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="L"
+        		android:onClick="onRadioButtonClicked"/>
+    		<RadioButton android:id="@+id/radio_medium"
+        		android:layout_marginTop="@dimen/vertical_margin_half"
+        		android:layout_width="wrap_content"
+       			android:layout_height="wrap_content"
+        		android:text="M"
+        		android:onClick="onRadioButtonClicked"/>
+    		<RadioButton android:id="@+id/radio_small"
+				android:layout_marginTop="@dimen/vertical_margin_half"
+        		android:layout_width="wrap_content"
+       			android:layout_height="wrap_content"
+        		android:text="S"
+        		android:onClick="onRadioButtonClicked"/>
+		</RadioGroup>
+
 	    
 	    <se.lundakarnevalen.widget.LKButton
 	        android:layout_marginTop="@dimen/vertical_margin"
 	        android:id="@+id/lKButton1"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKTextViewBold4"
+	        android:layout_below="@id/radioGroup1"
 	        android:textColor="#ffffff"
 	        android:text="@string/registration_submit" />
 	    
