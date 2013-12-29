@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class InboxFragment extends LKFragment{
 	Context context;
 	ProgressBar progressCircle;
 	LKFragment fragment;
+	FragmentManager fragmentManager;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -43,7 +45,7 @@ public class InboxFragment extends LKFragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
+		fragmentManager = getActivity().getSupportFragmentManager();
 		new RenderingTask().execute(context);
 	}
 	
@@ -143,6 +145,11 @@ public class InboxFragment extends LKFragment{
 			if(fragment.messanger == null)
 				Log.e(LOG_TAG, "messanger was null");
 			LKInboxArrayAdapter adapt = new LKInboxArrayAdapter(getActivity(), items, fragment);
+			try {
+				adapt.setFragmentManager(fragmentManager);
+			} catch(NullPointerException e) {
+				Log.wtf("RenderingTask",e.toString());
+			}
 			listView.setOnItemClickListener(adapt);
 			progressCircle.setVisibility(View.GONE);
 			listView.setAdapter(adapt);
