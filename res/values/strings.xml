@@ -93,4 +93,6 @@
     <string name="register_desc">Det verkar som om du inte är karnevalist än.\nJag tycker att du ska bli det.\nOmedelbums.</string>
     <string name="register_desc_login_f">Är du redan karnevalist?&#160;</string>
     <string name="register_desc_login_l">Logg in här.</string>
+    
+    <string name="inbox_empty_text">OH NO! No messages...</string>
 </resources>
