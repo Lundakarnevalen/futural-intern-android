@@ -27,13 +27,13 @@
 	        android:layout_width="wrap_content"
 	      	android:layout_height="wrap_content"
 	      	android:id="@+id/lKCombinedTexts"
-			android:layout_below="@+id/imageView1" >
+			android:layout_below="@id/imageView1" >
 	       
 	    	<se.lundakarnevalen.widget.LKTextViewBold
 	        	android:id="@+id/lKTextViewBold1"
 	        	android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
-	        	android:textColor="#ffffff"
+	        	android:textColor="#FFFFFF"
 	        	android:text="@string/registration_status" 
 	        	android:layout_marginRight="5dp"/>
 	    	<se.lundakarnevalen.widget.LKTextView
@@ -41,7 +41,7 @@
 	        	android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
 	        	android:layout_toRightOf="@+id/lKTextViewBold1"
-	        	android:textColor="#ffffff"
+	        	android:textColor="#FFFFFF"
 	        	android:text="@string/registration_informationb4progessbar" /> 	
 	    </RelativeLayout>
 	    
@@ -61,7 +61,7 @@
 	    		android:layout_height="@dimen/progress_bar_height"
 	    		android:progress="95" /> 
 	    	<se.lundakarnevalen.widget.LKTextView
-	    	    android:textColor="#ffffff"
+	    	    android:textColor="#FFFFFF"
 	    	    android:id="@+id/progress_value"	    		
 	    	    android:layout_gravity="center_vertical"
 	    	    android:layout_width="wrap_content"
@@ -75,24 +75,25 @@
 	        android:id="@+id/lKTextView2"
 	       	android:layout_width="wrap_content"
 	       	android:layout_height="wrap_content"
-	       	android:layout_below="@+id/progress_bar_wrapper"
+	       	android:layout_below="@id/progress_bar_wrapper"
 	       	android:layout_centerHorizontal="true"
-	       	android:textColor="#ffffff"
+	       	android:textColor="#FFFFFF"
 	       	android:text="@string/registration_informationafterorigressbar2"  />
 	    
 	    <RelativeLayout 
 	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:layout_marginBottom="@dimen/vertical_margin"
 	        android:layout_centerHorizontal="true"
 	        android:layout_width="wrap_content"
 	      	android:layout_height="wrap_content"
 	      	android:id="@+id/lKCombinedTexts2"
-			android:layout_below="@+id/lKTextView2" >
+			android:layout_below="@id/lKTextView2" >
 	       
 	    	<se.lundakarnevalen.widget.LKTextView
 	        	android:id="@+id/lKTextView3"
 	        	android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
-	        	android:textColor="#ffffff"
+	        	android:textColor="#FFFFFF"
 	        	android:text="@string/registration_informationbild1" 
 	        	android:layout_marginRight="5dp"/>
 	    	<se.lundakarnevalen.widget.LKTextViewBold
@@ -100,18 +101,81 @@
 	        	android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
 	        	android:layout_toRightOf="@+id/lKTextView3"
-	        	android:textColor="#ffffff"
+	        	android:textColor="#FFFFFF"
 	        	android:text="@string/registration_informationbild2" /> 	
 	    </RelativeLayout>
 	    
-	    <se.lundakarnevalen.widget.LKTextViewBold 
-	        android:layout_marginTop="@dimen/vertical_margin"
-	        android:id="@+id/lKTextViewBold3"
+	    <RelativeLayout 
+	      	android:background="@drawable/inbox_message_row_bg" 
 	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/lKCombinedTexts2"
-	        android:textColor="#ffffff"
-	        android:text="@string/registration_yourcreedentials" />
+	    	android:layout_height="wrap_content" 
+	        android:layout_below="@id/lKCombinedTexts2" >
+	        <se.lundakarnevalen.widget.LKTextViewBold 
+	        	android:layout_marginTop="@dimen/vertical_margin"
+	        	android:textSize="24sp"
+	        	android:id="@+id/lKTextViewBold3"
+	        	android:layout_centerHorizontal="true"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="@color/base_pink"
+	        	android:text="@string/registration_yourcreedentials" />
+	        <se.lundakarnevalen.widget.LKTextViewBold 
+	        	android:layout_marginTop="@dimen/vertical_margin"
+	        	android:layout_marginRight="@dimen/horizontal_margin_half"
+	        	android:layout_marginLeft="@dimen/horizontal_margin"
+	        	android:textSize="18sp"
+	        	android:id="@+id/lKTextViewBoldName"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="@color/base_pink"
+	        	android:layout_below="@id/lKTextViewBold3" 
+	        	android:text="@string/name" />
+	        <se.lundakarnevalen.widget.LKTextViewBold 
+	        	android:layout_marginTop="@dimen/vertical_margin_half"	        	
+	        	android:layout_marginRight="@dimen/horizontal_margin_half"
+	        	android:layout_marginLeft="@dimen/horizontal_margin"
+	        	android:textSize="18sp"
+	        	android:id="@+id/lKTextViewBoldEmail"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="@color/base_pink"
+	        	android:layout_below="@id/lKTextViewBoldName" 	        	
+	        	android:text="@string/email" />
+	        <se.lundakarnevalen.widget.LKTextViewBold 
+	        	android:layout_marginTop="@dimen/vertical_margin_half"
+	        	android:layout_marginRight="@dimen/horizontal_margin_half"
+	        	android:layout_marginBottom="@dimen/vertical_margin"
+	        	android:layout_marginLeft="@dimen/horizontal_margin"
+	        	android:textSize="18sp"
+	        	android:id="@+id/lKTextViewBoldMobileNbr"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="@color/base_pink"
+	        	android:layout_below="@id/lKTextViewBoldEmail" 
+	        	android:text="@string/registration_mobilenbr" />
+	        <se.lundakarnevalen.widget.LKTextViewBold 
+	        	android:layout_marginTop="@dimen/vertical_margin"
+	        	android:id="@+id/lKTextViewBoldMySections"
+	        	android:layout_marginLeft="@dimen/horizontal_margin"
+	        	android:textSize="18sp"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="@color/base_pink"
+	        	android:layout_below="@id/lKTextViewBoldMobileNbr" 
+	        	android:text="@string/registration_mysections" />
+	        <se.lundakarnevalen.widget.LKTextViewBold 
+	        	android:layout_marginTop="@dimen/vertical_margin"
+	        	android:layout_marginBottom="@dimen/vertical_margin"
+	        	android:layout_marginLeft="@dimen/horizontal_margin"
+	        	android:textSize="18sp"
+	        	android:id="@+id/lKTextViewBoldMyShirtsize"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="@color/base_pink"
+	        	android:layout_below="@id/lKTextViewBoldMySections" 
+	        	android:text="@string/registration_myshirtsize" />
+		</RelativeLayout>
+	    
 	    
 	    
 	</RelativeLayout>

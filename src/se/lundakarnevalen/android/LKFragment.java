@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
 
 public class LKFragment extends Fragment{
 	protected final String LOG_TAG = "LKFragment";
@@ -92,6 +93,13 @@ public class LKFragment extends Fragment{
 	public void loadFragment(Fragment fragment, boolean addToBackstack){
 		Log.d(LOG_TAG, "messenger was" + ((messanger == null) ? "null" : "not null"));
 		messanger.loadFragment(fragment, addToBackstack);
+	}
+	/**
+	 * Handles radiobuttons in the fragment
+	 * @param view radio button view
+	 */
+	public void onRadioButtonClicked(View view) {
+		
 	}
 	
 	/**
