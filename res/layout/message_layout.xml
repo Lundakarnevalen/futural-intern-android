@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/horizontal_margin"
+    android:paddingBottom="@dimen/horizontal_margin"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:id="@+id/message_layout" >
+
+    <RelativeLayout android:id="@+id/message_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/message_title_bg"
+        android:paddingTop="@dimen/horizontal_margin"
+        android:paddingLeft="@dimen/horizontal_margin"
+        android:paddingRight="@dimen/horizontal_margin"
+        android:paddingBottom="24dp">
+        
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+	        <ImageView android:id="@+id/message_thumbnail"
+	            android:layout_width="60dp"
+	            android:layout_height="60dp"/>
+	        
+	        <RelativeLayout android:id="@+id/message_title_and_date_wrapper"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_toRightOf="@id/message_thumbnail"
+	            android:layout_marginLeft="20dp"
+	            android:layout_centerVertical="true">
+	                
+		        <se.lundakarnevalen.widget.LKTextViewBold android:id="@+id/message_title"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textColor="@color/base_pink"
+		            android:textSize="20sp"/>
+		        
+		        <se.lundakarnevalen.widget.LKTextView android:id="@+id/message_date"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_below="@id/message_title"
+		            android:textColor="@color/peach"/>
+		  	</RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+    
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/message_bg"
+        android:layout_below="@id/message_title_view"
+        android:padding="@dimen/horizontal_margin"
+        android:layout_marginTop="-8dp">
+        
+        <se.lundakarnevalen.widget.LKTextView android:id="@+id/message_message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/peach"
+            android:textSize="18sp"/>
+        
+    </RelativeLayout>
+    
+
+</RelativeLayout>
