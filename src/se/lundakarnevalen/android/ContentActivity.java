@@ -82,6 +82,19 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	}
 	
 	/**
+	 * Handles radiobuttons in the fragment
+	 * @param view radio button view
+	 */
+	public void onRadioButtonClicked(View view) {
+		try {
+			LKFragment fragment = (LKFragment) fragmentMgr.findFragmentById(R.id.content_frame);
+			fragment.onRadioButtonClicked(view);
+		} catch(ClassCastException e) {
+			Log.e(LOG_TAG,"could not get fragment.");
+		}
+	}
+	
+	/**
 	 * Show actionbar logo or text
 	 * @param show If true, the logo will be visible if false, the text will be shown. 
 	 */
