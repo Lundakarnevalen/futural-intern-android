@@ -50,12 +50,13 @@ public class InboxFragment extends LKFragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		setTitle("Inbox");
 		fragmentManager = getActivity().getSupportFragmentManager();
 		new RenderingTask().execute(context);
 		
 		// Code to add dummy data into database.
-		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
-		//dbDummy.addItem(new LKMenuListItem("Title", "This is a short message.", "2015-15-34", true, null));
+		LKSQLiteDB dbDummy = new LKSQLiteDB(context);
+		dbDummy.addItem(new LKMenuListItem("Title", "This is a short message.", "2015-15-34", true, null));
 	}
 	
 	public class RenderingTask extends AsyncTask<Context,Void,Void> {
@@ -149,11 +150,9 @@ public class InboxFragment extends LKFragment{
 		
 		@Override
 		protected void onPostExecute(Void v) {
-			Log.d("RenderingTask", items.size()+"");
-			if(fragment == null)
-				Log.e(LOG_TAG, "Fragment was null");
-			if(fragment.messanger == null)
-				Log.e(LOG_TAG, "messanger was null");
+			Log.d("RenderingTask", "fragment was "+((fragment==null) ? "null" : "not null"));
+			Log.d("RenderingTask", "items was "+((items==null) ? "null" : "not null"));
+			Log.d("RenderingTask", "activity was "+((getActivity()==null) ? "null" : "not null"));
 			LKInboxArrayAdapter adapt = new LKInboxArrayAdapter(getActivity(), items, fragment);
 			try {
 				adapt.setFragmentManager(fragmentManager);
