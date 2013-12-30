@@ -55,8 +55,8 @@ public class InboxFragment extends LKFragment{
 		new RenderingTask().execute(context);
 		
 		// Code to add dummy data into database.
-		LKSQLiteDB dbDummy = new LKSQLiteDB(context);
-		dbDummy.addItem(new LKMenuListItem("Title", "This is a short message.", "2015-15-34", true, null));
+		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
+		//dbDummy.addItem(new LKMenuListItem("Title", "This is a short message.", "2015-15-34", true, null));
 	}
 	
 	public class RenderingTask extends AsyncTask<Context,Void,Void> {
