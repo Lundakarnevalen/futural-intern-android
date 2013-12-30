@@ -103,6 +103,7 @@
 	        android:layout_below="@id/lKEditTextName" 
 	        android:textColor="#FFFFFF"
 	        android:textColorHint="@color/bg_peach"
+	        android:inputType="textEmailAddress"
 	        android:hint="@string/email" />
 	    
 	
