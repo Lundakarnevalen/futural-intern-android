@@ -68,9 +68,11 @@ public class InboxFragment extends LKFragment{
 		// Code to add dummy data into database.
 		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
 		//dbDummy.addItem(new LKMenuListItem("Title", "This is a short message.", "2015-15-34", true, null));
-		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
-		//dbDummy.addItem(new LKMenuListItem("Title", "Leet (or '1337'), also known as eleet or leetspeak, is an alternative alphabet for the English language that is used primarily on the Internet. It uses various combinations of ASCII characters to replace Latinate letters. For example, leet spellings of the word leet include 1337 and l33t; eleet may be spelled 31337 or 3l33t. The term leet is derived from the word elite. The leet alphabet is a specialized form of symbolic writing. Leet may also be considered a substitution cipher, although many dialects or linguistic varieties exist in different online communities. The term leet is also used as an adjective to describe formidable prowess or accomplishment, especially in the fields of online gaming and in its original usage – computer hacking.", "2015-15-34", true, null));
+
+		LKSQLiteDB dbDummy = new LKSQLiteDB(context);
+		dbDummy.addItem(new LKMenuListItem("Title", "Leet (or '1337'), also known as eleet or leetspeak, is an alternative alphabet for the English language that is used primarily on the Internet. It uses various combinations of ASCII characters to replace Latinate letters. For example, leet spellings of the word leet include 1337 and l33t; eleet may be spelled 31337 or 3l33t. The term leet is derived from the word elite. The leet alphabet is a specialized form of symbolic writing. Leet may also be considered a substitution cipher, although many dialects or linguistic varieties exist in different online communities. The term leet is also used as an adjective to describe formidable prowess or accomplishment, especially in the fields of online gaming and in its original usage – computer hacking.", "2015-15-34", true, null));
 		
+
 	}
 	
 	public class RenderingTask extends AsyncTask<Context,Void,Void> {
