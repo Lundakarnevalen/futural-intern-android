@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp" >
+
+        <se.lundakarnevalen.widget.LKTextViewBold
+            android:id="@+id/Section_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_horizontal"
+            android:text="TEST"
+            android:textColor="#ffffff"
+            android:textSize="32sp" />
+
+        <ImageView
+            android:id="@+id/Section_icon"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_below="@id/Section_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/rund" />
+
+        <se.lundakarnevalen.widget.LKTextViewBold
+            android:id="@+id/section_slogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Section_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_horizontal"
+            android:text="Sektionen för de barnsligaste"
+            android:textColor="@color/base_pink"
+            android:textSize="24sp" />
+
+        <se.lundakarnevalen.widget.LKTextView
+            android:id="@+id/section_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/section_slogan"
+            android:layout_marginBottom="25dp"
+            android:text="ajowdjkwejhlkfewömjefljnsdkljvkljlvenjvklejkwejflkqwjeklfejlkwijqjkfewhjkehfjkhfekjl fehjkehwjkhvekjhewkjvhjkvehjfkhewjkf uhflejkwhfjkhgwefguwegfueqwkhkjfeqoifhieqhfjkqebvjkewhvuf feihljgheqiluhfgelifhgquifgequgfuyqegciugeiqulfglieughvuilegiuvgewl hfuqeifhiluwehfilugfuicgiufegefwihu"
+            android:textColor="@color/light_peach"
+            android:textSize="16sp" />
+
+        <se.lundakarnevalen.widget.LKButton
+            android:id="@+id/section_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/section_information"
+            android:layout_centerHorizontal="true"
+            android:text="@string/Section_button" />
+    </RelativeLayout>
+
+</ScrollView>
