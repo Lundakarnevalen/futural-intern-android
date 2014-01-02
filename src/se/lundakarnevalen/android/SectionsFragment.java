@@ -6,13 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class SektionerFragment extends LKFragment{
+public class SectionsFragment extends LKFragment{
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		TextView tv = new TextView(getActivity());
-		tv.setText("Sektioner hej");
-		return tv;
+		View root = (View) inflater.inflate(R.layout.sections_layout, null);
+		return root;
 	}
 	
 	@Override

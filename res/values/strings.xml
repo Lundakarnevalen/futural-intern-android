@@ -90,4 +90,7 @@
     <string name="register_desc">Det verkar som om du inte är karnevalist än.\nJag tycker att du ska bli det.\nOmedelbums.</string>
     <string name="register_desc_login_f">Är du redan karnevalist?&#160;</string>
     <string name="register_desc_login_l">Logg in här.</string>
+    <string name="choose">Välj</string>
+    <string name="lucky">Jag har tur</string>
+    <string name="Section_button">Jag vill engagera mig!</string>
 </resources>
