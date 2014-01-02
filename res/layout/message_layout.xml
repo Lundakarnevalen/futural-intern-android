@@ -6,11 +6,12 @@
 
     <RelativeLayout android:id="@+id/message_title_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+		android:paddingRight="12dp"
+		android:paddingTop="@dimen/horizontal_margin">
         
-			<RelativeLayout android:layout_width="match_parent"
-			    android:layout_height="match_parent"
-			    android:padding="@dimen/horizontal_margin" >
+			
   	
 		    <RelativeLayout android:id="@+id/message_title_view"
 		        android:layout_width="match_parent"
@@ -63,11 +64,6 @@
 		            android:textSize="18sp"/>
 		        
 		    </RelativeLayout>
-		
-    
-  
-    
+</RelativeLayout>
 
-</RelativeLayout>
-</RelativeLayout>
 </ScrollView>
