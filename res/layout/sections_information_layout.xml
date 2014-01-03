@@ -26,8 +26,7 @@
             android:layout_height="250dp"
             android:layout_below="@id/Section_name"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="12dp"
-            android:src="@drawable/rund" />
+            android:layout_marginBottom="12dp" />
 
         <se.lundakarnevalen.widget.LKTextViewBold
             android:id="@+id/section_slogan"

@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
-
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 public class SectionsListFragment extends LKFragment {
 
@@ -18,11 +21,18 @@ public class SectionsListFragment extends LKFragment {
 			Bundle savedInstanceState) {
 		View root = (View) inflater
 				.inflate(R.layout.sections_list_layout, null);
-
+		RelativeLayout right = (RelativeLayout) root
+				.findViewById(R.id.left_tab);
+		right.setOnClickListener(new ClickListener());
+		
 		ArrayList<LKSectionsArrayAdapter.LKSectionsItem> list = new ArrayList<LKSectionsArrayAdapter.LKSectionsItem>();
 
-		list.add(new LKSectionsItem("Title", R.drawable.rund, "Slogan",
-				"information information information information information information information information", true));
+		list.add(new LKSectionsItem(
+				"Barnevalen",
+				R.drawable.sections_image,
+				"Sektionen fšr de barnsligaste.",
+				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information information information information information information",
+				true));
 		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
 				"information 2", true));
 		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
@@ -40,10 +50,21 @@ public class SectionsListFragment extends LKFragment {
 				getActivity(), list);
 
 		listView.setOnItemClickListener(adapter);
-		
+
 		listView.setAdapter(adapter);
 
 		return root;
+	}
+
+	public class ClickListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+
+			ContentActivity a = (ContentActivity) getActivity();
+			a.getSupportFragmentManager().popBackStack();
+		}
+
 	}
 
 	@Override

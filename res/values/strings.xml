@@ -93,4 +93,6 @@
     <string name="choose">Välj</string>
     <string name="lucky">Jag har tur</string>
     <string name="Section_button">Jag vill engagera mig!</string>
+    <string name="rigth_tab">Kategorisering</string>
+    <string name="left_tab">Bläddring</string>
 </resources>

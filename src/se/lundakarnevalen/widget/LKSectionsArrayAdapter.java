@@ -82,7 +82,6 @@ public class LKSectionsArrayAdapter extends
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		LKSectionsItem item = getItem(pos);
 		SectionsInformationFragment fragment = new SectionsInformationFragment();
-		Log.d("hej", "fgdsfg");
 		Bundle bundle = new Bundle();
 
 		bundle.putString("title", item.title);

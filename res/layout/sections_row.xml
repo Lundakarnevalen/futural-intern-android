@@ -27,7 +27,7 @@
                 android:layout_toRightOf="@id/image"
                 android:paddingLeft="30dp"
                 android:textColor="@color/base_pink"
-                android:textSize="@dimen/title_text_size" />
+                android:textSize="25sp" />
 
             <ImageView
                 android:id="@+id/image"
@@ -36,10 +36,12 @@
 
             <ImageView
                 android:id="@+id/forward"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true" />
-           		<!-- android:src="@drawable/forward" -->
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:src="@drawable/row_arrow" />
         </RelativeLayout>
     </RelativeLayout>
 
