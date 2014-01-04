@@ -24,15 +24,55 @@ public class SectionsListFragment extends LKFragment {
 		RelativeLayout right = (RelativeLayout) root
 				.findViewById(R.id.left_tab);
 		right.setOnClickListener(new ClickListener());
-		
+
 		ArrayList<LKSectionsArrayAdapter.LKSectionsItem> list = new ArrayList<LKSectionsArrayAdapter.LKSectionsItem>();
 
 		list.add(new LKSectionsItem(
 				"Barnevalen",
 				R.drawable.sections_image,
 				"Sektionen fšr de barnsligaste.",
-				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information information information information information information",
+				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
 				true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
+		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
+				"information 2", true));
 		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
 				"information 2", true));
 		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",

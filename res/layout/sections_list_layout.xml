@@ -63,7 +63,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:contentDescription="TODO"
         android:paddingBottom="10dp"
         android:paddingLeft="45dp"
         android:paddingRight="45dp"

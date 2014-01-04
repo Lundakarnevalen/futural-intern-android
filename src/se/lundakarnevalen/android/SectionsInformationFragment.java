@@ -1,6 +1,6 @@
 package se.lundakarnevalen.android;
 
-//import se.lundakarnevalen.android.SectionsListFragment.ClickListener;
+import se.lundakarnevalen.android.SectionsListFragment.ClickListener;
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -26,9 +27,9 @@ public class SectionsInformationFragment extends LKFragment {
 			Bundle savedInstanceState) {
 		View root = inflater
 				.inflate(R.layout.sections_information_layout, null);
-//		RelativeLayout registerButton = (RelativeLayout) root
-//				.findViewById(R.id.section_button);
-//		registerButton.setOnClickListener(new ClickListener());
+		Button registerButton = (Button) root
+				.findViewById(R.id.section_button);
+		registerButton.setOnClickListener(new ClickListener());
 
 		Bundle bundle = getArguments();
 		title = bundle.getString("title");
@@ -54,12 +55,12 @@ public class SectionsInformationFragment extends LKFragment {
 		return root;
 	}
 
-//	public class ClickListener implements OnClickListener {
-//
-//		@Override
-//		public void onClick(View v) {
-//			ContentActivity a = (ContentActivity) getActivity();
-//			a.getSupportFragmentManager().popBackStack();
-//		}
-//	}
+	public class ClickListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			LKFragment fragment = new RegistrationFragment();
+			loadFragment(fragment, true);
+		}
+	}
 }
