@@ -1,16 +1,21 @@
 package se.lundakarnevalen.android;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKTextView;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,24 +32,47 @@ public class InboxFragment extends LKFragment{
 	Context context;
 	ProgressBar progressCircle;
 	LKFragment fragment;
+	FragmentManager fragmentManager;
+	LKSQLiteDB db;
+	List<LKMenuListItem> data;
+	boolean inboxEmpty = false;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-
-		RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.inbox_layout, null);
-		this.fragment = this;
-		listView = (ListView) root.findViewById(R.id.inbox_list_view);
+		
 		context = getContext();
-		progressCircle = (ProgressBar) root.findViewById(R.id.inbox_progress_circle);
-
-		return root; 
+		
+		db = new LKSQLiteDB(context);
+		data = db.getMessages();
+		if(data.size() <= 0) {
+			View v = inflater.inflate(R.layout.inbox_empty_layout, null);
+			inboxEmpty = true;
+			return v;
+		} else {
+			RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.inbox_layout, null);
+			this.fragment = this;
+			listView = (ListView) root.findViewById(R.id.inbox_list_view);
+			progressCircle = (ProgressBar) root.findViewById(R.id.inbox_progress_circle);
+			return root;
+		}
 	}
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		setTitle("Inbox");
+		fragmentManager = getActivity().getSupportFragmentManager();
+		if(!inboxEmpty) {
+			new RenderingTask().execute(context);
+		}
+		// Code to add dummy data into database.
+		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
+		//dbDummy.addItem(new LKMenuListItem("Title", "This is a short message.", "2015-15-34", true, null));
+
+		LKSQLiteDB dbDummy = new LKSQLiteDB(context);
+		dbDummy.addItem(new LKMenuListItem("Title", "Leet (or '1337'), also known as eleet or leetspeak, is an alternative alphabet for the English language that is used primarily on the Internet. It uses various combinations of ASCII characters to replace Latinate letters. For example, leet spellings of the word leet include 1337 and l33t; eleet may be spelled 31337 or 3l33t. The term leet is derived from the word elite. The leet alphabet is a specialized form of symbolic writing. Leet may also be considered a substitution cipher, although many dialects or linguistic varieties exist in different online communities. The term leet is also used as an adjective to describe formidable prowess or accomplishment, especially in the fields of online gaming and in its original usage – computer hacking.", "2015-15-34", true, null));
 		
-		new RenderingTask().execute(context);
+
 	}
 	
 	public class RenderingTask extends AsyncTask<Context,Void,Void> {
@@ -52,12 +80,12 @@ public class InboxFragment extends LKFragment{
 		
 		protected void onPreExecute(Context... context) {
 			progressCircle.setVisibility(View.VISIBLE);
-			
 			Log.d("RenderingTask", "Completed onPreExecute()");
 		}
 		
 		@Override
 		protected Void doInBackground(Context... context) {
+			
 			//Get inflater
 			LayoutInflater inflater = (LayoutInflater) context[0].getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
@@ -70,15 +98,9 @@ public class InboxFragment extends LKFragment{
 			l.isStatic = true;
 			items.add(l);
 			
-			//TODO: Replace with code fetching message data from server.
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",true, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",true, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",true, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
-			items.add(new LKMenuListItem("Bajs","Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy","2013-12-27 13:37",false, BitmapFactory.decodeResource(getResources(), R.drawable.rund)));
+			for(LKMenuListItem message : data){
+				items.add(message);
+			}
 			
 			//Populate rowList with data from items
 			for(LKInboxArrayAdapter.LKMenuListItem item:items) {
@@ -108,11 +130,16 @@ public class InboxFragment extends LKFragment{
 				int counter = 0;
 				int currentWidth = 0;
 				Log.d("RenderingTask","widthOfView = "+widthOfView);
+				boolean dots = true;
 				while(currentWidth < (widthOfView) && widths.length > 0) {
 					currentWidth += widths[counter];
 					counter++;
+					if(counter >= message.length()){
+						dots = false;
+						break;
+					}
 				}
-				String previewMessage = message.substring(0, counter)+"...";
+				String previewMessage = message.substring(0, counter)+((dots) ? "..." : "");
 				messagePreviewTextView.setText(previewMessage);
 				messagePreviewTextView.setTextColor(context[0].getResources().getColor((R.color.peach)));
 				
@@ -137,12 +164,15 @@ public class InboxFragment extends LKFragment{
 		
 		@Override
 		protected void onPostExecute(Void v) {
-			Log.d("RenderingTask", items.size()+"");
-			if(fragment == null)
-				Log.e(LOG_TAG, "Fragment was null");
-			if(fragment.messanger == null)
-				Log.e(LOG_TAG, "messanger was null");
+			Log.d("RenderingTask", "fragment was "+((fragment==null) ? "null" : "not null"));
+			Log.d("RenderingTask", "items was "+((items==null) ? "null" : "not null"));
+			Log.d("RenderingTask", "activity was "+((getActivity()==null) ? "null" : "not null"));
 			LKInboxArrayAdapter adapt = new LKInboxArrayAdapter(getActivity(), items, fragment);
+			try {
+				adapt.setFragmentManager(fragmentManager);
+			} catch(NullPointerException e) {
+				Log.wtf("RenderingTask",e.toString());
+			}
 			listView.setOnItemClickListener(adapt);
 			progressCircle.setVisibility(View.GONE);
 			listView.setAdapter(adapt);

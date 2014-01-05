@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <RelativeLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        
+	    <ImageView android:id="@+id/inbox_empty_image"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:layout_centerHorizontal="true"
+	        android:src="@drawable/rund"/>
+	    
+	    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_empty_text"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/inbox_empty_text"
+	        android:layout_below="@id/inbox_empty_image"
+	        android:layout_centerHorizontal="true"
+	        android:textSize="25sp"
+	        android:textColor="@color/light_peach"/>
+	    
+	</RelativeLayout>
+    
+</RelativeLayout>
