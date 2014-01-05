@@ -12,11 +12,13 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:background="@color/bg_peach" >
-	    <ImageView 
+	    <ImageView
 	        android:id="@+id/imageView1"
-	    	android:src="@drawable/top_logo_white"
+	    	android:src="@drawable/reg_title"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
+			android:paddingLeft="@dimen/horizontal_margin"
+			android:paddingRight="@dimen/horizontal_margin"
 			android:layout_alignParentTop="true" 
 	    	android:contentDescription="@string/registration_hurra" />
 	    <RelativeLayout 
@@ -181,30 +183,24 @@
         		android:text="S"
         		android:onClick="onRadioButtonClicked"/>
 		</RadioGroup>
-
-	    
 	    <se.lundakarnevalen.widget.LKButton
 	        android:layout_marginTop="@dimen/vertical_margin"
-	        android:id="@+id/lKButton1"
+	        android:id="@+id/confirm_button"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_below="@id/radioGroup1"
 	        android:textColor="#FFFFFF"
 	        android:text="@string/registration_submit" />
-	    
 	    <se.lundakarnevalen.widget.LKTextView
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:id="@+id/lKTextView3"
 	       	android:layout_width="wrap_content"
 	       	android:layout_height="wrap_content"
-	       	android:layout_below="@id/lKButton1"
+	       	android:layout_below="@id/confirm_button"
 	       	android:layout_centerHorizontal="true"
 	       	android:textColor="#FFFFFF"
 	       	android:textSize="10sp"
 	    	android:gravity="center"
 	       	android:text="@string/registration_submitinfo" />
-	    
-	    
-	    
 	</RelativeLayout>
 </ScrollView>

@@ -1,5 +1,7 @@
 package se.lundakarnevalen.android;
 
+import se.lundakarnevalen.remote.LKUser;
+import se.lundakarnevalen.widget.LKButton;
 import se.lundakarnevalen.widget.LKEditText;
 import se.lundakarnevalen.widget.LKProgressBar;
 import se.lundakarnevalen.widget.LKTextView;
@@ -11,18 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegistrationFragment extends LKFragment{
 	private int progresslevel;
 	private SharedPreferences shpref;
-	private LKEditText name;
-	private LKEditText email;
-	private LKEditText password;
-	private LKEditText mobilnbr;
+	private LKEditText name, email, password, mobilnbr;
 	private LKProgressBar progressbar;
-	private LKTextView progressvalue;	
+	private LKTextView progressvalue;
+	private LKButton confirmButton;
 	
 	private boolean isRegistationCorrect(){
 		return false;
@@ -63,11 +62,11 @@ public class RegistrationFragment extends LKFragment{
 		return false;
 	}
 	
-	private boolean validPassword(){ //borde checka lŠngden
+	private boolean validPassword(){ //borde checka lï¿½ngden
 		return !password.getText().toString().equals("");
 	}
 	
-	private boolean validMobileNumber(){ //borde checka lŠngden
+	private boolean validMobileNumber(){ //borde checka lï¿½ngden
 		return !mobilnbr.getText().toString().equals("");
 	}
 	private boolean validName(){
@@ -137,6 +136,8 @@ public class RegistrationFragment extends LKFragment{
 		mobilnbr = (LKEditText) root.findViewById(R.id.lKEditTextMobilNbr);
 		progressbar = (LKProgressBar) root.findViewById(R.id.lKProgressBar1);
 		progressvalue = (LKTextView) root.findViewById(R.id.progress_value);
+		confirmButton = (LKButton) root.findViewById(R.id.confirm_button);
+		confirmButton.setOnClickListener(confirm);
 		name.addTextChangedListener(watcher);
 		email.addTextChangedListener(watcher);
 		password.addTextChangedListener(watcher);
@@ -149,6 +150,19 @@ public class RegistrationFragment extends LKFragment{
 		super.onActivityCreated(savedInstanceState);
 		setTitle("Registrering");
 	}
+	
+	View.OnClickListener confirm = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// Save some dummy data to have a "user" saved in SP. 
+			LKUser user = new LKUser(getActivity().getApplicationContext());
+			user.setUsername("Kalle anka");
+			user.setToken("#steeze");
+			user.storeUserLocaly();
+			Toast.makeText(getContext(), "Saved dummy user in SP. Set username and token in SP only. Clear app in android to remove.", Toast.LENGTH_SHORT).show();
+		}
+	};
 	
 	TextWatcher watcher = new TextWatcher(){
 

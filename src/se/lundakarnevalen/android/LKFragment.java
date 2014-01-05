@@ -1,5 +1,6 @@
 package se.lundakarnevalen.android;
 
+import se.lundakarnevalen.remote.LKUser;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -63,6 +64,18 @@ public class LKFragment extends Fragment{
 		Resources r = context.getResources();
 		float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics());
 		return px;
+	}
+	
+	/** 
+	 * Gets a new fragment to use for startup/on click of start button in menu. 
+	 * @param context Application context
+	 * @return Fragment to launch. 
+	 */
+	public static LKFragment getStartFragment(Context context){
+		if(LKUser.localUserStored(context))
+			return new RegistrationProgressFragment();
+		else
+			return new RegistrationOhNoFragment();
 	}
 	
 	/**

@@ -59,7 +59,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		
 		setupActionBar();
 		populateMenu();
-		loadFragment(new RegistrationOhNoFragment(), false);
+		loadFragment(LKFragment.getStartFragment(this), false);
 	}
 	
 	
@@ -147,18 +147,16 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	 */
 	private void populateMenu(){
 		// Create logo and sigill objects. 
-		ImageView menuSigill = new ImageView(this);
-		ListView.LayoutParams params = new ListView.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-		menuSigill.setLayoutParams(params);
+		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);
 		
 		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
-		listItems.add(new LKMenuListItem("Start", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isActive(true));
+		listItems.add(new LKMenuListItem("Start", 0, LKFragment.getStartFragment(this), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SektionerFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
 		listItems.add(inboxListItem);
-
 		listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
-
+		
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
 		
 		LKMenuArrayAdapter adapter = new LKMenuArrayAdapter(this, listItems);
