@@ -102,7 +102,7 @@
 	        android:layout_width="match_parent"
 	    	android:layout_height="wrap_content" 
 	        android:layout_below="@id/lKCombinedTexts2" >
-	        <se.lundakarnevalen.widget.LKTextViewBold 
+	        <se.lundakarnevalen.widget.LKTextViewFat
 	        	android:layout_marginTop="@dimen/vertical_margin"
 	        	android:textSize="24sp"
 	        	android:id="@+id/lKTextViewBold3"
