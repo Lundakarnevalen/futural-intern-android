@@ -57,17 +57,18 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <ImageView
+    <TextView
         android:id="@+id/all_sections"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:paddingBottom="10dp"
-        android:paddingLeft="45dp"
-        android:paddingRight="45dp"
-        android:paddingTop="10dp"
-        android:src="@drawable/sections_title" />
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="32sp"
+        android:text="@string/all_sections"/>
 
     <ListView
         android:id="@+id/list_section"

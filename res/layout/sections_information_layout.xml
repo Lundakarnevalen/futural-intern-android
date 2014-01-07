@@ -49,7 +49,7 @@
 
         <se.lundakarnevalen.widget.LKButton
             android:id="@+id/section_button"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/section_information"
             android:layout_centerHorizontal="true"

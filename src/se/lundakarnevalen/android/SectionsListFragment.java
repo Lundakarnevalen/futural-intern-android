@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class SectionsListFragment extends LKFragment {
 
@@ -25,6 +27,10 @@ public class SectionsListFragment extends LKFragment {
 				.findViewById(R.id.left_tab);
 		right.setOnClickListener(new ClickListener());
 
+		TextView titleTextView = (TextView) root
+				.findViewById(R.id.all_sections);
+		
+		
 		ArrayList<LKSectionsArrayAdapter.LKSectionsItem> list = new ArrayList<LKSectionsArrayAdapter.LKSectionsItem>();
 
 		list.add(new LKSectionsItem(

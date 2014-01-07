@@ -1,8 +1,10 @@
 package se.lundakarnevalen.android;
 
-import se.lundakarnevalen.android.SectionsListFragment.ClickListener;
+import java.util.Locale;
+
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class SectionsInformationFragment extends LKFragment {
 
@@ -37,7 +39,7 @@ public class SectionsInformationFragment extends LKFragment {
 		slogan = bundle.getString("slogan");
 		information = bundle.getString("information");
 
-		LKTextViewBold titleTextView = (LKTextViewBold) root
+		TextView titleTextView = (TextView) root
 				.findViewById(R.id.Section_name);
 		ImageView icon = (ImageView) root.findViewById(R.id.Section_icon);
 		LKTextViewBold sloganTextView = (LKTextViewBold) root
@@ -45,7 +47,7 @@ public class SectionsInformationFragment extends LKFragment {
 		LKTextView informationTextView = (LKTextView) root
 				.findViewById(R.id.section_information);
 
-		titleTextView.setText(title);
+		titleTextView.setText(title.toUpperCase());
 		icon.setImageResource(pictureResourceId);
 		sloganTextView.setText(slogan);
 		informationTextView.setText(information);
