@@ -1,5 +1,6 @@
 package se.lundakarnevalen.android;
 
+import se.lundakarnevalen.remote.LKUser;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
 
 public class LKFragment extends Fragment{
 	protected final String LOG_TAG = "LKFragment";
@@ -64,6 +66,18 @@ public class LKFragment extends Fragment{
 		return px;
 	}
 	
+	/** 
+	 * Gets a new fragment to use for startup/on click of start button in menu. 
+	 * @param context Application context
+	 * @return Fragment to launch. 
+	 */
+	public static LKFragment getStartFragment(Context context){
+		if(LKUser.localUserStored(context))
+			return new RegistrationProgressFragment();
+		else
+			return new RegistrationOhNoFragment();
+	}
+	
 	/**
 	 * Updates UI inbox count in actionbar and menu.
 	 * @param count Number of unread messages. 
@@ -92,6 +106,13 @@ public class LKFragment extends Fragment{
 	public void loadFragment(Fragment fragment, boolean addToBackstack){
 		Log.d(LOG_TAG, "messenger was" + ((messanger == null) ? "null" : "not null"));
 		messanger.loadFragment(fragment, addToBackstack);
+	}
+	/**
+	 * Handles radiobuttons in the fragment
+	 * @param view radio button view
+	 */
+	public void onRadioButtonClicked(View view) {
+		
 	}
 	
 	/**

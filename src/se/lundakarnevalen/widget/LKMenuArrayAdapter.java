@@ -84,6 +84,12 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		else
 			Log.d(LOG_TAG, "no listener for list item");
 	}
+	
+	@Override
+	public boolean isEnabled(int pos){
+		// Make statics no enabled.
+		return !getItem(pos).isStatic;
+	}
 		
 	/**
 	 * Class representing a single row in the menu. Used with the LKMenuArrayAdapter.

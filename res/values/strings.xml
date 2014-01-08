@@ -19,6 +19,8 @@
     <string name="registration_shirtsize">TRÖJSTORLEK</string>
     <string name="registration_submit">Skicka in</string>
     <string name="registration_submitinfo">Genom att klicka på knappen, förbinder\ndu dig att ha kul under karnevalstiden.</string>
+    <string name="registration_mysections">Jag vill engagera mig i</string>
+    <string name="registration_myshirtsize">Jag har tröjstorlek</string>
     
     
     <string name="sektion_barnevalen">Barnevalen</string>
@@ -78,6 +80,7 @@
         <item>Vieriet</item>
     </string-array>
     
+    <string name="name">Namn</string>
     <string name="password">Lösenord</string>
     <string name="email">E-post</string>
     <string name="login_welcome_desc_f">Välkommen in i värmen.&#160;</string>
@@ -90,10 +93,13 @@
     <string name="register_desc">Det verkar som om du inte är karnevalist än.\nJag tycker att du ska bli det.\nOmedelbums.</string>
     <string name="register_desc_login_f">Är du redan karnevalist?&#160;</string>
     <string name="register_desc_login_l">Logg in här.</string>
+
     <string name="choose">Välj</string>
     <string name="lucky">Jag har tur</string>
     <string name="Section_button">Jag vill engagera mig!</string>
     <string name="rigth_tab">Kategorisering</string>
     <string name="left_tab">Bläddring</string>
     <string name="all_sections">ALLA SEKTIONER</string>
+    
+    <string name="inbox_empty_text">OH NO! No messages...</string>
 </resources>
