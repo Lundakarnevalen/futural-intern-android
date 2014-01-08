@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp" >
 
-        <se.lundakarnevalen.widget.LKTextViewBold
+        <se.lundakarnevalen.widget.LKTextViewFat
             android:id="@+id/Section_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

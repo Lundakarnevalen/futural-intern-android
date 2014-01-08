@@ -2,12 +2,10 @@ package se.lundakarnevalen.android;
 
 import java.util.ArrayList;
 
+import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,66 +27,34 @@ public class SectionsListFragment extends LKFragment {
 
 		TextView titleTextView = (TextView) root
 				.findViewById(R.id.all_sections);
-		
-		
-		ArrayList<LKSectionsArrayAdapter.LKSectionsItem> list = new ArrayList<LKSectionsArrayAdapter.LKSectionsItem>();
 
-		list.add(new LKSectionsItem(
+		ArrayList<LKSectionsArrayAdapter.LKSectionsItem> list = new ArrayList<LKSectionsArrayAdapter.LKSectionsItem>();
+		
+		SectionSQLiteDB db = new SectionSQLiteDB(getActivity());
+		db.dropEntiresInDatabase();
+		
+		db.addItem(new LKSectionsItem(
 				"Barnevalen",
 				R.drawable.sections_image,
 				"Sektionen fšr de barnsligaste.",
 				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
 				true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
-		list.add(new LKSectionsItem("Title 2", R.drawable.rund, "Slogan 2",
-				"information 2", true));
+		
+		db.addItem(new LKSectionsItem(
+				"Barnevalen",
+				R.drawable.sections_image,
+				"Sektionen fšr de barnsligaste.",
+				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
+				true));
+		
+		db.addItem(new LKSectionsItem(
+				"Barnevalen",
+				R.drawable.sections_image,
+				"Sektionen fšr de barnsligaste.",
+				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
+				true));
+		
+		list.addAll(db.getSections());
 
 		ListView listView = (ListView) root.findViewById(R.id.list_section);
 

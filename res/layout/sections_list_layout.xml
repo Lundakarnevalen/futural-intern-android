@@ -52,12 +52,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="@string/rigth_tab"
+                android:text="@string/right_tab"
                 android:textColor="@color/light_peach" />
         </RelativeLayout>
     </LinearLayout>
 
-    <TextView
+    <se.lundakarnevalen.widget.LKTextViewFat
         android:id="@+id/all_sections"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -28,60 +28,181 @@
             <RelativeLayout
                 android:id="@+id/spinner"
                 android:layout_width="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spin_to_win"
-                android:padding="10dp"
+                android:layout_centerInParent="true"
                 android:layout_marginBottom="10dp"
-                android:paddingBottom="15dp"
-                android:background="@drawable/spinner_background" >
+                android:background="@drawable/spinner_background"
+                android:padding="10dp"
+                android:paddingBottom="15dp" >
 
-	<ViewFlipper
-        android:layout_margin="6dip"
-		android:id="@+id/view_flipper"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:background="#FFFFFF"
-		android:gravity="center">
-		<LinearLayout
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:orientation="vertical"
-			android:layout_gravity="center"
-			android:gravity="center">
-			<ImageView
-				android:layout_height="wrap_content"
-				android:layout_width="fill_parent"
-				android:layout_gravity="center"
-				android:gravity="center"
-				android:src="@drawable/spin_wheel_blue"/>
-		</LinearLayout>
-		<LinearLayout
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:orientation="vertical"
-			android:layout_gravity="center"
-			android:gravity="center">
-			<ImageView
-				android:layout_height="wrap_content"
-				android:layout_width="fill_parent"
-				android:layout_gravity="center"
-				android:src="@drawable/spin_wheel_red"/>
-		</LinearLayout>
-		<LinearLayout
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:orientation="vertical"
-			android:layout_gravity="center"
-			android:gravity="center">
-			<ImageView
-				android:layout_height="wrap_content"
-				android:layout_width="fill_parent"
-				android:layout_gravity="center"
-				android:src="@drawable/spin_wheel_yellow"/>	
-		</LinearLayout>
-	</ViewFlipper>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true" >
+
+                    <ViewFlipper
+                        android:id="@+id/view_flipper1"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dip"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:gravity="center" >
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:src="@drawable/spin_wheel_yellow" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/spin_wheel_red" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/spin_wheel_blue" />
+                        </LinearLayout>
+                    </ViewFlipper>
+
+                    <ViewFlipper
+                        android:id="@+id/view_flipper2"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dip"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:gravity="center" >
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:src="@drawable/spin_wheel_blue" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/spin_wheel_red" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/spin_wheel_yellow" />
+                        </LinearLayout>
+                    </ViewFlipper>
+
+                    <ViewFlipper
+                        android:id="@+id/view_flipper3"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dip"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:gravity="center" >
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:src="@drawable/spin_wheel_red" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/spin_wheel_yellow" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/spin_wheel_blue" />
+                        </LinearLayout>
+                    </ViewFlipper>
+                </LinearLayout>
             </RelativeLayout>
 
             <se.lundakarnevalen.widget.LKButton
@@ -144,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="@string/rigth_tab"
+                android:text="@string/right_tab"
                 android:textColor="@color/light_peach" />
         </RelativeLayout>
     </LinearLayout>
