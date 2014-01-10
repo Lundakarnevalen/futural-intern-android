@@ -1,5 +1,7 @@
 package se.lundakarnevalen.remote;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -17,7 +19,9 @@ public class LKUser {
 	private static final String SHARED_PREFS_USERNAME = "LKUsername";
 	private static final String SHARED_PREFS_TOKEN = "LKToken";
 	Context context;
-	String username, token;
+	String username, token, email, password, mobilenumber;
+	ArrayList<String> sektioner;
+	char shirtsize;
 	SharedPreferences sp;
 	
 	public LKUser(Context context){
@@ -54,5 +58,21 @@ public class LKUser {
 	
 	public void setToken(String token){
 		this.token = token;
+	}
+	
+	public void setEmail(String email){
+		this.email = email;
+	}
+	public void setPassword(String password){
+		this.password = password;
+	}
+	public void setMobileNumber(String mobilenumber){
+		this.mobilenumber = mobilenumber;
+	}
+	public void setSektioner(ArrayList<String> sektioner){
+		this.sektioner = sektioner;
+	}
+	public void setShirtsize(char shirtsize){
+		this.shirtsize = shirtsize;
 	}
 }

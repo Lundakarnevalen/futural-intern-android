@@ -82,6 +82,8 @@
     
     <string name="name">Namn</string>
     <string name="password">Lösenord</string>
+    <string name="confirm_password">Bekräfa Lösenord</string>
+    <string name="confirm_email">Bekräfta E-post</string>
     <string name="email">E-post</string>
     <string name="login_welcome_desc_f">Välkommen in i värmen.&#160;</string>
     <string name="login_welcome_desc_l">Vänligen logga in.</string>

@@ -114,6 +114,14 @@ public class LKFragment extends Fragment{
 	public void onRadioButtonClicked(View view) {
 		
 	}
+	/**
+	 * Handles Specialcaseradiobuttons in the fragment
+	 * @param view radio button view
+	 */
+	public void onSectionClicked(View view) {
+		
+	}
+	
 	
 	/**
 	 * Interface to be implemented by activity containing the fragment.

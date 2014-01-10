@@ -96,7 +96,7 @@
 	        android:textColor="#FFFFFF"
 	        android:textColorHint="@color/bg_peach"
 	        android:hint="@string/name" />
-	    
+
 	    <se.lundakarnevalen.widget.LKEditText
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:id="@+id/lKEditTextEmail"
@@ -107,25 +107,44 @@
 	        android:textColorHint="@color/bg_peach"
 	        android:inputType="textEmailAddress"
 	        android:hint="@string/email" />
-	    
+	    <se.lundakarnevalen.widget.LKEditText
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/lKEditTextConfirmEmail"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@id/lKEditTextEmail" 
+	        android:textColor="#FFFFFF"
+	        android:textColorHint="@color/bg_peach"
+	        android:inputType="textEmailAddress"
+	        android:hint="@string/confirm_email" />
 	
 	    <se.lundakarnevalen.widget.LKEditText
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:id="@+id/lKEditTextPassword"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKEditTextEmail"
+	        android:layout_below="@id/lKEditTextConfirmEmail"
 	        android:textColor="#FFFFFF"
 			android:textColorHint="@color/bg_peach"
 			android:inputType="textPassword"
 	        android:hint="@string/password" />
+	    <se.lundakarnevalen.widget.LKEditText
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/lKEditTextConfirmPassword"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@id/lKEditTextPassword"
+	        android:textColor="#FFFFFF"
+			android:textColorHint="@color/bg_peach"
+			android:inputType="textPassword"
+	        android:hint="@string/confirm_password" />
 	    
 	    <se.lundakarnevalen.widget.LKEditText
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:id="@+id/lKEditTextMobilNbr"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKEditTextPassword"
+	        android:layout_below="@id/lKEditTextConfirmPassword"
 	        android:textColor="#FFFFFF"
 			android:textColorHint="@color/bg_peach"
 			android:inputType="phone"
@@ -143,6 +162,188 @@
 	        android:textColor="#FFFFFF"
 	        android:text="@string/registration_choosesection" />
 	    
+	    <LinearLayout
+	       	android:layout_marginTop="@dimen/vertical_margin"
+	        android:id="@+id/sektionwrapper"
+	        android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_centerHorizontal="true"
+        	android:orientation="horizontal" 
+        	android:layout_below="@id/lKTextViewBold4">
+	    	<LinearLayout
+	       		android:layout_marginTop="@dimen/vertical_margin"
+	        	android:id="@+id/leftsektionwrapper"
+	        	android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" 
+        		android:orientation="vertical" >
+        		
+	    	    <RadioButton android:id="@+id/radio_sektion_barnevalen"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_barnevalen"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/>
+	    	    <RadioButton android:id="@+id/radio_sektion_biljetteriet"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_biljetteriet"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_bladderiet"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_bladderiet"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/>
+        		<RadioButton android:id="@+id/radio_sektion_cirkusen"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_cirkusen"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/>
+        		<RadioButton android:id="@+id/radio_sektion_dansen"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_dansen"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_ekonomi"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_ekonomi"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_fabriken"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_fabriken"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_festmasteriet"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_festmasteriet"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_filmen"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_filmen"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_kabare"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_kabare"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_klipperiet"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_klipperiet"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_kommunikation"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_kommunikation"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 	
+        		<RadioButton android:id="@+id/radio_sektion_krogarna"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_krogarna"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+	    	</LinearLayout>
+	        <LinearLayout
+	       		android:layout_marginTop="@dimen/vertical_margin"
+	        	android:id="@+id/rightsektionwrapper"
+	        	android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:layout_marginLeft="@dimen/horizontal_margin"
+	        	android:orientation="vertical" >
+	    		<RadioButton android:id="@+id/radio_sektion_omradet"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_omradet"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/>
+	    	    <RadioButton android:id="@+id/radio_sektion_musiken"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_musiken"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_nojessektionen"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_nojessektionen"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/>
+        		<RadioButton android:id="@+id/radio_sektion_radion"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_radion"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/>
+        		<RadioButton android:id="@+id/radio_sektion_revyn"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_revyn"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_shoppen"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_shoppen"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_showen"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_showen"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_snaxeriet"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_snaxeriet"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_sakerhet"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_sakerhet"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_tombola"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_tombola"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_taget"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_taget"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+        		<RadioButton android:id="@+id/radio_sektion_taltnojen"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_taltnojen"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 	
+        		<RadioButton android:id="@+id/radio_sektion_vieriet"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/sektion_vieriet"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onSectionClicked"/> 
+	    	</LinearLayout>
+	    </LinearLayout>
+	    
 	    <!-- lägg in lista av alla sektioner -->
 	    
 	    <se.lundakarnevalen.widget.LKTextViewBold
@@ -151,7 +352,7 @@
 	        android:id="@+id/lKTextViewBold5"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKTextViewBold4"
+	        android:layout_below="@id/sektionwrapper"
 	        android:textColor="#FFFFFF"
 	        android:text="@string/registration_shirtsize" />
 	    
