@@ -27,7 +27,7 @@
                 android:layout_toRightOf="@id/image"
                 android:paddingLeft="30dp"
                 android:textColor="@color/base_pink"
-                android:textSize="@dimen/title_text_size" />
+                android:textSize="25sp" />
 
             <ImageView
                 android:id="@+id/image"

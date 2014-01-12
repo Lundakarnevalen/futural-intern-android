@@ -54,7 +54,7 @@ public class SectionSQLiteDB extends SQLiteOpenHelper{
 		List<LKSectionsItem> data = new ArrayList<LKSectionsItem>();
 		SQLiteDatabase dbRead = getReadableDatabase();
 		String[] dataProjection = {SectionSQLiteDBContract.COLUMN_NAME_ENTRY_ID, SectionSQLiteDBContract.COLUMN_NAME_TITLE, SectionSQLiteDBContract.COLUMN_NAME_ICON, SectionSQLiteDBContract.COLUMN_NAME_SLOGAN, SectionSQLiteDBContract.COLUMN_NAME_INFO, SectionSQLiteDBContract.COLUMN_NAME_LIKED};
-		String sort = "title DESC";
+		String sort = "title ASC";
 		Cursor cursor = dbRead.query(SectionSQLiteDBContract.TABLE_NAME, dataProjection, null, null, null, null, sort);
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()){

@@ -41,14 +41,21 @@ public class SectionsListFragment extends LKFragment {
 				true));
 		
 		db.addItem(new LKSectionsItem(
-				"Barnevalen",
+				"Klipperiet",
 				R.drawable.sections_image,
 				"Sektionen fšr de barnsligaste.",
 				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
 				true));
 		
 		db.addItem(new LKSectionsItem(
-				"Barnevalen",
+				"Musik",
+				R.drawable.sections_image,
+				"Sektionen fšr de barnsligaste.",
+				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
+				true));
+		
+		db.addItem(new LKSectionsItem(
+				"Cirkusen",
 				R.drawable.sections_image,
 				"Sektionen fšr de barnsligaste.",
 				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
