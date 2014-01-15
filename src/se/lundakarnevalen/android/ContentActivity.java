@@ -93,11 +93,14 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			Log.e(LOG_TAG,"could not get fragment.");
 		}
 	}
-	
-	public void onSectionClicked(View view) {
+	/**
+	 * Handles checkboxes in the fragment
+	 * @param view checkbox view
+	 */
+	public void onCheckBoxClicked(View view) {
 		try {
 			LKFragment fragment = (LKFragment) fragmentMgr.findFragmentById(R.id.content_frame);
-			fragment.onSectionClicked(view);
+			fragment.onCheckBoxClicked(view);
 		} catch(ClassCastException e) {
 			Log.e(LOG_TAG,"could not get fragment.");
 		}

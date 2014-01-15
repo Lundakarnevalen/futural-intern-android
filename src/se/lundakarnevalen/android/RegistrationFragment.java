@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 public class RegistrationFragment extends LKFragment{
@@ -187,24 +188,24 @@ public class RegistrationFragment extends LKFragment{
 				user.setSektioner(sektioner);
 				user.setToken("#steeze");
 				user.storeUserLocaly();
+				LKFragment fragment = new RegistrationProgressFragment();
+				loadFragment(fragment, true);
 				Toast.makeText(getContext(), "Saved data to shared prefferances.", Toast.LENGTH_SHORT).show();
-
-				//create new registreringprogressfragment
 			} else {
-				String wrongs = "Dess fält är inte korrekt inmatade: ";
+				String wrongs = "Dessa fält är inte korrekt inmatade: \n";
 				
 				if(!(validEmail()&&equalEmails()))
-					wrongs += "E-post ";
+					wrongs += "E-post \t";
 				if(!(validPassword()&&equalPasswords()))
-					wrongs += "Lösenord ";
+					wrongs += "Lösenord \t";
 				if(!validMobileNumber())
-					wrongs += "Mobilnummer ";
+					wrongs += "Mobilnummer \t";
 				if(!validName())
-					wrongs += "Namn ";
+					wrongs += "Namn \t";
 				if(!shirtChosen())
-					wrongs += "Tröjstorlek ";
+					wrongs += "Tröjstorlek \t";
 				if(!sectionChosen())
-					wrongs += "Sektion ";
+					wrongs += "Sektion \t";
 			
 				Toast.makeText(getContext(), wrongs, Toast.LENGTH_LONG).show();
 
@@ -220,141 +221,171 @@ public class RegistrationFragment extends LKFragment{
 	};
 	
 	@Override
-	public void onSectionClicked(View view) {
-	    boolean checked = ((RadioButton) view).isChecked();
-	    sektioner = new ArrayList<String>();
+	public void onCheckBoxClicked(View view) {
+	    boolean checked = ((CheckBox) view).isChecked();
+	    if(sektioner == null)
+	    	sektioner = new ArrayList<String>();
 		switch (view.getId()) {
-		case R.id.radio_sektion_barnevalen:
-			if (checked) {
+		case R.id.checkbox_barnevalen:
+			if (checked)
 				sektioner.add("Barnevalen");
-			}
+			else 
+				sektioner.remove("Barnevalen");
 			break;
-		case R.id.radio_sektion_biljetteriet:
-			if (checked) {
+		case R.id.checkbox_biljetteriet:
+			if (checked) 
 				sektioner.add("Biljetteriet");
-			}
+			else
+				sektioner.remove("Biljetteriet");
 			break;
-		case R.id.radio_sektion_bladderiet:
-			if (checked) {
+		case R.id.checkbox_bladderiet:
+			if (checked) 
 				sektioner.add("Blädderiet");
-			}
+			else
+				sektioner.remove("Blädderiet");
 			break;
-		case R.id.radio_sektion_cirkusen:
-			if (checked) {
+		case R.id.checkbox_cirkusen:
+			if (checked) 
 				sektioner.add("Cirkusen");
-			}
+			else				
+				sektioner.remove("Cirkusen");
 			break;
-		case R.id.radio_sektion_dansen:
-			if (checked) {
+		case R.id.checkbox_dansen:
+			if (checked) 
 				sektioner.add("Dansen");
-			}
+			else
+				sektioner.remove("Dansen");
 			break;
-		case R.id.radio_sektion_ekonomi:
-			if (checked) {
+		case R.id.checkbox_ekonomi:
+			if (checked) 
 				sektioner.add("Ekonomi");
-			}
+			else
+				sektioner.remove("Ekonomi");
 			break;
-		case R.id.radio_sektion_fabriken:
-			if (checked) {
+		case R.id.checkbox_fabriken:
+			if (checked) 
 				sektioner.add("Fabriken");
-			}
+			else
+				sektioner.remove("Fabriken");
 			break;
-		case R.id.radio_sektion_festmasteriet:
-			if (checked) {
+		case R.id.checkbox_festmasteriet:
+			if (checked) 
 				sektioner.add("Festmästeriet");
-			}
+			else
+				sektioner.remove("Festmästeriet");
 			break;
-		case R.id.radio_sektion_filmen:
-			if (checked) {
+		case R.id.checkbox_filmen:
+			if (checked) 
 				sektioner.add("Filmen");
-			}
+			else
+				sektioner.remove("Filmen");
 			break;
-		case R.id.radio_sektion_kabare:
-			if (checked) {
+		case R.id.checkbox_kabare:
+			if (checked) 
 				sektioner.add("Kabaré");
-			}
+			else
+				sektioner.remove("Kabaré");
 			break;
-		case R.id.radio_sektion_klipperiet:
-			if (checked) {
+		case R.id.checkbox_klipperiet:
+			if (checked) 
 				sektioner.add("Klipperiet");
-			}
+			else
+				sektioner.remove("Klipperiet");
 			break;
-		case R.id.radio_sektion_kommunikation:
-			if (checked) {
+		case R.id.checkbox_kommunikation:
+			if (checked) 
 				sektioner.add("Kommunikation");
-			}
+			else
+				sektioner.remove("Kommunikation");
 			break;
-		case R.id.radio_sektion_krogarna:
-			if (checked) {
+		case R.id.checkbox_krogarna:
+			if (checked) 
 				sektioner.add("Krogarna");
-			}
+			else
+				sektioner.remove("Krogarna");
 			break;
-		case R.id.radio_sektion_omradet:
-			if (checked) {
+		case R.id.checkbox_omradet:
+			if (checked) 
 				sektioner.add("Området");
-			}
+			else
+				sektioner.remove("Området");
 			break;
-		case R.id.radio_sektion_musiken:
-			if (checked) {
+		case R.id.checkbox_musiken:
+			if (checked) 
 				sektioner.add("Musiken");
-			}
+			else
+				sektioner.remove("Musiken");
 			break;
-		case R.id.radio_sektion_nojessektionen:
-			if (checked) {
+		case R.id.checkbox_nojessektionen:
+			if (checked) 
 				sektioner.add("Nöjessektionen");
-			}
+			else
+				sektioner.remove("Nöjessektionen");
 			break;
-		case R.id.radio_sektion_radion:
-			if (checked) {
+		case R.id.checkbox_radion:
+			if (checked) 
 				sektioner.add("Radion");
-			}
+			else
+				sektioner.remove("Radion");
 			break;
-		case R.id.radio_sektion_revyn:
-			if (checked) {
+		case R.id.checkbox_revyn:
+			if (checked) 
 				sektioner.add("Revyn");
-			}
+			else
+				sektioner.remove("Revyn");
 			break;
-		case R.id.radio_sektion_shoppen:
-			if (checked) {
+		case R.id.checkbox_shoppen:
+			if (checked) 
 				sektioner.add("Shoppen");
-			}
+			else
+				sektioner.remove("Shoppen");
 			break;
-		case R.id.radio_sektion_showen:
-			if (checked) {
+		case R.id.checkbox_showen:
+			if (checked) 
 				sektioner.add("Showen");
-			}
+			else
+				sektioner.remove("Showen");
 			break;
-		case R.id.radio_sektion_snaxeriet:
-			if (checked) {
+		case R.id.checkbox_snaxeriet:
+			if (checked) 
 				sektioner.add("Snaxeriet");
-			}
+			else
+				sektioner.remove("Snaxeriet");
 			break;
-		case R.id.radio_sektion_sakerhet:
-			if (checked) {
+		case R.id.checkbox_sakerhet:
+			if (checked) 
 				sektioner.add("Säkerhet");
-			}
+			else
+				sektioner.remove("Säkerhet");
 			break;
-		case R.id.radio_sektion_tombola:
-			if (checked) {
+		case R.id.checkbox_tombola:
+			if (checked) 
 				sektioner.add("Tombola");
-			}
+			else
+				sektioner.remove("Tombola");
 			break;
-		case R.id.radio_sektion_taget:
-			if (checked) {
+		case R.id.checkbox_taget:
+			if (checked) 
 				sektioner.add("Tåget");
-			}
+			else
+				sektioner.remove("Tåget");
 			break;
-		case R.id.radio_sektion_taltnojen:
-			if (checked) {
+		case R.id.checkbox_taltnojen:
+			if (checked) 
 				sektioner.add("Tältnöjen");
-			}
+			else
+				sektioner.remove("Tältnöjen");
 			break;
-		case R.id.radio_sektion_vieriet:
-			if (checked) {
+		case R.id.checkbox_vieriet:
+			if (checked) 
 				sektioner.add("Vieriet");
-			}
+			else
+				sektioner.remove("Vieriet");
 			break;
 		}
+		if(sektioner.size() == 0) 
+			sektioner = null;
+		updateProgressBar();
 	}
 	
 	TextWatcher watcher = new TextWatcher(){

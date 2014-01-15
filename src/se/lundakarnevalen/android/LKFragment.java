@@ -115,10 +115,10 @@ public class LKFragment extends Fragment{
 		
 	}
 	/**
-	 * Handles Specialcaseradiobuttons in the fragment
-	 * @param view radio button view
+	 * Handles checkboxes in the fragment
+	 * @param view checkbox view
 	 */
-	public void onSectionClicked(View view) {
+	public void onCheckBoxClicked(View view) {
 		
 	}
 	
