@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 public class RegistrationFragment extends LKFragment{
 	private int progresslevel;
-	private SharedPreferences shpref;
 	private LKEditText name, email, password, mobilnbr, confirmemail, confirmpassword;
 	private LKProgressBar progressbar;
 	private LKTextView progressvalue;
@@ -29,43 +28,9 @@ public class RegistrationFragment extends LKFragment{
 	private char shirtsize;
 	private ArrayList<String> sektioner;
 	
-	private boolean isRegistationCorrect(){
-		return false;
-	}
-	
-	private boolean validEmail(){
-		if(email.getText().toString().equals(""))
-			return false;
-		char[] emailarr = email.getText().toString().toCharArray();
-		boolean contatt = false;
-		int i = 0;
-		for(char c:emailarr) {
-			i++;
-			if(c == '@'){
-				if(i==1) {
-					return false;
-				}
-				contatt = true;
-				break;
-			}	
-		}
-		int savedi = i;
-		int lastdot = 0;
-		if(contatt) {
-			boolean containsdot = false;
-			for(; i<emailarr.length; i++) {
-				if(emailarr[i] == '@')
-					return false;
-				if(emailarr[i] == '.'){
-					if(i == savedi)
-						return false;
-					containsdot = true;
-					lastdot = i;
-				}
-			}
-			return (lastdot<emailarr.length - 1) && containsdot;
-		}
-		return false;
+	private boolean isRegistrationCorrect(){
+		updateProgressBar();
+		return progresslevel == 70;
 	}
 	
 	private boolean equalEmails() {
@@ -177,15 +142,10 @@ public class RegistrationFragment extends LKFragment{
 		
 		@Override
 		public void onClick(View v) {
-			updateProgressBar();
-			if(progresslevel==70){
+			if(isRegistrationCorrect()){
 				LKUser user = new LKUser(getActivity().getApplicationContext());
 				user.setUsername(name.getText().toString());
-				user.setEmail(email.getText().toString());
-				user.setPassword(password.getText().toString());
-				user.setMobileNumber(mobilnbr.getText().toString());
-				user.setShirtsize(shirtsize);
-				user.setSektioner(sektioner);
+				//send data to server
 				user.setToken("#steeze");
 				user.storeUserLocaly();
 				LKFragment fragment = new RegistrationProgressFragment();
@@ -194,14 +154,24 @@ public class RegistrationFragment extends LKFragment{
 			} else {
 				String wrongs = "Dessa fŠlt Šr inte korrekt inmatade: \n";
 				
-				if(!(validEmail()&&equalEmails()))
+				if(!(validEmail()&&equalEmails())) {
 					wrongs += "E-post \t";
-				if(!(validPassword()&&equalPasswords()))
+					email.setText("");
+					confirmemail.setText("");
+				}
+				if(!(validPassword()&&equalPasswords())){
 					wrongs += "Lšsenord \t";
-				if(!validMobileNumber())
+					password.setText("");
+					confirmpassword.setText("");
+				}
+				if(!validMobileNumber()){
 					wrongs += "Mobilnummer \t";
-				if(!validName())
+					mobilnbr.setText("");
+				}	
+				if(!validName()){
 					wrongs += "Namn \t";
+					name.setText("");
+				}	
 				if(!shirtChosen())
 					wrongs += "Tršjstorlek \t";
 				if(!sectionChosen())
@@ -219,6 +189,44 @@ public class RegistrationFragment extends LKFragment{
 			//Toast.makeText(getContext(), "Saved dummy user in SP. Set username and token in SP only. Clear app in android to remove.", Toast.LENGTH_SHORT).show();
 		}
 	};
+	
+	private boolean validEmail(){
+		if(email.getText().toString().equals(""))
+			return false;
+		char[] emailarr = email.getText().toString().toCharArray();
+		boolean contatt = false;
+		int i = 0;
+		for(char c:emailarr) {
+			i++;
+			if(c == '@'){
+				if(i==1) {
+					return false;
+				}
+				contatt = true;
+				break;
+			}	
+		}
+		int savedi = i;
+		int lastdot = -1;
+		if(contatt) {
+			boolean containsdot = false;
+			for(; i<emailarr.length; i++) {
+				if(emailarr[i] == '@')
+					return false;
+				if(emailarr[i] == '.'){
+					if(lastdot == i-1){
+						return false;
+					}
+					if(i == savedi)
+						return false;
+					containsdot = true;
+					lastdot = i;
+				}
+			}
+			return (lastdot<emailarr.length - 1) && containsdot;
+		}
+		return false;
+	}
 	
 	@Override
 	public void onCheckBoxClicked(View view) {

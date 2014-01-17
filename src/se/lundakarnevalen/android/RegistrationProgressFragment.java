@@ -1,5 +1,6 @@
 package se.lundakarnevalen.android;
 
+import se.lundakarnevalen.remote.LKUser;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,5 +21,6 @@ public class RegistrationProgressFragment extends LKFragment{
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
 		setTitle("Registrering");
+		LKUser user = new LKUser(getActivity().getApplicationContext());
 	}
 }
