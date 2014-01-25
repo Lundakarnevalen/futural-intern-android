@@ -1,6 +1,7 @@
 package se.lundakarnevalen.android;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter;
@@ -12,7 +13,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class SectionsListFragment extends LKFragment {
 
@@ -25,42 +25,39 @@ public class SectionsListFragment extends LKFragment {
 				.findViewById(R.id.left_tab);
 		right.setOnClickListener(new ClickListener());
 
-		TextView titleTextView = (TextView) root
-				.findViewById(R.id.all_sections);
-
 		ArrayList<LKSectionsArrayAdapter.LKSectionsItem> list = new ArrayList<LKSectionsArrayAdapter.LKSectionsItem>();
-		
+
 		SectionSQLiteDB db = new SectionSQLiteDB(getActivity());
 		db.dropEntiresInDatabase();
-		
+
 		db.addItem(new LKSectionsItem(
 				"Barnevalen",
 				R.drawable.sections_image,
 				"Sektionen fšr de barnsligaste.",
 				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
 				true));
-		
+
 		db.addItem(new LKSectionsItem(
 				"Klipperiet",
 				R.drawable.sections_image,
 				"Sektionen fšr de barnsligaste.",
 				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
 				true));
-		
+
 		db.addItem(new LKSectionsItem(
 				"Musik",
 				R.drawable.sections_image,
 				"Sektionen fšr de barnsligaste.",
 				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
 				true));
-		
+
 		db.addItem(new LKSectionsItem(
 				"Cirkusen",
 				R.drawable.sections_image,
 				"Sektionen fšr de barnsligaste.",
 				"information information information information information information information information information information information information information information informationinformation information information information information information informationinformation information",
 				true));
-		
+
 		list.addAll(db.getSections());
 
 		ListView listView = (ListView) root.findViewById(R.id.list_section);
@@ -72,6 +69,14 @@ public class SectionsListFragment extends LKFragment {
 
 		listView.setAdapter(adapter);
 
+
+		// Bundle for slot machine
+		Bundle bundle = getArguments();
+		if (bundle.getBoolean("random")) {
+			Random rand = new Random();
+			int position = rand.nextInt(adapter.getCount()); // How many sections there are in the list
+		} // End Bundle
+		
 		return root;
 	}
 

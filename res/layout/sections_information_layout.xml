@@ -43,7 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/section_slogan"
-            android:layout_marginBottom="15dp"
             android:textColor="@color/light_peach"
             android:textSize="16sp" />
 
@@ -53,7 +52,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/section_information"
             android:layout_centerHorizontal="true"
-            android:text="@string/Section_button" />
+            android:layout_marginLeft="@dimen/horizontal_margin_double"
+            android:layout_marginRight="@dimen/horizontal_margin_double"
+            android:layout_marginTop="@dimen/horizontal_margin"
+            android:text="@string/Section_button"
+            android:textSize="@dimen/sections_button_text_size" />
     </RelativeLayout>
 
 </ScrollView>
+
+
