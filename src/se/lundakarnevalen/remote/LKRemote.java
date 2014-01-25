@@ -51,6 +51,14 @@ public class LKRemote {
 	}
 	
 	/**
+	 * Sets a text result listener
+	 * @param textResultListener the listener.
+	 */
+	public void setTextResultListener(TextResultListener textResulListener){
+		this.textResultListener = textResultListener;
+	}
+	
+	/**
 	 * Show a progressbar when performing the post. 
 	 * @param showProgressBar
 	 */
