@@ -1,50 +1,46 @@
 package se.lundakarnevalen.android;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKButton;
 import se.lundakarnevalen.widget.LKEditText;
 import se.lundakarnevalen.widget.LKProgressBar;
+import se.lundakarnevalen.widget.LKSpinner;
+import se.lundakarnevalen.widget.LKSpinnerArrayAdapter;
+import se.lundakarnevalen.widget.LKSpinnerArrayAdapter.LKSpinnerArrayItem;
 import se.lundakarnevalen.widget.LKTextView;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class RegistrationFragment extends LKFragment{
 	private int progresslevel;
-	private LKEditText name, email, password, mobilnbr, confirmemail, confirmpassword;
+	private LKEditText name, email, mobilnbr;
 	private LKProgressBar progressbar;
 	private LKTextView progressvalue;
 	private LKButton confirmButton;
-	private boolean shirtchosen;
-	private char shirtsize;
+	private LKSpinner nationsSpinner, shirtSpinner, driverLicensSpinner;
 	private ArrayList<String> sektioner;
+	
+	//spinner values
+	int nation = 0, shirtSize = 0, driverLicens = 0;
 	
 	private boolean isRegistrationCorrect(){
 		updateProgressBar();
 		return progresslevel == 70;
 	}
 	
-	private boolean equalEmails() {
-		return email.getText().toString().equals(confirmemail.getText().toString());
-	}
-	
-	private boolean validPassword(){ //borde checka lï¿½ngden
-		return !password.getText().toString().equals("");
-	}
-	private boolean equalPasswords() {
-		return password.getText().toString().equals(confirmpassword.getText().toString());
-	}
-	
-	private boolean validMobileNumber(){ //borde checka lï¿½ngden
+	private boolean validMobileNumber(){
 		return !mobilnbr.getText().toString().equals("");
 	}
 	private boolean validName(){
@@ -54,22 +50,13 @@ public class RegistrationFragment extends LKFragment{
 	private boolean sectionChosen(){
 		return sektioner!=null;
 	}
-	
-	private boolean shirtChosen() {
-		return shirtchosen;
-	}
+
 	
 	private void updateProgressBar() {
 		progresslevel = 0;
-		if(validEmail()&&equalEmails())
-			progresslevel += 10;
-		if(validPassword()&&equalPasswords())
-			progresslevel += 10;
 		if(validMobileNumber())
 			progresslevel += 10;
 		if(validName())
-			progresslevel += 10;
-		if(shirtChosen())
 			progresslevel += 10;
 		if(sectionChosen())
 			progresslevel += 20;
@@ -79,56 +66,28 @@ public class RegistrationFragment extends LKFragment{
 		progressbar.setProgress(progresslevel);
 		progressvalue.setText("" + progresslevel + " %");
 	}
-	
-	@Override
-	public void onRadioButtonClicked(View view) {
-	    // Is the button now checked?
-	    boolean checked = ((RadioButton) view).isChecked();
-	    shirtchosen = false;
-	    // Check which radio button was clicked
-	    switch(view.getId()) {
-	        case R.id.radio_large:
-	            if (checked){
-	            	shirtchosen = true;
-	            	shirtsize = 'L';
-	            }
-	            break;
-	        case R.id.radio_medium:
-	            if (checked){
-	            	shirtchosen = true;
-            		shirtsize = 'M';
-
-	            }
-	            break;
-	        case R.id.radio_small:
-	            if (checked){
-	            	shirtchosen = true;
-            		shirtsize = 'S';
-	            }
-	            break;
-	    }
-	    updateProgressBar();
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		View root = (View) inflater.inflate(R.layout.activity_registration_layout, null);
-		name = (LKEditText) root.findViewById(R.id.lKEditTextName);
-		email = (LKEditText) root.findViewById(R.id.lKEditTextEmail);
-		confirmemail = (LKEditText) root.findViewById(R.id.lKEditTextConfirmEmail);
-		confirmpassword = (LKEditText) root.findViewById(R.id.lKEditTextConfirmPassword);
-		password = (LKEditText) root.findViewById(R.id.lKEditTextPassword);
-		mobilnbr = (LKEditText) root.findViewById(R.id.lKEditTextMobilNbr);
+		View root = (View) inflater.inflate(R.layout.registration_layout, null);
+		name = (LKEditText) root.findViewById(R.id.name);
+		email = (LKEditText) root.findViewById(R.id.email);
+		mobilnbr = (LKEditText) root.findViewById(R.id.phone_nr);
 		progressbar = (LKProgressBar) root.findViewById(R.id.lKProgressBar1);
 		progressvalue = (LKTextView) root.findViewById(R.id.progress_value);
 		confirmButton = (LKButton) root.findViewById(R.id.confirm_button);
 		confirmButton.setOnClickListener(confirm);
 		name.addTextChangedListener(watcher);		
 		email.addTextChangedListener(watcher);
-		confirmemail.addTextChangedListener(watcher);
-		password.addTextChangedListener(watcher);
-		confirmpassword.addTextChangedListener(watcher);
 		mobilnbr.addTextChangedListener(watcher);
+		nationsSpinner = (LKSpinner) root.findViewById(R.id.nations);
+		nationsSpinner.setOnItemSelectedListener(nationsSpinnerListeners);
+		
+		shirtSpinner = (LKSpinner) root.findViewById(R.id.shirt_size);
+		shirtSpinner.setOnItemSelectedListener(shirtSpinnerListeners);
+		
+		driverLicensSpinner = (LKSpinner) root.findViewById(R.id.driver_licens);
+		driverLicensSpinner.setOnItemSelectedListener(driverLicensSpinnerListeners);
 		return root;
 	}
 	
@@ -136,7 +95,98 @@ public class RegistrationFragment extends LKFragment{
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
 		setTitle("Registrering");
+		
+		// Populate spinners
+		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> nationsList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Inget/Oklar", 0));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Blekingska", 1));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("GÃ¶teborgs", 2));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Hallands", 3));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Helsingkrona", 4));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kalmar", 5));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Krischan", 6));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Lunds", 7));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("MalmÃ¶", 8));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("SydskÃ¥nska", 9));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("VÃ¤stgÃ¶ta", 10));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Wermlands", 11));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Ã–stgÃ¶ta", 12));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("SmÃ¥lands", 13));
+		
+		LKSpinnerArrayAdapter nationsAdapter = new LKSpinnerArrayAdapter(getContext(), nationsList);
+		nationsSpinner.setAdapter(nationsAdapter);
+		
+		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> shirtSizeList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
+		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Oklar", 0));
+		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XS", 1));
+		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("S", 2));
+		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("M", 3));
+		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("L", 4));
+		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XL", 5));
+		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XXL", 6));
+		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XXXL", 7));
+		
+		LKSpinnerArrayAdapter shirtSizeAdapter = new LKSpinnerArrayAdapter(getContext(), shirtSizeList);
+		shirtSpinner.setAdapter(shirtSizeAdapter);
+		
+		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> driverLicensList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Inget", 0));
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE", 1));
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE", 2));
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + D/DE", 3));
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE + D/DE", 4));
+
+		LKSpinnerArrayAdapter driverLicensSizeAdapter = new LKSpinnerArrayAdapter(getContext(), driverLicensList);
+		driverLicensSpinner.setAdapter(driverLicensSizeAdapter);
 	}
+	
+	AdapterView.OnItemSelectedListener nationsSpinnerListeners = new AdapterView.OnItemSelectedListener(){
+
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+			LKSpinnerArrayAdapter.LKSpinnerArrayItem item = (LKSpinnerArrayItem) parent.getItemAtPosition(pos);
+			nation = item.value;
+			Log.d(LOG_TAG, "nations new value: "+nation);
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> parent) {
+			// Do nothing
+		}
+		
+	};
+	
+	AdapterView.OnItemSelectedListener driverLicensSpinnerListeners = new AdapterView.OnItemSelectedListener(){
+
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+			LKSpinnerArrayAdapter.LKSpinnerArrayItem item = (LKSpinnerArrayItem) parent.getItemAtPosition(pos);
+			driverLicens = item.value;
+			Log.d(LOG_TAG, "driverLicens new value: "+driverLicens);
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> parent) {
+			// Do nothing
+		}
+		
+	};
+	
+	AdapterView.OnItemSelectedListener shirtSpinnerListeners = new AdapterView.OnItemSelectedListener(){
+
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+			LKSpinnerArrayAdapter.LKSpinnerArrayItem item = (LKSpinnerArrayItem) parent.getItemAtPosition(pos);
+			shirtSize = item.value;
+			Log.d(LOG_TAG, "shirtsize new value: "+shirtSize);
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> parent) {
+			// Do nothing
+		}
+		
+	};
 	
 	View.OnClickListener confirm = new View.OnClickListener() {
 		
@@ -152,18 +202,8 @@ public class RegistrationFragment extends LKFragment{
 				loadFragment(fragment, true);
 				Toast.makeText(getContext(), "Saved data to shared prefferances.", Toast.LENGTH_SHORT).show();
 			} else {
-				String wrongs = "Dessa fŠlt Šr inte korrekt inmatade: \n";
+				String wrongs = "Dessa fï¿½lt ï¿½r inte korrekt inmatade: \n";
 				
-				if(!(validEmail()&&equalEmails())) {
-					wrongs += "E-post \t";
-					email.setText("");
-					confirmemail.setText("");
-				}
-				if(!(validPassword()&&equalPasswords())){
-					wrongs += "Lšsenord \t";
-					password.setText("");
-					confirmpassword.setText("");
-				}
 				if(!validMobileNumber()){
 					wrongs += "Mobilnummer \t";
 					mobilnbr.setText("");
@@ -172,8 +212,6 @@ public class RegistrationFragment extends LKFragment{
 					wrongs += "Namn \t";
 					name.setText("");
 				}	
-				if(!shirtChosen())
-					wrongs += "Tršjstorlek \t";
 				if(!sectionChosen())
 					wrongs += "Sektion \t";
 			
@@ -233,7 +271,7 @@ public class RegistrationFragment extends LKFragment{
 	    boolean checked = ((CheckBox) view).isChecked();
 	    if(sektioner == null)
 	    	sektioner = new ArrayList<String>();
-		switch (view.getId()) {
+		/*switch (view.getId()) {
 		case R.id.checkbox_barnevalen:
 			if (checked)
 				sektioner.add("Barnevalen");
@@ -248,9 +286,9 @@ public class RegistrationFragment extends LKFragment{
 			break;
 		case R.id.checkbox_bladderiet:
 			if (checked) 
-				sektioner.add("BlŠdderiet");
+				sektioner.add("Blï¿½dderiet");
 			else
-				sektioner.remove("BlŠdderiet");
+				sektioner.remove("Blï¿½dderiet");
 			break;
 		case R.id.checkbox_cirkusen:
 			if (checked) 
@@ -278,9 +316,9 @@ public class RegistrationFragment extends LKFragment{
 			break;
 		case R.id.checkbox_festmasteriet:
 			if (checked) 
-				sektioner.add("FestmŠsteriet");
+				sektioner.add("Festmï¿½steriet");
 			else
-				sektioner.remove("FestmŠsteriet");
+				sektioner.remove("Festmï¿½steriet");
 			break;
 		case R.id.checkbox_filmen:
 			if (checked) 
@@ -290,9 +328,9 @@ public class RegistrationFragment extends LKFragment{
 			break;
 		case R.id.checkbox_kabare:
 			if (checked) 
-				sektioner.add("KabarŽ");
+				sektioner.add("Kabarï¿½");
 			else
-				sektioner.remove("KabarŽ");
+				sektioner.remove("Kabarï¿½");
 			break;
 		case R.id.checkbox_klipperiet:
 			if (checked) 
@@ -314,9 +352,9 @@ public class RegistrationFragment extends LKFragment{
 			break;
 		case R.id.checkbox_omradet:
 			if (checked) 
-				sektioner.add("OmrŒdet");
+				sektioner.add("Omrï¿½det");
 			else
-				sektioner.remove("OmrŒdet");
+				sektioner.remove("Omrï¿½det");
 			break;
 		case R.id.checkbox_musiken:
 			if (checked) 
@@ -326,9 +364,9 @@ public class RegistrationFragment extends LKFragment{
 			break;
 		case R.id.checkbox_nojessektionen:
 			if (checked) 
-				sektioner.add("Nšjessektionen");
+				sektioner.add("Nï¿½jessektionen");
 			else
-				sektioner.remove("Nšjessektionen");
+				sektioner.remove("Nï¿½jessektionen");
 			break;
 		case R.id.checkbox_radion:
 			if (checked) 
@@ -362,9 +400,9 @@ public class RegistrationFragment extends LKFragment{
 			break;
 		case R.id.checkbox_sakerhet:
 			if (checked) 
-				sektioner.add("SŠkerhet");
+				sektioner.add("Sï¿½kerhet");
 			else
-				sektioner.remove("SŠkerhet");
+				sektioner.remove("Sï¿½kerhet");
 			break;
 		case R.id.checkbox_tombola:
 			if (checked) 
@@ -374,15 +412,15 @@ public class RegistrationFragment extends LKFragment{
 			break;
 		case R.id.checkbox_taget:
 			if (checked) 
-				sektioner.add("TŒget");
+				sektioner.add("Tï¿½get");
 			else
-				sektioner.remove("TŒget");
+				sektioner.remove("Tï¿½get");
 			break;
 		case R.id.checkbox_taltnojen:
 			if (checked) 
-				sektioner.add("TŠltnšjen");
+				sektioner.add("Tï¿½ltnï¿½jen");
 			else
-				sektioner.remove("TŠltnšjen");
+				sektioner.remove("Tï¿½ltnï¿½jen");
 			break;
 		case R.id.checkbox_vieriet:
 			if (checked) 
@@ -390,7 +428,7 @@ public class RegistrationFragment extends LKFragment{
 			else
 				sektioner.remove("Vieriet");
 			break;
-		}
+		} */
 		if(sektioner.size() == 0) 
 			sektioner = null;
 		updateProgressBar();

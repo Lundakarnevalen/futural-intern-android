@@ -23,8 +23,7 @@ public class LKSectionsArrayAdapter extends
 	private Context context;
 	private ArrayList<LKSectionsItem> list;
 
-	public LKSectionsArrayAdapter(Context context,
-			ArrayList<LKSectionsItem> list) {
+	public LKSectionsArrayAdapter(Context context, ArrayList<LKSectionsItem> list) {
 		super(context, R.layout.sections_row, list);
 		this.context = context;
 		this.list = list;

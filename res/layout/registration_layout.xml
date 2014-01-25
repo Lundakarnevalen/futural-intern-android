@@ -3,31 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 	android:layout_height="match_parent" >
-	
-	<RelativeLayout
+	<LinearLayout
 	    android:paddingLeft="@dimen/horizontal_margin"
     	android:paddingRight="@dimen/horizontal_margin"
     	android:paddingTop="@dimen/vertical_margin"
     	android:paddingBottom="@dimen/vertical_margin"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
 	    android:background="@color/bg_peach" >
 	    <ImageView
-	        android:id="@+id/imageView1"
 	    	android:src="@drawable/reg_title"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
 			android:paddingLeft="@dimen/horizontal_margin"
 			android:paddingRight="@dimen/horizontal_margin"
-			android:layout_alignParentTop="true" 
 	    	android:contentDescription="@string/registration_hurra" />
 	    <RelativeLayout 
 	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:layout_centerHorizontal="true"
 	        android:layout_width="wrap_content"
-	      	android:layout_height="wrap_content"
-	      	android:id="@+id/lKCombinedTexts"
-			android:layout_below="@id/imageView1" >  
+	      	android:layout_height="wrap_content">  
 	    	<se.lundakarnevalen.widget.LKTextViewBold
 	        	android:id="@+id/lKTextViewBold1"
 	        	android:layout_width="wrap_content"
@@ -48,11 +43,10 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:orientation="horizontal"
-	        android:layout_below="@id/lKCombinedTexts"	        
 	        android:layout_marginTop="@dimen/vertical_margin_half" >
 	       	<se.lundakarnevalen.widget.LKProgressBar
 	    		android:id="@+id/lKProgressBar1"
-	    		android:layout_width="wrap_content"
+	    		android:layout_width="0dp"
 	    		android:layout_weight="1.0"
 	    		android:layout_gravity="center_vertical"
 	    		android:layout_height="@dimen/progress_bar_height"
@@ -66,117 +60,339 @@
 	    	    android:layout_marginLeft="@dimen/horizontal_margin_half"
 	    	    android:text="1 %"/>
 	    </LinearLayout>
-	    
-	    
 	    <se.lundakarnevalen.widget.LKTextView
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:id="@+id/lKTextView2"
 	       	android:layout_width="wrap_content"
 	       	android:layout_height="wrap_content"
-	       	android:layout_below="@id/progress_bar_wrapper"
-	       	android:layout_centerHorizontal="true"
 	       	android:textColor="#FFFFFF"
 	       	android:text="@string/registration_informationafterorigressbar1"  />
-	    
 	    <se.lundakarnevalen.widget.LKTextViewBold 
 	        android:layout_marginTop="@dimen/vertical_margin"
 	        android:id="@+id/lKTextViewBold2"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKTextView2"
 	        android:textColor="#FFFFFF"
 	        android:text="@string/registration_yourcreedentials" />
-	    
 	    <se.lundakarnevalen.widget.LKEditText
 	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/lKEditTextName"
+	        android:id="@+id/pers_nr"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKTextViewBold2" 
+	        android:textColor="#FFFFFF"
+	        android:textColorHint="@color/bg_peach"
+	        android:hint="@string/pers_nr" />
+	    <se.lundakarnevalen.widget.LKEditText
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/name"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
 	        android:textColor="#FFFFFF"
 	        android:textColorHint="@color/bg_peach"
 	        android:hint="@string/name" />
-
 	    <se.lundakarnevalen.widget.LKEditText
 	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/lKEditTextEmail"
+	        android:id="@+id/lastname"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKEditTextName" 
 	        android:textColor="#FFFFFF"
 	        android:textColorHint="@color/bg_peach"
+	        android:hint="@string/lastname" />
+	    <se.lundakarnevalen.widget.LKEditText
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/postal_address"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+			android:textColorHint="@color/bg_peach"
+	        android:hint="@string/postal_address" />
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/zip_code"
+		        android:layout_width="0dp"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+				android:inputType="phone"
+				android:layout_weight="1.0"
+				android:layout_marginRight="@dimen/vertical_margin_quarter"
+				android:digits="0123456789"
+		        android:hint="@string/zip_code" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/zip_town"
+		        android:layout_width="0dp"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="@dimen/vertical_margin_quarter"
+		        android:textColor="#FFFFFF"
+				android:layout_weight="1.0"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/zip_town" />
+	    </LinearLayout>
+		<se.lundakarnevalen.widget.LKEditText
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/email"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+			android:textColorHint="@color/bg_peach"
 	        android:inputType="textEmailAddress"
 	        android:hint="@string/email" />
 	    <se.lundakarnevalen.widget.LKEditText
 	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/lKEditTextConfirmEmail"
+	        android:id="@+id/phone_nr"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKEditTextEmail" 
-	        android:textColor="#FFFFFF"
-	        android:textColorHint="@color/bg_peach"
-	        android:inputType="textEmailAddress"
-	        android:hint="@string/confirm_email" />
-	
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/lKEditTextPassword"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKEditTextConfirmEmail"
 	        android:textColor="#FFFFFF"
 			android:textColorHint="@color/bg_peach"
-			android:inputType="textPassword"
-	        android:hint="@string/password" />
+	        android:hint="@string/phone_nr" />
+	    <se.lundakarnevalen.widget.LKTextViewFat
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="16sp"
+	        android:layout_marginTop="@dimen/horizontal_margin_half"
+	        android:textColor="#FFFFFF"
+	        android:text="@string/nationTopic"/>
+	    <se.lundakarnevalen.widget.LKSpinner
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/nations"/>
 	    <se.lundakarnevalen.widget.LKEditText
 	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/lKEditTextConfirmPassword"
+	        android:id="@+id/food_prefs"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKEditTextPassword"
 	        android:textColor="#FFFFFF"
 			android:textColorHint="@color/bg_peach"
-			android:inputType="textPassword"
-	        android:hint="@string/confirm_password" />
-	    
+	        android:hint="@string/food_prefs" />
+	    <se.lundakarnevalen.widget.LKTextViewFat
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="16sp"
+	        android:layout_marginTop="@dimen/horizontal_margin_half"
+	        android:textColor="#FFFFFF"
+	        android:text="@string/shirtTopic"/>
+	    <se.lundakarnevalen.widget.LKSpinner
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/shirt_size"/>
 	    <se.lundakarnevalen.widget.LKEditText
 	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/lKEditTextMobilNbr"
+	        android:id="@+id/terms"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKEditTextConfirmPassword"
 	        android:textColor="#FFFFFF"
 			android:textColorHint="@color/bg_peach"
-			android:inputType="phone"
 			android:digits="0123456789"
-	        android:hint="@string/registration_mobilenbr" />
-	    	    
-	    
+	        android:hint="@string/terms" />
+	    <se.lundakarnevalen.widget.LKTextViewFat
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="16sp"
+	        android:layout_marginTop="@dimen/horizontal_margin_half"
+	        android:textColor="#FFFFFF"
+	        android:text="@string/driverLicensTopic"/>
+	    <se.lundakarnevalen.widget.LKSpinner
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/driver_licens"/>
 	    <se.lundakarnevalen.widget.LKTextViewBold
 	        android:layout_marginTop="@dimen/vertical_margin"
 	        android:textSize="18sp"
 	        android:id="@+id/lKTextViewBold4"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/lKEditTextMobilNbr"
 	        android:textColor="#FFFFFF"
-	        android:text="@string/registration_choosesection" />
+	        android:text="@string/dedication" />
+	    <se.lundakarnevalen.widget.LKEditText
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/teknologkaren"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+			android:textColorHint="@color/bg_peach"
+			android:digits="0123456789"
+	        android:hint="@string/teknolagkaren" />
+	    <se.lundakarnevalen.widget.LKEditText
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/nationDed"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+			android:textColorHint="@color/bg_peach"
+	        android:hint="@string/nationDed" />
+	    <se.lundakarnevalen.widget.LKEditText
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/otherStud"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+			android:textColorHint="@color/bg_peach"
+	        android:hint="@string/otherStud" />
+	    <se.lundakarnevalen.widget.LKEditText
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/otherDed"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+			android:textColorHint="@color/bg_peach"
+	        android:hint="@string/otherDed" />
 	    
+	    <CheckBox android:id="@+id/karnevalist_2010"
+           	android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="@string/karnevalist_2010"
+    		android:textColor="#FFFFFF" /> 
+	    <!-- 
+	    <se.lundakarnevalen.widget.LKTextViewBold
+	        android:layout_marginTop="@dimen/vertical_margin"
+	        android:textSize="18sp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+	        android:text="@string/intressen" />
+	    <LinearLayout
+	       		android:layout_marginTop="@dimen/vertical_margin"
+	        	android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" 
+        		android:orientation="vertical" >
+	    	    <CheckBox android:id="@+id/dd_billig"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_billig"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/>
+	    	    
+	    	    <CheckBox android:id="@+id/dd_mat"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_mat"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/> 
+        			
+        		<CheckBox android:id="@+id/dd_dryck"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_dryck"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/>
+        		
+        		<CheckBox android:id="@+id/dd_teknik"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_teknik"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/>
+        		
+        		<CheckBox android:id="@+id/dd_layout"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_layout"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/> 
+        		<CheckBox android:id="@+id/dd_it"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_it"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/> 
+        			
+        		<CheckBox android:id="@+id/dd_skriva"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_skriva"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/> 
+        			
+        		<CheckBox android:id="@+id/dd_foto"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_foto"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/>
+        		
+        		<CheckBox android:id="@+id/dd_admin"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_admin"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/>
+        		
+        		<CheckBox android:id="@+id/dd_sell"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_sell"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/> 
+        			
+        		<CheckBox android:id="@+id/dd_sakerhet"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_sakerhet"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/> 
+        			
+        		<CheckBox android:id="@+id/dd_bygga"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_bygga"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/>
+        		
+        		<CheckBox android:id="@+id/dd_dekorera"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_dekorera"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/> 
+        			
+        		<CheckBox android:id="@+id/dd_sy"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_sy"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/> 
+        		
+        		<CheckBox android:id="@+id/dd_smink"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_smink"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/>
+        		
+        		<CheckBox android:id="@+id/dd_spex"
+	            	android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/dd_spex"
+        			android:textColor="#FFFFFF"
+        			android:onClick="onCheckBoxClicked"/> 
+        			
+	    	</LinearLayout>
+	    	
+	    <se.lundakarnevalen.widget.LKTextViewBold
+	        android:layout_marginTop="@dimen/vertical_margin"
+	        android:textSize="18sp"
+	        android:id="@+id/lKTextViewBold4"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+	        android:text="@string/registration_choosesection" />	    
 	    <LinearLayout
 	       	android:layout_marginTop="@dimen/vertical_margin"
 	        android:id="@+id/sektionwrapper"
 	        android:layout_width="match_parent"
         	android:layout_height="wrap_content"
-        	android:layout_centerHorizontal="true"
-        	android:orientation="horizontal" 
-        	android:layout_below="@id/lKTextViewBold4">
+        	android:orientation="horizontal">
 	    	<LinearLayout
 	       		android:layout_marginTop="@dimen/vertical_margin"
 	        	android:id="@+id/leftsektionwrapper"
 	        	android:layout_width="wrap_content"
         		android:layout_height="wrap_content" 
         		android:orientation="vertical" >
-        		
 	    	    <CheckBox android:id="@+id/checkbox_barnevalen"
 	            	android:layout_width="wrap_content"
         			android:layout_height="wrap_content"
@@ -343,53 +559,12 @@
         			android:onClick="onCheckBoxClicked"/> 
 	    	</LinearLayout>
 	    </LinearLayout>
-	    
-	    <!-- lägg in lista av alla sektioner -->
-	    
-	    <se.lundakarnevalen.widget.LKTextViewBold
-	        android:layout_marginTop="@dimen/vertical_margin"
-	        android:textSize="18sp"
-	        android:id="@+id/lKTextViewBold5"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@id/sektionwrapper"
-	        android:textColor="#FFFFFF"
-	        android:text="@string/registration_shirtsize" />
-	    
-	    <RadioGroup 
-	        android:id="@+id/radioGroup1"
-	        android:layout_marginTop="@dimen/vertical_margin"
-	        android:layout_below="@id/lKTextViewBold5" 
-    		android:layout_width="fill_parent"
-  			android:layout_height="wrap_content"
-    		android:orientation="vertical">
-    		<RadioButton android:id="@+id/radio_large"
-        		android:layout_width="wrap_content"
-        		android:layout_height="wrap_content"
-        		android:text="L"
-        		android:textColor="#FFFFFF"
-        		android:onClick="onRadioButtonClicked"/>
-    		<RadioButton android:id="@+id/radio_medium"
-        		android:layout_marginTop="@dimen/vertical_margin_half"
-        		android:layout_width="wrap_content"
-       			android:layout_height="wrap_content"
-        		android:textColor="#FFFFFF"
-        		android:text="M"
-        		android:onClick="onRadioButtonClicked"/>
-    		<RadioButton android:id="@+id/radio_small"
-				android:layout_marginTop="@dimen/vertical_margin_half"
-        		android:layout_width="wrap_content"
-       			android:layout_height="wrap_content"
-        		android:textColor="#FFFFFF"
-        		android:text="S"
-        		android:onClick="onRadioButtonClicked"/>
-		</RadioGroup>
+	     -->
 	    <se.lundakarnevalen.widget.LKButton
 	        android:layout_marginTop="@dimen/vertical_margin"
 	        android:id="@+id/confirm_button"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_below="@id/radioGroup1"
 	        android:textColor="#FFFFFF"
 	        android:text="@string/registration_submit" />
 	    <se.lundakarnevalen.widget.LKTextView
@@ -397,11 +572,9 @@
 	        android:id="@+id/lKTextView3"
 	       	android:layout_width="wrap_content"
 	       	android:layout_height="wrap_content"
-	       	android:layout_below="@id/confirm_button"
-	       	android:layout_centerHorizontal="true"
 	       	android:textColor="#FFFFFF"
-	       	android:textSize="10sp"
+	       	android:textSize="12sp"
 	    	android:gravity="center"
 	       	android:text="@string/registration_submitinfo" />
-	</RelativeLayout>
+	</LinearLayout>
 </ScrollView>
