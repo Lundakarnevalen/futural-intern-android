@@ -28,7 +28,7 @@ public class LKRemote {
 	private final String LOG_TAG = "API call";
 	
 	Context context;
-	private String remoteAdr = "http://eee.esek.se/";
+	private String remoteAdr = "http://karnevalist.se/";
 	private boolean showProgressDialog = false;
 	TextResultListener textResultListener;
 	
@@ -77,14 +77,34 @@ public class LKRemote {
     }
     
     /**
+     * Returns a string for the request type based on the Enum. 
+     * @param type The request type
+     * @return The string for the request type. 
+     */
+    private String getRequestTypeString(RequestType type){
+    	switch(type){
+    	case POST:
+    		return "POST";
+    	case GET:
+    		return "GET";
+    	case PUT:
+    		return "PUT";
+    	default:
+    		return "GET";
+    	}
+    }
+    
+    /**
      * Do a HTTP POST to the server for a plain/text response, use TextResultListener to get response.  
      * @param file The file to do the http POST on
      * @param data The POST data.
      */
-    public void requestServerForText(String file, String data){
+    public void requestServerForText(String file, String data, RequestType type){
+    	String requestType = getRequestTypeString(type);
+    	
     	if(hasInternetConnection(context)){
     		AsyncTask<String, Void, String> task = new ServerTextTask();
-    		task.execute(file, data);
+    		task.execute(file, data, requestType);
     	}else{
     		Log.e(LOG_TAG, "no internet connection");
     	}
@@ -119,10 +139,15 @@ public class LKRemote {
 		
 		@Override
 		protected String doInBackground(String... params) {
-			String file, data;
+			String file, data, requestType;
+			boolean write = true;
 			try{
 				file = params[0];
 				data = params[1];
+				requestType = params[2];
+				if(requestType.equals(getRequestTypeString(RequestType.GET))){
+					write = false;
+				}
 			}catch(ArrayIndexOutOfBoundsException e){
 				Log.e(LOG_TAG, "No parameters, post data or file is missing. usage: [file, data]");
 				return null;
@@ -147,7 +172,7 @@ public class LKRemote {
 				return null;
 			}
 			try {
-				con.setRequestMethod("POST");
+				con.setRequestMethod(requestType);
 			} catch (ProtocolException e) {
 				Log.wtf(LOG_TAG, "Should not happen - No such post method");
 				return null;
@@ -160,21 +185,23 @@ public class LKRemote {
 			con.setRequestProperty("charset", "UTF-8");
 			
 			// Write post data. 
-			DataOutputStream dos;
-			try {
-				
-				dos = new DataOutputStream(con.getOutputStream());
-			} catch (IOException e) {
-				Log.e(LOG_TAG, "Could not init. output stream.");
-				return null;
-			}
-			try {
-				dos.writeBytes(data);
-				dos.flush();
-				dos.close();
-			} catch (IOException e) {
-				Log.e(LOG_TAG, "Could not write data to server.");
-				return null;
+			if(write){
+				DataOutputStream dos;
+				try {
+					
+					dos = new DataOutputStream(con.getOutputStream());
+				} catch (IOException e) {
+					Log.e(LOG_TAG, "Could not init. output stream.");
+					return null;
+				}
+				try {
+					dos.writeBytes(data);
+					dos.flush();
+					dos.close();
+				} catch (IOException e) {
+					Log.e(LOG_TAG, "Could not write data to server.");
+					return null;
+				}
 			}
 			// Get data input stream
 			InputStreamReader isr;
@@ -246,6 +273,11 @@ public class LKRemote {
 	 *
 	 */
 	public interface TextResultListener{
+		public static final String LOG_TAG = "Result listener";
 		public void onResult(String result);
+	}
+	
+	public enum RequestType{
+		POST, GET, PUT;
 	}
 }

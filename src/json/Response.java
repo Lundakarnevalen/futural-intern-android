@@ -7,6 +7,11 @@ public class Response {
 	 *
 	 */
 	public class SubmitRegistrationForm{
-		public String status, error, token;
+		public String status, token, id;
+	}
+	
+	public class GetKarnevalist{
+		public String status;
+		public User karnevalist;
 	}
 }

@@ -142,6 +142,15 @@
 			android:textColorHint="@color/bg_peach"
 	        android:inputType="textEmailAddress"
 	        android:hint="@string/email" />
+		<se.lundakarnevalen.widget.LKEditText
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/email_valid"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+			android:textColorHint="@color/bg_peach"
+	        android:inputType="textEmailAddress"
+	        android:hint="@string/email_valid" />
 	    <se.lundakarnevalen.widget.LKEditText
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:id="@+id/phone_nr"

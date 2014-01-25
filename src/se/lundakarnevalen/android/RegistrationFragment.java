@@ -24,6 +24,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class RegistrationFragment extends LKFragment{
+	private int registrationStep;
 	private int progresslevel;
 	private LKEditText name, email, mobilnbr;
 	private LKProgressBar progressbar;
@@ -43,6 +44,7 @@ public class RegistrationFragment extends LKFragment{
 	private boolean validMobileNumber(){
 		return !mobilnbr.getText().toString().equals("");
 	}
+	
 	private boolean validName(){
 		return !name.getText().toString().equals("");
 	}
@@ -82,10 +84,8 @@ public class RegistrationFragment extends LKFragment{
 		mobilnbr.addTextChangedListener(watcher);
 		nationsSpinner = (LKSpinner) root.findViewById(R.id.nations);
 		nationsSpinner.setOnItemSelectedListener(nationsSpinnerListeners);
-		
 		shirtSpinner = (LKSpinner) root.findViewById(R.id.shirt_size);
 		shirtSpinner.setOnItemSelectedListener(shirtSpinnerListeners);
-		
 		driverLicensSpinner = (LKSpinner) root.findViewById(R.id.driver_licens);
 		driverLicensSpinner.setOnItemSelectedListener(driverLicensSpinnerListeners);
 		return root;
@@ -112,7 +112,6 @@ public class RegistrationFragment extends LKFragment{
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Wermlands", 11));
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Östgöta", 12));
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Smålands", 13));
-		
 		LKSpinnerArrayAdapter nationsAdapter = new LKSpinnerArrayAdapter(getContext(), nationsList);
 		nationsSpinner.setAdapter(nationsAdapter);
 		
@@ -125,7 +124,6 @@ public class RegistrationFragment extends LKFragment{
 		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XL", 5));
 		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XXL", 6));
 		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XXXL", 7));
-		
 		LKSpinnerArrayAdapter shirtSizeAdapter = new LKSpinnerArrayAdapter(getContext(), shirtSizeList);
 		shirtSpinner.setAdapter(shirtSizeAdapter);
 		
@@ -135,7 +133,6 @@ public class RegistrationFragment extends LKFragment{
 		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE", 2));
 		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + D/DE", 3));
 		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE + D/DE", 4));
-
 		LKSpinnerArrayAdapter driverLicensSizeAdapter = new LKSpinnerArrayAdapter(getContext(), driverLicensList);
 		driverLicensSpinner.setAdapter(driverLicensSizeAdapter);
 	}
@@ -192,14 +189,15 @@ public class RegistrationFragment extends LKFragment{
 		
 		@Override
 		public void onClick(View v) {
-			if(isRegistrationCorrect()){
-				LKUser user = new LKUser(getActivity().getApplicationContext());
-				user.setUsername(name.getText().toString());
-				//send data to server
-				user.setToken("#steeze");
+			if(true){
+				LKUser user = new LKUser(getContext());
+				
+				
 				user.storeUserLocaly();
-				LKFragment fragment = new RegistrationProgressFragment();
-				loadFragment(fragment, true);
+				
+				// Startup same fragment again. 
+				LKFragment fragment = new RegistrationFragment();
+				loadFragment(fragment, false);
 				Toast.makeText(getContext(), "Saved data to shared prefferances.", Toast.LENGTH_SHORT).show();
 			} else {
 				String wrongs = "Dessa f�lt �r inte korrekt inmatade: \n";

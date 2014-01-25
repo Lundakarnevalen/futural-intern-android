@@ -12,12 +12,14 @@ import android.util.Log;
  */
 public class LKUser {
 	private static final String LOG_TAG = "LKUser";
-	
 	private static final String SHARED_PREFS_NAME = "LKUserStorage";
-	private static final String SHARED_PREFS_USERNAME = "LKUsername";
 	private static final String SHARED_PREFS_TOKEN = "LKToken";
+	
 	Context context;
-	String username, token;
+	public String persNr, firstname, lastname, address, zipCode, zipTown, email, phone, foodPrefs, ddKar, ddNation, ddStud, ddOther, other;
+	public int sex, nation, shirtSize, terms, driverLicens, starIntresse, starSektion;
+	public int[] intresse, sektions;
+	public boolean ddHeltidare, ddStyrelse, ddForman, ddJobb, LK2010, responsibility, afMember, karMember, nationMember, karnevelj;
 	SharedPreferences sp;
 	
 	public LKUser(Context context){
@@ -31,11 +33,7 @@ public class LKUser {
 	 * @return True if there is a user, false if there is not. 
 	 */
 	public static boolean localUserStored(Context context){
-		SharedPreferences sp = context.getSharedPreferences(SHARED_PREFS_NAME, 0);
-		String username = sp.getString(SHARED_PREFS_USERNAME, null);
-		String token = sp.getString(SHARED_PREFS_TOKEN, null);
-		Log.d(LOG_TAG, "Username: "+username+", token: "+token);
-		return !(username == null || token == null);
+		return false;
 	}
 	
 	/**
@@ -43,16 +41,14 @@ public class LKUser {
 	 */
 	public void storeUserLocaly(){
 		Editor editor = sp.edit();
-		editor.putString(SHARED_PREFS_USERNAME, username);
-		editor.putString(SHARED_PREFS_TOKEN, token);
 		editor.commit();
 	}
 	
-	public void setUsername(String username){
-		this.username = username;
+	public String getJson(){
+		return null;
 	}
 	
-	public void setToken(String token){
-		this.token = token;
+	public void parseJson(){
+		
 	}
 }
