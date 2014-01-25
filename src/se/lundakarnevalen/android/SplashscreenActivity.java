@@ -1,6 +1,7 @@
 package se.lundakarnevalen.android;
 
 import se.lundakarnevalen.remote.LKRemote;
+import se.lundakarnevalen.remote.LKUser;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,16 +28,6 @@ public class SplashscreenActivity extends Activity{
 		
 		wrapper = (RelativeLayout) findViewById(R.id.splash_wrapper);
 		wrapper.setOnClickListener(cont);
-		
-		LKRemote remote = new LKRemote(this, new LKRemote.TextResultListener() {
-			@Override
-			public void onResult(String result) {
-				Log.d(LOG_TAG, result);
-				//Gson gson = new Gson();
-			}
-		});
-		remote.requestServerForText("karnevalister/4.json", null, LKRemote.RequestType.GET);
-		
 	}
 	
 	View.OnClickListener cont = new View.OnClickListener() {

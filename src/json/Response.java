@@ -6,11 +6,11 @@ public class Response {
 	 * @author alexander
 	 *
 	 */
-	public class SubmitRegistrationForm{
+	public static class SubmitRegistrationForm{
 		public String status, token, id;
 	}
 	
-	public class GetKarnevalist{
+	public static class GetKarnevalist{
 		public String status;
 		public User karnevalist;
 	}
