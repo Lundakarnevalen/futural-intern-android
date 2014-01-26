@@ -1,5 +1,6 @@
 package se.lundakarnevalen.remote;
 
+import se.lundakarnevalen.android.LKFragment;
 import json.Response;
 import json.User;
 import android.content.Context;
@@ -36,7 +37,9 @@ public class LKUser {
 	 * @return True if there is a user, false if there is not. 
 	 */
 	public static boolean localUserStored(Context context){
-		return false;
+		SharedPreferences sp = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+		String json = sp.getString(SHARED_PREFS_JSON, null);
+		return json != null;
 	}
 	
 	/**

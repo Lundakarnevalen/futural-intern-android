@@ -14,4 +14,8 @@ public class Response {
 		public String status;
 		public User karnevalist;
 	}
+	
+	public static class GetGCM{
+		
+	}
 }

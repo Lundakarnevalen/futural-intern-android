@@ -20,7 +20,7 @@ public class GCMIntentService extends IntentService{
 		Bundle extras = intent.getExtras();
 		if(!extras.isEmpty()){
 			// Handle data.
-			
+			Log.d(LOG_TAG, extras.getString("title"));
 		}
 	}
 }

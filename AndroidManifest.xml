@@ -41,5 +41,6 @@
                 <category android:name="se.lundakarnevalen.gcm" />
             </intent-filter>
         </receiver>
+        <service android:name="se.lundakarnevalen.remote.GCMIntentService" />
     </application>
 </manifest>
