@@ -28,16 +28,13 @@ public class LKFragment extends Fragment{
 	public static final int SEKTIONER_FRAGMENT = 0x008;
 	public static final int SIGN_IN_FRAGMENT = 0x009;
 	
-<<<<<<< HEAD
+	//Shared preferences keys
 	public static final String SP_GCM_NAME = "LKGCM";
 	public static final String SP_GCM_REGID = "LKGCM_REG_ID";
 	public static final String SP_GCM_REG_APP = "LKGCM_APPV";
-=======
-	//Shared preferences keys
 	public static final String SP_NAME = "LKSharedPreferences";
 	public static final String SP_KEY_REGISTRATION_STEP = "LKRegistrationStep";
-	
->>>>>>> registrering-feature-branch
+
 	
 	/**
 	 * Gets the application context

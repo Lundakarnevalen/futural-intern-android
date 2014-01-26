@@ -8,10 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-<<<<<<< HEAD
 import android.os.AsyncTask;
-=======
->>>>>>> registrering-feature-branch
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
