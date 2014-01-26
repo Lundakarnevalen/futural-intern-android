@@ -178,7 +178,7 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		 * @param icon Icon next to text
 		 * @param fragment Fragment to show
 		 */
-		public LKMenuListItem(final String title, int icon, final LKFragment fragment, final FragmentManager fragmentMgr){
+		public LKMenuListItem(final String title, int icon, final LKFragment fragment, final FragmentManager fragmentMgr, final Context context){
 			this.title = title;
 			this.icon = icon;
 			
@@ -186,7 +186,12 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 				
 				@Override
 				public void onClick(View v) {
-					fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment).commit();
+					if(fragment == null){
+						LKFragment fragmentStart = LKFragment.getStartFragment(context);
+						fragmentMgr.beginTransaction().replace(R.id.content_frame, fragmentStart).commit();
+					}else{
+						fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment).commit();
+					}
 				}
 			};
 		}

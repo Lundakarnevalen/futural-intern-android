@@ -7,6 +7,7 @@ import se.lundakarnevalen.android.LKFragment.MessangerMessage;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -59,7 +60,17 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		
 		setupActionBar();
 		populateMenu();
-		loadFragment(LKFragment.getStartFragment(this), false);
+		Intent intent = getIntent();
+		int fragment = intent.getIntExtra("fragment", Integer.MIN_VALUE);
+		LKFragment fragmentToLoad = null;
+		switch(fragment){
+		case LKFragment.INBOX_FRAGMENT:
+			fragmentToLoad = new InboxFragment();
+			break;
+		default:
+			fragmentToLoad = LKFragment.getStartFragment(this);
+		}
+		loadFragment(fragmentToLoad, false);
 	}
 	
 	
@@ -162,13 +173,13 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);
 		
-		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
+		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
-		listItems.add(new LKMenuListItem("Start", 0, LKFragment.getStartFragment(this), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isActive(true));
-		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
+		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
 		listItems.add(inboxListItem);
-		listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
 		

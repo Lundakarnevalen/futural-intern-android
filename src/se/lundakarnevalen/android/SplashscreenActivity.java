@@ -133,10 +133,14 @@ public class SplashscreenActivity extends Activity{
 	View.OnClickListener cont = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(context, ContentActivity.class);
-			context.startActivity(intent);
+			launchApp();
 		}
 	};
+	
+	private void launchApp(){
+		Intent intent = new Intent(context, ContentActivity.class);
+		context.startActivity(intent);
+	}
 	
 	/** 
 	 * Populate SP with some basic data if there is none.

@@ -3,6 +3,7 @@ package se.lundakarnevalen.android;
 import se.lundakarnevalen.remote.LKUser;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -34,6 +35,7 @@ public class LKFragment extends Fragment{
 	public static final String SP_GCM_REG_APP = "LKGCM_APPV";
 	public static final String SP_NAME = "LKSharedPreferences";
 	public static final String SP_KEY_REGISTRATION_STEP = "LKRegistrationStep";
+	public static final String SP_KEY_REGISTRATION_LOCK = "LKRegistrationLock";
 
 	
 	/**
@@ -100,10 +102,15 @@ public class LKFragment extends Fragment{
 	 * @return Fragment to launch. 
 	 */
 	public static LKFragment getStartFragment(Context context){
+		SharedPreferences sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+		boolean lock = sp.getBoolean(SP_KEY_REGISTRATION_LOCK, false);
+		
 		if(LKUser.localUserStored(context))
 			return new RegistrationProgressFragment();
-		else
+		else if(!lock)
 			return new RegistrationOhNoFragment();
+		else
+			return new SignInFragment();
 	}
 	
 	/**

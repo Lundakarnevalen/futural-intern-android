@@ -28,6 +28,7 @@
     <string name="registration_myshirtsize">Jag har tröjstorlek</string>
     <string name="registration_append">Redigera mina personuppgifter</string>
     <string name="continue_code">Lösenord</string>
+    <string name="notification_title">Meddelande från Lundakarnevalen!</string>
     <string name="email_valid"></string>
     
     <string name="sektion_barnevalen">Barnevalen</string>
