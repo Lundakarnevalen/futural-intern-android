@@ -28,16 +28,23 @@ public class LKFragment extends Fragment{
 	public static final int SEKTIONER_FRAGMENT = 0x008;
 	public static final int SIGN_IN_FRAGMENT = 0x009;
 	
+<<<<<<< HEAD
 	public static final String SP_GCM_NAME = "LKGCM";
 	public static final String SP_GCM_REGID = "LKGCM_REG_ID";
 	public static final String SP_GCM_REG_APP = "LKGCM_APPV";
+=======
+	//Shared preferences keys
+	public static final String SP_NAME = "LKSharedPreferences";
+	public static final String SP_KEY_REGISTRATION_STEP = "LKRegistrationStep";
+	
+>>>>>>> registrering-feature-branch
 	
 	/**
 	 * Gets the application context
 	 * @return The context.
 	 */
 	public Context getContext(){
-		return super.getActivity().getApplicationContext();
+		return super.getActivity();
 	}
 	
 	@Override
@@ -138,6 +145,14 @@ public class LKFragment extends Fragment{
 	public void onRadioButtonClicked(View view) {
 		
 	}
+	/**
+	 * Handles checkboxes in the fragment
+	 * @param view checkbox view
+	 */
+	public void onCheckBoxClicked(View view) {
+		
+	}
+	
 	
 	/**
 	 * Interface to be implemented by activity containing the fragment.

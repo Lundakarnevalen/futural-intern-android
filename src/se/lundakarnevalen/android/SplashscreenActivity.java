@@ -8,7 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+<<<<<<< HEAD
 import android.os.AsyncTask;
+=======
+>>>>>>> registrering-feature-branch
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +35,10 @@ public class SplashscreenActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splashscreen_layout);
 		this.context = this;
+		
+		// init some stuff
+		populateSp();
+		
 		wrapper = (RelativeLayout) findViewById(R.id.splash_wrapper);
 		wrapper.setOnClickListener(cont);
 		sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, Context.MODE_PRIVATE);
@@ -133,4 +140,21 @@ public class SplashscreenActivity extends Activity{
 			context.startActivity(intent);
 		}
 	};
+	
+	/** 
+	 * Populate SP with some basic data if there is none.
+	 */
+	private void populateSp(){
+		// Init with registration data if none exists. 
+		SharedPreferences sp = this.getSharedPreferences(LKFragment.SP_NAME, MODE_PRIVATE);
+		int registrationStep = sp.getInt(LKFragment.SP_KEY_REGISTRATION_STEP, -1);
+		
+		// Set values
+		Editor editor = sp.edit();
+		if(registrationStep == -1){
+			editor.putInt(LKFragment.SP_KEY_REGISTRATION_STEP, 0);
+		}
+		
+		editor.commit();
+	}
 }
