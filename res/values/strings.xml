@@ -12,6 +12,9 @@
     <string name="registration_informationafterorigressbar2">karnevalist. Vi behöver bara en bild på dig.</string>
     <string name="code_explained">Inne i AF-borgen kommer du få en kod. Den behöver du för att kunna fortsätta registreringen som karnevalist.</string>
     
+    <string name="reg_code_fail_title">Något gick fel!</string>
+    <string name="reg_code_fail_msg">Du fyllde i fel lösenord, försök igen!</string>
+    
    	<string name="registration_informationbild1">Den tar du lägst fram i</string>
     <string name="registration_informationbild2">disken inuti AF-Borgen.</string>
         

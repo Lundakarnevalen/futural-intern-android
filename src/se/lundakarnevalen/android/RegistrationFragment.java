@@ -13,6 +13,7 @@ import se.lundakarnevalen.widget.LKSpinner;
 import se.lundakarnevalen.widget.LKSpinnerArrayAdapter;
 import se.lundakarnevalen.widget.LKSpinnerArrayAdapter.LKSpinnerArrayItem;
 import se.lundakarnevalen.widget.LKTextView;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -20,17 +21,21 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 public class RegistrationFragment extends LKFragment{
 	private int registrationStep = 0; // 0 = personuppgifter, 1 = kod, 2 = karnevalsuppgifter, 3 = redigera (visa allt förutom koden). 
 	private int progresslevel;
-	private LKEditText name, email, mobilnbr;
+	private LKEditText code, name, email, mobilnbr;
 	private LKProgressBar progressbar;
 	private LKTextView progressvalue;
 	private LKButton confirmButton, appendButton;
@@ -69,6 +74,8 @@ public class RegistrationFragment extends LKFragment{
 		wrapperPers = (LinearLayout) root.findViewById(R.id.wrapper_pers);
 		wrapperCode = (LinearLayout) root.findViewById(R.id.wrapper_code);
 		wrapperLK = (LinearLayout) root.findViewById(R.id.wrapper_lk);
+		code = (LKEditText) root.findViewById(R.id.continue_code);
+		code.setOnEditorActionListener(sendEditorChangeListener);
 		// Set correct views.
 		updateLayout();
 		return root;
@@ -150,7 +157,7 @@ public class RegistrationFragment extends LKFragment{
 			appendButton.setVisibility(View.VISIBLE);
 			break;
 		default:
-			// Redigera alla uppgifter
+			// Redigera alla uppgifterss
 			wrapperPers.setVisibility(View.VISIBLE);
 			confirmButton.setVisibility(View.VISIBLE);
 			wrapperCode.setVisibility(View.GONE);
@@ -255,20 +262,63 @@ public class RegistrationFragment extends LKFragment{
 	};
 	
 	View.OnClickListener confirm = new View.OnClickListener() {
-		
 		@Override
 		public void onClick(View v) {
-			if(validateForm()){ // TODO: should call the validation method
-				LKUser user = new LKUser(getContext());
+			confirm();
+		}
+	};
+	
+	OnEditorActionListener sendEditorChangeListener = new OnEditorActionListener(){
+		@Override
+		public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+			if(event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE))
+				confirm();
+			return false;
+		}		
+	};
+	
+	private void confirm(){
+		if(validateForm()){
+			LKUser user = new LKUser(getContext());
+			switch(registrationStep){
+			case 0:
 				populateUserWithData(user);
 				user.storeUserLocaly();
-				
 				registrationStep++;
 				storeRegistrationStep();
 				updateLayout();
+				break;
+			case 1:
+				// Check code and update
+				if(checkCode()){
+					registrationStep++;
+					storeRegistrationStep();
+					updateLayout();
+				}
+				break;
+			case 2:
+				populateUserWithData(user);
+				user.storeUserLocaly();
+				registrationStep++;
+				storeRegistrationStep();
+				// Post data
+				break;
 			}
 		}
-	};
+	}
+	
+	private boolean checkCode(){
+		if(code.getText().toString().toUpperCase().equals(getContext().getString(R.string.registrationpassword).toUpperCase())){
+			return true;
+		}
+		// TODO: Show popup.
+		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+		builder.setTitle(getContext().getString(R.string.reg_code_fail_title));
+		builder.setMessage(getContext().getString(R.string.reg_code_fail_msg));
+		builder.setPositiveButton("Ok", null);
+		builder.show();
+		return false;
+	}
 	
 	/**
 	 * Get data from fields and populate the user with the new data.

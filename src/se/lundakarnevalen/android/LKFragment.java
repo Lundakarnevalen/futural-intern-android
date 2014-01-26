@@ -35,7 +35,7 @@ public class LKFragment extends Fragment{
 	 * @return The context.
 	 */
 	public Context getContext(){
-		return super.getActivity().getApplicationContext();
+		return super.getActivity();
 	}
 	
 	@Override
