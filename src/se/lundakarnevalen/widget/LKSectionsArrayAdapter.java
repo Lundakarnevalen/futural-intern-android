@@ -22,12 +22,15 @@ public class LKSectionsArrayAdapter extends
 		OnItemClickListener {
 	private Context context;
 	private ArrayList<LKSectionsItem> list;
+	private boolean random;
+
 
 	public LKSectionsArrayAdapter(Context context,
-			ArrayList<LKSectionsItem> list) {
+			ArrayList<LKSectionsItem> list, boolean random) {
 		super(context, R.layout.sections_row, list);
 		this.context = context;
 		this.list = list;
+		this.random = random;
 
 	}
 

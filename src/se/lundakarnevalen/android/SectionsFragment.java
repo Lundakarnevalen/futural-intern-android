@@ -9,11 +9,11 @@ import se.lundakarnevalen.widget.wheel.AbstractWheelAdapter;
 import se.lundakarnevalen.widget.wheel.OnWheelChangedListener;
 import se.lundakarnevalen.widget.wheel.OnWheelScrollListener;
 import se.lundakarnevalen.widget.wheel.WheelView;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,7 +30,7 @@ public class SectionsFragment extends LKFragment {
 	private RelativeLayout right;
 	private boolean clicked = false;
 	private int counter = 0;
-
+	private Handler handler;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,8 +55,9 @@ public class SectionsFragment extends LKFragment {
                 mixWheel(R.id.slot_3);
             }
         });
-		
-
+        
+        handler = new Handler();
+        	
 		return root;
 	}
 	
@@ -98,8 +99,16 @@ public class SectionsFragment extends LKFragment {
     private void updateStatus() {
     	counter++;
     	clicked = true;
-    	if	(counter == 3)	{ //Checks that all the three wheels are ready. 
-    		right.performClick();
+    	if	(counter == 3)	{ //Checks that all the three wheels are ready.
+    		
+    		handler.postDelayed(new Runnable() { //Handles the delay
+
+                public void run() {
+                	right.performClick(); 
+                }
+
+            }, 350); //The delay in milliseconds 
+
     		counter = 0;
     	}
      
@@ -150,17 +159,18 @@ public class SectionsFragment extends LKFragment {
 			a.getSupportFragmentManager().beginTransaction()
 					.replace(R.id.content_frame, fragment).addToBackStack(null)
 					.commit();
+			clicked = false;
 		}
 
 	}
 
-	private class LuckyListener implements OnClickListener {
-		@Override
-		public void onClick(View v) {
-			Log.d("Hej", "hejsan");
-			
-		}
-	}
+//	private class LuckyListener implements OnClickListener {
+//		@Override
+//		public void onClick(View v) {
+//			Log.d("Hej", "hejsan");
+//			
+//		}
+//	}
 	
 	/**
      * Slot machine adapter
@@ -172,9 +182,14 @@ public class SectionsFragment extends LKFragment {
         
         // Slot machine symbols
         private final int items[] = new int[] {
-        		R.drawable.spin_wheel_blue,
-        		R.drawable.spin_wheel_red,
-        		R.drawable.spin_wheel_yellow
+        		R.drawable.moln, 
+        		R.drawable.eld,
+        		R.drawable.kugghjul,
+        		R.drawable.blobb,
+        		R.drawable.robothuvud
+
+
+        		
         };
         
         // Cached images

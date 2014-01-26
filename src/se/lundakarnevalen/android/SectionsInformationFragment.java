@@ -1,10 +1,8 @@
-package se.lundakarnevalen.android;
 
-import java.util.Locale;
+package se.lundakarnevalen.android;
 
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,12 +49,10 @@ public class SectionsInformationFragment extends LKFragment {
 		icon.setImageResource(pictureResourceId);
 		sloganTextView.setText(slogan);
 		informationTextView.setText(information);
-		
-
 
 		return root;
 	}
-
+	
 	public class ClickListener implements OnClickListener {
 
 		@Override

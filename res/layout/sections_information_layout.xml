@@ -33,10 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/Section_icon"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/base_pink"
-            android:textSize="@dimen/title_text_size" />
+            android:gravity="center_horizontal" />
 
         <se.lundakarnevalen.widget.LKTextView
             android:id="@+id/section_information"
@@ -44,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/section_slogan"
             android:textColor="@color/light_peach"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <se.lundakarnevalen.widget.LKButton
             android:id="@+id/section_button"
