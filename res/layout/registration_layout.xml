@@ -11,7 +11,7 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
-	    android:background="@color/bg_peach" >
+	    android:background="@color/bg_peach">
 	    <ImageView
 	    	android:src="@drawable/reg_title"
 	    	android:layout_width="wrap_content"
@@ -60,6 +60,7 @@
 	    	    android:layout_marginLeft="@dimen/horizontal_margin_half"
 	    	    android:text="1 %"/>
 	    </LinearLayout>
+	    	    
 	    <se.lundakarnevalen.widget.LKTextView
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:id="@+id/lKTextView2"
@@ -67,508 +68,582 @@
 	       	android:layout_height="wrap_content"
 	       	android:textColor="#FFFFFF"
 	       	android:text="@string/registration_informationafterorigressbar1"  />
-	    <se.lundakarnevalen.widget.LKTextViewBold 
+	   
+	    <!-- Koddelen -->
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/wrapper_code"
+	        android:orientation="vertical"
+	        android:visibility="gone">
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="18sp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/code_explained" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/continue_code"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/continue_code" />
+	    </LinearLayout>
+	    <!-- Koddelen - Slut -->
+	    
+	    <!-- Karnevalsuppgifter -->
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/wrapper_lk"
+	        android:orientation="vertical"
+	        android:visibility="gone">
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="18sp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/intressen" />
+		    <LinearLayout
+		       		android:layout_marginTop="@dimen/vertical_margin"
+		        	android:layout_width="wrap_content"
+	        		android:layout_height="wrap_content" 
+	        		android:orientation="vertical" >
+		    	    <CheckBox android:id="@+id/dd_billig"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_billig"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+		    	    <CheckBox android:id="@+id/dd_mat"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_mat"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/dd_dryck"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_dryck"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+	        		<CheckBox android:id="@+id/dd_teknik"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_teknik"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+	        		<CheckBox android:id="@+id/dd_layout"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_layout"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/dd_it"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_it"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/dd_skriva"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_skriva"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/dd_foto"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_foto"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+	        		<CheckBox android:id="@+id/dd_admin"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_admin"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+	        		<CheckBox android:id="@+id/dd_sell"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_sell"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/dd_sakerhet"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_sakerhet"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/dd_bygga"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_bygga"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+	        		<CheckBox android:id="@+id/dd_dekorera"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_dekorera"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/dd_sy"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_sy"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/dd_smink"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_smink"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+	        		<CheckBox android:id="@+id/dd_spex"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/dd_spex"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+		    	</LinearLayout>
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="18sp"
+		        android:id="@+id/lKTextViewBold4"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_choosesection" />	    
+		    <LinearLayout
+		       	android:layout_marginTop="@dimen/vertical_margin"
+		        android:id="@+id/sektionwrapper"
+		        android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:orientation="horizontal">
+		    	<LinearLayout
+		       		android:layout_marginTop="@dimen/vertical_margin"
+		        	android:id="@+id/leftsektionwrapper"
+		        	android:layout_width="wrap_content"
+	        		android:layout_height="wrap_content" 
+	        		android:orientation="vertical" >
+		    	    <CheckBox android:id="@+id/checkbox_barnevalen"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_barnevalen"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+		    	    <CheckBox android:id="@+id/checkbox_biljetteriet"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_biljetteriet"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_bladderiet"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_bladderiet"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+	        		<CheckBox android:id="@+id/checkbox_cirkusen"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_cirkusen"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+	        		<CheckBox android:id="@+id/checkbox_dansen"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_dansen"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_ekonomi"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_ekonomi"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_fabriken"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_fabriken"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_festmasteriet"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_festmasteriet"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_filmen"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_filmen"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_kabare"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_kabare"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_klipperiet"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_klipperiet"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_kommunikation"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_kommunikation"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 	
+	        		<CheckBox android:id="@+id/checkbox_krogarna"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_krogarna"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+		    	</LinearLayout>
+		        <LinearLayout
+		       		android:layout_marginTop="@dimen/vertical_margin"
+		        	android:id="@+id/rightsektionwrapper"
+		        	android:layout_width="wrap_content"
+	        		android:layout_height="wrap_content"
+	        		android:layout_marginLeft="@dimen/horizontal_margin"
+		        	android:orientation="vertical" >
+		    		<CheckBox android:id="@+id/checkbox_omradet"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_omradet"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+		    	    <CheckBox android:id="@+id/checkbox_musiken"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_musiken"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_nojessektionen"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_nojessektionen"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+	        		<CheckBox android:id="@+id/checkbox_radion"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_radion"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/>
+	        		<CheckBox android:id="@+id/checkbox_revyn"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_revyn"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_shoppen"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_shoppen"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_showen"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_showen"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_snaxeriet"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_snaxeriet"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_sakerhet"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_sakerhet"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_tombola"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_tombola"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_taget"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_taget"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+	        		<CheckBox android:id="@+id/checkbox_taltnojen"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_taltnojen"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 	
+	        		<CheckBox android:id="@+id/checkbox_vieriet"
+		            	android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"
+	        			android:text="@string/sektion_vieriet"
+	        			android:textColor="#FFFFFF"
+	        			android:onClick="onCheckBoxClicked"/> 
+		    	</LinearLayout>
+		    </LinearLayout>
+		<se.lundakarnevalen.widget.LKTextViewBold
 	        android:layout_marginTop="@dimen/vertical_margin"
-	        android:id="@+id/lKTextViewBold2"
+	        android:textSize="18sp"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:textColor="#FFFFFF"
-	        android:text="@string/registration_yourcreedentials" />
+	        android:text="@string/elseT" />
+		<CheckBox android:id="@+id/aktiv"
+          	android:layout_width="wrap_content"
+   			android:layout_height="wrap_content"
+   			android:text="@string/aktiv"
+   			android:textColor="#FFFFFF"
+   			android:onClick="onCheckBoxClicked"/> 
 	    <se.lundakarnevalen.widget.LKEditText
+	        android:singleLine="true"
 	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/pers_nr"
+	        android:id="@+id/other"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:textColor="#FFFFFF"
+	        android:lines="3"
 	        android:textColorHint="@color/bg_peach"
-	        android:hint="@string/pers_nr" />
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/name"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-	        android:textColorHint="@color/bg_peach"
-	        android:hint="@string/name" />
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/lastname"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-	        android:textColorHint="@color/bg_peach"
-	        android:hint="@string/lastname" />
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/postal_address"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-			android:textColorHint="@color/bg_peach"
-	        android:hint="@string/postal_address" />
+	        android:hint="@string/other" />
+		</LinearLayout>
+		<!-- Karnevalsuppgifter - Slut -->
+		
+		<!-- Personuppgifter -->
 	    <LinearLayout 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:orientation="horizontal">
+	        android:orientation="vertical"
+	        android:id="@+id/wrapper_pers">
+		    <se.lundakarnevalen.widget.LKTextViewBold 
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:id="@+id/lKTextViewBold2"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_yourcreedentials" />
 		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
 		        android:layout_marginTop="@dimen/vertical_margin_half"
-		        android:id="@+id/zip_code"
-		        android:layout_width="0dp"
+		        android:id="@+id/pers_nr"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:textColorHint="@color/bg_peach"
+		        android:hint="@string/pers_nr" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/name"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:textColorHint="@color/bg_peach"
+		        android:hint="@string/name" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/lastname"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:textColorHint="@color/bg_peach"
+		        android:hint="@string/lastname" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/postal_address"
+		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:textColor="#FFFFFF"
 				android:textColorHint="@color/bg_peach"
-				android:inputType="phone"
-				android:layout_weight="1.0"
-				android:layout_marginRight="@dimen/vertical_margin_quarter"
+		        android:hint="@string/postal_address" />
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal">
+			    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+			        android:layout_marginTop="@dimen/vertical_margin_half"
+			        android:id="@+id/zip_code"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:textColor="#FFFFFF"
+					android:textColorHint="@color/bg_peach"
+					android:inputType="phone"
+					android:layout_weight="1.0"
+					android:layout_marginRight="@dimen/vertical_margin_quarter"
+					android:digits="0123456789"
+			        android:hint="@string/zip_code" />
+			    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+			        android:layout_marginTop="@dimen/vertical_margin_half"
+			        android:id="@+id/zip_town"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:layout_marginLeft="@dimen/vertical_margin_quarter"
+			        android:textColor="#FFFFFF"
+					android:layout_weight="1.0"
+					android:textColorHint="@color/bg_peach"
+			        android:hint="@string/zip_town" />
+		    </LinearLayout>
+			<se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/email"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:inputType="textEmailAddress"
+		        android:hint="@string/email" />
+			<se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/email_valid"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:inputType="textEmailAddress"
+		        android:hint="@string/email_valid" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/phone_nr"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/phone_nr" />
+		    <se.lundakarnevalen.widget.LKTextViewFat
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="16sp"
+		        android:layout_marginTop="@dimen/horizontal_margin_half"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/nationTopic"/>
+		    <se.lundakarnevalen.widget.LKSpinner
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/nations"/>
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/food_prefs"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/food_prefs" />
+		    <se.lundakarnevalen.widget.LKTextViewFat
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="16sp"
+		        android:layout_marginTop="@dimen/horizontal_margin_half"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/shirtTopic"/>
+		    <se.lundakarnevalen.widget.LKSpinner
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/shirt_size"/>
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/terms"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
 				android:digits="0123456789"
-		        android:hint="@string/zip_code" />
-		    <se.lundakarnevalen.widget.LKEditText
-		        android:layout_marginTop="@dimen/vertical_margin_half"
-		        android:id="@+id/zip_town"
-		        android:layout_width="0dp"
+		        android:hint="@string/terms" />
+		    <se.lundakarnevalen.widget.LKTextViewFat
+		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:layout_marginLeft="@dimen/vertical_margin_quarter"
+		        android:textSize="16sp"
+		        android:layout_marginTop="@dimen/horizontal_margin_half"
 		        android:textColor="#FFFFFF"
-				android:layout_weight="1.0"
+		        android:text="@string/driverLicensTopic"/>
+		    <se.lundakarnevalen.widget.LKSpinner
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/driver_licens"/>
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="18sp"
+		        android:id="@+id/lKTextViewBold4"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/dedication" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/teknologkaren"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
 				android:textColorHint="@color/bg_peach"
-		        android:hint="@string/zip_town" />
-	    </LinearLayout>
-		<se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/email"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-			android:textColorHint="@color/bg_peach"
-	        android:inputType="textEmailAddress"
-	        android:hint="@string/email" />
-		<se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/email_valid"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-			android:textColorHint="@color/bg_peach"
-	        android:inputType="textEmailAddress"
-	        android:hint="@string/email_valid" />
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/phone_nr"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-			android:textColorHint="@color/bg_peach"
-	        android:hint="@string/phone_nr" />
-	    <se.lundakarnevalen.widget.LKTextViewFat
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="16sp"
-	        android:layout_marginTop="@dimen/horizontal_margin_half"
-	        android:textColor="#FFFFFF"
-	        android:text="@string/nationTopic"/>
-	    <se.lundakarnevalen.widget.LKSpinner
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:id="@+id/nations"/>
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/food_prefs"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-			android:textColorHint="@color/bg_peach"
-	        android:hint="@string/food_prefs" />
-	    <se.lundakarnevalen.widget.LKTextViewFat
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="16sp"
-	        android:layout_marginTop="@dimen/horizontal_margin_half"
-	        android:textColor="#FFFFFF"
-	        android:text="@string/shirtTopic"/>
-	    <se.lundakarnevalen.widget.LKSpinner
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:id="@+id/shirt_size"/>
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/terms"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-			android:textColorHint="@color/bg_peach"
-			android:digits="0123456789"
-	        android:hint="@string/terms" />
-	    <se.lundakarnevalen.widget.LKTextViewFat
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="16sp"
-	        android:layout_marginTop="@dimen/horizontal_margin_half"
-	        android:textColor="#FFFFFF"
-	        android:text="@string/driverLicensTopic"/>
-	    <se.lundakarnevalen.widget.LKSpinner
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:id="@+id/driver_licens"/>
-	    <se.lundakarnevalen.widget.LKTextViewBold
+				android:digits="0123456789"
+		        android:hint="@string/teknolagkaren" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/nationDed"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/nationDed" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/otherStud"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/otherStud" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/otherDed"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/otherDed" />
+		    <CheckBox
+		        android:id="@+id/karnevalist_2010"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:text="@string/karnevalist_2010"
+	    		android:textColor="#FFFFFF" />
+		</LinearLayout>
+		<!-- Personuppgifter - Slut -->
+		
+	    <se.lundakarnevalen.widget.LKButton
 	        android:layout_marginTop="@dimen/vertical_margin"
-	        android:textSize="18sp"
-	        android:id="@+id/lKTextViewBold4"
+	        android:id="@+id/append_button"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:textColor="#FFFFFF"
-	        android:text="@string/dedication" />
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/teknologkaren"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-			android:textColorHint="@color/bg_peach"
-			android:digits="0123456789"
-	        android:hint="@string/teknolagkaren" />
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/nationDed"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-			android:textColorHint="@color/bg_peach"
-	        android:hint="@string/nationDed" />
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/otherStud"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-			android:textColorHint="@color/bg_peach"
-	        android:hint="@string/otherStud" />
-	    <se.lundakarnevalen.widget.LKEditText
-	        android:layout_marginTop="@dimen/vertical_margin_half"
-	        android:id="@+id/otherDed"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-			android:textColorHint="@color/bg_peach"
-	        android:hint="@string/otherDed" />
-	    
-	    <CheckBox android:id="@+id/karnevalist_2010"
-           	android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:text="@string/karnevalist_2010"
-    		android:textColor="#FFFFFF" /> 
-	    <!-- 
-	    <se.lundakarnevalen.widget.LKTextViewBold
-	        android:layout_marginTop="@dimen/vertical_margin"
-	        android:textSize="18sp"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-	        android:text="@string/intressen" />
-	    <LinearLayout
-	       		android:layout_marginTop="@dimen/vertical_margin"
-	        	android:layout_width="wrap_content"
-        		android:layout_height="wrap_content" 
-        		android:orientation="vertical" >
-	    	    <CheckBox android:id="@+id/dd_billig"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_billig"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-	    	    
-	    	    <CheckBox android:id="@+id/dd_mat"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_mat"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        			
-        		<CheckBox android:id="@+id/dd_dryck"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_dryck"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-        		
-        		<CheckBox android:id="@+id/dd_teknik"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_teknik"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-        		
-        		<CheckBox android:id="@+id/dd_layout"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_layout"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/dd_it"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_it"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        			
-        		<CheckBox android:id="@+id/dd_skriva"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_skriva"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        			
-        		<CheckBox android:id="@+id/dd_foto"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_foto"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-        		
-        		<CheckBox android:id="@+id/dd_admin"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_admin"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-        		
-        		<CheckBox android:id="@+id/dd_sell"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_sell"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        			
-        		<CheckBox android:id="@+id/dd_sakerhet"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_sakerhet"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        			
-        		<CheckBox android:id="@+id/dd_bygga"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_bygga"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-        		
-        		<CheckBox android:id="@+id/dd_dekorera"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_dekorera"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        			
-        		<CheckBox android:id="@+id/dd_sy"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_sy"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		
-        		<CheckBox android:id="@+id/dd_smink"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_smink"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-        		
-        		<CheckBox android:id="@+id/dd_spex"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_spex"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        			
-	    	</LinearLayout>
-	    	
-	    <se.lundakarnevalen.widget.LKTextViewBold
-	        android:layout_marginTop="@dimen/vertical_margin"
-	        android:textSize="18sp"
-	        android:id="@+id/lKTextViewBold4"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FFFFFF"
-	        android:text="@string/registration_choosesection" />	    
-	    <LinearLayout
-	       	android:layout_marginTop="@dimen/vertical_margin"
-	        android:id="@+id/sektionwrapper"
-	        android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-        	android:orientation="horizontal">
-	    	<LinearLayout
-	       		android:layout_marginTop="@dimen/vertical_margin"
-	        	android:id="@+id/leftsektionwrapper"
-	        	android:layout_width="wrap_content"
-        		android:layout_height="wrap_content" 
-        		android:orientation="vertical" >
-	    	    <CheckBox android:id="@+id/checkbox_barnevalen"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_barnevalen"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-	    	    <CheckBox android:id="@+id/checkbox_biljetteriet"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_biljetteriet"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_bladderiet"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_bladderiet"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_cirkusen"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_cirkusen"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_dansen"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_dansen"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_ekonomi"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_ekonomi"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_fabriken"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_fabriken"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_festmasteriet"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_festmasteriet"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_filmen"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_filmen"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_kabare"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_kabare"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_klipperiet"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_klipperiet"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_kommunikation"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_kommunikation"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 	
-        		<CheckBox android:id="@+id/checkbox_krogarna"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_krogarna"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-	    	</LinearLayout>
-	        <LinearLayout
-	       		android:layout_marginTop="@dimen/vertical_margin"
-	        	android:id="@+id/rightsektionwrapper"
-	        	android:layout_width="wrap_content"
-        		android:layout_height="wrap_content"
-        		android:layout_marginLeft="@dimen/horizontal_margin"
-	        	android:orientation="vertical" >
-	    		<CheckBox android:id="@+id/checkbox_omradet"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_omradet"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-	    	    <CheckBox android:id="@+id/checkbox_musiken"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_musiken"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_nojessektionen"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_nojessektionen"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_radion"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_radion"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_revyn"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_revyn"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_shoppen"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_shoppen"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_showen"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_showen"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_snaxeriet"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_snaxeriet"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_sakerhet"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_sakerhet"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_tombola"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_tombola"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_taget"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_taget"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_taltnojen"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_taltnojen"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 	
-        		<CheckBox android:id="@+id/checkbox_vieriet"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_vieriet"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-	    	</LinearLayout>
-	    </LinearLayout>
-	     -->
+	        android:text="@string/registration_append"
+	        android:visibility="gone" />
 	    <se.lundakarnevalen.widget.LKButton
 	        android:layout_marginTop="@dimen/vertical_margin"
 	        android:id="@+id/confirm_button"
@@ -579,8 +654,9 @@
 	    <se.lundakarnevalen.widget.LKTextView
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:id="@+id/lKTextView3"
-	       	android:layout_width="wrap_content"
+	       	android:layout_width="fill_parent"
 	       	android:layout_height="wrap_content"
+	       	android:layout_gravity="center"
 	       	android:textColor="#FFFFFF"
 	       	android:textSize="12sp"
 	    	android:gravity="center"

@@ -1,14 +1,11 @@
 package se.lundakarnevalen.android;
 
-import se.lundakarnevalen.remote.LKRemote;
-import se.lundakarnevalen.remote.LKUser;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 

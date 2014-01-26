@@ -1,4 +1,7 @@
 <resources>
+    <!-- The great registration password -->
+    <string name="registrationpassword">FUTURAL</string>
+    
     <string name="app_name">Lundakarnevalen</string>
     <string name="sign_in_button">Logga in</string>
     
@@ -7,6 +10,7 @@
     <string name="registration_informationb4progessbar">Du är för tillfället</string>
     <string name="registration_informationafterorigressbar1">karnevalist. Vi behöver bara veta vem du är.</string>
     <string name="registration_informationafterorigressbar2">karnevalist. Vi behöver bara en bild på dig.</string>
+    <string name="code_explained">Inne i AF-borgen kommer du få en kod. Den behöver du för att kunna fortsätta registreringen som karnevalist.</string>
     
    	<string name="registration_informationbild1">Den tar du lägst fram i</string>
     <string name="registration_informationbild2">disken inuti AF-Borgen.</string>
@@ -19,8 +23,9 @@
     <string name="registration_submitinfo">Genom att klicka på knappen, förbinder\ndu dig att ha kul under karnevalstiden.</string>
     <string name="registration_mysections">Jag vill engagera mig i</string>
     <string name="registration_myshirtsize">Jag har tröjstorlek</string>
+    <string name="registration_append">Redigera mina personuppgifter</string>
+    <string name="continue_code">Lösenord</string>
     <string name="email_valid"></string>
-    
     
     <string name="sektion_barnevalen">Barnevalen</string>
     <string name="sektion_biljetteriet">Biljetteriet</string>
@@ -130,7 +135,10 @@
     <string name="pers_nr">Personnummer</string>
     <string name="intressen">Intressen</string>
     <string name="karnevalist_2010">Jag var karnevalist 2010</string>
-
+    <string name="aktiv">Vill du ha ansvar?</string>
+    <string name="other">Något annat?</string>
+    <string name="elseT">Övrigt</string>
+    
     <string name="choose">Välj</string>
     <string name="lucky">Jag har tur</string>
     <string name="Section_button">Jag vill engagera mig!</string>
