@@ -42,6 +42,7 @@ public class GCMIntentService extends IntentService{
 				registrationProgress(extras);
 				break;
 			}
+			GCMReceiver.completeWakefulIntent(intent);
 		}
 	}
 	

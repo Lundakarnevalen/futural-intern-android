@@ -76,7 +76,7 @@ public class InboxFragment extends LKFragment{
 	 */
 	public static void addMessage(Context context, String title, String message, String date){
 		LKSQLiteDB db = new LKSQLiteDB(context);
-		db.addItem(new LKMenuListItem(title, message, date, true, null));
+		db.addItem(new LKMenuListItem(title, message, date, true, null)); // Null är bitmappen.
 	}
 	
 	public class RenderingTask extends AsyncTask<Context,Void,Void> {

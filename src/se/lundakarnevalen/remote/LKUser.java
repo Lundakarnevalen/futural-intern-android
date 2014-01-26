@@ -1,11 +1,11 @@
 package se.lundakarnevalen.remote;
 
-import se.lundakarnevalen.android.LKFragment;
 import json.Response;
 import json.User;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -51,6 +51,16 @@ public class LKUser {
 		editor.commit();
 	}
 	
+	/**
+	 * Get user from storage
+	 * @return
+	 */
+	public void getUserLocaly(){
+		String json = sp.getString(SHARED_PREFS_JSON, null);
+		if(json != null)
+			parseJson(json);
+	}
+	
 	public String getJson(){
 		Gson gson = new Gson();
 		User karnevalist = new User();
@@ -90,40 +100,41 @@ public class LKUser {
 	}
 	
 	public void parseJson(String json){
+		Log.d(LOG_TAG, "Will now parse: "+json);
 		Gson gson = new Gson();
-		Response.GetKarnevalist user = gson.fromJson(json, Response.GetKarnevalist.class);
-		this.personnummer = user.karnevalist.personnummer;
-		this.fornamn = user.karnevalist.fornamn;
-		this.efternamn = user.karnevalist.efternamn;
-		this.gatuadress = user.karnevalist.gatuadress;
-		this.postnr = user.karnevalist.postnr;
-		this.postort = user.karnevalist.postort;
-		this.email = user.karnevalist.email;
-		this.telnr = user.karnevalist.telnr;
-		this.matpref = user.karnevalist.matpref;
-		this.engageradKar = user.karnevalist.engagerad_kar;
-		this.engageradNation = user.karnevalist.engagerad_nation;
-		this.engageradStudentikos = user.karnevalist.engagerad_studentikos;
-		this.engageradEtc = user.karnevalist.engagerad_etc;
-		this.ovrigt = user.karnevalist.ovrigt;
-		this.kon = user.karnevalist.kon_id;
-		this.nation = user.karnevalist.nation_id;
-		this.storlek = user.karnevalist.storlek_id;
-		this.terminer = user.karnevalist.terminer;
-		this.korkort = user.karnevalist.korkort_id;
-		this.snallaIntresse = user.karnevalist.snalla_intresse;
-		this.snallaSektion = user.karnevalist.snalla_sektion;
-		this.intresse = user.karnevalist.intresse_ids;
-		this.sektioner = user.karnevalist.sektion_ids;
-		this.jobbatHeltid = user.karnevalist.jobbat_heltid;
-		this.jobbatAktiv = user.karnevalist.jobbat_aktiv;
-		this.jobbatForman = user.karnevalist.jobbat_forman;
-		this.jobbatStyrelse = user.karnevalist.jobbat_styrelse;
-		this.karnevalist2010 = user.karnevalist.karnevalist_2010;
-		this.villAnsvara = user.karnevalist.vill_ansvara;
-		this.medlemAf = user.karnevalist.medlem_af;
-		this.medlemKar = user.karnevalist.medlem_kar;
-		this.medlemNation = user.karnevalist.medlem_nation;
-		this.karneveljsbiljett = user.karnevalist.karneveljsbiljett;
+		User user = gson.fromJson(json, User.class);
+		this.personnummer = user.personnummer;
+		this.fornamn = user.fornamn;
+		this.efternamn = user.efternamn;
+		this.gatuadress = user.gatuadress;
+		this.postnr = user.postnr;
+		this.postort = user.postort;
+		this.email = user.email;
+		this.telnr = user.telnr;
+		this.matpref = user.matpref;
+		this.engageradKar = user.engagerad_kar;
+		this.engageradNation = user.engagerad_nation;
+		this.engageradStudentikos = user.engagerad_studentikos;
+		this.engageradEtc = user.engagerad_etc;
+		this.ovrigt = user.ovrigt;
+		this.kon = user.kon_id;
+		this.nation = user.nation_id;
+		this.storlek = user.storlek_id;
+		this.terminer = user.terminer;
+		this.korkort = user.korkort_id;
+		this.snallaIntresse = user.snalla_intresse;
+		this.snallaSektion = user.snalla_sektion;
+		this.intresse = user.intresse_ids;
+		this.sektioner = user.sektion_ids;
+		this.jobbatHeltid = user.jobbat_heltid;
+		this.jobbatAktiv = user.jobbat_aktiv;
+		this.jobbatForman = user.jobbat_forman;
+		this.jobbatStyrelse = user.jobbat_styrelse;
+		this.karnevalist2010 = user.karnevalist_2010;
+		this.villAnsvara = user.vill_ansvara;
+		this.medlemAf = user.medlem_af;
+		this.medlemKar = user.medlem_kar;
+		this.medlemNation = user.medlem_nation;
+		this.karneveljsbiljett = user.karneveljsbiljett;
 	}
 }

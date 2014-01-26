@@ -30,6 +30,7 @@
     <string name="continue_code">Lösenord</string>
     <string name="notification_title">Meddelande från Lundakarnevalen!</string>
     <string name="email_valid"></string>
+    <string name="edit_uppg">Redigera mina uppgifter</string>
     
     <string name="sektion_barnevalen">Barnevalen</string>
     <string name="sektion_biljetteriet">Biljetteriet</string>
