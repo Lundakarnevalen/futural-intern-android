@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="25dp"
+        android:baselineAligned="false"
+        android:background="#000000"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/left_tab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/section_tab_left_inactive"
+            android:paddingBottom="5dp"
+            android:paddingTop="10dp" >
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/left_tab"
+                android:textColor="@color/light_peach" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/right_tab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/section_tab_right_active"
+            android:paddingBottom="5dp"
+            android:paddingTop="10dp" >
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/right_tab"
+                android:textColor="@color/light_peach" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <se.lundakarnevalen.widget.LKTextViewFat
+        android:id="@+id/all_sections"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="32sp"
+        android:text="@string/all_sections"/>
+
+    <ListView
+        android:id="@+id/list_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tabs"
+        android:layout_below="@id/all_sections"
+        android:background="@color/bg_peach"
+        android:divider="@null" >
+    </ListView>
+
+</RelativeLayout>

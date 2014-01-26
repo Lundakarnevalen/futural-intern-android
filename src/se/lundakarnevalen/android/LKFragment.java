@@ -3,6 +3,9 @@ package se.lundakarnevalen.android;
 import se.lundakarnevalen.remote.LKUser;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +14,7 @@ import android.util.TypedValue;
 import android.view.View;
 
 public class LKFragment extends Fragment{
-	protected final String LOG_TAG = "LKFragment";
+	protected final static String LOG_TAG = "LKFragment";
 	
 	public Messanger messanger;
 	
@@ -24,6 +27,10 @@ public class LKFragment extends Fragment{
 	public static final int RESET_PASSWORD_FRAGMENT = 0x007;
 	public static final int SEKTIONER_FRAGMENT = 0x008;
 	public static final int SIGN_IN_FRAGMENT = 0x009;
+	
+	public static final String SP_GCM_NAME = "LKGCM";
+	public static final String SP_GCM_REGID = "LKGCM_REG_ID";
+	public static final String SP_GCM_REG_APP = "LKGCM_APPV";
 	
 	/**
 	 * Gets the application context
@@ -52,6 +59,23 @@ public class LKFragment extends Fragment{
 		data.putString("title", title);
 		messanger.message(MessangerMessage.SET_TITLE, data);
 		showActionBarLogo(false);
+	}
+	
+	public static String getAppVersion(Context context){
+		PackageManager manager = context.getPackageManager();
+		PackageInfo info = null;
+		String version = "";
+		try {
+			info = manager.getPackageInfo(context.getPackageName(), 0);
+		} catch (NameNotFoundException e) {
+			Log.wtf(LOG_TAG, "Could not get package info.");
+		}
+		try{
+			version = info.versionName;
+		}catch(NullPointerException e){
+			return "";
+		}
+		return version;
 	}
 	
 	/**
