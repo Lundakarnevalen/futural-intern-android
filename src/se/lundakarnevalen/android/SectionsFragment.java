@@ -4,7 +4,9 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKButton;
+import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
 import se.lundakarnevalen.widget.wheel.AbstractWheelAdapter;
 import se.lundakarnevalen.widget.wheel.OnWheelChangedListener;
 import se.lundakarnevalen.widget.wheel.OnWheelScrollListener;
@@ -15,7 +17,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,9 +29,9 @@ public class SectionsFragment extends LKFragment {
 	 
 	private View root;
 	private RelativeLayout right;
-	private boolean clicked = false;
 	private int counter = 0;
 	private Handler handler;
+	private SectionSQLiteDB db;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +42,6 @@ public class SectionsFragment extends LKFragment {
 		right.setOnClickListener(new ClickListener());
 		
 		LKButton lucky = (LKButton) root.findViewById(R.id.lucky);
-		//lucky.setOnClickListener(new LuckyListener());
 
 		// Wheel
         initWheel(R.id.slot_1);
@@ -57,7 +57,7 @@ public class SectionsFragment extends LKFragment {
         });
         
         handler = new Handler();
-        	
+        	        
 		return root;
 	}
 	
@@ -98,13 +98,31 @@ public class SectionsFragment extends LKFragment {
      */
     private void updateStatus() {
     	counter++;
-    	clicked = true;
     	if	(counter == 3)	{ //Checks that all the three wheels are ready.
     		
     		handler.postDelayed(new Runnable() { //Handles the delay
 
                 public void run() {
-                	right.performClick(); 
+                	
+                	db = new SectionSQLiteDB(getContext());
+                	
+                	LKSectionsItem item = db.getRandomSection();
+                	
+            		SectionsInformationFragment fragment = new SectionsInformationFragment();
+            		Bundle bundle = new Bundle();
+
+            		bundle.putString("title", item.title);
+            		bundle.putInt("resourceId", item.icon);
+            		bundle.putString("information", item.information);
+            		bundle.putString("slogan", item.slogan);
+
+            		fragment.setArguments(bundle);
+
+            		ContentActivity a = (ContentActivity) getActivity();
+            		a.getSupportFragmentManager().beginTransaction()
+            				.replace(R.id.content_frame, fragment).addToBackStack(null)
+            				.commit();
+                	
                 }
 
             }, 350); //The delay in milliseconds 
@@ -150,27 +168,14 @@ public class SectionsFragment extends LKFragment {
 		@Override
 		public void onClick(View v) {
 			Fragment fragment = new SectionsListFragment();
-			Bundle bundle = new Bundle();
-			bundle.putBoolean("random", clicked);
-			fragment.setArguments(bundle);
-
 
 			ContentActivity a = (ContentActivity) getActivity();
 			a.getSupportFragmentManager().beginTransaction()
 					.replace(R.id.content_frame, fragment).addToBackStack(null)
 					.commit();
-			clicked = false;
 		}
 
 	}
-
-//	private class LuckyListener implements OnClickListener {
-//		@Override
-//		public void onClick(View v) {
-//			Log.d("Hej", "hejsan");
-//			
-//		}
-//	}
 	
 	/**
      * Slot machine adapter
@@ -187,9 +192,6 @@ public class SectionsFragment extends LKFragment {
         		R.drawable.kugghjul,
         		R.drawable.blobb,
         		R.drawable.robothuvud
-
-
-        		
         };
         
         // Cached images

@@ -4,6 +4,7 @@ package se.lundakarnevalen.android;
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,7 +49,7 @@ public class SectionsInformationFragment extends LKFragment {
 		titleTextView.setText(title.toUpperCase());
 		icon.setImageResource(pictureResourceId);
 		sloganTextView.setText(slogan);
-		informationTextView.setText(information);
+		informationTextView.setText(Html.fromHtml(information));
 
 		return root;
 	}

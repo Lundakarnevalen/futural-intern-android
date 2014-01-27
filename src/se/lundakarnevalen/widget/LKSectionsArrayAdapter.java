@@ -8,7 +8,6 @@ import se.lundakarnevalen.android.SectionsInformationFragment;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,16 +21,12 @@ public class LKSectionsArrayAdapter extends
 		OnItemClickListener {
 	private Context context;
 	private ArrayList<LKSectionsItem> list;
-	private boolean random;
-
 
 	public LKSectionsArrayAdapter(Context context,
-			ArrayList<LKSectionsItem> list, boolean random) {
+			ArrayList<LKSectionsItem> list) {
 		super(context, R.layout.sections_row, list);
 		this.context = context;
 		this.list = list;
-		this.random = random;
-
 	}
 
 	@Override
@@ -98,7 +93,7 @@ public class LKSectionsArrayAdapter extends
 		a.getSupportFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, fragment).addToBackStack(null)
 				.commit();
-
+		
 	}
 
 }
