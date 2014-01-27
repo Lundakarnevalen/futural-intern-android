@@ -1,5 +1,5 @@
 
-package se.lundakarnevalen.widget.wheel;
+package se.lundakarnevalen.widget.slotMachine;
 
 import android.database.DataSetObserver;
 import android.view.View;

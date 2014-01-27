@@ -17,7 +17,6 @@ public class SectionsInformationFragment extends LKFragment {
 
 	private String title;
 	private int pictureResourceId;
-	private String slogan;
 	private String information;
 
 	public SectionsInformationFragment() {
@@ -35,20 +34,16 @@ public class SectionsInformationFragment extends LKFragment {
 		Bundle bundle = getArguments();
 		title = bundle.getString("title");
 		pictureResourceId = bundle.getInt("resourceId");
-		slogan = bundle.getString("slogan");
 		information = bundle.getString("information");
 
 		TextView titleTextView = (TextView) root
 				.findViewById(R.id.Section_name);
 		ImageView icon = (ImageView) root.findViewById(R.id.Section_icon);
-		LKTextViewBold sloganTextView = (LKTextViewBold) root
-				.findViewById(R.id.section_slogan);
 		LKTextView informationTextView = (LKTextView) root
 				.findViewById(R.id.section_information);
 
 		titleTextView.setText(title.toUpperCase());
 		icon.setImageResource(pictureResourceId);
-		sloganTextView.setText(slogan);
 		informationTextView.setText(Html.fromHtml(information));
 
 		return root;

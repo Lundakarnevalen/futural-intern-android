@@ -16,8 +16,6 @@
             android:layout_marginLeft="@dimen/horizontal_margin"
             android:layout_marginRight="@dimen/horizontal_margin" >
 
-            <!-- Tests if the picture is "bigger" than it looks -->
-
             <RelativeLayout
                 android:id="@+id/spin_to_win"
                 android:layout_width="wrap_content"
@@ -47,14 +45,14 @@
                     android:background="@drawable/spinner_background"
                     android:orientation="horizontal" >
 
-                    <se.lundakarnevalen.widget.wheel.WheelView
+                    <se.lundakarnevalen.widget.slotMachine.WheelView
                         android:id="@+id/slot_1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:layout_weight="1" />
 
-                    <se.lundakarnevalen.widget.wheel.WheelView
+                    <se.lundakarnevalen.widget.slotMachine.WheelView
                         android:id="@+id/slot_2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -62,7 +60,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_weight="1" />
 
-                    <se.lundakarnevalen.widget.wheel.WheelView
+                    <se.lundakarnevalen.widget.slotMachine.WheelView
                         android:id="@+id/slot_3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"

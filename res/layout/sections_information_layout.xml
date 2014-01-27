@@ -6,7 +6,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp" >
+        android:layout_marginLeft="@dimen/horizontal_margin_double"
+        android:layout_marginRight="@dimen/horizontal_margin_double"
+        android:paddingTop="@dimen/vertical_margin"
+        android:paddingBottom="@dimen/vertical_margin">
 
         <se.lundakarnevalen.widget.LKTextViewFat
             android:id="@+id/Section_name"
@@ -27,21 +30,13 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="12dp" />
 
-        <se.lundakarnevalen.widget.LKTextViewBold
-            android:id="@+id/section_slogan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Section_icon"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal" />
-
         <se.lundakarnevalen.widget.LKTextView
             android:id="@+id/section_information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/section_slogan"
+            android:layout_below="@id/Section_icon"
             android:textColor="@color/light_peach"
-            android:textSize="20sp" />
+            android:textSize="19sp" />
 
         <se.lundakarnevalen.widget.LKButton
             android:id="@+id/section_button"
@@ -49,13 +44,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/section_information"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="@dimen/horizontal_margin_double"
-            android:layout_marginRight="@dimen/horizontal_margin_double"
-            android:layout_marginTop="@dimen/horizontal_margin"
+            android:layout_marginLeft="@dimen/horizontal_margin"
+            android:layout_marginRight="@dimen/horizontal_margin"
+            android:layout_marginTop="@dimen/vertical_margin"
             android:text="@string/Section_button"
             android:textSize="@dimen/sections_button_text_size" />
     </RelativeLayout>
 
 </ScrollView>
-
-

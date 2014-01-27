@@ -33,23 +33,15 @@ public class LKSectionsArrayAdapter extends
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View row = convertView;
 
-		// if (row == null) {
 		LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 		row = inflater.inflate(R.layout.sections_row, parent, false);
 
 		ImageView icon = (ImageView) row.findViewById(R.id.image);
-		ImageView forward = (ImageView) row.findViewById(R.id.forward);
 		LKTextViewBold title = (LKTextViewBold) row.findViewById(R.id.title);
-
-		// row.setTag(item);
-		// } else {
-		// item = (LKSectionsItem) row.getTag();
-		// }
 
 		LKSectionsItem item = list.get(position);
 
 		icon.setImageResource(item.icon);
-		// forward.setImageBitmap(R.drawable.)
 		title.setText(item.title);
 
 		return row;
@@ -58,15 +50,13 @@ public class LKSectionsArrayAdapter extends
 	public static class LKSectionsItem {
 		public String title;
 		public int icon;
-		public String slogan;
 		public String information;
 		public boolean like;
 
-		public LKSectionsItem(String title, int icon2, String slogan,
-				String information, boolean like) {
+		public LKSectionsItem(String title, int icon2, String information,
+				boolean like) {
 			this.title = title;
 			this.icon = icon2;
-			this.slogan = slogan;
 			this.information = information;
 			this.like = like;
 		}
@@ -85,7 +75,6 @@ public class LKSectionsArrayAdapter extends
 		bundle.putString("title", item.title);
 		bundle.putInt("resourceId", item.icon);
 		bundle.putString("information", item.information);
-		bundle.putString("slogan", item.slogan);
 
 		fragment.setArguments(bundle);
 
@@ -93,7 +82,7 @@ public class LKSectionsArrayAdapter extends
 		a.getSupportFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, fragment).addToBackStack(null)
 				.commit();
-		
+
 	}
 
 }

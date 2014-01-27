@@ -7,10 +7,10 @@ import java.util.List;
 import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKButton;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
-import se.lundakarnevalen.widget.wheel.AbstractWheelAdapter;
-import se.lundakarnevalen.widget.wheel.OnWheelChangedListener;
-import se.lundakarnevalen.widget.wheel.OnWheelScrollListener;
-import se.lundakarnevalen.widget.wheel.WheelView;
+import se.lundakarnevalen.widget.slotMachine.AbstractWheelAdapter;
+import se.lundakarnevalen.widget.slotMachine.OnWheelChangedListener;
+import se.lundakarnevalen.widget.slotMachine.OnWheelScrollListener;
+import se.lundakarnevalen.widget.slotMachine.WheelView;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -43,7 +43,7 @@ public class SectionsFragment extends LKFragment {
 		
 		LKButton lucky = (LKButton) root.findViewById(R.id.lucky);
 
-		// Wheel
+		// Slot machine wheels
         initWheel(R.id.slot_1);
         initWheel(R.id.slot_2);
         initWheel(R.id.slot_3);
@@ -94,7 +94,7 @@ public class SectionsFragment extends LKFragment {
     };
     
     /**
-     * Updates status and randomises a section to be shown.
+     * Updates status and randomizes a section to be shown.
      */
     private void updateStatus() {
     	counter++;
@@ -114,7 +114,6 @@ public class SectionsFragment extends LKFragment {
             		bundle.putString("title", item.title);
             		bundle.putInt("resourceId", item.icon);
             		bundle.putString("information", item.information);
-            		bundle.putString("slogan", item.slogan);
 
             		fragment.setArguments(bundle);
 
@@ -125,7 +124,7 @@ public class SectionsFragment extends LKFragment {
                 	
                 }
 
-            }, 350); //The delay in milliseconds 
+            }, 320); //The delay in milliseconds 
 
     		counter = 0;
     	}

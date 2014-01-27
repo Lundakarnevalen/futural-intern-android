@@ -17,7 +17,7 @@
  *  limitations under the License.
  */
 
-package se.lundakarnevalen.widget.wheel;
+package se.lundakarnevalen.widget.slotMachine;
 
 import android.content.Context;
 import android.os.Handler;
