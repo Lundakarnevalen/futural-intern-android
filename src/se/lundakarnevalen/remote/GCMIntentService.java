@@ -18,7 +18,7 @@ import android.util.Log;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class GCMIntentService extends IntentService{
-	public static final int TYPE_MESSAGE = 0, TYPE_REGISTRATION = 1;
+	public static final int TYPE_MESSAGE = 0, TYPE_UPDATEUSER = 1;
 	
 	private static final String LOG_TAG = "GCM service";
 	public GCMIntentService() {
@@ -38,8 +38,8 @@ public class GCMIntentService extends IntentService{
 			case TYPE_MESSAGE:
 				addMessage(extras.getString("title"), extras.getString("message"), extras.getString("created_at"));
 				break;
-			case TYPE_REGISTRATION:
-				registrationProgress(extras);
+			case TYPE_UPDATEUSER:
+				updateUser(extras);
 				break;
 			}
 			GCMReceiver.completeWakefulIntent(intent);
@@ -70,9 +70,12 @@ public class GCMIntentService extends IntentService{
 		mgr.notify(1, builder.build());
 	}
 	
-	private void registrationProgress(Bundle data){
-		// Lock app  from registration and get image. 
-		
+	private void updateUser(Bundle data){
+		// Update user.
+		Log.d(LOG_TAG, "Will now update user from remote");
+		LKUser user = new LKUser(this);
+		user.getUserLocaly();
+		user.updateFromRemote();
 	}
 	
 	

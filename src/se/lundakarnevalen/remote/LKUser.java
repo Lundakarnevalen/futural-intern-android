@@ -5,6 +5,7 @@ import json.User;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.RemoteCallbackList;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -20,6 +21,7 @@ public class LKUser {
 	private static final String SHARED_PREFS_JSON = "LKUserToken";
 	
 	Context context;
+	public int id = Integer.MIN_VALUE;
 	public String personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
 	public int kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion;
 	public int[] intresse, sektioner;
@@ -61,10 +63,40 @@ public class LKUser {
 			parseJson(json);
 	}
 	
+	/**
+	 * Updates user from remote. 
+	 */
+	public void updateFromRemote(){
+		if(id != Integer.MIN_VALUE){
+			LKRemote remote = new LKRemote(context, new LKRemote.TextResultListener(){
+				@Override
+				public void onResult(String result) {
+					Log.d(LOG_TAG, "server: "+result);
+					// Update user with data
+					Gson gson = new Gson();
+					Response.GetKarnevalist data = gson.fromJson(result, Response.GetKarnevalist.class);
+					
+					if(data.status.equals("success")){
+						getDataFromUser(data.karnevalist);
+						storeUserLocaly();
+					}else{
+						Log.e(LOG_TAG, "Non successfull request for id="+id+", status="+data.status);
+					}
+				}
+			});
+			remote.requestServerForText("karnevalister/"+id+".json", null, LKRemote.RequestType.GET);
+			Log.d(LOG_TAG, "requested server for the user with id:"+id);
+		}else{
+			// No user downloaded.
+			Log.e(LOG_TAG, "Found no user ID for user");
+		}
+	}
+	
 	public String getJson(){
 		Gson gson = new Gson();
 		User karnevalist = new User();
 		karnevalist.fornamn = this.fornamn;
+		karnevalist.id = this.id;
 		karnevalist.efternamn = this.efternamn;
 		karnevalist.gatuadress = this.gatuadress;
 		karnevalist.postnr = this.postnr;
@@ -105,6 +137,45 @@ public class LKUser {
 		User user = gson.fromJson(json, User.class);
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
+		this.id = user.id;
+		this.efternamn = user.efternamn;
+		this.gatuadress = user.gatuadress;
+		this.postnr = user.postnr;
+		this.postort = user.postort;
+		this.email = user.email;
+		this.telnr = user.telnr;
+		this.matpref = user.matpref;
+		this.engageradKar = user.engagerad_kar;
+		this.engageradNation = user.engagerad_nation;
+		this.engageradStudentikos = user.engagerad_studentikos;
+		this.engageradEtc = user.engagerad_etc;
+		this.ovrigt = user.ovrigt;
+		this.kon = user.kon_id;
+		this.nation = user.nation_id;
+		this.storlek = user.storlek_id;
+		this.terminer = user.terminer;
+		this.korkort = user.korkort_id;
+		this.snallaIntresse = user.snalla_intresse;
+		this.snallaSektion = user.snalla_sektion;
+		this.intresse = user.intresse_ids;
+		this.sektioner = user.sektion_ids;
+		this.jobbatHeltid = user.jobbat_heltid;
+		this.jobbatAktiv = user.jobbat_aktiv;
+		this.jobbatForman = user.jobbat_forman;
+		this.jobbatStyrelse = user.jobbat_styrelse;
+		this.karnevalist2010 = user.karnevalist_2010;
+		this.villAnsvara = user.vill_ansvara;
+		this.medlemAf = user.medlem_af;
+		this.medlemKar = user.medlem_kar;
+		this.medlemNation = user.medlem_nation;
+		this.karneveljsbiljett = user.karneveljsbiljett;
+	}
+	
+	public void getDataFromUser(User user){
+		Log.d(LOG_TAG, "Will use data from user");
+		this.personnummer = user.personnummer;
+		this.fornamn = user.fornamn;
+		this.id = user.id;
 		this.efternamn = user.efternamn;
 		this.gatuadress = user.gatuadress;
 		this.postnr = user.postnr;

@@ -17,7 +17,7 @@
     
    	<string name="registration_informationbild1">Den tar du lägst fram i</string>
     <string name="registration_informationbild2">disken inuti AF-Borgen.</string>
-        
+    
     <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
     <string name="registration_mobilenbr">Mobilnummer</string>
     
@@ -145,11 +145,12 @@
     <string name="elseT">Övrigt</string>
     
     <string name="choose">Välj</string>
+
     <string name="lucky">Jag har tur</string>
     <string name="Section_button">Jag vill engagera mig!</string>
-    <string name="left_tab">Kategorisering</string>
-    <string name="right_tab">Bläddring</string>
+    <string name="left_tab">Lyckosnurra</string>
+    <string name="right_tab">Alla sektioner</string>
     <string name="all_sections">ALLA SEKTIONER</string>
-    
+
     <string name="inbox_empty_text">OH NO! No messages...</string>
 </resources>

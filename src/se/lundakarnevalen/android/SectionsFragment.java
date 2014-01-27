@@ -1,144 +1,161 @@
 package se.lundakarnevalen.android;
 
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.List;
+
+import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKButton;
+import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
+import se.lundakarnevalen.widget.slotMachine.AbstractWheelAdapter;
+import se.lundakarnevalen.widget.slotMachine.OnWheelChangedListener;
+import se.lundakarnevalen.widget.slotMachine.OnWheelScrollListener;
+import se.lundakarnevalen.widget.slotMachine.WheelView;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.ViewFlipper;
 
 public class SectionsFragment extends LKFragment {
-
-	private ViewFlipper flipper1;
-	private ViewFlipper flipper2;
-	private ViewFlipper flipper3;
-	private int mSpeed;
-	private int mCount;
-	private int mFactor;
-	private boolean mAnimating;
-
+	 
+	private View root;
+	private RelativeLayout right;
+	private int counter = 0;
+	private Handler handler;
+	private SectionSQLiteDB db;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View root = (View) inflater.inflate(R.layout.sections_layout, null);
-		RelativeLayout right = (RelativeLayout) root
+		root = (View) inflater.inflate(R.layout.sections_layout, null);
+		right = (RelativeLayout) root
 				.findViewById(R.id.right_tab);
 		right.setOnClickListener(new ClickListener());
-
-		flipper1 = (ViewFlipper) root.findViewById(R.id.view_flipper1);
-		flipper2 = (ViewFlipper) root.findViewById(R.id.view_flipper2);
-		flipper3 = (ViewFlipper) root.findViewById(R.id.view_flipper3);
-
-		// flipper1.setOnClickListener(new LuckyListener());
-		// flipper2.setOnClickListener(new LuckyListener());
-		// flipper3.setOnClickListener(new LuckyListener());
-
-		mAnimating = false;
-		mCount = 0;
-		mSpeed = 0;
-
-		// LKButton choose = (LKButton) root.findViewById(R.id.choose);
-		// choose.setOnClickListener(new ClickListener());
-
+		
 		LKButton lucky = (LKButton) root.findViewById(R.id.lucky);
-		lucky.setOnClickListener(new LuckyListener());
 
+		// Slot machine wheels
+        initWheel(R.id.slot_1);
+        initWheel(R.id.slot_2);
+        initWheel(R.id.slot_3);
+        
+        lucky.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                mixWheel(R.id.slot_1);
+                mixWheel(R.id.slot_2);
+                mixWheel(R.id.slot_3);
+            }
+        });
+        
+        handler = new Handler();
+        	        
 		return root;
 	}
+	
+    /**
+     * Mixes wheel
+     * @param id the wheel id
+     */
+    private void mixWheel(int id) {
+        WheelView wheel = getWheel(id);
+        wheel.scroll(-350 + (int)(Math.random() * 50), 2000);
+    }
+	
+    // Wheel scrolled flag
+    private boolean wheelScrolled = false;
+    
+    // Wheel scrolled listener
+    OnWheelScrollListener scrolledListener = new OnWheelScrollListener() {
+        public void onScrollingStarted(WheelView wheel) {
+            wheelScrolled = true;
+        }
+        public void onScrollingFinished(WheelView wheel) {
+            wheelScrolled = false;
+            updateStatus();
+        }
+    };
+    
+    // Wheel changed listener
+    private OnWheelChangedListener changedListener = new OnWheelChangedListener() {
+        public void onChanged(WheelView wheel, int oldValue, int newValue) {
+            if (!wheelScrolled) {
+                updateStatus();
+            }
+        }
+    };
+    
+    /**
+     * Updates status and randomizes a section to be shown.
+     */
+    private void updateStatus() {
+    	counter++;
+    	if	(counter == 3)	{ //Checks that all the three wheels are ready.
+    		
+    		handler.postDelayed(new Runnable() { //Handles the delay
 
-	private Runnable r2 = new Runnable() {
+                public void run() {
+                	
+                	db = new SectionSQLiteDB(getContext());
+                	
+                	LKSectionsItem item = db.getRandomSection();
+                	
+            		SectionsInformationFragment fragment = new SectionsInformationFragment();
+            		Bundle bundle = new Bundle();
 
-		@Override
-		public void run() {
-			down();
-			if (mCount < 1) {
-				mAnimating = false;
-			} else {
-				Handler h = new Handler();
-				h.postDelayed(r2, mSpeed);
-			}
-		}
+            		bundle.putString("title", item.title);
+            		bundle.putInt("resourceId", item.icon);
+            		bundle.putString("information", item.information);
 
-	};
+            		fragment.setArguments(bundle);
 
-	private void down() {
-		mCount--;
-		mSpeed += mFactor;
-		Animation outToBottom = new TranslateAnimation(
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 1.0f);
-		outToBottom.setInterpolator(new AccelerateInterpolator());
-		outToBottom.setDuration(mSpeed);
-		Animation inFromTop = new TranslateAnimation(
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, -1.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f);
-		inFromTop.setInterpolator(new AccelerateInterpolator());
-		inFromTop.setDuration(mSpeed);
-		flipper1.clearAnimation();
-		flipper1.setInAnimation(inFromTop);
-		flipper1.setOutAnimation(outToBottom);
-		if (flipper1.getDisplayedChild() == 0) {
-			flipper1.setDisplayedChild(2);
-		} else {
-			flipper1.showPrevious();
-		}
-	}
+            		ContentActivity a = (ContentActivity) getActivity();
+            		a.getSupportFragmentManager().beginTransaction()
+            				.replace(R.id.content_frame, fragment).addToBackStack(null)
+            				.commit();
+                	
+                }
 
-	private Runnable r1 = new Runnable() {
+            }, 320); //The delay in milliseconds 
 
-		@Override
-		public void run() {
-			up();
-			if (mCount < 1) {
-				mAnimating = false;
-			} else {
-				Handler h = new Handler();
-				h.postDelayed(r1, mSpeed);
-			}
-		}
+    		counter = 0;
+    	}
+     
+    }
+	
+	/**
+     * Initializes wheel
+     * @param id the wheel widget Id
+     */
+    private void initWheel(int id) {
+        WheelView wheel = getWheel(id);
+        wheel.setViewAdapter(new SlotMachineAdapter(getContext()));
+        wheel.setCurrentItem((int)(Math.random() * 10));
+        
+        wheel.addChangingListener(changedListener);
+        wheel.addScrollingListener(scrolledListener);
+        wheel.setCyclic(true);
+        wheel.setEnabled(false);
+    }
+    
+    /**
+     * Returns wheel by Id
+     * @param id the wheel Id
+     * @return the wheel with passed Id
+     */
+    private WheelView getWheel(int id) {
+        return (WheelView) root.findViewById(id);
+    }
 
-	};
-
-	private void up() {
-		mCount--;
-		mSpeed += mFactor;
-		Animation inFromBottom = new TranslateAnimation(
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 1.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f);
-		inFromBottom.setInterpolator(new AccelerateInterpolator());
-		inFromBottom.setDuration(mSpeed);
-		Animation outToTop = new TranslateAnimation(
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, -1.0f);
-		outToTop.setInterpolator(new AccelerateInterpolator());
-		outToTop.setDuration(mSpeed);
-		flipper1.clearAnimation();
-		flipper1.setInAnimation(inFromBottom);
-		flipper1.setOutAnimation(outToTop);
-		if (flipper1.getDisplayedChild() == 0) {
-			flipper1.setDisplayedChild(2);
-		} else {
-			flipper1.showPrevious();
-		}
-	}
-
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -158,21 +175,79 @@ public class SectionsFragment extends LKFragment {
 		}
 
 	}
+	
+	/**
+     * Slot machine adapter
+     */
+    private class SlotMachineAdapter extends AbstractWheelAdapter {
+        // Image size
+        final int IMAGE_WIDTH = 150;
+        final int IMAGE_HEIGHT = 150;
+        
+        // Slot machine symbols
+        private final int items[] = new int[] {
+        		R.drawable.moln, 
+        		R.drawable.eld,
+        		R.drawable.kugghjul,
+        		R.drawable.blobb,
+        		R.drawable.robothuvud
+        };
+        
+        // Cached images
+        private List<SoftReference<Bitmap>> images;
+        
+        // Layout inflater
+        private Context context;
+        
+        /**
+         * Constructor
+         */
+        public SlotMachineAdapter(Context context) {
+            this.context = context;
+            images = new ArrayList<SoftReference<Bitmap>>(items.length);
+            for (int id : items) {
+                images.add(new SoftReference<Bitmap>(loadImage(id)));
+            }
+        }
+        
+        /**
+         * Loads image from resources
+         */
+        private Bitmap loadImage(int id) {
+            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), id);
+            Bitmap scaled = Bitmap.createScaledBitmap(bitmap, IMAGE_WIDTH, IMAGE_HEIGHT, true);
+            bitmap.recycle();
+            return scaled;
+        }
 
-	private class LuckyListener implements OnClickListener {
-		@Override
-		public void onClick(View v) {
-			Log.d("Hej", "hejsan");
+        @Override
+        public int getItemsCount() {
+            return items.length;
+        }
 
-			if (mAnimating)
-				return;
-			mAnimating = true;
-			mCount = (int) Math.abs(900) / 300;
-			mFactor = (int) 300 / mCount;
-			mSpeed = mFactor;
-			// down
-			Handler h = new Handler();
-			h.postDelayed(r2, mSpeed);
-		}
-	}
+        // Layout params for image view
+        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        
+        
+        @Override
+        public View getItem(int index, View cachedView, ViewGroup parent) {
+            ImageView img;
+            if (cachedView != null) {
+                img = (ImageView) cachedView;
+            } else {
+                img = new ImageView(context);
+            }
+            
+            img.setLayoutParams(params);
+            SoftReference<Bitmap> bitmapRef = images.get(index);
+            Bitmap bitmap = bitmapRef.get();
+            if (bitmap == null) {
+                bitmap = loadImage(items[index]);
+                images.set(index, new SoftReference<Bitmap>(bitmap));
+            }
+            img.setImageBitmap(bitmap);
+            
+            return img;
+        }
+    }
 }
