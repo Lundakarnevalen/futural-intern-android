@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/horizontal_margin"
+        android:background="@color/bg_peach"
+         android:paddingBottom="@dimen/vertical_margin"
+         android:paddingTop="@dimen/vertical_margin_half" >
+
+        <se.lundakarnevalen.widget.LKTextViewFat
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/vertical_margin"
+            android:gravity="center_horizontal"
+            android:text="@string/user_profile"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp" />
+
+        <!-- Picture frame -->
+
+        <RelativeLayout
+            android:id="@+id/profile_picture_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/vertical_margin_half"
+            android:background="@drawable/user_picture_frame"
+            android:padding="1dp" >
+
+            <ImageView
+                android:id="@+id/profile_picture"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_picture_frame"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/vertical_margin" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <se.lundakarnevalen.widget.LKTextViewBold
+                    android:id="@+id/detail_info1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp" />
+
+                <se.lundakarnevalen.widget.LKTextView
+                    android:id="@+id/user_info1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <se.lundakarnevalen.widget.LKTextViewBold
+                    android:id="@+id/detail_info2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp" />
+
+                <se.lundakarnevalen.widget.LKTextView
+                    android:id="@+id/user_info2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <se.lundakarnevalen.widget.LKTextViewBold
+                    android:id="@+id/detail_info3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp" />
+
+                <se.lundakarnevalen.widget.LKTextView
+                    android:id="@+id/user_info3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <se.lundakarnevalen.widget.LKTextViewBold
+                    android:id="@+id/detail_info4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp" />
+
+                <se.lundakarnevalen.widget.LKTextView
+                    android:id="@+id/user_info4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>

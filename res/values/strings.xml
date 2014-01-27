@@ -101,4 +101,5 @@
     <string name="all_sections">ALLA SEKTIONER</string>
     
     <string name="inbox_empty_text">OH NO! No messages...</string>
+    <string name="user_profile">DIN PROFIL</string>
 </resources>
