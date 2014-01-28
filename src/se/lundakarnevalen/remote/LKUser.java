@@ -5,7 +5,6 @@ import json.User;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.os.RemoteCallbackList;
 import android.util.Log;
 
 import com.google.gson.Gson;
