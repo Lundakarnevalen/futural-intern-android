@@ -1,7 +1,7 @@
 package se.lundakarnevalen.remote;
 
 import json.Response;
-import json.User;
+import json.UserWrite;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -50,7 +50,7 @@ public class LKUser {
 	
 	public String getJson(){
 		Gson gson = new Gson();
-		User karnevalist = new User();
+		UserWrite karnevalist = new UserWrite();
 		karnevalist.fornamn = this.fornamn;
 		karnevalist.efternamn = this.efternamn;
 		karnevalist.gatuadress = this.gatuadress;

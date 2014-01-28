@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKButton;
 import se.lundakarnevalen.widget.LKEditText;
@@ -35,18 +36,18 @@ import android.widget.TextView.OnEditorActionListener;
 public class RegistrationFragment extends LKFragment{
 	private int registrationStep = 0; // 0 = personuppgifter, 1 = kod, 2 = karnevalsuppgifter, 3 = redigera (visa allt f√∂rutom koden). 
 	private int progresslevel;
-	private LKEditText code, name, email, mobilnbr;
+	private LKEditText code, name, lastname, email, validemail, mobilnbr, adress, zipcode, city, personnumber, foodpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt, terms;
 	private LKProgressBar progressbar;
 	private LKTextView progressvalue;
 	private LKButton confirmButton, appendButton;
-	private LKSpinner nationsSpinner, shirtSpinner, driverLicensSpinner;
+	private LKSpinner nationsSpinner, shirtSpinner, driverLicensSpinner, sexSpinner;
 	private ArrayList<String> sektioner;
 	
 	// Wrappers
 	private LinearLayout wrapperPers, wrapperCode, wrapperLK;
 	
 	//spinner values
-	int nation = 0, shirtSize = 0, driverLicens = 0;
+	int nation = 0, shirtSize = 0, driverLicens = 0, sex = 0;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		// Get registrationstep
@@ -54,18 +55,46 @@ public class RegistrationFragment extends LKFragment{
 		registrationStep = sp.getInt(LKFragment.SP_KEY_REGISTRATION_STEP, 0);
 		
 		View root = (View) inflater.inflate(R.layout.registration_layout, null);
+		personnumber = (LKEditText) root.findViewById(R.id.pers_nr);
 		name = (LKEditText) root.findViewById(R.id.name);
+		lastname = (LKEditText) root.findViewById(R.id.lastname);
 		email = (LKEditText) root.findViewById(R.id.email);
+		validemail = (LKEditText) root.findViewById(R.id.email_valid);
 		mobilnbr = (LKEditText) root.findViewById(R.id.phone_nr);
+		adress = (LKEditText) root.findViewById(R.id.postal_address);
+		zipcode = (LKEditText) root.findViewById(R.id.zip_code);
+		city = (LKEditText) root.findViewById(R.id.zip_town);
+		foodpref = (LKEditText) root.findViewById(R.id.food_prefs);
+		engageradKar = (LKEditText) root.findViewById(R.id.teknologkaren);
+		engageradNation = (LKEditText) root.findViewById(R.id.nationDed);
+		engageradStudentikos = (LKEditText) root.findViewById(R.id.otherStud);
+		engageradEtc = (LKEditText) root.findViewById(R.id.otherDed);
+		ovrigt = (LKEditText) root.findViewById(R.id.other);
+		terms = (LKEditText) root.findViewById(R.id.terms);
 		progressbar = (LKProgressBar) root.findViewById(R.id.lKProgressBar1);
 		progressvalue = (LKTextView) root.findViewById(R.id.progress_value);
 		confirmButton = (LKButton) root.findViewById(R.id.confirm_button);
 		confirmButton.setOnClickListener(confirm);
+		personnumber.addTextChangedListener(watcher);
 		name.addTextChangedListener(watcher);
+		lastname.addTextChangedListener(watcher);
 		email.addTextChangedListener(watcher);
+		validemail.addTextChangedListener(watcher);
 		mobilnbr.addTextChangedListener(watcher);
+		adress.addTextChangedListener(watcher);
+		zipcode.addTextChangedListener(watcher);
+		city.addTextChangedListener(watcher);
+		foodpref.addTextChangedListener(watcher);
+		engageradKar.addTextChangedListener(watcher);
+		engageradNation.addTextChangedListener(watcher);
+		engageradStudentikos.addTextChangedListener(watcher);
+		engageradEtc.addTextChangedListener(watcher);
+		ovrigt.addTextChangedListener(watcher);
+		terms.addTextChangedListener(watcher);
 		nationsSpinner = (LKSpinner) root.findViewById(R.id.nations);
 		nationsSpinner.setOnItemSelectedListener(nationsSpinnerListeners);
+		sexSpinner = (LKSpinner) root.findViewById(R.id.sex);
+		sexSpinner.setOnItemSelectedListener(sexSpinnerListeners);
 		shirtSpinner = (LKSpinner) root.findViewById(R.id.shirt_size);
 		shirtSpinner.setOnItemSelectedListener(shirtSpinnerListeners);
 		driverLicensSpinner = (LKSpinner) root.findViewById(R.id.driver_licens);
@@ -125,6 +154,14 @@ public class RegistrationFragment extends LKFragment{
 		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE + D/DE", 4));
 		LKSpinnerArrayAdapter driverLicensSizeAdapter = new LKSpinnerArrayAdapter(getContext(), driverLicensList);
 		driverLicensSpinner.setAdapter(driverLicensSizeAdapter);
+		
+		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> sexList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Annat/Oklart", 0));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Man", 1));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kvinna", 2));
+		LKSpinnerArrayAdapter sexAdapter = new LKSpinnerArrayAdapter(getContext(), sexList);
+		sexSpinner.setAdapter(sexAdapter);
+
 	}
 	
 	/**
@@ -150,7 +187,7 @@ public class RegistrationFragment extends LKFragment{
 			break;
 		case 2:
 			// Karnevalsuppgifter
-			wrapperPers.setVisibility(View.GONE);
+			wrapperPers.setVisibility(View.GONE); // När man klickar på ny knapp !! FIXA
 			confirmButton.setVisibility(View.VISIBLE);
 			wrapperCode.setVisibility(View.GONE);
 			wrapperLK.setVisibility(View.VISIBLE);
@@ -177,12 +214,11 @@ public class RegistrationFragment extends LKFragment{
 		editor.commit();
 	}
 	
-	private boolean validMobileNumber(){
-		return !mobilnbr.getText().toString().equals("");
+	private boolean isEditTextFilled(LKEditText et){
+		return !et.getText().toString().equals("");
 	}
-	
-	private boolean validName(){
-		return !name.getText().toString().equals("");
+	private boolean isEditTextOfThisLenght(LKEditText et, int size){
+		return et.getText().toString().length() == size;
 	}
 	
 	private boolean sectionChosen(){
@@ -191,12 +227,23 @@ public class RegistrationFragment extends LKFragment{
 	
 	private void updateProgressBar() {
 		progresslevel = 0;
-		if(validMobileNumber())
-			progresslevel += 10;
-		if(validName())
-			progresslevel += 10;
-		if(sectionChosen())
-			progresslevel += 20;
+		
+		if(isEditTextFilled(name))
+			progresslevel += 5;
+		if(isEditTextFilled(lastname))
+			progresslevel += 5;
+		if(isEditTextOfThisLenght(personnumber,10))
+			progresslevel += 5;
+		if(isEditTextOfThisLenght(mobilnbr,10))
+			progresslevel += 5;
+		if(validEmail(email.getText().toString(), validemail.getText().toString()))
+			progresslevel += 5;
+		if(isEditTextFilled(adress))
+			progresslevel += 5;
+		if(isEditTextOfThisLenght(zipcode,5))
+			progresslevel += 5;
+		if(isEditTextFilled(city))
+			progresslevel += 5;
 		if(progresslevel == 0) {
 			progresslevel++;
 		}
@@ -209,7 +256,9 @@ public class RegistrationFragment extends LKFragment{
 	 * @return if the form is filled out correctly.
 	 */
 	private boolean validateForm(){
-		return true;
+		Log.d(LOG_TAG, "validate form");
+		updateProgressBar();
+		return progresslevel == 40;
 	}
 
 	
@@ -220,6 +269,21 @@ public class RegistrationFragment extends LKFragment{
 			LKSpinnerArrayAdapter.LKSpinnerArrayItem item = (LKSpinnerArrayItem) parent.getItemAtPosition(pos);
 			nation = item.value;
 			Log.d(LOG_TAG, "nations new value: "+nation);
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> parent) {
+			// Do nothing
+		}
+		
+	};
+	AdapterView.OnItemSelectedListener sexSpinnerListeners = new AdapterView.OnItemSelectedListener(){
+
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+			LKSpinnerArrayAdapter.LKSpinnerArrayItem item = (LKSpinnerArrayItem) parent.getItemAtPosition(pos);
+			sex = item.value;
+			Log.d(LOG_TAG, "sex new value: "+sex);
 		}
 
 		@Override
@@ -278,7 +342,9 @@ public class RegistrationFragment extends LKFragment{
 	};
 	
 	private void confirm(){
+		Log.d(LOG_TAG, "confirm");
 		if(validateForm()){
+			Log.d(LOG_TAG, ""+registrationStep);
 			LKUser user = new LKUser(getContext());
 			switch(registrationStep){
 			case 0:
@@ -301,10 +367,31 @@ public class RegistrationFragment extends LKFragment{
 				user.storeUserLocaly();
 				registrationStep++;
 				storeRegistrationStep();
+				postNewUser(user);
 				// Post data
+				break;
+			case 3:
+				populateUserWithData(user);
+				user.storeUserLocaly();
+				putNewUser(user);
 				break;
 			}
 		}
+	}
+	
+	private void putNewUser(LKUser user){
+		postNewUser(user);
+	}
+	
+	private void postNewUser(final LKUser user) {
+		LKRemote remote = new LKRemote(getContext(),new LKRemote.TextResultListener() {
+			
+			@Override
+			public void onResult(String result) {
+				Log.d(LOG_TAG, result);
+			}
+		});
+		remote.requestServerForText("karnevalister.json", user.getJson(), LKRemote.RequestType.POST);
 	}
 	
 	private boolean checkCode(){
@@ -325,7 +412,29 @@ public class RegistrationFragment extends LKFragment{
 	 * @param user The user to populate. 
 	 */
 	private void populateUserWithData(LKUser user){
-		
+		if(registrationStep >= 2) {
+			user.personnummer = personnumber.getText().toString();
+			user.fornamn = name.getText().toString();
+			user.efternamn = lastname.getText().toString();
+			user.email = email.getText().toString();
+			user.gatuadress = adress.getText().toString();
+			user.postnr = zipcode.getText().toString();
+			user.postort = city.getText().toString();
+			user.telnr = mobilnbr.getText().toString();
+			user.matpref = foodpref.getText().toString();
+			user.engageradKar = engageradKar.getText().toString();
+			user.engageradNation = engageradNation.getText().toString();
+			user.engageradStudentikos = engageradStudentikos.getText().toString();
+			user.engageradEtc = engageradEtc.getText().toString();
+			user.ovrigt = ovrigt.getText().toString();
+			user.kon = nation;
+			user.nation = nation;
+			user.storlek = shirtSize;
+			user.terminer = Integer.parseInt(terms.getText().toString());
+			user.korkort = driverLicens;
+			user.snallaIntresse = nation;
+			user.snallaSektion = nation;
+		}
 	}
 	
 	/**
@@ -333,11 +442,12 @@ public class RegistrationFragment extends LKFragment{
 	 * @param email The address to validate
 	 * @return True if it is valid. 
 	 */
-	private boolean validEmail(String email){
+	private boolean validEmail(String email, String confirmemail){
+		boolean equaladress = email.equals(confirmemail);
 		String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(email);
-		return matcher.matches();
+		return matcher.matches() && equaladress;
 	}
 	
 	@Override

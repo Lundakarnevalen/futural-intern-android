@@ -38,6 +38,8 @@ public class LKRemote {
 	 */
 	public LKRemote(Context context){
 		this.context = context;
+		
+		
 	}
 	
 	/**
@@ -187,16 +189,15 @@ public class LKRemote {
 			}
 			con.setDoInput(true);
 			con.setDoOutput(true);
-			//
 			
 			con.setRequestProperty("Content-type", "text/plain");
 			con.setRequestProperty("charset", "UTF-8");
 			
 			// Write post data. 
 			if(write){
+				Log.d(LOG_TAG, "Will now open stream for writing with "+requestType);
 				DataOutputStream dos;
 				try {
-					
 					dos = new DataOutputStream(con.getOutputStream());
 				} catch (IOException e) {
 					Log.e(LOG_TAG, "Could not init. output stream.");
@@ -206,6 +207,7 @@ public class LKRemote {
 					dos.writeBytes(data);
 					dos.flush();
 					dos.close();
+					Log.d(LOG_TAG, "wrote: "+data);
 				} catch (IOException e) {
 					Log.e(LOG_TAG, "Could not write data to server.");
 					return null;
