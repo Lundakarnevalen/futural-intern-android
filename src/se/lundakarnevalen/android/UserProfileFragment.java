@@ -15,27 +15,18 @@ public class UserProfileFragment extends LKFragment {
 		
 		
 		ImageView picture = (ImageView) root.findViewById(R.id.profile_picture);
-		TextView name = (TextView) root.findViewById(R.id.detail_info1);
-		TextView uName = (TextView) root.findViewById(R.id.user_info1);
-		TextView mail = (TextView) root.findViewById(R.id.detail_info2);
-		TextView uMail = (TextView) root.findViewById(R.id.user_info2);
-		TextView phone = (TextView) root.findViewById(R.id.detail_info3);
-		TextView uPhone = (TextView) root.findViewById(R.id.user_info3);
-		TextView member = (TextView) root.findViewById(R.id.detail_info4);
-		TextView uMember = (TextView) root.findViewById(R.id.user_info4);
+		TextView name = (TextView) root.findViewById(R.id.user_info1);
+		TextView mail = (TextView) root.findViewById(R.id.user_info2);
+		TextView phone = (TextView) root.findViewById(R.id.user_info3);
+		TextView member = (TextView) root.findViewById(R.id.user_info4);
 
 		
-		
+		/*Change to data from the database*/
 		picture.setImageResource(R.drawable.sections_image);
-		name.setText("Namn:");
-		uName.setText("Rebecka Alves-Martins"); 
-		mail.setText("Mailadress:");
-		uMail.setText("rebecka.am@gmail.com");
-		phone.setText("Telefonnummer:");
-		uPhone.setText("072-2538709");
-		member.setText("Sektion/-er:");
-		uMember.setText("Kommunikation, Barnevalen, Klipperiet");
-		
+		name.setText(""); 
+		mail.setText("");
+		phone.setText("");
+		member.setText("");
 		
 		
 		
