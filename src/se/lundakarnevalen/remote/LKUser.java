@@ -1,7 +1,7 @@
 package se.lundakarnevalen.remote;
 
 import json.Response;
-import json.User;
+import json.UserWrite;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -20,8 +20,12 @@ public class LKUser {
 	private static final String SHARED_PREFS_JSON = "LKUserToken";
 	
 	Context context;
+<<<<<<< HEAD
 	public int id = Integer.MIN_VALUE;
 	public String personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
+=======
+	public String gcmRegId, personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
+>>>>>>> registrering-feature-branch
 	public int kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion;
 	public int[] intresse, sektioner;
 	public boolean jobbatHeltid, jobbatStyrelse, jobbatForman, jobbatAktiv, karnevalist2010, villAnsvara, medlemAf, medlemKar, medlemNation, karneveljsbiljett;
@@ -93,7 +97,7 @@ public class LKUser {
 	
 	public String getJson(){
 		Gson gson = new Gson();
-		User karnevalist = new User();
+		UserWrite karnevalist = new UserWrite();
 		karnevalist.fornamn = this.fornamn;
 		karnevalist.id = this.id;
 		karnevalist.efternamn = this.efternamn;
@@ -127,6 +131,7 @@ public class LKUser {
 		karnevalist.medlem_kar = this.medlemKar;
 		karnevalist.medlem_nation = this.medlemNation;
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
+		karnevalist.gcmRegId = this.gcmRegId;
 		return gson.toJson(karnevalist);
 	}
 	

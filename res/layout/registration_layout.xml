@@ -445,6 +445,17 @@
 		        android:textColor="#FFFFFF"
 		        android:textColorHint="@color/bg_peach"
 		        android:hint="@string/pers_nr" />
+		    <se.lundakarnevalen.widget.LKTextViewFat
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="16sp"
+		        android:layout_marginTop="@dimen/horizontal_margin_half"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/sexTopic"/>
+		    <se.lundakarnevalen.widget.LKSpinner
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/sex"/>
 		    <se.lundakarnevalen.widget.LKEditText
 		        android:singleLine="true"
 		        android:layout_marginTop="@dimen/vertical_margin_half"
@@ -529,6 +540,8 @@
 		        android:layout_height="wrap_content"
 		        android:textColor="#FFFFFF"
 				android:textColorHint="@color/bg_peach"
+				android:inputType="phone"
+				android:digits="0123456789"
 		        android:hint="@string/phone_nr" />
 		    <se.lundakarnevalen.widget.LKTextViewFat
 		        android:layout_width="wrap_content"
