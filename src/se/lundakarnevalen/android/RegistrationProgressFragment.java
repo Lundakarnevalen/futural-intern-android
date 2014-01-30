@@ -4,6 +4,7 @@ import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKButton;
 import se.lundakarnevalen.widget.LKTextView;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ public class RegistrationProgressFragment extends LKFragment{
 		edit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				loadFragment(new RegistrationFragment(), false);
+				loadFragment(new RegistrationFragment(), true);
 			}
 		});
 		return root;
@@ -33,17 +34,21 @@ public class RegistrationProgressFragment extends LKFragment{
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
 		setTitle("Registrering");
+		Log.d(LOG_TAG, "onActivityCreated");
 		LKUser user = new LKUser(getActivity().getApplicationContext());
 		user.getUserLocaly();
 		
-		name.setText("f:"+user.fornamn+" "+user.efternamn+"f");
-		email.setText("u"+user.email);
-		phone.setText("t"+user.telnr);
+		if(appIsLocked(user)){
+			// TODO: Open fragment to show user details. 
+		}
+		
+		name.setText(user.fornamn+" "+user.efternamn);
+		email.setText(user.email);
+		phone.setText(user.telnr);
 		StringBuilder sectionsText = new StringBuilder();
 		if(user.sektioner != null)
 			for(int i : user.sektioner)
 				sectionsText.append("id: "+i+"\n");	
 		sections.setText("sek"+sectionsText.toString());
-				
 	}
 }

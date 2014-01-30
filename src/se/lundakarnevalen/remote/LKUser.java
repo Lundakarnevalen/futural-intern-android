@@ -1,6 +1,7 @@
 package se.lundakarnevalen.remote;
 
 import json.Response;
+import json.User;
 import json.UserWrite;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,13 +21,9 @@ public class LKUser {
 	private static final String SHARED_PREFS_JSON = "LKUserToken";
 	
 	Context context;
-<<<<<<< HEAD
 	public int id = Integer.MIN_VALUE;
-	public String personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
-=======
-	public String gcmRegId, personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
->>>>>>> registrering-feature-branch
-	public int kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion;
+	public String token, gcmRegId, personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
+	public int step, kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion;
 	public int[] intresse, sektioner;
 	public boolean jobbatHeltid, jobbatStyrelse, jobbatForman, jobbatAktiv, karnevalist2010, villAnsvara, medlemAf, medlemKar, medlemNation, karneveljsbiljett;
 	SharedPreferences sp;
@@ -52,7 +49,9 @@ public class LKUser {
 	 */
 	public void storeUserLocaly(){
 		Editor editor = sp.edit();
-		editor.putString(SHARED_PREFS_JSON, getJson());
+		String json = getJsonWithId();
+		Log.d(LOG_TAG, "Wrote: "+json);
+		editor.putString(SHARED_PREFS_JSON, json);
 		editor.commit();
 	}
 	
@@ -95,11 +94,13 @@ public class LKUser {
 		}
 	}
 	
-	public String getJson(){
+	public String getJsonWithId(){
 		Gson gson = new Gson();
-		UserWrite karnevalist = new UserWrite();
-		karnevalist.fornamn = this.fornamn;
+		User karnevalist = new User();
 		karnevalist.id = this.id;
+		karnevalist.utcheckad = step;
+		karnevalist.personnummer = this.personnummer;
+		karnevalist.fornamn = this.fornamn;
 		karnevalist.efternamn = this.efternamn;
 		karnevalist.gatuadress = this.gatuadress;
 		karnevalist.postnr = this.postnr;
@@ -131,7 +132,50 @@ public class LKUser {
 		karnevalist.medlem_kar = this.medlemKar;
 		karnevalist.medlem_nation = this.medlemNation;
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
-		karnevalist.gcmRegId = this.gcmRegId;
+		karnevalist.google_token = this.gcmRegId;
+		karnevalist.token = this.token;
+		return gson.toJson(karnevalist);
+	}
+	
+	public String getJson(){
+		Gson gson = new Gson();
+		UserWrite karnevalist = new UserWrite();
+		karnevalist.personnummer = this.personnummer;
+		karnevalist.utcheckad = this.step;
+		karnevalist.fornamn = this.fornamn;
+		karnevalist.efternamn = this.efternamn;
+		karnevalist.gatuadress = this.gatuadress;
+		karnevalist.postnr = this.postnr;
+		karnevalist.postort = this.postort;
+		karnevalist.email = this.email;
+		karnevalist.telnr = this.telnr;
+		karnevalist.matpref = this.matpref;
+		karnevalist.engagerad_kar = this.engageradKar;
+		karnevalist.engagerad_nation = this.engageradNation;
+		karnevalist.engagerad_studentikos = this.engageradStudentikos;
+		karnevalist.engagerad_etc = this.engageradEtc;
+		karnevalist.ovrigt = this.ovrigt;
+		karnevalist.kon_id = this.kon;
+		karnevalist.nation_id = this.nation;
+		karnevalist.storlek_id = this.storlek;
+		karnevalist.terminer = this.terminer;
+		karnevalist.korkort_id = this.korkort;
+		karnevalist.snalla_intresse = this.snallaIntresse;
+		karnevalist.snalla_sektion = this.snallaSektion;
+		karnevalist.intresse_ids = this.intresse;
+		karnevalist.sektion_ids = this.sektioner;
+		karnevalist.jobbat_heltid = this.jobbatHeltid;
+		karnevalist.jobbat_aktiv = this.jobbatAktiv;
+		karnevalist.jobbat_forman = this.jobbatForman;
+		karnevalist.jobbat_styrelse = this.jobbatStyrelse;
+		karnevalist.karnevalist_2010 = this.karnevalist2010;
+		karnevalist.vill_ansvara = this.villAnsvara;
+		karnevalist.medlem_af = this.medlemAf;
+		karnevalist.medlem_kar = this.medlemKar;
+		karnevalist.medlem_nation = this.medlemNation;
+		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
+		karnevalist.google_token = this.gcmRegId;
+		karnevalist.token = this.token;
 		return gson.toJson(karnevalist);
 	}
 	
@@ -141,6 +185,7 @@ public class LKUser {
 		User user = gson.fromJson(json, User.class);
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
+		this.step = user.utcheckad;
 		this.id = user.id;
 		this.efternamn = user.efternamn;
 		this.gatuadress = user.gatuadress;

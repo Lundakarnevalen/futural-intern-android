@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import json.Response;
+
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKButton;
@@ -32,6 +34,8 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+
+import com.google.gson.Gson;
 
 public class RegistrationFragment extends LKFragment{
 	private int registrationStep = 0; // 0 = personuppgifter, 1 = kod, 2 = karnevalsuppgifter, 3 = redigera (visa allt förutom koden). 
@@ -114,6 +118,12 @@ public class RegistrationFragment extends LKFragment{
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
 		setTitle("Registrering");
+		
+		LKUser user = new LKUser(getContext());
+		user.getUserLocaly();
+		if(appIsLocked(user)){
+			loadFragment(new RegistrationProgressFragment(), false);
+		}
 		
 		// Populate spinners
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> nationsList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
@@ -389,10 +399,22 @@ public class RegistrationFragment extends LKFragment{
 			@Override
 			public void onResult(String result) {
 				Log.d(LOG_TAG, result);
+				Gson gson = new Gson();
+				Response.PostKarnevalist resp = gson.fromJson(result, Response.PostKarnevalist.class);
+				if(resp.status.equals("success")){
+					user.id = resp.id;
+					user.token = resp.token;
+					user.step = 2; // TODO: what number to set on post?
+					user.storeUserLocaly();
+				}else{
+					showPopup(resp.message, getContext().getString(R.string.reg_code_fail_title));
+				}
 			}
 		});
 		
-		
+		user.gcmRegId = getGcmRegId();
+		if(user.gcmRegId == null)
+			user.gcmRegId = "null";
 		remote.requestServerForText("karnevalister.json", user.getJson(), LKRemote.RequestType.POST);
 	}
 	

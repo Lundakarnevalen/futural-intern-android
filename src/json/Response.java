@@ -15,6 +15,15 @@ public class Response {
 		public User karnevalist;
 	}
 	
+	public static class PostKarnevalist{
+		public String status, token, message;
+		public int id;
+	}
+	
+	public static class ErrorResponse{
+		public String message, status;
+	}
+	
 	public static class GetGCM{
 		
 	}

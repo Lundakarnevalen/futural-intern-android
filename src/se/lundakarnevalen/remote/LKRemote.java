@@ -9,8 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.apache.http.ProtocolException;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;

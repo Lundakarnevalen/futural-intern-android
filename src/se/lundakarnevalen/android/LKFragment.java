@@ -2,6 +2,7 @@ package se.lundakarnevalen.android;
 
 import se.lundakarnevalen.remote.LKUser;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -82,6 +83,27 @@ public class LKFragment extends Fragment{
 			return "";
 		}
 		return version;
+	}
+	
+	public String getGcmRegId(){
+		SharedPreferences sp = getContext().getSharedPreferences(LKFragment.SP_GCM_NAME, Context.MODE_PRIVATE);
+		return sp.getString(LKFragment.SP_GCM_REGID, null);
+	}
+	
+	public void showPopup(String msg, String title){
+		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+		builder.setTitle(title);
+		builder.setMessage(msg);
+		builder.setPositiveButton("OK", null);
+		builder.create().show();
+	}
+	
+	/**
+	 * Returns if app is locked for some reason.
+	 * @return
+	 */
+	public boolean appIsLocked(LKUser user){
+		return user.step >= 3;
 	}
 	
 	/**
