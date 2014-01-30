@@ -154,7 +154,6 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
 		listItems.add(new LKMenuListItem("Start", 0, LKFragment.getStartFragment(this), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
-		listItems.add(new LKMenuListItem("Användarprofil", 0, new UserProfileFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
 
 		listItems.add(inboxListItem);
 		listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));

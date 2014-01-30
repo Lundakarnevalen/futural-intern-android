@@ -7,7 +7,8 @@
         android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true"
+         >
     </RelativeLayout>
 
     <LinearLayout
@@ -16,8 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="25dp"
-        android:baselineAligned="false"
         android:background="#000000"
+        android:baselineAligned="false"
         android:orientation="horizontal" >
 
         <RelativeLayout
@@ -61,14 +62,14 @@
         android:id="@+id/all_sections"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:text="@string/all_sections"
         android:textColor="#ffffff"
-        android:textSize="32sp"
-        android:text="@string/all_sections"/>
+        android:textSize="32sp" />
 
     <ListView
         android:id="@+id/list_section"
@@ -77,7 +78,8 @@
         android:layout_above="@id/tabs"
         android:layout_below="@id/all_sections"
         android:background="@color/bg_peach"
-        android:divider="@null" >
+        android:divider="@null"
+        android:listSelector="@color/bg_peach" >
     </ListView>
 
 </RelativeLayout>

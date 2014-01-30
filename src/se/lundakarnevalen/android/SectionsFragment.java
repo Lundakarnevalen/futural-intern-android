@@ -112,7 +112,7 @@ public class SectionsFragment extends LKFragment {
             		Bundle bundle = new Bundle();
 
             		bundle.putString("title", item.title);
-            		bundle.putInt("resourceId", item.icon);
+//            		bundle.putInt("resourceId", item.icon);
             		bundle.putString("information", item.information);
 
             		fragment.setArguments(bundle);
