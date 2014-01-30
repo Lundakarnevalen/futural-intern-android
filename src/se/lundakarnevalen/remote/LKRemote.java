@@ -186,8 +186,7 @@ public class LKRemote {
 			} catch (java.net.ProtocolException e) {	
 				Log.e(LOG_TAG, "no such protocol");
 			}
-			if(!write)
-				con.setRequestProperty("Content-Type", "application/json; charset=utf-8");					
+			con.setRequestProperty("Content-Type", "application/json; charset=utf-8");					
 			con.setRequestProperty("Charset", "UTF-8");
 
 			con.setUseCaches(false);
