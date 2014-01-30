@@ -7,6 +7,7 @@ import se.lundakarnevalen.android.LKFragment.MessangerMessage;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -59,7 +60,17 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		
 		setupActionBar();
 		populateMenu();
-		loadFragment(new RegistrationOhNoFragment(), false);
+		Intent intent = getIntent();
+		int fragment = intent.getIntExtra("fragment", Integer.MIN_VALUE);
+		LKFragment fragmentToLoad = null;
+		switch(fragment){
+		case LKFragment.INBOX_FRAGMENT:
+			fragmentToLoad = new InboxFragment();
+			break;
+		default:
+			fragmentToLoad = LKFragment.getStartFragment(this);
+		}
+		loadFragment(fragmentToLoad, false);
 	}
 	
 	
@@ -89,6 +100,18 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		try {
 			LKFragment fragment = (LKFragment) fragmentMgr.findFragmentById(R.id.content_frame);
 			fragment.onRadioButtonClicked(view);
+		} catch(ClassCastException e) {
+			Log.e(LOG_TAG,"could not get fragment.");
+		}
+	}
+	/**
+	 * Handles checkboxes in the fragment
+	 * @param view checkbox view
+	 */
+	public void onCheckBoxClicked(View view) {
+		try {
+			LKFragment fragment = (LKFragment) fragmentMgr.findFragmentById(R.id.content_frame);
+			fragment.onCheckBoxClicked(view);
 		} catch(ClassCastException e) {
 			Log.e(LOG_TAG,"could not get fragment.");
 		}
@@ -147,25 +170,24 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	 */
 	private void populateMenu(){
 		// Create logo and sigill objects. 
-		ImageView menuSigill = new ImageView(this);
-		ListView.LayoutParams params = new ListView.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-		menuSigill.setLayoutParams(params);
+		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);
 		
-		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
+		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
-		listItems.add(new LKMenuListItem("Start", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout).isActive(true));
-		listItems.add(new LKMenuListItem("Sektioner", 0, new SektionerFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
+		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+
 		listItems.add(inboxListItem);
-
-		listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationFragment(), fragmentMgr).closeDrawerOnClick(true, drawerLayout));
-
+		//listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+		
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
 		
 		LKMenuArrayAdapter adapter = new LKMenuArrayAdapter(this, listItems);
 		menuList.setAdapter(adapter);
 		menuList.setOnItemClickListener(adapter);
 	}
-	
+
 	/**
 	 * Called to init actionbar. 
 	 */

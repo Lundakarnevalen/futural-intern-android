@@ -1,7 +1,13 @@
 package se.lundakarnevalen.android;
 
+import se.lundakarnevalen.remote.LKUser;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,7 +16,7 @@ import android.util.TypedValue;
 import android.view.View;
 
 public class LKFragment extends Fragment{
-	protected final String LOG_TAG = "LKFragment";
+	protected final static String LOG_TAG = "LKFragment";
 	
 	public Messanger messanger;
 	
@@ -24,12 +30,21 @@ public class LKFragment extends Fragment{
 	public static final int SEKTIONER_FRAGMENT = 0x008;
 	public static final int SIGN_IN_FRAGMENT = 0x009;
 	
+	//Shared preferences keys
+	public static final String SP_GCM_NAME = "LKGCM";
+	public static final String SP_GCM_REGID = "LKGCM_REG_ID";
+	public static final String SP_GCM_REG_APP = "LKGCM_APPV";
+	public static final String SP_NAME = "LKSharedPreferences";
+	public static final String SP_KEY_REGISTRATION_STEP = "LKRegistrationStep";
+	public static final String SP_KEY_REGISTRATION_LOCK = "LKRegistrationLock";
+
+	
 	/**
 	 * Gets the application context
 	 * @return The context.
 	 */
 	public Context getContext(){
-		return super.getActivity().getApplicationContext();
+		return super.getActivity();
 	}
 	
 	@Override
@@ -53,6 +68,44 @@ public class LKFragment extends Fragment{
 		showActionBarLogo(false);
 	}
 	
+	public static String getAppVersion(Context context){
+		PackageManager manager = context.getPackageManager();
+		PackageInfo info = null;
+		String version = "";
+		try {
+			info = manager.getPackageInfo(context.getPackageName(), 0);
+		} catch (NameNotFoundException e) {
+			Log.wtf(LOG_TAG, "Could not get package info.");
+		}
+		try{
+			version = info.versionName;
+		}catch(NullPointerException e){
+			return "";
+		}
+		return version;
+	}
+	
+	public String getGcmRegId(){
+		SharedPreferences sp = getContext().getSharedPreferences(LKFragment.SP_GCM_NAME, Context.MODE_PRIVATE);
+		return sp.getString(LKFragment.SP_GCM_REGID, null);
+	}
+	
+	public void showPopup(String msg, String title){
+		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+		builder.setTitle(title);
+		builder.setMessage(msg);
+		builder.setPositiveButton("OK", null);
+		builder.create().show();
+	}
+	
+	/**
+	 * Returns if app is locked for some reason.
+	 * @return
+	 */
+	public boolean appIsLocked(LKUser user){
+		return user.step >= 3;
+	}
+	
 	/**
 	 * Converts dp to pixels.
 	 * @param dp The number of dp.
@@ -63,6 +116,27 @@ public class LKFragment extends Fragment{
 		Resources r = context.getResources();
 		float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics());
 		return px;
+	}
+	
+	/** 
+	 * Gets a new fragment to use for startup/on click of start button in menu. 
+	 * @param context Application context
+	 * @return Fragment to launch. 
+	 */
+	public static LKFragment getStartFragment(Context context){
+		SharedPreferences sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+		LKUser user = new LKUser(context);
+		user.getUserLocaly();
+		boolean lock = user.step >= 3;
+		
+		if(LKUser.localUserStored(context) && lock)
+			return new UserProfileFragment();
+		else if(LKUser.localUserStored(context))
+			return new RegistrationProgressFragment();
+		else if(!lock)
+			return new RegistrationOhNoFragment();
+		else
+			return new SignInFragment();
 	}
 	
 	/**
@@ -101,6 +175,14 @@ public class LKFragment extends Fragment{
 	public void onRadioButtonClicked(View view) {
 		
 	}
+	/**
+	 * Handles checkboxes in the fragment
+	 * @param view checkbox view
+	 */
+	public void onCheckBoxClicked(View view) {
+		
+	}
+	
 	
 	/**
 	 * Interface to be implemented by activity containing the fragment.

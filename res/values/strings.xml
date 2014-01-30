@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- The great registration password -->
+    <string name="registrationpassword">FUTURAL</string>
+    
     <string name="app_name">Lundakarnevalen</string>
     <string name="sign_in_button">Logga in</string>
     
@@ -8,20 +10,27 @@
     <string name="registration_informationb4progessbar">Du är för tillfället</string>
     <string name="registration_informationafterorigressbar1">karnevalist. Vi behöver bara veta vem du är.</string>
     <string name="registration_informationafterorigressbar2">karnevalist. Vi behöver bara en bild på dig.</string>
+    <string name="code_explained">Inne i AF-borgen kommer du få en kod. Den behöver du för att kunna fortsätta registreringen som karnevalist.</string>
+    
+    <string name="reg_code_fail_title">Något gick fel!</string>
+    <string name="reg_code_fail_msg">Du fyllde i fel lösenord, försök igen!</string>
     
    	<string name="registration_informationbild1">Den tar du lägst fram i</string>
     <string name="registration_informationbild2">disken inuti AF-Borgen.</string>
-        
+    
     <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
     <string name="registration_mobilenbr">Mobilnummer</string>
     
     <string name="registration_choosesection">JAG VILL ENGAGERA MIG I</string>
-    <string name="registration_shirtsize">TRÖJSTORLEK</string>
     <string name="registration_submit">Skicka in</string>
     <string name="registration_submitinfo">Genom att klicka på knappen, förbinder\ndu dig att ha kul under karnevalstiden.</string>
     <string name="registration_mysections">Jag vill engagera mig i</string>
     <string name="registration_myshirtsize">Jag har tröjstorlek</string>
-    
+    <string name="registration_append">Redigera mina personuppgifter</string>
+    <string name="continue_code">Lösenord</string>
+    <string name="notification_title">Meddelande från Lundakarnevalen!</string>
+    <string name="email_valid"></string>
+    <string name="edit_uppg">Redigera mina uppgifter</string>
     
     <string name="sektion_barnevalen">Barnevalen</string>
     <string name="sektion_biljetteriet">Biljetteriet</string>
@@ -50,6 +59,23 @@
     <string name="sektion_taltnojen">Tältnöjen</string>
     <string name="sektion_vieriet">Vieriet</string>
     
+    <string name="dd_billig">Allt</string>
+    <string name="dd_mat">Mat</string>
+    <string name="dd_dryck">Dryck</string>
+    <string name="dd_teknik">Teknik</string>   
+    <string name="dd_layout">Layout</string>
+    <string name="dd_it">It</string>
+    <string name="dd_skriva">Skriva</string>
+    <string name="dd_foto">Fota &amp; Filma</string>   
+    <string name="dd_admin">Administration</string>
+    <string name="dd_sell">Försäljning</string>
+    <string name="dd_sakerhet">Säkerhet</string>
+    <string name="dd_bygga">Bygga</string>   
+    <string name="dd_dekorera">Dekorera</string>
+    <string name="dd_sy">Sy</string>
+    <string name="dd_smink">Smink</string>
+    <string name="dd_spex">Spexeri</string>   
+        
     <string-array
         name="sektion_alphabetic_array">
         <item>Barnevalen</item>
@@ -80,9 +106,28 @@
         <item>Vieriet</item>
     </string-array>
     
-    <string name="name">Namn</string>
+    <string name="name">Förnamn</string>
+    <string name="lastname">Efternamn</string>
+    <string name="postal_address">Postadress</string>
+    <string name="zip_code">Postnummer</string>
+    <string name="zip_town">Postort</string>
     <string name="password">Lösenord</string>
+    <string name="phone_nr">Mobilnummer</string>
+    <string name="food_prefs">Matpreferenser</string>
+    <string name="terms">Terminer i Lund</string>
+    <string name="dedication">Tidigare engagemang</string>
+    <string name="sexTopic">Kön</string>
+    <string name="teknolagkaren">Teknolågkåren</string>
+    <string name="nationDed">En nation, vilken och hur?</string>
+    <string name="otherStud">Annan studentikos förening?</string>
+    <string name="otherDed">Annan förening?</string>
+    <string name="confirm_password">Bekräfa Lösenord</string>
+    <string name="confirm_email">Bekräfta E-post</string>
     <string name="email">E-post</string>
+    <string name="email_valid">E-post igen tack!</string>
+    <string name="nationTopic">Nation</string>
+    <string name="driverLicensTopic">Körkort</string>
+    <string name="shirtTopic">Tröjstorlek</string>
     <string name="login_welcome_desc_f">Välkommen in i värmen.&#160;</string>
     <string name="login_welcome_desc_l">Vänligen logga in.</string>
     <string name="login_welcome_desc_fail_f">Glömt ditt lösenord?&#160;</string>
@@ -93,6 +138,27 @@
     <string name="register_desc">Det verkar som om du inte är karnevalist än.\nJag tycker att du ska bli det.\nOmedelbums.</string>
     <string name="register_desc_login_f">Är du redan karnevalist?&#160;</string>
     <string name="register_desc_login_l">Logg in här.</string>
+    <string name="pers_nr">Personnummer</string>
+    <string name="intressen">Intressen</string>
+    <string name="karnevalist_2010">Jag var karnevalist 2010</string>
+    <string name="aktiv">Vill du ha ansvar?</string>
+    <string name="other">Något annat?</string>
+    <string name="elseT">Övrigt</string>
     
+    <string name="choose">Välj</string>
+
+    <string name="lucky">Jag har tur</string>
+    <string name="Section_button">Jag vill engagera mig!</string>
+    <string name="left_tab">Lyckosnurra</string>
+    <string name="right_tab">Alla sektioner</string>
+    <string name="all_sections">ALLA SEKTIONER</string>
+
     <string name="inbox_empty_text">OH NO! No messages...</string>
+    <string name="user_profile">DINA UPPGIFTER</string>
+    <string name="user_phone">Telefonnummer:</string>
+    <string name="user_name">Namn:</string>
+    <string name="user_mail">E-post:</string>
+    <string name="user_member">Sektion/-er:</string>
+        
+    
 </resources>

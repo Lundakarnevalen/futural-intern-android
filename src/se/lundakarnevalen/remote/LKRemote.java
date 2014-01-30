@@ -1,13 +1,12 @@
 package se.lundakarnevalen.remote;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
 import android.app.ProgressDialog;
@@ -28,7 +27,8 @@ public class LKRemote {
 	private final String LOG_TAG = "API call";
 	
 	Context context;
-	private String remoteAdr = "http://eee.esek.se/";
+	private String remoteAdr = "http://www.karnevalist.se/";
+	//private String remoteAdr = "http://httpbin.org/put";
 	private boolean showProgressDialog = false;
 	TextResultListener textResultListener;
 	
@@ -47,6 +47,14 @@ public class LKRemote {
 	 */
 	public LKRemote(Context context, TextResultListener textResultListener){
 		this.context = context; 
+		this.textResultListener = textResultListener;
+	}
+	
+	/**
+	 * Sets a text result listener
+	 * @param textResultListener the listener.
+	 */
+	public void setTextResultListener(TextResultListener textResulListener){
 		this.textResultListener = textResultListener;
 	}
 	
@@ -77,14 +85,34 @@ public class LKRemote {
     }
     
     /**
-     * Do a HTTP POST to the server for a plain/text response, use TextResultListener to get response.  
-     * @param file The file to do the http POST on
-     * @param data The POST data.
+     * Returns a string for the request type based on the Enum. 
+     * @param type The request type
+     * @return The string for the request type. 
      */
-    public void requestServerForText(String file, String data){
+    private String getRequestTypeString(RequestType type){
+    	switch(type){
+    	case POST:
+    		return "POST";
+    	case GET:
+    		return "GET";
+    	case PUT:
+    		return "PUT";
+    	default:
+    		return "GET";
+    	}
+    }
+    
+    /**
+     * Do a HTTP POST to the server for a plain/text response, use TextResultListener to get response.  
+     * @param file The file
+     * @param data The data
+     */
+    public void requestServerForText(String file, String data, RequestType type){
+    	String requestType = getRequestTypeString(type);
+    	
     	if(hasInternetConnection(context)){
     		AsyncTask<String, Void, String> task = new ServerTextTask();
-    		task.execute(file, data);
+    		task.execute(file, data, requestType);
     	}else{
     		Log.e(LOG_TAG, "no internet connection");
     	}
@@ -119,14 +147,20 @@ public class LKRemote {
 		
 		@Override
 		protected String doInBackground(String... params) {
-			String file, data;
+			String file, data, requestType;
+			boolean write = true;
 			try{
 				file = params[0];
 				data = params[1];
+				requestType = params[2];
+				if(requestType.equals(getRequestTypeString(RequestType.GET))){
+					write = false;
+				}
 			}catch(ArrayIndexOutOfBoundsException e){
 				Log.e(LOG_TAG, "No parameters, post data or file is missing. usage: [file, data]");
 				return null;
 			}
+			
 			URL url;
 			try {
 				url = new URL(remoteAdr+file);
@@ -147,45 +181,66 @@ public class LKRemote {
 				return null;
 			}
 			try {
-				con.setRequestMethod("POST");
-			} catch (ProtocolException e) {
-				Log.wtf(LOG_TAG, "Should not happen - No such post method");
-				return null;
+				con.setRequestMethod(requestType);
+				Log.d(LOG_TAG, "Set request method to: "+requestType);
+			} catch (java.net.ProtocolException e) {	
+				Log.e(LOG_TAG, "no such protocol");
 			}
+			if(!write)
+				con.setRequestProperty("Content-Type", "application/json; charset=utf-8");					
+			con.setRequestProperty("Charset", "UTF-8");
+
+			con.setUseCaches(false);
 			con.setDoInput(true);
-			con.setDoOutput(true);
-			//
+			if(write)
+				con.setDoOutput(true);
 			
-			con.setRequestProperty("Content-type", "text/plain");
-			con.setRequestProperty("charset", "UTF-8");
+			/*Log.i(LOG_TAG, "Will now open stream for writing with:");
+			for (String header : con.getRequestProperties().keySet()) {
+				   if (header != null) {
+				     for (String value : con.getRequestProperties().get(header)) {
+				        Log.i(header, value);
+				      }
+				   }
+			}*/
 			
-			// Write post data. 
-			DataOutputStream dos;
-			try {
-				
-				dos = new DataOutputStream(con.getOutputStream());
-			} catch (IOException e) {
-				Log.e(LOG_TAG, "Could not init. output stream.");
+			try{
+				con.connect();
+			}catch(IOException e){ 
+				Log.e(LOG_TAG, "Could not connect.");
 				return null;
 			}
-			try {
-				dos.writeBytes(data);
-				dos.flush();
-				dos.close();
-			} catch (IOException e) {
-				Log.e(LOG_TAG, "Could not write data to server.");
-				return null;
+			// Write data. 
+			if(write){
+				OutputStreamWriter dos;
+				try {
+					dos = new OutputStreamWriter(con.getOutputStream());
+				} catch (IOException e) {
+					Log.e(LOG_TAG, "Could not init. output stream.");
+					return null;
+				}
+				try {
+					Log.d(LOG_TAG, "data:"+data);
+					dos.write(data); // should write data. 
+					dos.flush();
+					Log.d(LOG_TAG, "Flushed");
+					dos.close();
+					Log.d(LOG_TAG, "dos closed");
+					Log.d(LOG_TAG, "wrote: "+data);
+				} catch (IOException e) {
+					Log.e(LOG_TAG, "Could not write data to server.");
+					return null;
+				}
 			}
-			// Get data input stream
+			
 			InputStreamReader isr;
 			try {
 				Log.d(LOG_TAG, "Response: "+con.getResponseCode());
 				isr = new InputStreamReader((InputStream) con.getContent());
 			} catch (IOException e) {
-				Log.e(LOG_TAG, "Could not open input stream to " + url.getPath() + ((con == null) ? " con was null" : "con was NOT null"));
+				Log.e(LOG_TAG, "Could not open input stream to " + url.getPath() + ((con == null) ? " con was null" : " con was NOT null"+" "+	e));
 				return null;
 			}
-			
 			// Read data from stream
 			BufferedReader br = new BufferedReader(isr);
 			StringBuilder result = new StringBuilder();
@@ -246,6 +301,11 @@ public class LKRemote {
 	 *
 	 */
 	public interface TextResultListener{
+		public static final String LOG_TAG = "Result listener";
 		public void onResult(String result);
+	}
+	
+	public enum RequestType{
+		POST, GET, PUT;
 	}
 }

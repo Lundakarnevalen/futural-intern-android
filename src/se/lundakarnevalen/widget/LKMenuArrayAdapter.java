@@ -84,6 +84,12 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		else
 			Log.d(LOG_TAG, "no listener for list item");
 	}
+	
+	@Override
+	public boolean isEnabled(int pos){
+		// Make statics no enabled.
+		return !getItem(pos).isStatic;
+	}
 		
 	/**
 	 * Class representing a single row in the menu. Used with the LKMenuArrayAdapter.
@@ -172,7 +178,7 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		 * @param icon Icon next to text
 		 * @param fragment Fragment to show
 		 */
-		public LKMenuListItem(final String title, int icon, final LKFragment fragment, final FragmentManager fragmentMgr){
+		public LKMenuListItem(final String title, int icon, final LKFragment fragment, final FragmentManager fragmentMgr, final Context context){
 			this.title = title;
 			this.icon = icon;
 			
@@ -180,7 +186,12 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 				
 				@Override
 				public void onClick(View v) {
-					fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment).commit();
+					if(fragment == null){
+						LKFragment fragmentStart = LKFragment.getStartFragment(context);
+						fragmentMgr.beginTransaction().replace(R.id.content_frame, fragmentStart).commit();
+					}else{
+						fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment).commit();
+					}
 				}
 			};
 		}
