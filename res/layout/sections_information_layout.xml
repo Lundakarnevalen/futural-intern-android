@@ -21,6 +21,15 @@
             android:gravity="center_horizontal"
             android:textColor="#ffffff"
             android:textSize="32sp" />
+        <!--
+         <ImageView
+-            android:id="@+id/Section_icon"
+-            android:layout_width="200dp"
+-            android:layout_height="200dp"
+-            android:layout_below="@id/Section_name"
+-            android:layout_centerHorizontal="true"
+-            android:layout_marginBottom="12dp" />
+        -->
 
         <se.lundakarnevalen.widget.LKTextView
             android:id="@+id/section_information"

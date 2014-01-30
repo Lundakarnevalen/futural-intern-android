@@ -36,7 +36,7 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:text="@string/left_tab"
-                android:textColor="@color/light_peach" />
+                android:textColor="#FFFFFF" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -54,7 +54,7 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:text="@string/right_tab"
-                android:textColor="@color/light_peach" />
+                android:textColor="#FFFFFF" />
         </RelativeLayout>
     </LinearLayout>
 
