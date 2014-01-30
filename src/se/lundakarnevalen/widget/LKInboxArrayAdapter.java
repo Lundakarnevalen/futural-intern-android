@@ -5,9 +5,11 @@ import java.util.List;
 import se.lundakarnevalen.android.LKFragment;
 import se.lundakarnevalen.android.MessageFragment;
 import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.remote.LKSQLiteDB;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +46,14 @@ public class LKInboxArrayAdapter extends ArrayAdapter<LKInboxArrayAdapter.LKMenu
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		LKMenuListItem item = getItem(pos);
+		item.unread = false;
+		Log.d("LKInboxArrayAdapter", "changed item.unread = "+item.unread);
+		LKSQLiteDB db = new LKSQLiteDB(context);
+		int bla = db.update(item);
+		db.close();
+		Log.d("LKInboxArrayAdapter", "DB query completed. "+bla+" rows affected");
+		
+		
 		MessageFragment fragment = new MessageFragment();
 		fragment.setListItem(item);
 		fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack(null).commit();
