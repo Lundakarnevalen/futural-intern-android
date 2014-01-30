@@ -219,8 +219,7 @@ public class LKRemote {
 					return null;
 				}
 				try {
-					Log.d(LOG_TAG, "data:"+data);
-					dos.write(data); // should write data. 
+					dos.write(data); // should write data.  
 					dos.flush();
 					Log.d(LOG_TAG, "Flushed");
 					dos.close();

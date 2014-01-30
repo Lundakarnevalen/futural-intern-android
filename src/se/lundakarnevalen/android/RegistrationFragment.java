@@ -377,17 +377,15 @@ public class RegistrationFragment extends LKFragment{
 				// Post data
 				break;
 			case 3:
-				int id = user.id;
+				user.getUserLocaly();
 				populateUserWithData(user);
-				user.id = id;
 				putNewUser(user);
-				user.storeUserLocaly();
 				break;
 			}
 		}
 	}
 	
-	private void putNewUser(LKUser user){
+	private void putNewUser(final LKUser user){
 		Log.d(LOG_TAG, "put new user");
 		LKRemote remote = new LKRemote(getContext(), new LKRemote.TextResultListener() {
 			@Override
@@ -396,6 +394,8 @@ public class RegistrationFragment extends LKFragment{
 				Response.StdResponse resp = gson.fromJson(result, Response.StdResponse.class);
 				if(resp.status.equals("success")){
 					Log.d(LOG_TAG, "did put on user");
+					user.storeUserLocaly();
+					loadFragment(new RegistrationProgressFragment(), false);
 				}else{
 					showPopup(resp.message, getContext().getString(R.string.reg_code_fail_title));
 				}
