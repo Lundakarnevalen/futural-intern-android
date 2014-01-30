@@ -1,6 +1,7 @@
 
 package se.lundakarnevalen.android;
 
+import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
 import android.os.Bundle;
@@ -45,7 +46,14 @@ public class SectionsInformationFragment extends LKFragment {
 		titleTextView.setText(title.toUpperCase());
 		icon.setImageResource(pictureResourceId);
 		informationTextView.setText(Html.fromHtml(information));
-
+		
+		LKUser user = new LKUser(getContext());
+		user.getUserLocaly();
+		if(appIsLocked(user)){
+			registerButton.setOnClickListener(null);
+			registerButton.setVisibility(View.GONE);
+		}
+		
 		return root;
 	}
 	

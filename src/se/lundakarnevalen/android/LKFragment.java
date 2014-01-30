@@ -125,9 +125,13 @@ public class LKFragment extends Fragment{
 	 */
 	public static LKFragment getStartFragment(Context context){
 		SharedPreferences sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
-		boolean lock = sp.getBoolean(SP_KEY_REGISTRATION_LOCK, false);
+		LKUser user = new LKUser(context);
+		user.getUserLocaly();
+		boolean lock = user.step >= 3;
 		
-		if(LKUser.localUserStored(context))
+		if(LKUser.localUserStored(context) && lock)
+			return new UserProfileFragment();
+		else if(LKUser.localUserStored(context))
 			return new RegistrationProgressFragment();
 		else if(!lock)
 			return new RegistrationOhNoFragment();

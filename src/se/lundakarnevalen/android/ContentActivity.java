@@ -179,7 +179,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
 		listItems.add(inboxListItem);
-		listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+		//listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
 		
@@ -187,7 +187,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		menuList.setAdapter(adapter);
 		menuList.setOnItemClickListener(adapter);
 	}
-	
+
 	/**
 	 * Called to init actionbar. 
 	 */
