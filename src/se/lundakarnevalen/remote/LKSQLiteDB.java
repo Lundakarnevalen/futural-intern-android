@@ -38,6 +38,17 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		return db.insert(LKSQLiteDBContract.TABLE_NAME, null, values);
 	}
 	
+	public int update(LKMenuListItem item) {
+		SQLiteDatabase db = getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(LKSQLiteDBContract.COLUMN_NAME_TITLE, item.title);
+		values.put(LKSQLiteDBContract.COLUMN_NAME_MESSAGE, item.message);
+		values.put(LKSQLiteDBContract.COLUMN_NAME_DATE, item.date);
+		values.put(LKSQLiteDBContract.COLUMN_NAME_IMG, "img path");
+		values.put(LKSQLiteDBContract.COLUMN_NAME_UNREAD, item.unread ? 1 : 0);
+		return db.update(LKSQLiteDBContract.TABLE_NAME, values, "id = "+item.id, null);
+	}
+	
 	public List<LKMenuListItem> getMessages(){
 		List<LKMenuListItem> data = new LinkedList<LKMenuListItem>();
 		SQLiteDatabase dbRead = getReadableDatabase();
@@ -47,7 +58,7 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()){
 			boolean unread = cursor.getInt(5) == 1;
-			LKMenuListItem item = new LKMenuListItem(cursor.getString(1), cursor.getString(2), cursor.getString(3), unread, null);
+			LKMenuListItem item = new LKMenuListItem(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(0), unread, null);
 			data.add(item);
 			cursor.moveToNext();
 		}

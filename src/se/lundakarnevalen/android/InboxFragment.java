@@ -93,7 +93,7 @@ public class InboxFragment extends LKFragment{
 			ListView.LayoutParams lp = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, context[0].getResources().getDimensionPixelSize(R.dimen.horizontal_margin));
 			RelativeLayout r = new RelativeLayout(context[0]);
 			r.setLayoutParams(lp);
-			LKMenuListItem l = new LKMenuListItem("","","",false,null);
+			LKMenuListItem l = new LKMenuListItem("","","", 0, false,null);
 			l.layout = r;
 			l.isStatic = true;
 			items.add(l);
@@ -115,6 +115,7 @@ public class InboxFragment extends LKFragment{
 				
 				titleTextView.setText(item.title);
 				titleTextView.setTextColor(context[0].getResources().getColor((R.color.base_pink)));
+				
 				//TODO: Set bold text if item.unread == true
 				if(item.unread) {
 					Typeface tf = Typeface.createFromAsset(context[0].getAssets(), "fonts/Roboto-Bold.ttf");
@@ -154,7 +155,7 @@ public class InboxFragment extends LKFragment{
 			lp = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, context[0].getResources().getDimensionPixelSize(R.dimen.horizontal_margin_half));
 			r = new RelativeLayout(context[0]);
 			r.setLayoutParams(lp);
-			l = new LKMenuListItem("","","",false,null);
+			l = new LKMenuListItem("","","", 0, false,null);
 			l.layout = r;
 			items.add(l);
 			
