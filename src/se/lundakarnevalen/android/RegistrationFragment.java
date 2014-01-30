@@ -187,7 +187,7 @@ public class RegistrationFragment extends LKFragment{
 			break;
 		case 2:
 			// Karnevalsuppgifter
-			wrapperPers.setVisibility(View.GONE); // NŠr man klickar pŒ ny knapp !! FIXA
+			wrapperPers.setVisibility(View.GONE); // Nï¿½r man klickar pï¿½ ny knapp !! FIXA
 			confirmButton.setVisibility(View.VISIBLE);
 			wrapperCode.setVisibility(View.GONE);
 			wrapperLK.setVisibility(View.VISIBLE);
@@ -391,6 +391,8 @@ public class RegistrationFragment extends LKFragment{
 				Log.d(LOG_TAG, result);
 			}
 		});
+		
+		
 		remote.requestServerForText("karnevalister.json", user.getJson(), LKRemote.RequestType.POST);
 	}
 	

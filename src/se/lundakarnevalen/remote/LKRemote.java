@@ -1,14 +1,15 @@
 package se.lundakarnevalen.remote;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
+
+import org.apache.http.ProtocolException;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -28,7 +29,8 @@ public class LKRemote {
 	private final String LOG_TAG = "API call";
 	
 	Context context;
-	private String remoteAdr = "http://karnevalist.se/";
+	private String remoteAdr = "http://www.karnevalist.se/";
+	//private String remoteAdr = "http://httpbin.org/put";
 	private boolean showProgressDialog = false;
 	TextResultListener textResultListener;
 	
@@ -38,8 +40,6 @@ public class LKRemote {
 	 */
 	public LKRemote(Context context){
 		this.context = context;
-		
-		
 	}
 	
 	/**
@@ -106,8 +106,8 @@ public class LKRemote {
     
     /**
      * Do a HTTP POST to the server for a plain/text response, use TextResultListener to get response.  
-     * @param file The file to do the http POST on
-     * @param data The POST data.
+     * @param file The file
+     * @param data The data
      */
     public void requestServerForText(String file, String data, RequestType type){
     	String requestType = getRequestTypeString(type);
@@ -162,6 +162,7 @@ public class LKRemote {
 				Log.e(LOG_TAG, "No parameters, post data or file is missing. usage: [file, data]");
 				return null;
 			}
+			
 			URL url;
 			try {
 				url = new URL(remoteAdr+file);
@@ -183,46 +184,63 @@ public class LKRemote {
 			}
 			try {
 				con.setRequestMethod(requestType);
-			} catch (ProtocolException e) {
-				Log.wtf(LOG_TAG, "Should not happen - No such post method");
-				return null;
+				Log.d(LOG_TAG, "Set request method");
+			} catch (java.net.ProtocolException e) {
+				Log.e(LOG_TAG, "no such protocol");
 			}
+			con.setRequestProperty("Content-Type", "application/json; charset=utf-8");   
+			con.setRequestProperty("Charset", "UTF-8");
+
+			con.setUseCaches(false);
 			con.setDoInput(true);
 			con.setDoOutput(true);
 			
-			con.setRequestProperty("Content-type", "text/plain");
-			con.setRequestProperty("charset", "UTF-8");
+			/*Log.i(LOG_TAG, "Will now open stream for writing with:");
+			for (String header : con.getRequestProperties().keySet()) {
+				   if (header != null) {
+				     for (String value : con.getRequestProperties().get(header)) {
+				        Log.i(header, value);
+				      }
+				   }
+			}*/
 			
-			// Write post data. 
+			try{
+				con.connect();
+			}catch(IOException e){ 
+				Log.e(LOG_TAG, "Could not connect.");
+				return null;
+			}
+			// Write data. 
 			if(write){
-				Log.d(LOG_TAG, "Will now open stream for writing with "+requestType);
-				DataOutputStream dos;
+				OutputStreamWriter dos;
 				try {
-					dos = new DataOutputStream(con.getOutputStream());
+					dos = new OutputStreamWriter(con.getOutputStream());
 				} catch (IOException e) {
 					Log.e(LOG_TAG, "Could not init. output stream.");
 					return null;
 				}
 				try {
-					dos.writeBytes(data);
+					Log.d(LOG_TAG, "data:"+data);
+					dos.write(data); // should write data. 
 					dos.flush();
+					Log.d(LOG_TAG, "Flushed");
 					dos.close();
+					Log.d(LOG_TAG, "dos closed");
 					Log.d(LOG_TAG, "wrote: "+data);
 				} catch (IOException e) {
 					Log.e(LOG_TAG, "Could not write data to server.");
 					return null;
 				}
 			}
-			// Get data input stream
+			
 			InputStreamReader isr;
 			try {
-				Log.d(LOG_TAG, "Response: "+con.getResponseCode());
+				//Log.d(LOG_TAG, "Response: "+con.getResponseCode());
 				isr = new InputStreamReader((InputStream) con.getContent());
 			} catch (IOException e) {
-				Log.e(LOG_TAG, "Could not open input stream to " + url.getPath() + ((con == null) ? " con was null" : "con was NOT null"));
+				Log.e(LOG_TAG, "Could not open input stream to " + url.getPath() + ((con == null) ? " con was null" : " con was NOT null"+" "+	e));
 				return null;
 			}
-			
 			// Read data from stream
 			BufferedReader br = new BufferedReader(isr);
 			StringBuilder result = new StringBuilder();

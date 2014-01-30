@@ -19,7 +19,7 @@ public class LKUser {
 	private static final String SHARED_PREFS_JSON = "LKUserToken";
 	
 	Context context;
-	public String personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
+	public String gcmRegId, personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
 	public int kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion;
 	public int[] intresse, sektioner;
 	public boolean jobbatHeltid, jobbatStyrelse, jobbatForman, jobbatAktiv, karnevalist2010, villAnsvara, medlemAf, medlemKar, medlemNation, karneveljsbiljett;
@@ -83,6 +83,7 @@ public class LKUser {
 		karnevalist.medlem_kar = this.medlemKar;
 		karnevalist.medlem_nation = this.medlemNation;
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
+		karnevalist.gcmRegId = this.gcmRegId;
 		return gson.toJson(karnevalist);
 	}
 	
