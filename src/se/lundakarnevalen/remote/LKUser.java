@@ -50,7 +50,7 @@ public class LKUser {
 	public void storeUserLocaly(){
 		Editor editor = sp.edit();
 		String json = getJsonWithId();
-		Log.d(LOG_TAG, "Wrote: "+json);
+		Log.d(LOG_TAG, "Wrote to local: "+json);
 		editor.putString(SHARED_PREFS_JSON, json);
 		editor.commit();
 	}
@@ -98,7 +98,7 @@ public class LKUser {
 		Gson gson = new Gson();
 		User karnevalist = new User();
 		karnevalist.id = id;
-		karnevalist.utcheckad = step;
+		karnevalist.avklarat_steg = step;
 		karnevalist.personnummer = this.personnummer;
 		karnevalist.fornamn = this.fornamn;
 		karnevalist.efternamn = this.efternamn;
@@ -141,7 +141,7 @@ public class LKUser {
 		Gson gson = new Gson();
 		UserWrite karnevalist = new UserWrite();
 		karnevalist.personnummer = this.personnummer;
-		karnevalist.utcheckad = this.step;
+		karnevalist.avklarat_steg = this.step;
 		karnevalist.fornamn = this.fornamn;
 		karnevalist.efternamn = this.efternamn;
 		karnevalist.gatuadress = this.gatuadress;
@@ -185,7 +185,7 @@ public class LKUser {
 		User user = gson.fromJson(json, User.class);
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
-		this.step = user.utcheckad;
+		this.step = user.avklarat_steg;
 		this.id = user.id;
 		this.efternamn = user.efternamn;
 		this.gatuadress = user.gatuadress;

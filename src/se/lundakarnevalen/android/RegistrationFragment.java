@@ -373,16 +373,15 @@ public class RegistrationFragment extends LKFragment{
 				break;
 			case 2:
 				populateUserWithData(user);
-				user.storeUserLocaly();
-				registrationStep++;
-				storeRegistrationStep();
 				postNewUser(user);
 				// Post data
 				break;
 			case 3:
+				int id = user.id;
 				populateUserWithData(user);
-				user.storeUserLocaly();
+				user.id = id;
 				putNewUser(user);
+				user.storeUserLocaly();
 				break;
 			}
 		}
@@ -417,7 +416,10 @@ public class RegistrationFragment extends LKFragment{
 					Log.d(LOG_TAG, "id: "+user.id);
 					user.id = resp.id;
 					user.token = resp.token;
-					user.step = 2; // TODO: what number to set on post?
+					user.step = 2; // TODO: what number to set on post
+					user.storeUserLocaly();
+					registrationStep++;
+					storeRegistrationStep();
 					user.storeUserLocaly();
 					loadFragment(new RegistrationProgressFragment(), false);
 				}else{

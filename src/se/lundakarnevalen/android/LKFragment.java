@@ -1,5 +1,8 @@
 package se.lundakarnevalen.android;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import se.lundakarnevalen.remote.LKUser;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -128,6 +131,10 @@ public class LKFragment extends Fragment{
 		LKUser user = new LKUser(context);
 		user.getUserLocaly();
 		boolean lock = user.step >= 3;
+		
+		Calendar c = Calendar.getInstance();
+		Date date = c.getTime();
+		Log.d(LOG_TAG, date.toString());
 		
 		if(LKUser.localUserStored(context) && lock)
 			return new UserProfileFragment();
