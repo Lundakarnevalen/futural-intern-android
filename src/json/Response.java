@@ -24,6 +24,10 @@ public class Response {
 		public String message, status;
 	}
 	
+	public static class StdResponse{
+		public String message, status;
+	}
+	
 	public static class GetGCM{
 		
 	}

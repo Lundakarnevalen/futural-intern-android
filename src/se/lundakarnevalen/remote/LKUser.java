@@ -86,7 +86,7 @@ public class LKUser {
 					}
 				}
 			});
-			remote.requestServerForText("karnevalister/"+id+".json", null, LKRemote.RequestType.GET);
+			remote.requestServerForText("karnevalister/"+id+".json", "{}", LKRemote.RequestType.GET);
 			Log.d(LOG_TAG, "requested server for the user with id:"+id);
 		}else{
 			// No user downloaded.
@@ -97,7 +97,7 @@ public class LKUser {
 	public String getJsonWithId(){
 		Gson gson = new Gson();
 		User karnevalist = new User();
-		karnevalist.id = this.id;
+		karnevalist.id = id;
 		karnevalist.utcheckad = step;
 		karnevalist.personnummer = this.personnummer;
 		karnevalist.fornamn = this.fornamn;

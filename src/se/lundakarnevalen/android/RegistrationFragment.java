@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import json.Response;
-
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKButton;
@@ -390,22 +389,37 @@ public class RegistrationFragment extends LKFragment{
 	}
 	
 	private void putNewUser(LKUser user){
-		postNewUser(user);
+		Log.d(LOG_TAG, "put new user");
+		LKRemote remote = new LKRemote(getContext(), new LKRemote.TextResultListener() {
+			@Override
+			public void onResult(String result) {
+				Gson gson = new Gson();
+				Response.StdResponse resp = gson.fromJson(result, Response.StdResponse.class);
+				if(resp.status.equals("success")){
+					Log.d(LOG_TAG, "did put on user");
+				}else{
+					showPopup(resp.message, getContext().getString(R.string.reg_code_fail_title));
+				}
+			}
+		});
+		remote.requestServerForText("karnevalister/"+user.id+".json", user.getJson(), LKRemote.RequestType.PUT);
 	}
 	
 	private void postNewUser(final LKUser user) {
+		Log.d(LOG_TAG, "post new user");
 		LKRemote remote = new LKRemote(getContext(),new LKRemote.TextResultListener() {
-			
 			@Override
 			public void onResult(String result) {
 				Log.d(LOG_TAG, result);
 				Gson gson = new Gson();
 				Response.PostKarnevalist resp = gson.fromJson(result, Response.PostKarnevalist.class);
 				if(resp.status.equals("success")){
+					Log.d(LOG_TAG, "id: "+user.id);
 					user.id = resp.id;
 					user.token = resp.token;
 					user.step = 2; // TODO: what number to set on post?
 					user.storeUserLocaly();
+					loadFragment(new RegistrationProgressFragment(), false);
 				}else{
 					showPopup(resp.message, getContext().getString(R.string.reg_code_fail_title));
 				}

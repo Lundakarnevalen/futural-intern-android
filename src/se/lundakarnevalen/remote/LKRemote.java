@@ -182,16 +182,18 @@ public class LKRemote {
 			}
 			try {
 				con.setRequestMethod(requestType);
-				Log.d(LOG_TAG, "Set request method");
-			} catch (java.net.ProtocolException e) {
+				Log.d(LOG_TAG, "Set request method to: "+requestType);
+			} catch (java.net.ProtocolException e) {	
 				Log.e(LOG_TAG, "no such protocol");
 			}
-			con.setRequestProperty("Content-Type", "application/json; charset=utf-8");   
+			if(!write)
+				con.setRequestProperty("Content-Type", "application/json; charset=utf-8");					
 			con.setRequestProperty("Charset", "UTF-8");
 
 			con.setUseCaches(false);
 			con.setDoInput(true);
-			con.setDoOutput(true);
+			if(write)
+				con.setDoOutput(true);
 			
 			/*Log.i(LOG_TAG, "Will now open stream for writing with:");
 			for (String header : con.getRequestProperties().keySet()) {
@@ -233,7 +235,7 @@ public class LKRemote {
 			
 			InputStreamReader isr;
 			try {
-				//Log.d(LOG_TAG, "Response: "+con.getResponseCode());
+				Log.d(LOG_TAG, "Response: "+con.getResponseCode());
 				isr = new InputStreamReader((InputStream) con.getContent());
 			} catch (IOException e) {
 				Log.e(LOG_TAG, "Could not open input stream to " + url.getPath() + ((con == null) ? " con was null" : " con was NOT null"+" "+	e));
