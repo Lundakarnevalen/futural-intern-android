@@ -199,6 +199,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		
 		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
+
 		listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 

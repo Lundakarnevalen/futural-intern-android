@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/inbox_message_row_bg"
-        android:paddingBottom="12dp"
-        android:paddingLeft="17dp" >
+        android:paddingBottom="12dp" >
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -23,16 +22,16 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/image"
-                android:paddingLeft="30dp"
+                android:paddingLeft="@dimen/horizontal_margin_double"
                 android:textColor="@color/base_pink"
                 android:textSize="25sp" />
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="60dp"
-                android:layout_height="60dp" />
+            
+                <!--<ImageView
+-                android:id="@+id/image"
+-                android:layout_width="60dp"
+-                android:layout_height="60dp" /> -->
 
             <ImageView
                 android:id="@+id/forward"

@@ -39,6 +39,7 @@ public class RegistrationProgressFragment extends LKFragment{
 		
 		if(appIsLocked(user)){
 			// TODO: Open fragment to show user details. 
+			loadFragment(this.getStartFragment(getContext()), false);
 		}
 		
 		name.setText(user.fornamn+" "+user.efternamn);
