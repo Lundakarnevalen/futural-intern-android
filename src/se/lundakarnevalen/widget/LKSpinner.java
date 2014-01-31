@@ -24,7 +24,7 @@ public class LKSpinner extends Spinner{
 	}
 	
 	private void init(){
-		this.setBackgroundResource(R.drawable.spinner_background);
+		this.setBackgroundResource(R.drawable.spinner_bg_arrow);
 		this.setPadding(30, 30, 30, 30);
 	}
 }

@@ -6,22 +6,14 @@
     android:paddingRight="@dimen/horizontal_margin"
     android:paddingTop="@dimen/vertical_margin_half"
     android:paddingBottom="@dimen/vertical_margin_half">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/register_here"
-        android:id="@+id/register_here"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="@dimen/horizontal_margin"/>
     <ImageView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/robot_sad_framed"
-        android:layout_below="@id/register_here"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/sad_robot"
-        android:layout_marginTop="@dimen/vertical_margin_half"/>
+        android:layout_marginTop="@dimen/vertical_margin"/>
     <ImageView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
