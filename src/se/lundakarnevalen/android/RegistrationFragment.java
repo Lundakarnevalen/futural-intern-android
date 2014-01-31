@@ -392,7 +392,7 @@ public class RegistrationFragment extends LKFragment{
 			public void onResult(String result) {
 				if(result == null){
 					Log.e(LOG_TAG, "error - null response");
-					showPopup(getContext().getString(R.string.error), getContext().getString(R.string.fail));
+					showPopup(getContext().getString(R.string.fail), getContext().getString(R.string.error));
 					return;
 				}
 				Gson gson = new Gson();
@@ -417,7 +417,7 @@ public class RegistrationFragment extends LKFragment{
 			public void onResult(String result) {
 				if(result == null){
 					Log.e(LOG_TAG, "error - null response");
-					showPopup(getContext().getString(R.string.error), getContext().getString(R.string.fail));
+					showPopup(getContext().getString(R.string.fail), getContext().getString(R.string.error));
 					return;
 				}
 				Log.d(LOG_TAG, result);
