@@ -44,7 +44,9 @@ public class RegistrationFragment extends LKFragment{
 	private LKTextView progressvalue;
 	private LKButton confirmButton, appendButton;
 	private LKSpinner nationsSpinner, shirtSpinner, driverLicensSpinner, sexSpinner;
-	private ArrayList<String> sektioner;
+	private ArrayList<Integer> sektioner;
+	private ArrayList<Integer> intressen;
+
 	
 	// Wrappers
 	private LinearLayout wrapperPers, wrapperCode, wrapperLK;
@@ -229,9 +231,15 @@ public class RegistrationFragment extends LKFragment{
 	private boolean isEditTextOfThisLenght(LKEditText et, int size){
 		return et.getText().toString().length() == size;
 	}
+	private boolean isEditTextLongerThanThisLength(LKEditText et, int size){
+		return et.getText().toString().length() > size;
+	}
 	
 	private boolean sectionChosen(){
-		return sektioner!=null;
+		return sektioner!=null && sektioner.size()>=5;
+	}
+	private boolean intressenChosen(){
+		return intressen!=null && intressen.size()>=3;
 	}
 	
 	private void updateProgressBar() {
@@ -243,9 +251,9 @@ public class RegistrationFragment extends LKFragment{
 			progresslevel += 5;
 		if(isEditTextOfThisLenght(personnumber,10))
 			progresslevel += 5;
-		if(isEditTextOfThisLenght(mobilnbr,10))
+		if(isEditTextLongerThanThisLength(mobilnbr,4))
 			progresslevel += 5;
-		if(validEmail(email.getText().toString(), validemail.getText().toString()))
+		if(validEmail(email.getText().toString()) && equalEmail(email.getText().toString(), validemail.getText().toString()))
 			progresslevel += 5;
 		if(isEditTextFilled(adress))
 			progresslevel += 5;
@@ -253,9 +261,14 @@ public class RegistrationFragment extends LKFragment{
 			progresslevel += 5;
 		if(isEditTextFilled(city))
 			progresslevel += 5;
+		if(sectionChosen())
+			progresslevel += 5;
+		if(intressenChosen())
+			progresslevel += 5;
 		if(progresslevel == 0) {
 			progresslevel++;
 		}
+		
 		progressbar.setProgress(progresslevel);
 		progressvalue.setText("" + progresslevel + " %");
 	}
@@ -265,9 +278,64 @@ public class RegistrationFragment extends LKFragment{
 	 * @return if the form is filled out correctly.
 	 */
 	private boolean validateForm(){
+		return validateFormArray().size() == 0;
+	}
+	
+	private ArrayList<String> validateFormArray(){
 		Log.d(LOG_TAG, "validate form");
-		updateProgressBar();
-		return progresslevel == 40;
+		ArrayList<String> Wrongs = new ArrayList<String>();
+		switch(registrationStep){
+		case 0:
+			if(!isEditTextFilled(name))
+				Wrongs.add("Inget fšrnamn ifyllt");
+			if(!isEditTextFilled(lastname))
+				Wrongs.add("Inget efternamn ifyllt");
+			if(!isEditTextOfThisLenght(personnumber,10))
+				Wrongs.add("Personnummer Šr ej korrekt ifyllt");
+			if(!isEditTextLongerThanThisLength(mobilnbr,4))
+				Wrongs.add("Inget giltigt mobilnummer Šr ifyllt");
+			if(!validEmail(email.getText().toString()))
+				Wrongs.add("MailAdressen har ett ogiltigt format");
+			if(!equalEmail(email.getText().toString(), validemail.getText().toString()))
+				Wrongs.add("Mailadresserna Šr inte lika.");
+			if(!isEditTextFilled(adress))
+				Wrongs.add("Ingen adress Šr ifylld");
+			if(!isEditTextOfThisLenght(zipcode,5))
+				Wrongs.add("Inget postnummer Šr ifyllt");
+			if(!isEditTextFilled(city))
+				Wrongs.add("Ingen stad Šr ifylld");
+			break;
+		case 2:
+			if(!sectionChosen())
+				Wrongs.add("Du mŒste vŠlja minst 5 sektioner");
+			if(!intressenChosen())
+				Wrongs.add("Du mŒste vŠlja minst 3 intressen");
+			break;
+		case 3:
+			if(!isEditTextFilled(name))
+				Wrongs.add("Inget fšrnamn ifyllt");
+			if(!isEditTextFilled(lastname))
+				Wrongs.add("Inget efternamn ifyllt");
+			if(!isEditTextOfThisLenght(personnumber,10))
+				Wrongs.add("Personnummer Šr ej korrekt ifyllt");
+			if(!isEditTextLongerThanThisLength(mobilnbr,4))
+				Wrongs.add("Inget giltigt mobilnummer Šr ifyllt");
+			if(!validEmail(email.getText().toString()))
+				Wrongs.add("MailAdressen har ett ogiltigt format");
+			if(!equalEmail(email.getText().toString(), validemail.getText().toString()))
+				Wrongs.add("Mailadresserna Šr inte lika.");
+			if(!isEditTextFilled(adress))
+				Wrongs.add("Ingen adress Šr ifylld");
+			if(!isEditTextOfThisLenght(zipcode,5))
+				Wrongs.add("Inget postnummer Šr ifyllt");
+			if(!isEditTextFilled(city))
+				Wrongs.add("Ingen stad Šr ifylld");
+			if(!sectionChosen())
+				Wrongs.add("Du mŒste vŠlja minst 5 sektioner");
+			if(!intressenChosen())
+				Wrongs.add("Du mŒste vŠlja minst 3 intressen");
+		}
+		return Wrongs;
 	}
 
 	
@@ -377,7 +445,6 @@ public class RegistrationFragment extends LKFragment{
 				registrationStep++;
 				storeRegistrationStep();
 				postNewUser(user);
-				// Post data
 				break;
 			case 3:
 				populateUserWithData(user);
@@ -470,8 +537,8 @@ public class RegistrationFragment extends LKFragment{
 			user.storlek = shirtSize;
 			user.terminer = Integer.parseInt(terms.getText().toString());
 			user.korkort = driverLicens;
-			user.snallaIntresse = nation;
-			user.snallaSektion = nation;
+			//user.snallaIntresse = nation;
+			//user.snallaSektion = nation;
 		}
 	}
 	
@@ -480,177 +547,354 @@ public class RegistrationFragment extends LKFragment{
 	 * @param email The address to validate
 	 * @return True if it is valid. 
 	 */
-	private boolean validEmail(String email, String confirmemail){
-		boolean equaladress = email.equals(confirmemail);
+	private boolean equalEmail(String email1, String email2) {
+		return email1.equals(email2);
+	}
+	private boolean validEmail(String email){
 		String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(email);
-		return matcher.matches() && equaladress;
+		return matcher.matches();
 	}
 	
 	@Override
-	public void onCheckBoxClicked(View view) {
+	public void onIntrestsCheckBoxClicked(View view) {
+		boolean checked = ((CheckBox) view).isChecked();
+	    if(intressen == null)
+	    	intressen = new ArrayList<Integer>();
+		switch (view.getId()) {
+		case R.id.dd_0:
+			if (checked)
+				intressen.add(0);
+			else 
+				intressen.remove(0);
+			break;
+		case R.id.dd_1:
+			if (checked)
+				intressen.add(1);
+			else 
+				intressen.remove(1);
+			break;
+		case R.id.dd_2:
+			if (checked)
+				intressen.add(2);
+			else 
+				intressen.remove(2);
+			break;
+		case R.id.dd_3:
+			if (checked)
+				intressen.add(3);
+			else 
+				intressen.remove(3);
+			break;
+		case R.id.dd_4:
+			if (checked)
+				intressen.add(4);
+			else 
+				intressen.remove(4);
+			break;
+		case R.id.dd_5:
+			if (checked)
+				intressen.add(5);
+			else 
+				intressen.remove(5);
+			break;
+		case R.id.dd_6:
+			if (checked)
+				intressen.add(6);
+			else 
+				intressen.remove(6);
+			break;
+		case R.id.dd_7:
+			if (checked)
+				intressen.add(7);
+			else 
+				intressen.remove(7);
+			break;
+		case R.id.dd_8:
+			if (checked)
+				intressen.add(8);
+			else 
+				intressen.remove(8);
+			break;
+		case R.id.dd_9:
+			if (checked)
+				intressen.add(9);
+			else 
+				intressen.remove(9);
+			break;
+		case R.id.dd_10:
+			if (checked)
+				intressen.add(10);
+			else 
+				intressen.remove(10);
+			break;
+		case R.id.dd_11:
+			if (checked)
+				intressen.add(11);
+			else 
+				intressen.remove(11);
+			break;
+		case R.id.dd_12:
+			if (checked)
+				intressen.add(12);
+			else 
+				intressen.remove(12);
+			break;
+		case R.id.dd_13:
+			if (checked)
+				intressen.add(13);
+			else 
+				intressen.remove(13);
+			break;
+		case R.id.dd_14:
+			if (checked)
+				intressen.add(14);
+			else 
+				intressen.remove(14);
+			break;
+		case R.id.dd_15:
+			if (checked)
+				intressen.add(15);
+			else 
+				intressen.remove(15);
+			break;
+			
+		}
+		if(intressen.size() == 0) 
+			intressen = null;
+		updateProgressBar();
+	}
+	
+	@Override
+	public void onSectionCheckBoxClicked(View view) {
 	    boolean checked = ((CheckBox) view).isChecked();
 	    if(sektioner == null)
-	    	sektioner = new ArrayList<String>();
-		/*switch (view.getId()) {
-		case R.id.checkbox_barnevalen:
+	    	sektioner = new ArrayList<Integer>();
+		switch (view.getId()) {
+		case R.id.checkbox_0:
 			if (checked)
-				sektioner.add("Barnevalen");
+				sektioner.add(0);
 			else 
-				sektioner.remove("Barnevalen");
+				sektioner.remove(0);
 			break;
-		case R.id.checkbox_biljetteriet:
+		case R.id.checkbox_1:
+			if (checked)
+				sektioner.add(1);
+			else 
+				sektioner.remove(1);
+			break;
+		case R.id.checkbox_2:
 			if (checked) 
-				sektioner.add("Biljetteriet");
+				sektioner.add(2);
 			else
-				sektioner.remove("Biljetteriet");
+				sektioner.remove(2);
 			break;
-		case R.id.checkbox_bladderiet:
+		case R.id.checkbox_3:
 			if (checked) 
-				sektioner.add("Blï¿½dderiet");
+				sektioner.add(3);
 			else
-				sektioner.remove("Blï¿½dderiet");
+				sektioner.remove(3);
 			break;
-		case R.id.checkbox_cirkusen:
+		case R.id.checkbox_4:
 			if (checked) 
-				sektioner.add("Cirkusen");
+				sektioner.add(4);
 			else				
-				sektioner.remove("Cirkusen");
+				sektioner.remove(4);
 			break;
-		case R.id.checkbox_dansen:
+		case R.id.checkbox_5:
 			if (checked) 
-				sektioner.add("Dansen");
+				sektioner.add(5);
 			else
-				sektioner.remove("Dansen");
+				sektioner.remove(5);
 			break;
-		case R.id.checkbox_ekonomi:
+		case R.id.checkbox_6:
 			if (checked) 
-				sektioner.add("Ekonomi");
+				sektioner.add(6);
 			else
-				sektioner.remove("Ekonomi");
+				sektioner.remove(6);
 			break;
-		case R.id.checkbox_fabriken:
+		case R.id.checkbox_7:
 			if (checked) 
-				sektioner.add("Fabriken");
+				sektioner.add(7);
 			else
-				sektioner.remove("Fabriken");
+				sektioner.remove(7);
 			break;
-		case R.id.checkbox_festmasteriet:
+		case R.id.checkbox_8:
 			if (checked) 
-				sektioner.add("Festmï¿½steriet");
+				sektioner.add(8);
 			else
-				sektioner.remove("Festmï¿½steriet");
+				sektioner.remove(8);
 			break;
-		case R.id.checkbox_filmen:
+		case R.id.checkbox_9:
 			if (checked) 
-				sektioner.add("Filmen");
+				sektioner.add(9);
 			else
-				sektioner.remove("Filmen");
+				sektioner.remove(9);
 			break;
-		case R.id.checkbox_kabare:
+		case R.id.checkbox_10:
 			if (checked) 
-				sektioner.add("Kabarï¿½");
+				sektioner.add(10);
 			else
-				sektioner.remove("Kabarï¿½");
+				sektioner.remove(10);
 			break;
-		case R.id.checkbox_klipperiet:
+		case R.id.checkbox_11:
 			if (checked) 
-				sektioner.add("Klipperiet");
+				sektioner.add(11);
 			else
-				sektioner.remove("Klipperiet");
+				sektioner.remove(11);
 			break;
-		case R.id.checkbox_kommunikation:
+		case R.id.checkbox_12:
 			if (checked) 
-				sektioner.add("Kommunikation");
+				sektioner.add(12);
 			else
-				sektioner.remove("Kommunikation");
+				sektioner.remove(12);
 			break;
-		case R.id.checkbox_krogarna:
+		case R.id.checkbox_13:
 			if (checked) 
-				sektioner.add("Krogarna");
+				sektioner.add(13);
 			else
-				sektioner.remove("Krogarna");
+				sektioner.remove(13);
 			break;
-		case R.id.checkbox_omradet:
+		case R.id.checkbox_14:
 			if (checked) 
-				sektioner.add("Omrï¿½det");
+				sektioner.add(14);
 			else
-				sektioner.remove("Omrï¿½det");
+				sektioner.remove(14);
 			break;
-		case R.id.checkbox_musiken:
+		case R.id.checkbox_15:
 			if (checked) 
-				sektioner.add("Musiken");
+				sektioner.add(15);
 			else
-				sektioner.remove("Musiken");
+				sektioner.remove(15);
 			break;
-		case R.id.checkbox_nojessektionen:
+		case R.id.checkbox_16:
 			if (checked) 
-				sektioner.add("Nï¿½jessektionen");
+				sektioner.add(16);
 			else
-				sektioner.remove("Nï¿½jessektionen");
+				sektioner.remove(16);
 			break;
-		case R.id.checkbox_radion:
+		case R.id.checkbox_17:
 			if (checked) 
-				sektioner.add("Radion");
+				sektioner.add(17);
 			else
-				sektioner.remove("Radion");
+				sektioner.remove(17);
 			break;
-		case R.id.checkbox_revyn:
+		case R.id.checkbox_18:
 			if (checked) 
-				sektioner.add("Revyn");
+				sektioner.add(18);
 			else
-				sektioner.remove("Revyn");
+				sektioner.remove(18);
 			break;
-		case R.id.checkbox_shoppen:
+		case R.id.checkbox_19:
 			if (checked) 
-				sektioner.add("Shoppen");
+				sektioner.add(19);
 			else
-				sektioner.remove("Shoppen");
+				sektioner.remove(19);
 			break;
-		case R.id.checkbox_showen:
+		case R.id.checkbox_20:
 			if (checked) 
-				sektioner.add("Showen");
+				sektioner.add(20);
 			else
-				sektioner.remove("Showen");
+				sektioner.remove(20);
 			break;
-		case R.id.checkbox_snaxeriet:
+		case R.id.checkbox_21:
 			if (checked) 
-				sektioner.add("Snaxeriet");
+				sektioner.add(21);
 			else
-				sektioner.remove("Snaxeriet");
+				sektioner.remove(21);
 			break;
-		case R.id.checkbox_sakerhet:
+		case R.id.checkbox_22:
 			if (checked) 
-				sektioner.add("Sï¿½kerhet");
+				sektioner.add(22);
 			else
-				sektioner.remove("Sï¿½kerhet");
+				sektioner.remove(22);
 			break;
-		case R.id.checkbox_tombola:
+		case R.id.checkbox_23:
 			if (checked) 
-				sektioner.add("Tombola");
+				sektioner.add(23);
 			else
-				sektioner.remove("Tombola");
+				sektioner.remove(23);
 			break;
-		case R.id.checkbox_taget:
+		case R.id.checkbox_24:
 			if (checked) 
-				sektioner.add("Tï¿½get");
+				sektioner.add(24);
 			else
-				sektioner.remove("Tï¿½get");
+				sektioner.remove(24);
 			break;
-		case R.id.checkbox_taltnojen:
+		case R.id.checkbox_25:
 			if (checked) 
-				sektioner.add("Tï¿½ltnï¿½jen");
+				sektioner.add(25);
 			else
-				sektioner.remove("Tï¿½ltnï¿½jen");
+				sektioner.remove(25);
 			break;
-		case R.id.checkbox_vieriet:
+		case R.id.checkbox_26:
 			if (checked) 
-				sektioner.add("Vieriet");
+				sektioner.add(26);
 			else
-				sektioner.remove("Vieriet");
+				sektioner.remove(26);
 			break;
-		} */
+		case R.id.checkbox_100:
+			if (checked) 
+				sektioner.add(100);
+			else
+				sektioner.remove(100);
+			break;
+		case R.id.checkbox_101:
+			if (checked) 
+				sektioner.add(101);
+			else
+				sektioner.remove(101);
+			break;
+		case R.id.checkbox_102:
+			if (checked) 
+				sektioner.add(102);
+			else
+				sektioner.remove(102);
+			break;
+		case R.id.checkbox_202:
+			if (checked) 
+				sektioner.add(202);
+			else
+				sektioner.remove(202);
+			break;
+		case R.id.checkbox_203:
+			if (checked) 
+				sektioner.add(203);
+			else
+				sektioner.remove(203);
+			break;
+		case R.id.checkbox_204:
+			if (checked) 
+				sektioner.add(204);
+			else
+				sektioner.remove(204);
+			break;
+		case R.id.checkbox_300:
+			if (checked) 
+				sektioner.add(300);
+			else
+				sektioner.remove(300);
+			break;
+		case R.id.checkbox_399:
+			if (checked) 
+				sektioner.add(399);
+			else
+				sektioner.remove(399);
+			break;
+		case R.id.checkbox_400:
+			if (checked) 
+				sektioner.add(400);
+			else
+				sektioner.remove(400);
+			break;
+		case R.id.checkbox_499:
+			if (checked) 
+				sektioner.add(499);
+			else
+				sektioner.remove(499);
+			break;
+		}
 		if(sektioner.size() == 0) 
 			sektioner = null;
 		updateProgressBar();

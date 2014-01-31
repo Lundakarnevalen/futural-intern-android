@@ -181,6 +181,20 @@ public class LKFragment extends Fragment{
 	 */
 	public void onCheckBoxClicked(View view) {
 		
+	}	
+	/**
+	 * Handles checkboxes for sections in the fragment
+	 * @param view checkbox view
+	 */
+	public void onSectionCheckBoxClicked(View view) {
+		
+	}
+	/**
+	 * Handles checkboxes for intrests in the fragment
+	 * @param view checkbox view
+	 */
+	public void onIntrestsCheckBoxClicked(View view) {
+		
 	}
 	
 	
