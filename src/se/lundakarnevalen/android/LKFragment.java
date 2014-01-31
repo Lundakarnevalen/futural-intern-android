@@ -172,7 +172,7 @@ public class LKFragment extends Fragment{
 	 * Handles radiobuttons in the fragment
 	 * @param view radio button view
 	 */
-	public void onRadioButtonClicked(View view) {
+	public void onIntrestsRadioButtonClicked(View view) {
 		
 	}
 	/**

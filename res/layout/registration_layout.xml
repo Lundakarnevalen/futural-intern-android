@@ -96,6 +96,7 @@
 	    <!-- Koddelen - Slut -->
 	    
 	    <!-- Karnevalsuppgifter -->
+	     
 	    <LinearLayout
 	        android:layout_width="fill_parent"	        
 	        android:layout_height="wrap_content"
@@ -115,135 +116,326 @@
 		        android:layout_width="match_parent"
 	        	android:layout_height="wrap_content"
 	        	android:orientation="vertical">
-	    	    <CheckBox android:id="@+id/dd_0"
-					android:layout_marginTop="@dimen/vertical_margin"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/dd_0"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onIntrestsCheckBoxClicked"/>
-	    	    <CheckBox android:id="@+id/dd_1"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/dd_1"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onIntrestsCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/dd_2"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/dd_2"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onIntrestsCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/dd_3"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/dd_3"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onIntrestsCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/dd_4"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/dd_4"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onIntrestsCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/dd_5"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/dd_5"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onIntrestsCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/dd_6"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/dd_6"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onIntrestsCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/dd_7"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/dd_7"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onIntrestsCheckBoxClicked"/>
-       			<CheckBox android:id="@+id/dd_8"
-            		android:layout_width="wrap_content"
-       				android:layout_height="wrap_content"
-       				android:button="@drawable/checkbox_bg"
-       				android:padding="5dp"
-       				android:text="@string/dd_8"
-       				android:textColor="#FFFFFF"
-       				android:onClick="onIntrestsCheckBoxClicked"/>
-       			<CheckBox android:id="@+id/dd_9"
-            		android:layout_width="wrap_content"
-       				android:layout_height="wrap_content"
-       				android:button="@drawable/checkbox_bg"
-       				android:padding="5dp"
-       				android:text="@string/dd_9"
-       				android:textColor="#FFFFFF"
-       				android:onClick="onIntrestsCheckBoxClicked"/> 
-       			<CheckBox android:id="@+id/dd_10"
-            		android:layout_width="wrap_content"
-       				android:layout_height="wrap_content"
-       				android:button="@drawable/checkbox_bg"
-       				android:padding="5dp"
-       				android:text="@string/dd_10"
-       				android:textColor="#FFFFFF"
-       				android:onClick="onIntrestsCheckBoxClicked"/> 
-       			<CheckBox android:id="@+id/dd_11"
-            		android:layout_width="wrap_content"
-       				android:layout_height="wrap_content"
-       				android:button="@drawable/checkbox_bg"
-       				android:padding="5dp"
-       				android:text="@string/dd_11"
-       				android:textColor="#FFFFFF"
-       				android:onClick="onIntrestsCheckBoxClicked"/>
-       			<CheckBox android:id="@+id/dd_12"
-            		android:layout_width="wrap_content"
-       				android:layout_height="wrap_content"
-       				android:button="@drawable/checkbox_bg"
-       				android:padding="5dp"
-       				android:text="@string/dd_12"
-       				android:textColor="#FFFFFF"
-       				android:onClick="onIntrestsCheckBoxClicked"/> 
-       			<CheckBox android:id="@+id/dd_13"
-            		android:layout_width="wrap_content"
-       				android:layout_height="wrap_content"
-       				android:button="@drawable/checkbox_bg"
-       				android:padding="5dp"
-       				android:text="@string/dd_13"
-       				android:textColor="#FFFFFF"
-       				android:onClick="onIntrestsCheckBoxClicked"/> 
-       			<CheckBox android:id="@+id/dd_14"
-            		android:layout_width="wrap_content"
-       				android:layout_height="wrap_content"
-       				android:button="@drawable/checkbox_bg"
-       				android:padding="5dp"
-       				android:text="@string/dd_14"
-       				android:textColor="#FFFFFF"
-       				android:onClick="onIntrestsCheckBoxClicked"/>
-       			<CheckBox android:id="@+id/dd_15"
-            		android:layout_width="wrap_content"
-       				android:layout_height="wrap_content"
-       				android:button="@drawable/checkbox_bg"
-       				android:padding="5dp"
-       				android:text="@string/dd_15"
-       				android:textColor="#FFFFFF"
-       				android:onClick="onIntrestsCheckBoxClicked"/> 
+	        	<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_0" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_0"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"            			
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_0"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_0"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+	    	    <LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_1" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_1"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_1"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_1"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+        		<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_2" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_2"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_2"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_2"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+        		<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_3" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_3"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_3"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_3"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_4" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_4"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_4"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_4"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_5" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_5"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_5"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_5"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_6" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_6"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_6"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_6"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_7" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_7"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_7"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_7"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_8" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_8"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_8"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_8"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_9" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_9"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_9"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_9"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_10" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_10"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_10"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_10"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_11" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_11"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_11"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_11"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_12" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_12"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_12"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_12"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_13" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_13"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_13"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_13"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"        				
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_14" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_14"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_14"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_14"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_15" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_15"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_15"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_15"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
 			</LinearLayout>
 			
 		    <se.lundakarnevalen.widget.LKTextViewBold
@@ -255,309 +447,754 @@
 		        android:textColor="#FFFFFF"
 		        android:text="@string/registration_choosesection" />	    
 		    
-		    <LinearLayout
-		       	android:layout_marginTop="@dimen/vertical_margin"
-		        android:id="@+id/sektionwrapper"
+		    
+		    <RadioGroup
+		        android:id="@+id/sectionwrapper"
 		        android:layout_width="match_parent"
 	        	android:layout_height="wrap_content"
 	        	android:orientation="vertical">
-		    	<CheckBox android:id="@+id/checkbox_0"
-		            android:layout_width="wrap_content"
+	        	<LinearLayout
+	        	    android:layout_width="fill_parent"	        
 	        		android:layout_height="wrap_content"
-	        		android:button="@drawable/checkbox_bg"
-	       			android:padding="5dp"
-	       			android:text="@string/sektion_0"
-	       			android:textColor="#FFFFFF"
-	       			android:onClick="onSectionCheckBoxClicked"/>
-	    	    <CheckBox android:id="@+id/checkbox_1"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_1"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    	    <CheckBox android:id="@+id/checkbox_2"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_2"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_3"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_3"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_4"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_4"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_5"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:text="@string/sektion_5"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_6"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_6"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_7"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_7"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_8"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_8"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_9"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_9"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_10"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_10"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_11"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_11"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onCheckBoxClicked"/> 
-        		<CheckBox android:id="@+id/checkbox_12"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_12"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_13"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_13"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_14"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_14"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_15"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_15"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_16"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_16"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    	    <CheckBox android:id="@+id/checkbox_17"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_17"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_18"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_18"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_19"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_19"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_20"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_20"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_21"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_21"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_22"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_22"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_23"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_23"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_24"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_24"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_25"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_25"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_26"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_26"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-        		<CheckBox android:id="@+id/checkbox_100"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_100"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_101"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_101"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_102"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_102"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_202"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_202"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_203"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_203"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_204"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_204"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_300"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_300"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_399"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_399"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_400"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_400"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-	    		<CheckBox android:id="@+id/checkbox_499"
-	            	android:layout_width="wrap_content"
-        			android:layout_height="wrap_content"
-        			android:button="@drawable/checkbox_bg"
-        			android:padding="5dp"
-        			android:text="@string/sektion_499"
-        			android:textColor="#FFFFFF"
-        			android:onClick="onSectionCheckBoxClicked"/>
-		    </LinearLayout>
+	        		android:id="@+id/wrapper_section_0" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_0"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_0"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_0"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_1" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_1"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_1"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_1"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_2" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_2"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_2"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_2"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_3" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_3"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_3"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_3"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_4" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_4"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_4"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_4"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_5" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_5"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_5"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_5"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_6" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_6"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_6"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_6"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_7" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_7"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_7"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_7"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_8" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_8"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_8"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_8"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_9" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_9"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_9"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_9"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_10" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_10"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_10"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_10"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_11" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_11"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_11"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_11"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_12" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_12"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_12"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_12"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_13" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_13"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_13"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_13"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_14" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_14"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_14"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_14"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_15" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_15"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_15"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_15"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_16" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_16"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_16"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_16"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_17" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_17"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_17"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_17"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_18" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_18"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_18"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_18"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_19" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_19"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_19"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_19"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_20" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_20"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_20"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_20"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_21" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_21"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_21"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_21"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_22" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_22"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_22"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_22"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_23" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_23"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_23"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_23"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_24" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_24"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_24"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_24"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_25" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_25"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_25"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_25"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_26" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_26"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_26"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_26"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_100" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_100"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_100"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_100"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_101" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_101"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_101"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_101"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_102" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_102"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_102"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_102"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_202" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_202"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_202"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_202"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_203" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_203"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_203"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_203"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_204" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_204"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_204"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_204"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_300" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_300"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_300"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_300"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_399" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_399"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_399"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_399"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_400" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_400"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_400"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_400"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_499" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_499"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_499"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_499"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+		    </RadioGroup>
 		    
 			<se.lundakarnevalen.widget.LKTextViewBold
 	        	android:layout_marginTop="@dimen/vertical_margin"

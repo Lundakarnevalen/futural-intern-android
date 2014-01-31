@@ -1,4 +1,5 @@
 package se.lundakarnevalen.android;
+import se.lundakarnevalen.widget.LKRadioGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
@@ -38,7 +40,7 @@ import com.google.gson.Gson;
 
 public class RegistrationFragment extends LKFragment{
 	private int registrationStep = 0; // 0 = personuppgifter, 1 = kod, 2 = karnevalsuppgifter, 3 = redigera (visa allt förutom koden). 
-	private int progresslevel;
+	private int progresslevel, starintresse, starsektion;
 	private LKEditText code, name, lastname, email, validemail, mobilnbr, adress, zipcode, city, personnumber, foodpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt, terms;
 	private LKProgressBar progressbar;
 	private LKTextView progressvalue;
@@ -46,6 +48,9 @@ public class RegistrationFragment extends LKFragment{
 	private LKSpinner nationsSpinner, shirtSpinner, driverLicensSpinner, sexSpinner;
 	private ArrayList<Integer> sektioner;
 	private ArrayList<Integer> intressen;
+	private boolean[] sektionerchecked = new boolean[500];
+	private boolean[] intressenchecked = new boolean[16];
+	
 
 	
 	// Wrappers
@@ -110,6 +115,21 @@ public class RegistrationFragment extends LKFragment{
 		wrapperLK = (LinearLayout) root.findViewById(R.id.wrapper_lk);
 		code = (LKEditText) root.findViewById(R.id.continue_code);
 		code.setOnEditorActionListener(sendEditorChangeListener);
+		LKRadioGroup rgsec = new LKRadioGroup(root, R.id.radio_section_0, R.id.radio_section_1, 
+				R.id.radio_section_2, R.id.radio_section_3, R.id.radio_section_4, R.id.radio_section_5, 
+				R.id.radio_section_6, R.id.radio_section_7, R.id.radio_section_8, R.id.radio_section_9, 
+				R.id.radio_section_10, R.id.radio_section_11, R.id.radio_section_12, R.id.radio_section_13, 
+				R.id.radio_section_14, R.id.radio_section_15, R.id.radio_section_16, R.id.radio_section_17, 
+				R.id.radio_section_18, R.id.radio_section_19, R.id.radio_section_20, R.id.radio_section_21, 
+				R.id.radio_section_22, R.id.radio_section_23, R.id.radio_section_24, R.id.radio_section_25, 
+				R.id.radio_section_26, R.id.radio_section_100, R.id.radio_section_101, R.id.radio_section_102, 
+				R.id.radio_section_202, R.id.radio_section_203, R.id.radio_section_204, R.id.radio_section_300, 
+				R.id.radio_section_399, R.id.radio_section_400, R.id.radio_section_499);
+		LKRadioGroup rgint = new LKRadioGroup(root, R.id.radio_dd_0, R.id.radio_dd_1, 
+				R.id.radio_dd_2, R.id.radio_dd_3, R.id.radio_dd_4, R.id.radio_dd_5, 
+				R.id.radio_dd_6, R.id.radio_dd_7, R.id.radio_dd_8, R.id.radio_dd_9, 
+				R.id.radio_dd_10, R.id.radio_dd_11, R.id.radio_dd_12, R.id.radio_dd_13, 
+				R.id.radio_dd_14, R.id.radio_dd_15);
 		// Set correct views.
 		updateLayout();
 		return root;
@@ -560,343 +580,176 @@ public class RegistrationFragment extends LKFragment{
 	@Override
 	public void onIntrestsCheckBoxClicked(View view) {
 		boolean checked = ((CheckBox) view).isChecked();
-	    if(intressen == null)
-	    	intressen = new ArrayList<Integer>();
 		switch (view.getId()) {
-		case R.id.dd_0:
-			if (checked)
-				intressen.add(0);
-			else 
-				intressen.remove(0);
-			break;
-		case R.id.dd_1:
-			if (checked)
-				intressen.add(1);
-			else 
-				intressen.remove(1);
-			break;
-		case R.id.dd_2:
-			if (checked)
-				intressen.add(2);
-			else 
-				intressen.remove(2);
-			break;
-		case R.id.dd_3:
-			if (checked)
-				intressen.add(3);
-			else 
-				intressen.remove(3);
-			break;
-		case R.id.dd_4:
-			if (checked)
-				intressen.add(4);
-			else 
-				intressen.remove(4);
-			break;
-		case R.id.dd_5:
-			if (checked)
-				intressen.add(5);
-			else 
-				intressen.remove(5);
-			break;
-		case R.id.dd_6:
-			if (checked)
-				intressen.add(6);
-			else 
-				intressen.remove(6);
-			break;
-		case R.id.dd_7:
-			if (checked)
-				intressen.add(7);
-			else 
-				intressen.remove(7);
-			break;
-		case R.id.dd_8:
-			if (checked)
-				intressen.add(8);
-			else 
-				intressen.remove(8);
-			break;
-		case R.id.dd_9:
-			if (checked)
-				intressen.add(9);
-			else 
-				intressen.remove(9);
-			break;
-		case R.id.dd_10:
-			if (checked)
-				intressen.add(10);
-			else 
-				intressen.remove(10);
-			break;
-		case R.id.dd_11:
-			if (checked)
-				intressen.add(11);
-			else 
-				intressen.remove(11);
-			break;
-		case R.id.dd_12:
-			if (checked)
-				intressen.add(12);
-			else 
-				intressen.remove(12);
-			break;
-		case R.id.dd_13:
-			if (checked)
-				intressen.add(13);
-			else 
-				intressen.remove(13);
-			break;
-		case R.id.dd_14:
-			if (checked)
-				intressen.add(14);
-			else 
-				intressen.remove(14);
-			break;
-		case R.id.dd_15:
-			if (checked)
-				intressen.add(15);
-			else 
-				intressen.remove(15);
-			break;
-			
+			case R.id.dd_0:
+				intressenchecked[0] = checked;
+				break;
+			case R.id.dd_1:
+				intressenchecked[1] = checked;
+				break;
+			case R.id.dd_2:
+				intressenchecked[2] = checked;
+				break;
+			case R.id.dd_3:
+				intressenchecked[3] = checked;
+				break;
+			case R.id.dd_4:
+				intressenchecked[4] = checked;
+				break;
+			case R.id.dd_5:
+				intressenchecked[5] = checked;
+				break;
+			case R.id.dd_6:
+				intressenchecked[6] = checked;
+				break;
+			case R.id.dd_7:
+				intressenchecked[7] = checked;
+				break;
+			case R.id.dd_8:
+				intressenchecked[8] = checked;
+				break;
+			case R.id.dd_9:
+				intressenchecked[9] = checked;
+				break;
+			case R.id.dd_10:
+				intressenchecked[10] = checked;
+				break;
+			case R.id.dd_11:
+				intressenchecked[11] = checked;
+				break;
+			case R.id.dd_12:
+				intressenchecked[12] = checked;
+				break;
+			case R.id.dd_13:
+				intressenchecked[13] = checked;
+				break;
+			case R.id.dd_14:
+				intressenchecked[14] = checked;
+				break;
+			case R.id.dd_15:
+				intressenchecked[15] = checked;
+				break;	
 		}
-		if(intressen.size() == 0) 
-			intressen = null;
 		updateProgressBar();
 	}
-	
 	@Override
 	public void onSectionCheckBoxClicked(View view) {
 	    boolean checked = ((CheckBox) view).isChecked();
-	    if(sektioner == null)
-	    	sektioner = new ArrayList<Integer>();
 		switch (view.getId()) {
-		case R.id.checkbox_0:
-			if (checked)
-				sektioner.add(0);
-			else 
-				sektioner.remove(0);
-			break;
-		case R.id.checkbox_1:
-			if (checked)
-				sektioner.add(1);
-			else 
-				sektioner.remove(1);
-			break;
-		case R.id.checkbox_2:
-			if (checked) 
-				sektioner.add(2);
-			else
-				sektioner.remove(2);
-			break;
-		case R.id.checkbox_3:
-			if (checked) 
-				sektioner.add(3);
-			else
-				sektioner.remove(3);
-			break;
-		case R.id.checkbox_4:
-			if (checked) 
-				sektioner.add(4);
-			else				
-				sektioner.remove(4);
-			break;
-		case R.id.checkbox_5:
-			if (checked) 
-				sektioner.add(5);
-			else
-				sektioner.remove(5);
-			break;
-		case R.id.checkbox_6:
-			if (checked) 
-				sektioner.add(6);
-			else
-				sektioner.remove(6);
-			break;
-		case R.id.checkbox_7:
-			if (checked) 
-				sektioner.add(7);
-			else
-				sektioner.remove(7);
-			break;
-		case R.id.checkbox_8:
-			if (checked) 
-				sektioner.add(8);
-			else
-				sektioner.remove(8);
-			break;
-		case R.id.checkbox_9:
-			if (checked) 
-				sektioner.add(9);
-			else
-				sektioner.remove(9);
-			break;
-		case R.id.checkbox_10:
-			if (checked) 
-				sektioner.add(10);
-			else
-				sektioner.remove(10);
-			break;
-		case R.id.checkbox_11:
-			if (checked) 
-				sektioner.add(11);
-			else
-				sektioner.remove(11);
-			break;
-		case R.id.checkbox_12:
-			if (checked) 
-				sektioner.add(12);
-			else
-				sektioner.remove(12);
-			break;
-		case R.id.checkbox_13:
-			if (checked) 
-				sektioner.add(13);
-			else
-				sektioner.remove(13);
-			break;
-		case R.id.checkbox_14:
-			if (checked) 
-				sektioner.add(14);
-			else
-				sektioner.remove(14);
-			break;
-		case R.id.checkbox_15:
-			if (checked) 
-				sektioner.add(15);
-			else
-				sektioner.remove(15);
-			break;
-		case R.id.checkbox_16:
-			if (checked) 
-				sektioner.add(16);
-			else
-				sektioner.remove(16);
-			break;
-		case R.id.checkbox_17:
-			if (checked) 
-				sektioner.add(17);
-			else
-				sektioner.remove(17);
-			break;
-		case R.id.checkbox_18:
-			if (checked) 
-				sektioner.add(18);
-			else
-				sektioner.remove(18);
-			break;
-		case R.id.checkbox_19:
-			if (checked) 
-				sektioner.add(19);
-			else
-				sektioner.remove(19);
-			break;
-		case R.id.checkbox_20:
-			if (checked) 
-				sektioner.add(20);
-			else
-				sektioner.remove(20);
-			break;
-		case R.id.checkbox_21:
-			if (checked) 
-				sektioner.add(21);
-			else
-				sektioner.remove(21);
-			break;
-		case R.id.checkbox_22:
-			if (checked) 
-				sektioner.add(22);
-			else
-				sektioner.remove(22);
-			break;
-		case R.id.checkbox_23:
-			if (checked) 
-				sektioner.add(23);
-			else
-				sektioner.remove(23);
-			break;
-		case R.id.checkbox_24:
-			if (checked) 
-				sektioner.add(24);
-			else
-				sektioner.remove(24);
-			break;
-		case R.id.checkbox_25:
-			if (checked) 
-				sektioner.add(25);
-			else
-				sektioner.remove(25);
-			break;
-		case R.id.checkbox_26:
-			if (checked) 
-				sektioner.add(26);
-			else
-				sektioner.remove(26);
-			break;
-		case R.id.checkbox_100:
-			if (checked) 
-				sektioner.add(100);
-			else
-				sektioner.remove(100);
-			break;
-		case R.id.checkbox_101:
-			if (checked) 
-				sektioner.add(101);
-			else
-				sektioner.remove(101);
-			break;
-		case R.id.checkbox_102:
-			if (checked) 
-				sektioner.add(102);
-			else
-				sektioner.remove(102);
-			break;
-		case R.id.checkbox_202:
-			if (checked) 
-				sektioner.add(202);
-			else
-				sektioner.remove(202);
-			break;
-		case R.id.checkbox_203:
-			if (checked) 
-				sektioner.add(203);
-			else
-				sektioner.remove(203);
-			break;
-		case R.id.checkbox_204:
-			if (checked) 
-				sektioner.add(204);
-			else
-				sektioner.remove(204);
-			break;
-		case R.id.checkbox_300:
-			if (checked) 
-				sektioner.add(300);
-			else
-				sektioner.remove(300);
-			break;
-		case R.id.checkbox_399:
-			if (checked) 
-				sektioner.add(399);
-			else
-				sektioner.remove(399);
-			break;
-		case R.id.checkbox_400:
-			if (checked) 
-				sektioner.add(400);
-			else
-				sektioner.remove(400);
-			break;
-		case R.id.checkbox_499:
-			if (checked) 
-				sektioner.add(499);
-			else
-				sektioner.remove(499);
-			break;
+			case R.id.checkbox_0:
+				sektionerchecked[0] = checked;
+				
+				break;
+			case R.id.checkbox_1:
+				sektionerchecked[1] = checked;
+				
+				break;
+			case R.id.checkbox_2:
+				sektionerchecked[2] = checked;
+				break;
+			case R.id.checkbox_3:
+				sektionerchecked[3] = checked;
+				break;
+			case R.id.checkbox_4:
+				sektionerchecked[4] = checked;
+				break;
+			case R.id.checkbox_5:
+				sektionerchecked[5] = checked;
+				break;
+			case R.id.checkbox_6:
+				sektionerchecked[6] = checked;
+				break;
+			case R.id.checkbox_7:
+				sektionerchecked[7] = checked;
+				break;
+			case R.id.checkbox_8:
+				sektionerchecked[8] = checked;
+				break;
+			case R.id.checkbox_9:
+				sektionerchecked[9] = checked;
+				break;
+			case R.id.checkbox_10:
+				sektionerchecked[10] = checked;
+				break;
+			case R.id.checkbox_11:
+				sektionerchecked[11] = checked;
+				break;
+			case R.id.checkbox_12:
+				sektionerchecked[12] = checked;
+				break;
+			case R.id.checkbox_13:
+				sektionerchecked[13] = checked;
+				break;
+			case R.id.checkbox_14:
+				sektionerchecked[14] = checked;
+				break;
+			case R.id.checkbox_15:
+				sektionerchecked[15] = checked;
+				break;
+			case R.id.checkbox_16:
+				sektionerchecked[16] = checked;
+				break;
+			case R.id.checkbox_17:
+				sektionerchecked[17] = checked;
+				break;
+			case R.id.checkbox_18:
+				sektionerchecked[18] = checked;
+				break;
+			case R.id.checkbox_19:
+				sektionerchecked[19] = checked;
+				break;
+			case R.id.checkbox_20:
+				sektionerchecked[20] = checked;
+				break;
+			case R.id.checkbox_21:
+				sektionerchecked[21] = checked;
+				break;
+			case R.id.checkbox_22:
+				sektionerchecked[22] = checked;
+				break;
+			case R.id.checkbox_23:
+				sektionerchecked[23] = checked;
+				break;
+			case R.id.checkbox_24:
+				sektionerchecked[24] = checked;
+				break;
+			case R.id.checkbox_25:
+				sektionerchecked[25] = checked;
+				break;
+			case R.id.checkbox_26:
+				sektionerchecked[26] = checked;
+				break;
+			case R.id.checkbox_100:
+				sektionerchecked[100] = checked;
+				break;
+			case R.id.checkbox_101:
+				sektionerchecked[101] = checked;
+				break;
+			case R.id.checkbox_102:
+				sektionerchecked[102] = checked;
+				break;
+			case R.id.checkbox_202:
+				sektionerchecked[202] = checked;
+				break;
+			case R.id.checkbox_203:
+				sektionerchecked[203] = checked;
+				break;
+			case R.id.checkbox_204:
+				sektionerchecked[204] = checked;
+				break;
+			case R.id.checkbox_300:
+				sektionerchecked[300] = checked;
+				break;
+			case R.id.checkbox_399:
+				sektionerchecked[399] = checked;
+				break;
+			case R.id.checkbox_400:
+				sektionerchecked[400] = checked;
+				break;
+			case R.id.checkbox_499:
+				sektionerchecked[499] = checked;
+				break;
 		}
-		if(sektioner.size() == 0) 
-			sektioner = null;
 		updateProgressBar();
 	}
 	
