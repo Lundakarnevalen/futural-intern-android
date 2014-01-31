@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class LKSQLiteDB extends SQLiteOpenHelper{
 	
@@ -35,6 +36,7 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		values.put(LKSQLiteDBContract.COLUMN_NAME_DATE, item.date);
 		values.put(LKSQLiteDBContract.COLUMN_NAME_IMG, "img path");
 		values.put(LKSQLiteDBContract.COLUMN_NAME_UNREAD, item.unread ? 1 : 0);
+		values.put(LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID, item.id);
 		return db.insert(LKSQLiteDBContract.TABLE_NAME, null, values);
 	}
 	
@@ -46,7 +48,8 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		values.put(LKSQLiteDBContract.COLUMN_NAME_DATE, item.date);
 		values.put(LKSQLiteDBContract.COLUMN_NAME_IMG, "img path");
 		values.put(LKSQLiteDBContract.COLUMN_NAME_UNREAD, item.unread ? 1 : 0);
-		return db.update(LKSQLiteDBContract.TABLE_NAME, values, "id = "+item.id, null);
+		Log.d("LKSQLiteDB", "item.id = "+item.id);
+		return db.update(LKSQLiteDBContract.TABLE_NAME, values, LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID+" = "+item.id, null);
 	}
 	
 	public List<LKMenuListItem> getMessages(){
@@ -67,6 +70,38 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 	
 	public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion){
 		onUpgrade(db, oldVersion, newVersion);
+	}
+	
+	public int numberOfUnreadMessages() {
+		SQLiteDatabase db = getReadableDatabase();
+		String[] dataProjection = {LKSQLiteDBContract.COLUMN_NAME_UNREAD};
+		String sort = "DATE DESC";
+		Cursor cursor = db.query(LKSQLiteDBContract.TABLE_NAME, dataProjection, null, null, null, null, sort);
+		cursor.moveToFirst();
+		int count = 0;
+		while(!cursor.isAfterLast()) {
+			if(Integer.parseInt(cursor.getString(0)) == 1) {
+				count++;
+			}
+		}
+		db.close();
+		return count;
+	}
+	
+	public int heighestMessageId() {
+		SQLiteDatabase db = getReadableDatabase();
+		String[] dataProjection = {LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID};
+		String sort = "DATE DESC";
+		Cursor cursor = db.query(LKSQLiteDBContract.TABLE_NAME, dataProjection, null, null, null, null, sort);
+		cursor.moveToFirst();
+		int tmp, max = 0;
+		while(!cursor.isAfterLast()) {
+			tmp = Integer.parseInt(cursor.getString(0));
+			if(tmp > max) {
+				max = tmp;
+			}
+		}
+		return max;
 	}
 	
 	public static final class LKSQLiteDBContract{

@@ -28,6 +28,11 @@ public class Response {
 		public String message, status;
 	}
 	
+	public static class Message {
+		public String status, notifications;
+		public int id;
+	}
+	
 	public static class GetGCM{
 		
 	}

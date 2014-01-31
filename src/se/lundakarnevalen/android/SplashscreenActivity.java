@@ -1,8 +1,13 @@
 package se.lundakarnevalen.android;
 
 import java.io.IOException;
+
+import json.Response;
 import se.lundakarnevalen.remote.GCMReceiver;
+import se.lundakarnevalen.remote.LKRemote;
+import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.remote.SectionSQLiteDB;
+import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
 import android.app.Activity;
 import android.content.Context;
@@ -18,6 +23,7 @@ import android.widget.RelativeLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.gson.Gson;
 
 public class SplashscreenActivity extends Activity{
 
@@ -342,5 +348,27 @@ public class SplashscreenActivity extends Activity{
 		}
 		
 		editor.commit();
+		
+//		LKSQLiteDB db = new LKSQLiteDB(context);
+//		int heigestLocalId = db.heighestMessageId();
+//		db.close();
+		
+//		LKRemote remote = new LKRemote(this,new LKRemote.TextResultListener() {
+//			@Override
+//			public void onResult(String result) {
+//				LKSQLiteDB db = new LKSQLiteDB(context);
+//				Log.d(LOG_TAG, result);
+//				Gson gson = new Gson();
+//				Response.Message resp = gson.fromJson(result, Response.Message.class);
+//				if(resp.status.equals("success")){
+//					Log.d("SplashScreenActivity", resp.notifications);
+//				}else{
+//					Log.d("SplashScreenActivity", "Something went horribly wrong...");
+//				}
+//				db.close();
+//			}
+//		});
+		
+		
 	}
 }

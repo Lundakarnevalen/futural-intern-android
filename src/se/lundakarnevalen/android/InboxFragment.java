@@ -63,8 +63,9 @@ public class InboxFragment extends LKFragment{
 		setTitle("Inbox");
 		fragmentManager = getActivity().getSupportFragmentManager();
 		if(!inboxEmpty) {
-			new RenderingTask().execute(context);
-
+			RenderingTask rt = new RenderingTask();
+			Log.d("InboxFragment", "Executing RenderingTask");
+			rt.execute(context);
 		}
 		// Code to add dummy data into database.
 		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
@@ -84,6 +85,7 @@ public class InboxFragment extends LKFragment{
 	 */
 	public static void addMessage(Context context, String title, String message, String date, int id){
 		LKSQLiteDB db = new LKSQLiteDB(context);
+		Log.d("InboxFragment", "InboxFragment.addMessage.id = "+id);
 		db.addItem(new LKMenuListItem(title, message, date, id, true, null)); // Null är bitmappen.
 		db.close();
 	}
@@ -113,6 +115,7 @@ public class InboxFragment extends LKFragment{
 			
 			for(LKMenuListItem message : data){
 				items.add(message);
+				Log.d("InboxFragment", "fetched item with id = "+message.id);
 			}
 			
 			//Populate rowList with data from items

@@ -36,7 +36,8 @@ public class GCMIntentService extends IntentService{
 			int type = Integer.parseInt(extras.getString("message_type"));
 			switch(type){
 			case TYPE_MESSAGE:
-				addMessage(extras.getString("title"), extras.getString("message"), extras.getString("created_at"), extras.getInt("id"));
+				Log.d("GCMIntentService", "adding message with id = "+Integer.parseInt(extras.getString("id")));
+				addMessage(extras.getString("title"), extras.getString("message"), extras.getString("created_at"), Integer.parseInt(extras.getString("id")));
 				break;
 			case TYPE_UPDATEUSER:
 				updateUser(extras);
@@ -48,6 +49,7 @@ public class GCMIntentService extends IntentService{
 	
 	private void addMessage(String title, String message, String date, int id){
 		// Add message to db.
+		Log.d("GCMIntentService", "GCMIntentService.id = "+id);
 		InboxFragment.addMessage(this, title, message, date, id);
 		
 		// Show notification
