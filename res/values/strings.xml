@@ -35,6 +35,7 @@
     <string name="success_msg">Vad kul att du vill vara med!\nVi återkommer.</string>
     <string name="error">Error</string>
     <string name="fail">Något gick fel, lite oklart vad dock.</string>
+    <string name="welcome">Klicka för att komma vidare!</string>
     
     <string name="loading">Laddar…</string>
     <string name="sektion_barnevalen">Barnevalen</string>

@@ -10,13 +10,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import se.lundakarnevalen.android.R;
-
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
 
 /**
  * Class used to talk to the server API. 
@@ -33,7 +38,7 @@ public class LKRemote {
 	//private String remoteAdr = "http://httpbin.org/put";
 	private boolean showProgressDialog = false;
 	TextResultListener textResultListener;
-	
+	BitmapResultListener bitmapListener = null;
 	/**
 	 * Creates remote object and sets a listener for the result
 	 * @param context Application context
@@ -118,6 +123,27 @@ public class LKRemote {
     	}else{
     		Log.e(LOG_TAG, "no internet connection");
     	}
+    }
+    
+    /**
+     * Get bitmap from url.
+     * @param url
+     */
+    public void requestServerForBitmap(String url){
+    	if(hasInternetConnection(context)){
+    		AsyncTask<String, Void, Bitmap> task = new ServerBitmapTask();
+    		task.execute(url);
+    	}else{
+    		Log.e(LOG_TAG, "no internet connection");
+    	}
+    }
+    
+    /**
+     * Sets bitmap listener.
+     * @param l
+     */
+    public void setBitmapResultListener(BitmapResultListener l){
+    	this.bitmapListener = l;
     }
 
 	
@@ -299,6 +325,50 @@ public class LKRemote {
 	}
 	
 	/**
+     * @author alexandernajafi
+     * Use this class to fetch a bitmap image from server. Input param is only the path (absolute) to the image. 
+     */
+    class ServerBitmapTask extends AsyncTask<String, Void, Bitmap>{
+            
+        /* (non-Javadoc)
+         * @see android.os.AsyncTask#doInBackground(Params[])
+         */
+        @Override
+        protected Bitmap doInBackground(String... params) {
+                Log.d(LOG_TAG, "AsyncTask started");
+                Bitmap bitmap = null;
+                try {
+                        URL url = new URL(params[0]);
+                if (isCancelled()) return null;
+                        bitmap = BitmapFactory.decodeStream((InputStream) url.getContent());
+                } catch (MalformedURLException e) {
+                        Log.e(LOG_TAG, "Malformed URL");
+                        return null;
+                } catch(IOException e){
+                        Log.e(LOG_TAG, "Unknown error");
+                        return null;
+                }
+                return bitmap;
+        }
+        
+        /* (non-Javadoc)
+         * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+         */
+        @Override
+        protected void onPostExecute(Bitmap bitmap){
+                Log.d(LOG_TAG, "onPostExecute");
+                if(bitmapListener != null)
+                	bitmapListener.onResult(bitmap);
+        }
+
+	    @Override
+	    protected void onCancelled(Bitmap result){
+	        Log.d(LOG_TAG, "Canceled bitmap task!");
+	    }
+    }
+
+	
+	/**
 	 * Interface for callback on text result from server call. 
 	 * @author Alexander Najafi
 	 *
@@ -306,6 +376,16 @@ public class LKRemote {
 	public interface TextResultListener{
 		public static final String LOG_TAG = "Result listener";
 		public void onResult(String result);
+	}
+	
+	/**
+	 * Interface for callback on text result from server call. 
+	 * @author Alexander Najafi
+	 *
+	 */
+	public interface BitmapResultListener{
+		public static final String LOG_TAG = "Result listener";
+		public void onResult(Bitmap result);
 	}
 	
 	public enum RequestType{

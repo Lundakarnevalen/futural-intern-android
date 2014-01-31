@@ -436,7 +436,7 @@ public class RegistrationFragment extends LKFragment{
 				}else{
 					showPopup(resp.message, getContext().getString(R.string.reg_code_fail_title));
 				}
-			}
+			}	
 		});
 		
 		user.gcmRegId = getGcmRegId();

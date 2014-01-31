@@ -116,11 +116,8 @@ public class SectionsFragment extends LKFragment {
             		bundle.putString("information", item.information);
 
             		fragment.setArguments(bundle);
-
-            		ContentActivity a = (ContentActivity) getActivity();
-            		a.getSupportFragmentManager().beginTransaction()
-            				.replace(R.id.content_frame, fragment).addToBackStack(null)
-            				.commit();
+            		
+            		loadFragment(fragment, true);
                 	
                 }
 

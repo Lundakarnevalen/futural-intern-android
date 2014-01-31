@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger{
@@ -53,6 +54,8 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		super.onCreate(savedInstanceState);
 		Bundle inData = getIntent().getExtras();
 		
+		EasyTracker.getInstance().activityStart(this);
+		
 		setContentView(R.layout.content_wrapper);
 		actionBar = getSupportActionBar();
 		
@@ -74,6 +77,12 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			fragmentToLoad = LKFragment.getStartFragment(this);
 		}
 		loadFragment(fragmentToLoad, false);
+	}
+	
+	@Override
+	public void onStop(){
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
 	}
 	
 	@Override
@@ -194,7 +203,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
 		listItems.add(inboxListItem);
-		//listItems.add(new LKMenuListItem("Om appen", 0, new RegistrationFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem("Om appen", 0, new UserProfileFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
 		

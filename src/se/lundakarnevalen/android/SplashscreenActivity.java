@@ -2,8 +2,6 @@ package se.lundakarnevalen.android;
 
 import java.io.IOException;
 
-import json.Response;
-
 import se.lundakarnevalen.remote.GCMReceiver;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
@@ -20,10 +18,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.gson.Gson;
 
 public class SplashscreenActivity extends Activity{
 
@@ -33,8 +31,7 @@ public class SplashscreenActivity extends Activity{
 	GoogleCloudMessaging gcm;
 	String regId;
 	SharedPreferences sp;
-	
-	
+	boolean shown = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +41,7 @@ public class SplashscreenActivity extends Activity{
 		
 		// init some stuff
 		populateSp();
-		
+				
 		wrapper = (RelativeLayout) findViewById(R.id.splash_wrapper);
 		wrapper.setOnClickListener(cont);
 
@@ -56,12 +53,20 @@ public class SplashscreenActivity extends Activity{
 		}else{
 			// What to do???
 		}
+		
+		//EasyTracker.getInstance().activityStart(this);
 	}
 	
 	@Override
 	public void onResume(){
 		super.onResume();
 		checkForGooglePlay();
+	}
+	
+	@Override
+	public void onStop(){
+		super.onStop();
+		//EasyTracker.getInstance().activityStop(this);
 	}
 	
 	private String getRegId(){
@@ -340,8 +345,6 @@ public class SplashscreenActivity extends Activity{
 		return true;
 	}
 	
-	
-	
 	View.OnClickListener cont = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -351,7 +354,8 @@ public class SplashscreenActivity extends Activity{
 	
 	private void launchApp(){
 		Intent intent = new Intent(context, ContentActivity.class);
-		context.startActivity(intent);
+		startActivity(intent);
+		finish();
 	}
 	
 	/** 

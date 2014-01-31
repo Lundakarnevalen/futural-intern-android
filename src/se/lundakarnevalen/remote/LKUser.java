@@ -22,7 +22,7 @@ public class LKUser {
 	
 	Context context;
 	public int id = Integer.MIN_VALUE;
-	public String token, gcmRegId, personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
+	public String imgUrl, token, gcmRegId, personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
 	public int step, kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion;
 	public int[] intresse, sektioner;
 	public boolean jobbatHeltid, jobbatStyrelse, jobbatForman, jobbatAktiv, karnevalist2010, villAnsvara, medlemAf, medlemKar, medlemNation, karneveljsbiljett;
@@ -102,6 +102,7 @@ public class LKUser {
 		Gson gson = new Gson();
 		User karnevalist = new User();
 		karnevalist.id = id;
+		karnevalist.foto.url = imgUrl;
 		karnevalist.avklarat_steg = step;
 		karnevalist.personnummer = this.personnummer;
 		karnevalist.fornamn = this.fornamn;
@@ -147,6 +148,7 @@ public class LKUser {
 		karnevalist.personnummer = this.personnummer;
 		karnevalist.avklarat_steg = this.step;
 		karnevalist.fornamn = this.fornamn;
+		karnevalist.foto.url = imgUrl;
 		karnevalist.efternamn = this.efternamn;
 		karnevalist.gatuadress = this.gatuadress;
 		karnevalist.postnr = this.postnr;
@@ -193,6 +195,7 @@ public class LKUser {
 		this.id = user.id;
 		this.efternamn = user.efternamn;
 		this.gatuadress = user.gatuadress;
+		this.imgUrl = user.foto.url;
 		this.postnr = user.postnr;
 		this.postort = user.postort;
 		this.email = user.email;

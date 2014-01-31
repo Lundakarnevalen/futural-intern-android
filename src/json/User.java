@@ -10,4 +10,5 @@ public class User {
 	public int avklarat_steg, id, kon_id, nation_id, storlek_id, terminer, korkort_id, snalla_intresse, snalla_sektion;
 	public boolean jobbat_heltid, jobbat_styrelse, jobbat_forman, jobbat_aktiv, karnevalist_2010, vill_ansvara, medlem_af, medlem_kar, medlem_nation, karneveljsbiljett;
 	public int[] intresse_ids, sektion_ids;
+	public Foto foto;
 }
