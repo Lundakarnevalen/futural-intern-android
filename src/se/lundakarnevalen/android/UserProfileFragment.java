@@ -1,5 +1,6 @@
 package se.lundakarnevalen.android;
 
+import se.lundakarnevalen.remote.LKUser;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,22 +17,14 @@ public class UserProfileFragment extends LKFragment {
 		
 		ImageView picture = (ImageView) root.findViewById(R.id.profile_picture);
 		TextView name = (TextView) root.findViewById(R.id.user_info1);
-		TextView mail = (TextView) root.findViewById(R.id.user_info2);
-		TextView phone = (TextView) root.findViewById(R.id.user_info3);
-		TextView member = (TextView) root.findViewById(R.id.user_info4);
 
+
+		LKUser user = new LKUser(getContext());
+		user.getUserLocaly();
 		
-		/*Change to data from the database*/
 		picture.setImageResource(R.drawable.sections_image);
-		name.setText(""); 
-		mail.setText("");
-		phone.setText("");
-		member.setText("");
+		name.setText(user.fornamn+" "+user.efternamn); 
 		
-		
-		
-
-
 		return root;
 
 	}

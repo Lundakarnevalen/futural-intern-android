@@ -5,6 +5,7 @@ import java.util.List;
 import se.lundakarnevalen.android.R;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,7 @@ public class LKSpinnerArrayAdapter extends ArrayAdapter<LKSpinnerArrayAdapter.LK
 		TextView tv = new TextView(context);
 		LKSpinnerArrayItem item = getItem(pos);
 		tv.setText(item.text);
+		tv.setTextColor(Color.WHITE);
 		return tv;
 	}
 	

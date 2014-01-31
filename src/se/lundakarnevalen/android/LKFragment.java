@@ -1,6 +1,7 @@
 package se.lundakarnevalen.android;
 
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import se.lundakarnevalen.remote.LKUser;
@@ -132,9 +133,24 @@ public class LKFragment extends Fragment{
 		user.getUserLocaly();
 		boolean lock = user.step >= 3;
 		
-		Calendar c = Calendar.getInstance();
-		Date date = c.getTime();
-		Log.d(LOG_TAG, date.toString());
+		long time = System.currentTimeMillis();
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
+		formatter.setLenient(false);
+		String timeF = "2014-02-09, 23:59:59";
+		Date timeDate = null;
+		try {
+			timeDate = formatter.parse(timeF);
+		} catch (ParseException e) {
+			Log.d(LOG_TAG, "could not parse time");
+		}
+		long timeClose = timeDate.getTime();
+		
+		lock = time > timeClose || lock;
+		Log.d(LOG_TAG, "date now: "+time+" date close: "+timeClose+" lock: "+lock);
+		
+		LKUser userStore = new LKUser(context);
+		userStore.getUserLocaly();
 		
 		if(LKUser.localUserStored(context) && lock)
 			return new UserProfileFragment();

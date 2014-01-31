@@ -58,6 +58,7 @@ public class GCMIntentService extends IntentService{
 		builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND);
 		builder.setLights(0xfff15d4c, 400, 200);
 		builder.setAutoCancel(true);
+		
 		Intent resultIntent = new Intent(this, ContentActivity.class);
 		resultIntent.putExtra("fragment", LKFragment.INBOX_FRAGMENT);
 		TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
@@ -66,7 +67,7 @@ public class GCMIntentService extends IntentService{
 		
 		PendingIntent pIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 		builder.setContentIntent(pIntent);
-
+		
 		NotificationManager mgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mgr.notify(1, builder.build());
 	}

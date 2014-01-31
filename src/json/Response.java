@@ -28,6 +28,10 @@ public class Response {
 		public String message, status;
 	}
 	
+	public static class TokenReg{
+		public String status, token;
+	}
+	
 	public static class GetGCM{
 		
 	}

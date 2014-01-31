@@ -8,6 +8,7 @@ import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -25,6 +26,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger{
 	
@@ -73,6 +76,18 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		loadFragment(fragmentToLoad, false);
 	}
 	
+	@Override
+	public void onResume(){
+		super.onResume();
+		// Check if need to register for new gcm.
+		SharedPreferences sp = getSharedPreferences(LKFragment.SP_GCM_NAME, MODE_PRIVATE);
+		String gcmId = sp.getString(LKFragment.SP_GCM_REGID, null);
+		if(gcmId == null){
+			// Try to get new gcm.
+			GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
+			SplashscreenActivity.regInBackground(this, gcm);
+		}
+	}
 	
 	/**
 	 * Called when a fragment messages the activity.

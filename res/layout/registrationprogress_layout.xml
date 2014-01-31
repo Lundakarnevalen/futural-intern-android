@@ -163,7 +163,7 @@
 	            android:id="@+id/phone"
 	            android:layout_toRightOf="@id/lKTextViewBoldMobileNbr"
 	            android:layout_alignBaseline="@id/lKTextViewBoldMobileNbr"/>
-	        <se.lundakarnevalen.widget.LKTextViewBold 
+	        <!-- <se.lundakarnevalen.widget.LKTextViewBold 
 	        	android:layout_marginTop="@dimen/vertical_margin"
 	        	android:id="@+id/lKTextViewBoldMySections"
 	        	android:layout_marginLeft="@dimen/horizontal_margin"
@@ -178,7 +178,7 @@
 	            android:layout_height="wrap_content"
 	            android:id="@+id/sections"
 	            android:layout_below="@id/lKTextViewBoldMySections"
-	            android:layout_alignLeft="@id/lKTextViewBoldMySections"/>
+	            android:layout_alignLeft="@id/lKTextViewBoldMySections"/> -->
 		</RelativeLayout>
 		<se.lundakarnevalen.widget.LKButton 
 		    android:layout_width="fill_parent"

@@ -1,5 +1,6 @@
 package se.lundakarnevalen.widget;
 
+import se.lundakarnevalen.android.R;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
@@ -23,6 +24,7 @@ public class LKSpinner extends Spinner{
 	}
 	
 	private void init(){
-		setBackgroundColor(Color.RED);
+		this.setBackgroundResource(R.drawable.spinner_background);
+		this.setPadding(30, 30, 30, 30);
 	}
 }

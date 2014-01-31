@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 
 public class RegistrationProgressFragment extends LKFragment{
-	LKTextView name, email, phone, sections;
+	LKTextView name, email, phone;
 	LKButton edit;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -19,7 +19,6 @@ public class RegistrationProgressFragment extends LKFragment{
 		name = (LKTextView) root.findViewById(R.id.name);
 		email = (LKTextView) root.findViewById(R.id.email);
 		phone = (LKTextView) root.findViewById(R.id.phone);
-		sections = (LKTextView) root.findViewById(R.id.sections);
 		edit = (LKButton) root.findViewById(R.id.edit_button);
 		edit.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -44,11 +43,6 @@ public class RegistrationProgressFragment extends LKFragment{
 		
 		name.setText(user.fornamn+" "+user.efternamn);
 		email.setText(user.email);
-		phone.setText(user.telnr);
-		StringBuilder sectionsText = new StringBuilder();
-		if(user.sektioner != null)
-			for(int i : user.sektioner)
-				sectionsText.append("id: "+i+"\n");	
-		sections.setText("sek"+sectionsText.toString());
+		phone.setText(user.telnr);		
 	}
 }

@@ -1,7 +1,12 @@
 package se.lundakarnevalen.android;
 
 import java.io.IOException;
+
+import json.Response;
+
 import se.lundakarnevalen.remote.GCMReceiver;
+import se.lundakarnevalen.remote.LKRemote;
+import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
 import android.app.Activity;
@@ -18,6 +23,7 @@ import android.widget.RelativeLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.gson.Gson;
 
 public class SplashscreenActivity extends Activity{
 
@@ -43,7 +49,7 @@ public class SplashscreenActivity extends Activity{
 		wrapper.setOnClickListener(cont);
 
 		sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, Context.MODE_PRIVATE);
-		
+		addDataSekBg();
 		if(checkForGooglePlay()){
 			// GCM registration
 			gcmRegistration();
@@ -77,24 +83,24 @@ public class SplashscreenActivity extends Activity{
 		if(regId.length() <= 0){
 			Log.d(LOG_TAG, "Will try to register");
 			// Register for gcm.
-			regInBackground();
+			regInBackground(context, gcm);
 		}else{
 			Log.d(LOG_TAG, "found regId");
 		}
 	}
 	
-	private void storeAsRegId(String regId){
-		if(sp == null)
-			sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, MODE_PRIVATE);
+	public static void storeAsRegId(String regId, Context context){
+		SharedPreferences sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, MODE_PRIVATE);
 		Editor editor = sp.edit();
 		editor.putString(LKFragment.SP_GCM_REGID, regId);
 		editor.putString(LKFragment.SP_GCM_REG_APP, LKFragment.getAppVersion(context));
-		editor.commit();		
-		
+		editor.commit();	
+	}
+	
+	private void storeSekData(){
 	     // Information about the sections
 		SectionSQLiteDB db = new SectionSQLiteDB(this);
- 		db.dropEntiresInDatabase();
-
+		db.dropEntiresInDatabase();
  		db.addItem(new LKSectionsItem(
  				"Barnevalen",
  				R.drawable.sections_image,
@@ -271,24 +277,45 @@ public class SplashscreenActivity extends Activity{
 		return "<br><br><b><i>Vad �r det b�sta med " + sName + "? Vad �r speciellt?</i></b><br>";
 	}
 	
+	public void addDataSekBg(){
+		AsyncTask<?, String, String> regInBackground = new AsyncTask<Object, String, String>(){
+
+			@Override
+			protected String doInBackground(Object... params) {
+				storeSekData();
+				Log.d(LOG_TAG, "added sek data!");
+				return null;
+			}
+			
+		}.execute();
+	}
 	
-	
-	private void regInBackground(){
+	public static void regInBackground(final Context context, final GoogleCloudMessaging gcm){
 		AsyncTask<?, String, String> regInBackground = new AsyncTask<Object, String, String>(){
 
 			@Override
 			protected String doInBackground(Object... params) {
 				String regId = null;
 				try{
-					if(gcm == null){
+					/*if(gcm == null){
 						gcm = GoogleCloudMessaging.getInstance(context);
-					}
+					}*/
 					regId = gcm.register(GCMReceiver.SENDER_ID);
 					Log.d(LOG_TAG, "Got regId: "+regId);
-					storeAsRegId(regId);
+					storeAsRegId(regId, context);					
 				}catch(IOException e){
 					Log.e(LOG_TAG, "Exception thrown when trying to register"+e);
 				}
+				
+				// POST reg id to server
+				LKRemote remote = new LKRemote(context, new TextResultListener(){
+					@Override
+					public void onResult(String result) {
+						Log.d(LOG_TAG, "regId result: "+result);
+					}
+				});
+				remote.requestServerForText("phones.json", "{\"google_token\":\""+regId+"\"}", LKRemote.RequestType.POST);
+				
 				return regId;
 			}
 			

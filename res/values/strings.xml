@@ -32,6 +32,11 @@
     <string name="email_valid"></string>
     <string name="edit_uppg">Redigera mina uppgifter</string>
     
+    <string name="success_msg">Vad kul att du vill vara med!\nVi återkommer.</string>
+    <string name="error">Error</string>
+    <string name="fail">Något gick fel, lite oklart vad dock.</string>
+    
+    <string name="loading">Laddar…</string>
     <string name="sektion_barnevalen">Barnevalen</string>
     <string name="sektion_biljetteriet">Biljetteriet</string>
     <string name="sektion_bladderiet">Blädderiet</string>

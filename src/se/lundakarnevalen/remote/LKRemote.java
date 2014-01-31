@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import se.lundakarnevalen.android.R;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -139,10 +141,13 @@ public class LKRemote {
 		protected void buildProgressDialog(){
 			progressDialog = new ProgressDialog(context);
 			progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			progressDialog.setMessage(context.getString(R.string.loading));
+			progressDialog.show();
 		}
 		
 		protected void hideProgressDialog(){
-			progressDialog.cancel();
+			if(progressDialog != null)
+				progressDialog.cancel();
 		}
 		
 		@Override

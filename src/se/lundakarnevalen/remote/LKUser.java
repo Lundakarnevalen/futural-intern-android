@@ -74,6 +74,10 @@ public class LKUser {
 				@Override
 				public void onResult(String result) {
 					Log.d(LOG_TAG, "server: "+result);
+					if(result == null){
+						Log.e(LOG_TAG, "error - null response");
+						return;
+					}
 					// Update user with data
 					Gson gson = new Gson();
 					Response.GetKarnevalist data = gson.fromJson(result, Response.GetKarnevalist.class);
@@ -225,6 +229,7 @@ public class LKUser {
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
 		this.id = user.id;
+		this.step = user.avklarat_steg;
 		this.efternamn = user.efternamn;
 		this.gatuadress = user.gatuadress;
 		this.postnr = user.postnr;

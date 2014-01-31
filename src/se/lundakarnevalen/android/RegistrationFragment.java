@@ -390,6 +390,11 @@ public class RegistrationFragment extends LKFragment{
 		LKRemote remote = new LKRemote(getContext(), new LKRemote.TextResultListener() {
 			@Override
 			public void onResult(String result) {
+				if(result == null){
+					Log.e(LOG_TAG, "error - null response");
+					showPopup(getContext().getString(R.string.error), getContext().getString(R.string.fail));
+					return;
+				}
 				Gson gson = new Gson();
 				Response.StdResponse resp = gson.fromJson(result, Response.StdResponse.class);
 				if(resp.status.equals("success")){
@@ -401,6 +406,7 @@ public class RegistrationFragment extends LKFragment{
 				}
 			}
 		});
+		remote.showProgressDialog(true);
 		remote.requestServerForText("karnevalister/"+user.id+".json", user.getJson(), LKRemote.RequestType.PUT);
 	}
 	
@@ -409,6 +415,11 @@ public class RegistrationFragment extends LKFragment{
 		LKRemote remote = new LKRemote(getContext(),new LKRemote.TextResultListener() {
 			@Override
 			public void onResult(String result) {
+				if(result == null){
+					Log.e(LOG_TAG, "error - null response");
+					showPopup(getContext().getString(R.string.error), getContext().getString(R.string.fail));
+					return;
+				}
 				Log.d(LOG_TAG, result);
 				Gson gson = new Gson();
 				Response.PostKarnevalist resp = gson.fromJson(result, Response.PostKarnevalist.class);
@@ -431,6 +442,7 @@ public class RegistrationFragment extends LKFragment{
 		user.gcmRegId = getGcmRegId();
 		if(user.gcmRegId == null)
 			user.gcmRegId = "null";
+		remote.showProgressDialog(true);
 		remote.requestServerForText("karnevalister.json", user.getJson(), LKRemote.RequestType.POST);
 	}
 	

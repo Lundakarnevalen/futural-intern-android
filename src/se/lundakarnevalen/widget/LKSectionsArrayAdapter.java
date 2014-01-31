@@ -7,6 +7,7 @@ import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.android.SectionsInformationFragment;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,8 @@ public class LKSectionsArrayAdapter extends
 
 		icon.setImageResource(item.icon);
 		title.setText(item.title);
-
+		
+		
 		return row;
 	}
 
