@@ -36,6 +36,7 @@
     <string name="error">Error</string>
     <string name="fail">Något gick fel, lite oklart vad dock.</string>
     <string name="welcome">Klicka för att komma vidare!</string>
+    <string name="about">Denna sida lämnades tom med meningen.</string>
     
     <string name="loading">Laddar…</string>
     <string name="sektion_barnevalen">Barnevalen</string>

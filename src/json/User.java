@@ -11,4 +11,8 @@ public class User {
 	public boolean jobbat_heltid, jobbat_styrelse, jobbat_forman, jobbat_aktiv, karnevalist_2010, vill_ansvara, medlem_af, medlem_kar, medlem_nation, karneveljsbiljett;
 	public int[] intresse_ids, sektion_ids;
 	public Foto foto;
+	
+	public User(){
+		foto = new Foto();
+	}
 }

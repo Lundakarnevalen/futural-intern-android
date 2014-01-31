@@ -1,5 +1,6 @@
 package se.lundakarnevalen.remote;
 
+import json.Foto;
 import json.Response;
 import json.User;
 import json.UserWrite;
@@ -84,6 +85,7 @@ public class LKUser {
 					
 					if(data.status.equals("success")){
 						getDataFromUser(data.karnevalist);
+						Log.d(LOG_TAG, "url: "+imgUrl);
 						storeUserLocaly();
 					}else{
 						Log.e(LOG_TAG, "Non successfull request for id="+id+", status="+data.status);
@@ -232,6 +234,11 @@ public class LKUser {
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
 		this.id = user.id;
+		try{
+		this.imgUrl = user.foto.url;
+		}catch(NullPointerException e){
+			Log.e(LOG_TAG, "nullptr, no foto");
+		}
 		this.step = user.avklarat_steg;
 		this.efternamn = user.efternamn;
 		this.gatuadress = user.gatuadress;

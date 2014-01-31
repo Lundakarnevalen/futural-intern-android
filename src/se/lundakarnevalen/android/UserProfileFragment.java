@@ -35,18 +35,18 @@ public class UserProfileFragment extends LKFragment {
 			public void onResult(Bitmap result) {
 				Log.d(LOG_TAG, "Got bitmap!");
 				if(result == null)
-					Log.e(LOG_TAG, "bitmap was null");
-				
+					Log.e(LOG_TAG, "bitmap was null"); // Maybe set some standard image?
+
 				pb.setVisibility(View.GONE);
 				picture.setVisibility(View.VISIBLE);
 				picture.setImageBitmap(result);
 			}
 		});
-		//remote.requestServerForBitmap(user.imgUrl);
-		remote.requestServerForBitmap("https://karnevalistse.s3-eu-west-1.amazonaws.com/uploads/karnevalist/foto/34/155658_10151094621063226_25305867_n.jpg?AWSAccessKeyId=AKIAIXKT62LGJLGPB3AA&Signature=weGmOuAHyHoQpibcF0djwP2XZ3U%3D&Expires=1391149924");
+		remote.requestServerForBitmap(user.imgUrl);
+		//remote.requestServerForBitmap("https://karnevalistse.s3-eu-west-1.amazonaws.com/uploads/karnevalist/foto/34/155658_10151094621063226_25305867_n.jpg?AWSAccessKeyId=AKIAIXKT62LGJLGPB3AA&Signature=weGmOuAHyHoQpibcF0djwP2XZ3U%3D&Expires=1391149924");
 		return root;
 	}
-	
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
