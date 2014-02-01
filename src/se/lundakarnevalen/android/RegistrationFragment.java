@@ -46,11 +46,11 @@ public class RegistrationFragment extends LKFragment{
 	private LKTextView progressvalue;
 	private LKButton confirmButton, appendButton;
 	private LKSpinner nationsSpinner, shirtSpinner, driverLicensSpinner, sexSpinner;
-	private ArrayList<Integer> sektioner;
-	private ArrayList<Integer> intressen;
 	private boolean[] sektionerchecked = new boolean[500];
 	private boolean[] intressenchecked = new boolean[16];
-	
+	private LKRadioGroup rgsec;
+	private LKRadioGroup rgint;
+	private CheckBox pulcheckbox, karnevalist2010cb, work_fulltimecb, work_styrelsecb, work_formancb, work_aktivcb;
 
 	
 	// Wrappers
@@ -84,6 +84,12 @@ public class RegistrationFragment extends LKFragment{
 		progressbar = (LKProgressBar) root.findViewById(R.id.lKProgressBar1);
 		progressvalue = (LKTextView) root.findViewById(R.id.progress_value);
 		confirmButton = (LKButton) root.findViewById(R.id.confirm_button);
+		pulcheckbox = (CheckBox) root.findViewById(R.id.checkbox_PUL);
+		work_fulltimecb = (CheckBox) root.findViewById(R.id.checkbox_work_fulltime);
+		work_styrelsecb = (CheckBox) root.findViewById(R.id.checkbox_work_styrelse);
+		work_formancb = (CheckBox) root.findViewById(R.id.checkbox_work_forman);
+		work_aktivcb = (CheckBox) root.findViewById(R.id.checkbox_work_aktiv);
+		karnevalist2010cb = (CheckBox) root.findViewById(R.id.checkbox_karnevalist_2010);
 		confirmButton.setOnClickListener(confirm);
 		personnumber.addTextChangedListener(watcher);
 		name.addTextChangedListener(watcher);
@@ -115,7 +121,7 @@ public class RegistrationFragment extends LKFragment{
 		wrapperLK = (LinearLayout) root.findViewById(R.id.wrapper_lk);
 		code = (LKEditText) root.findViewById(R.id.continue_code);
 		code.setOnEditorActionListener(sendEditorChangeListener);
-		LKRadioGroup rgsec = new LKRadioGroup(root, R.id.radio_section_0, R.id.radio_section_1, 
+		rgsec = new LKRadioGroup(root, R.id.radio_section_0, R.id.radio_section_1, 
 				R.id.radio_section_2, R.id.radio_section_3, R.id.radio_section_4, R.id.radio_section_5, 
 				R.id.radio_section_6, R.id.radio_section_7, R.id.radio_section_8, R.id.radio_section_9, 
 				R.id.radio_section_10, R.id.radio_section_11, R.id.radio_section_12, R.id.radio_section_13, 
@@ -125,7 +131,7 @@ public class RegistrationFragment extends LKFragment{
 				R.id.radio_section_26, R.id.radio_section_100, R.id.radio_section_101, R.id.radio_section_102, 
 				R.id.radio_section_202, R.id.radio_section_203, R.id.radio_section_204, R.id.radio_section_300, 
 				R.id.radio_section_399, R.id.radio_section_400, R.id.radio_section_499);
-		LKRadioGroup rgint = new LKRadioGroup(root, R.id.radio_dd_0, R.id.radio_dd_1, 
+		rgint = new LKRadioGroup(root, R.id.radio_dd_0, R.id.radio_dd_1, 
 				R.id.radio_dd_2, R.id.radio_dd_3, R.id.radio_dd_4, R.id.radio_dd_5, 
 				R.id.radio_dd_6, R.id.radio_dd_7, R.id.radio_dd_8, R.id.radio_dd_9, 
 				R.id.radio_dd_10, R.id.radio_dd_11, R.id.radio_dd_12, R.id.radio_dd_13, 
@@ -148,7 +154,7 @@ public class RegistrationFragment extends LKFragment{
 		
 		// Populate spinners
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> nationsList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Inget/Oklar", 0));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Vet ej", 0));
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Blekingska", 1));
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("G√∂teborgs", 2));
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Hallands", 3));
@@ -166,7 +172,6 @@ public class RegistrationFragment extends LKFragment{
 		nationsSpinner.setAdapter(nationsAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> shirtSizeList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Oklar", 0));
 		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XS", 1));
 		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("S", 2));
 		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("M", 3));
@@ -187,7 +192,7 @@ public class RegistrationFragment extends LKFragment{
 		driverLicensSpinner.setAdapter(driverLicensSizeAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> sexList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Annat/Oklart", 0));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Annat", 0));
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Man", 1));
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kvinna", 2));
 		LKSpinnerArrayAdapter sexAdapter = new LKSpinnerArrayAdapter(getContext(), sexList);
@@ -195,6 +200,38 @@ public class RegistrationFragment extends LKFragment{
 
 	}
 	
+	
+	public void insertAllDataFromSP(){
+		LKUser user = new LKUser(getContext());
+		user.getUserLocaly();
+		personnumber.setText(user.personnummer);
+		name.setText(user.fornamn);
+		lastname.setText(user.efternamn);
+		email.setText(user.email);
+		validemail.setText(user.email);
+		adress.setText(user.gatuadress);
+		zipcode.setText(user.postnr);
+		city.setText(user.postort);
+		mobilnbr.setText(user.telnr);
+		foodpref.setText(user.matpref);
+		engageradKar.setText(user.engageradKar);
+		engageradNation.setText(user.engageradNation);
+		engageradStudentikos.setText(user.engageradStudentikos);
+		engageradEtc.setText(user.engageradEtc);
+		ovrigt.setText(user.ovrigt);
+		terms.setText(user.terminer);
+		work_fulltimecb.setChecked(user.jobbatHeltid);
+		work_styrelsecb.setChecked(user.jobbatStyrelse);
+		work_formancb.setChecked(user.jobbatForman);
+		work_aktivcb.setChecked(user.jobbatAktiv);
+		karnevalist2010cb.setChecked(user.karnevalist2010);
+		/*	TODO:fixa så att dropdownlistorna får rätt värden.. - reverse this:
+			"user.kon = sex;
+			user.nation = nation;
+			user.storlek = shirtSize;
+			user.korkort = driverLicens;"
+		*/
+	}
 	/**
 	 * Sets correct layout based on registrationstep
 	 */
@@ -231,6 +268,8 @@ public class RegistrationFragment extends LKFragment{
 			wrapperCode.setVisibility(View.GONE);
 			wrapperLK.setVisibility(View.VISIBLE);
 			appendButton.setVisibility(View.GONE);
+			insertAllDataFromSP();
+			
 			break;
 		}
 	}
@@ -256,10 +295,20 @@ public class RegistrationFragment extends LKFragment{
 	}
 	
 	private boolean sectionChosen(){
-		return sektioner!=null && sektioner.size()>=5;
+		int amount = 0;
+		for(boolean b: sektionerchecked){
+			if(b)
+				amount++;
+		}
+		return amount>4;
 	}
 	private boolean intressenChosen(){
-		return intressen!=null && intressen.size()>=3;
+		int amount = 0;
+		for(boolean b: intressenchecked){
+			if(b)
+				amount++;
+		}
+		return amount>4;	
 	}
 	
 	private void updateProgressBar() {
@@ -307,23 +356,25 @@ public class RegistrationFragment extends LKFragment{
 		switch(registrationStep){
 		case 0:
 			if(!isEditTextFilled(name))
-				Wrongs.add("Inget förnamn ifyllt");
+				Wrongs.add("Förnamn");
 			if(!isEditTextFilled(lastname))
-				Wrongs.add("Inget efternamn ifyllt");
+				Wrongs.add("Efternamn");
 			if(!isEditTextOfThisLenght(personnumber,10))
-				Wrongs.add("Personnummer är ej korrekt ifyllt");
+				Wrongs.add("Personnummer");
 			if(!isEditTextLongerThanThisLength(mobilnbr,4))
-				Wrongs.add("Inget giltigt mobilnummer är ifyllt");
+				Wrongs.add("Mobilnummer");
 			if(!validEmail(email.getText().toString()))
-				Wrongs.add("MailAdressen har ett ogiltigt format");
+				Wrongs.add("Mailadress");
 			if(!equalEmail(email.getText().toString(), validemail.getText().toString()))
-				Wrongs.add("Mailadresserna är inte lika.");
+				Wrongs.add("Ej samma mailadress");
 			if(!isEditTextFilled(adress))
-				Wrongs.add("Ingen adress är ifylld");
+				Wrongs.add("Adress");
 			if(!isEditTextOfThisLenght(zipcode,5))
-				Wrongs.add("Inget postnummer är ifyllt");
+				Wrongs.add("Postnummer");
 			if(!isEditTextFilled(city))
-				Wrongs.add("Ingen stad är ifylld");
+				Wrongs.add("Stad");
+			if(!pulcheckbox.isChecked())
+				Wrongs.add("Godkännande av hanterandet av användardata");
 			break;
 		case 2:
 			if(!sectionChosen())
@@ -333,23 +384,25 @@ public class RegistrationFragment extends LKFragment{
 			break;
 		case 3:
 			if(!isEditTextFilled(name))
-				Wrongs.add("Inget förnamn ifyllt");
+				Wrongs.add("Förnamn");
 			if(!isEditTextFilled(lastname))
-				Wrongs.add("Inget efternamn ifyllt");
+				Wrongs.add("Efternamn");
 			if(!isEditTextOfThisLenght(personnumber,10))
-				Wrongs.add("Personnummer är ej korrekt ifyllt");
+				Wrongs.add("Personnummer");
 			if(!isEditTextLongerThanThisLength(mobilnbr,4))
-				Wrongs.add("Inget giltigt mobilnummer är ifyllt");
+				Wrongs.add("Mobilnummer");
 			if(!validEmail(email.getText().toString()))
-				Wrongs.add("MailAdressen har ett ogiltigt format");
+				Wrongs.add("Mailadress");
 			if(!equalEmail(email.getText().toString(), validemail.getText().toString()))
-				Wrongs.add("Mailadresserna är inte lika.");
+				Wrongs.add("Ej samma mailadress");
 			if(!isEditTextFilled(adress))
-				Wrongs.add("Ingen adress är ifylld");
+				Wrongs.add("Adress");
 			if(!isEditTextOfThisLenght(zipcode,5))
-				Wrongs.add("Inget postnummer är ifyllt");
+				Wrongs.add("Postnummer");
 			if(!isEditTextFilled(city))
-				Wrongs.add("Ingen stad är ifylld");
+				Wrongs.add("Stad");
+			if(!pulcheckbox.isChecked())
+				Wrongs.add("Godkännande av hanterandet av användardata");
 			if(!sectionChosen())
 				Wrongs.add("Du måste välja minst 5 sektioner");
 			if(!intressenChosen())
@@ -389,7 +442,6 @@ public class RegistrationFragment extends LKFragment{
 		}
 		
 	};
-	
 	AdapterView.OnItemSelectedListener driverLicensSpinnerListeners = new AdapterView.OnItemSelectedListener(){
 
 		@Override
@@ -405,7 +457,6 @@ public class RegistrationFragment extends LKFragment{
 		}
 		
 	};
-	
 	AdapterView.OnItemSelectedListener shirtSpinnerListeners = new AdapterView.OnItemSelectedListener(){
 
 		@Override
@@ -472,6 +523,17 @@ public class RegistrationFragment extends LKFragment{
 				putNewUser(user);
 				break;
 			}
+		} else {
+			ArrayList<String> wrongs = validateFormArray();
+			String message = "";
+			for(String s:wrongs) {
+				message += s + "\n";
+			}
+			AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+			builder.setTitle(R.string.fail_creedentials);
+			builder.setMessage(message);
+			builder.setPositiveButton("Ok", null);
+			builder.show();
 		}
 	}
 	
@@ -552,13 +614,22 @@ public class RegistrationFragment extends LKFragment{
 			user.engageradStudentikos = engageradStudentikos.getText().toString();
 			user.engageradEtc = engageradEtc.getText().toString();
 			user.ovrigt = ovrigt.getText().toString();
-			user.kon = nation;
+			user.kon = sex;
 			user.nation = nation;
 			user.storlek = shirtSize;
-			user.terminer = Integer.parseInt(terms.getText().toString());
+			if(terms.getText().toString()!=null)
+				user.terminer = Integer.parseInt(terms.getText().toString());
 			user.korkort = driverLicens;
-			//user.snallaIntresse = nation;
-			//user.snallaSektion = nation;
+			user.snallaIntresse = starIntrest();
+			user.snallaSektion = starSection();
+			user.intresse = intrestsAsIntArr();
+			user.sektioner = sectionsAsIntArr();
+			user.karnevalist2010 = karnevalist2010cb.isChecked();
+			user.jobbatHeltid = work_fulltimecb.isChecked();
+			user.jobbatStyrelse = work_styrelsecb.isChecked();
+			user.jobbatForman = work_formancb.isChecked();
+			user.jobbatAktiv = work_aktivcb.isChecked();
+			user.karnevalist2010 = karnevalist2010cb.isChecked();
 		}
 	}
 	
@@ -567,14 +638,79 @@ public class RegistrationFragment extends LKFragment{
 	 * @param email The address to validate
 	 * @return True if it is valid. 
 	 */
-	private boolean equalEmail(String email1, String email2) {
-		return email1.equals(email2);
-	}
 	private boolean validEmail(String email){
 		String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(email);
 		return matcher.matches();
+	}
+	private boolean equalEmail(String email1, String email2) {
+		return email1.equals(email2);
+	}
+	
+	
+	public int[] intrestsAsIntArr() {
+		int size = 0;
+		for(boolean b: intressenchecked)
+			if(b)
+				size++;
+		int[] ret = new int[size];
+		int i = 0;
+		for(int j = 0; j<intressenchecked.length;j++)
+			if(intressenchecked[j])
+				ret[i++] = j;
+		return ret;
+	}
+	public int[] sectionsAsIntArr() {
+		int size = 0;
+		for(boolean b: sektionerchecked)
+			if(b)
+				size++;
+		int[] ret = new int[size];
+		int i = 0;
+		for(int j = 0; j<sektionerchecked.length;j++)
+			if(sektionerchecked[j])
+				ret[i++] = j;
+		return ret;
+	}
+	public int starIntrest() {
+		int id = rgint.getActiveRB();
+		switch (id) {
+		case R.id.radio_dd_0:
+			return 0;		
+		case R.id.radio_dd_1:
+			return 1;
+		case R.id.radio_dd_2:
+			return 2;
+		case R.id.radio_dd_3:
+			return 3;		
+		case R.id.radio_dd_4:
+			return 4;
+		case R.id.radio_dd_5:
+			return 5;
+		case R.id.radio_dd_6:
+			return 6;
+		case R.id.radio_dd_7:
+			return 7;
+		case R.id.radio_dd_8:
+			return 8;
+		case R.id.radio_dd_9:
+			return 9;
+		case R.id.radio_dd_10:
+			return 10;
+		case R.id.radio_dd_11:
+			return 11;
+		case R.id.radio_dd_12:
+			return 12;
+		case R.id.radio_dd_13:
+			return 13;
+		case R.id.radio_dd_14:
+			return 14;
+		case R.id.radio_dd_15:
+			return 15;
+		default:
+			return 0;
+		}
 	}
 	
 	@Override
@@ -632,6 +768,88 @@ public class RegistrationFragment extends LKFragment{
 		}
 		updateProgressBar();
 	}
+	public int starSection() {
+		int id = rgsec.getActiveRB();
+		switch (id) {
+		case R.id.radio_section_0:
+			return 0;
+		case R.id.radio_section_1:
+			return 1;
+		case R.id.radio_section_2:
+			return 2;
+		case R.id.radio_section_3:
+			return 3;
+		case R.id.radio_section_4:
+			return 4;
+		case R.id.radio_section_5:
+			return 5;
+		case R.id.radio_section_6:
+			return 6;
+		case R.id.radio_section_7:
+			return 7;
+		case R.id.radio_section_8:
+			return 8;
+		case R.id.radio_section_9:
+			return 9;
+		case R.id.radio_section_10:
+			return 10;
+		case R.id.radio_section_11:
+			return 11;
+		case R.id.radio_section_12:
+			return 12;
+		case R.id.radio_section_13:
+			return 13;
+		case R.id.radio_section_14:
+			return 14;
+		case R.id.radio_section_15:
+			return 15;
+		case R.id.radio_section_16:
+			return 16;
+		case R.id.radio_section_17:
+			return 17;
+		case R.id.radio_section_18:
+			return 18;
+		case R.id.radio_section_19:
+			return 19;
+		case R.id.radio_section_20:
+			return 20;
+		case R.id.radio_section_21:
+			return 21;
+		case R.id.radio_section_22:
+			return 22;
+		case R.id.radio_section_23:
+			return 23;
+		case R.id.radio_section_24:
+			return 24;
+		case R.id.radio_section_25:
+			return 25;
+		case R.id.radio_section_26:
+			return 26;
+		case R.id.radio_section_100:
+			return 100;
+		case R.id.radio_section_101:
+			return 101;
+		case R.id.radio_section_102:
+			return 102;
+		case R.id.radio_section_202:
+			return 202;
+		case R.id.radio_section_203:
+			return 203;
+		case R.id.radio_section_204:
+			return 204;
+		case R.id.radio_section_300:
+			return 300;
+		case R.id.radio_section_399:
+			return 399;
+		case R.id.radio_section_400:
+			return 400;
+		case R.id.radio_section_499:
+			return 499;
+		default:
+			return 0;
+		}
+	}
+	
 	@Override
 	public void onSectionCheckBoxClicked(View view) {
 	    boolean checked = ((CheckBox) view).isChecked();

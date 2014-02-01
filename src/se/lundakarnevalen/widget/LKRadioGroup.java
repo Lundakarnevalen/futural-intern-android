@@ -11,23 +11,8 @@ import android.widget.RadioGroup;
 
 public class LKRadioGroup {
 
-    List<RadioButton> radios = new ArrayList<RadioButton>();
-
-    /**
-     * Constructor, which allows you to pass number of RadioButton instances,
-     * making a group.
-     * 
-     * @param radios
-     *            One RadioButton or more.
-     */
-    public LKRadioGroup(RadioButton... radios) {
-        super();
-
-        for (RadioButton rb : radios) {
-            this.radios.add(rb);
-            rb.setOnClickListener(onClick);
-        }
-    }
+    ArrayList<RadioButton> radios = new ArrayList<RadioButton>();
+    ArrayList<Integer> radioids = new ArrayList<Integer>();
 
     /**
      * Constructor, which allows you to pass number of RadioButtons 
@@ -46,9 +31,18 @@ public class LKRadioGroup {
             RadioButton rb = (RadioButton)activity.findViewById(radioButtonID);
             if (rb != null) {
                 this.radios.add(rb);
+                this.radioids.add(radioButtonID);
                 rb.setOnClickListener(onClick);
             }
         }
+    }
+    public int getActiveRB(){
+    	for(int i = 0; i<radios.size(); i++) {
+    		if(radios.get(i).isChecked()) {
+    			return radioids.get(i);
+    		}
+    	}
+    	return 0;
     }
 
     /**

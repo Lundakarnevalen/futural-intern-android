@@ -21,7 +21,10 @@
     <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
     <string name="registration_mobilenbr">Mobilnummer</string>
     
-    <string name="registration_choosesection">JAG VILL ENGAGERA MIG I</string>
+    <string name="registration_choosesection_information1">Jag skulle vilja vara med i dessa sektioner:</string>
+	<string name="registration_choosesection_information2">Kryssa i minst fem. Om det är någon sektion som du extra gärna vill vara med i, stjärnmarkera denna.</string>
+	<string name="registration_chooseintrests_information1">Detta är jag bra på/detta tycker jag är roligt:</string>
+	<string name="registration_chooseintrests_information2">Kryssa i minst tre olika saker. Om det är något du är extra bra på eller tycker är extra roligt, stjärnmarkera detta.</string>
     <string name="registration_submit">Skicka in</string>
     <string name="registration_submitinfo">Genom att klicka på knappen, förbinder\ndu dig att ha kul under karnevalstiden.</string>
     <string name="registration_mysections">Jag vill engagera mig i</string>
@@ -29,9 +32,11 @@
     <string name="registration_append">Redigera mina personuppgifter</string>
     <string name="continue_code">Lösenord</string>
     <string name="notification_title">Meddelande från Lundakarnevalen!</string>
-    <string name="email_valid"></string>
     <string name="edit_uppg">Redigera mina uppgifter</string>
-    
+    <string name="registration_dd15_agreement">För dessa funktioner så måste du komma på audition! Auditionstid bokas hos Nöjessektionen.</string>
+    <string name="registration_PUL">Genom denna blankett ger du Lundakarnevalen tillåtelse att använda fotot på dig samt behandla dina personuppgifter i datorsystemet och för egna utskick i enlighet med Personuppgiftslag (1998:204)</string>
+	<string name="registration_comfirmPUL">Jag godkänner dessa villkor</string>
+	<string name="registration_iwant">Jag vill vara:</string>
 	<string name="sektion_0">Jag vill bara vara med! Vilken sektion spelar ingen roll.</string> 
     <string name="sektion_1">Barnevalen</string>
     <string name="sektion_2">Biljetteriet</string>
@@ -106,7 +111,6 @@
     <string name="nationDed">En nation, vilken och hur?</string>
     <string name="otherStud">Annan studentikos förening?</string>
     <string name="otherDed">Annan förening?</string>
-    <string name="confirm_email">Bekräfta E-post</string>
     <string name="email">E-post</string>
     <string name="email_valid">E-post igen tack!</string>
     <string name="nationTopic">Nation</string>
@@ -128,6 +132,17 @@
     <string name="aktiv">Vill du ha ansvar?</string>
     <string name="other">Något annat?</string>
     <string name="elseT">Övrigt</string>
+    <string name="active">Aktiv</string>
+    <string name="responsible">Ansvarig</string>
+    <string name="activitylevel">Aktivitetsnivå</string>
+    <string name="work_fulltime">Heltidspost inom studentlivet</string>
+    <string name="work_styrelse">Styrelse</string>
+    <string name="work_forman">Utskottsansvarig/förman</string>
+    <string name="work_aktiv">Aktiv</string>
+    <string name="karnevalist_2010">Var du karnevalist 2010 också?</string>
+    <string name="fail_creedentials">Felaktigt ifyllda fält:</string>
+    
+    
     
     <string name="choose">Välj</string>
 

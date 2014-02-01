@@ -105,12 +105,39 @@
 	        android:visibility="gone">
 		    <se.lundakarnevalen.widget.LKTextViewBold
 		        android:layout_marginTop="@dimen/vertical_margin"
-		        android:textSize="18sp"
+		        android:textSize="16sp"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:textColor="#FFFFFF"
-		        android:text="@string/intressen" />
-		    
+		        android:text="@string/registration_iwant" />
+		    <CheckBox android:id="@+id/checkbox_responsible"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/responsible"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF" />
+		    <CheckBox android:id="@+id/checkbox_active"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/active"
+        				android:button="@drawable/checkbox_bg"
+        				android:padding="5dp"
+        				android:textColor="#FFFFFF" />
+		   
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="16sp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_chooseintrests_information1" />
+		    <se.lundakarnevalen.widget.LKTextView
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_chooseintrests_information2" />
 		    <LinearLayout
 		        android:id="@+id/intrestswrapper"
 		        android:layout_width="match_parent"
@@ -440,13 +467,17 @@
 			
 		    <se.lundakarnevalen.widget.LKTextViewBold
 		        android:layout_marginTop="@dimen/vertical_margin"
-		        android:textSize="18sp"
-		        android:id="@+id/lKTextViewBold4"
+		        android:textSize="16sp"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:textColor="#FFFFFF"
-		        android:text="@string/registration_choosesection" />	    
-		    
+		        android:text="@string/registration_choosesection_information1" />	    
+		    <se.lundakarnevalen.widget.LKTextView
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_choosesection_information2" />	
 		    
 		    <RadioGroup
 		        android:id="@+id/sectionwrapper"
@@ -1203,14 +1234,6 @@
 	        	android:layout_height="wrap_content"
 	        	android:textColor="#FFFFFF"
 	        	android:text="@string/elseT" />
-			<CheckBox android:id="@+id/aktiv"
-          		android:layout_width="wrap_content"
-   				android:layout_height="wrap_content"
-   				android:button="@drawable/checkbox_bg"
-	      		android:padding="5dp"
-   				android:text="@string/aktiv"
-   				android:textColor="#FFFFFF"
-   				android:onClick="onCheckBoxClicked"/> 
 	    	<se.lundakarnevalen.widget.LKEditText
 	        	android:singleLine="true"
 	        	android:layout_marginTop="@dimen/vertical_margin_half"
@@ -1442,13 +1465,69 @@
 		        android:textColor="#FFFFFF"
 				android:textColorHint="@color/bg_peach"
 		        android:hint="@string/otherDed" />
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="18sp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/activitylevel" />
 		    <CheckBox
-		        android:id="@+id/karnevalist_2010"
+		        android:id="@+id/checkbox_work_fulltime"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:button="@drawable/checkbox_bg"
+	        	android:padding="5dp"
+	    		android:text="@string/work_fulltime"
+	    		android:textColor="#FFFFFF" />
+		    <CheckBox
+		        android:id="@+id/checkbox_work_styrelse"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:button="@drawable/checkbox_bg"
+	        	android:padding="5dp"
+	    		android:text="@string/work_styrelse"
+	    		android:textColor="#FFFFFF" />
+		    <CheckBox
+		        android:id="@+id/checkbox_work_forman"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:button="@drawable/checkbox_bg"
+	        	android:padding="5dp"
+	    		android:text="@string/work_forman"
+	    		android:textColor="#FFFFFF" />
+		    <CheckBox
+		        android:id="@+id/checkbox_work_aktiv"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:button="@drawable/checkbox_bg"
+	        	android:padding="5dp"
+	    		android:text="@string/work_aktiv"
+	    		android:textColor="#FFFFFF" />
+		    <CheckBox
+		        android:id="@+id/checkbox_karnevalist_2010"
 	           	android:layout_width="wrap_content"
 	    		android:layout_height="wrap_content"
 	    		android:button="@drawable/checkbox_bg"
 	        	android:padding="5dp"
 	    		android:text="@string/karnevalist_2010"
+	    		android:textColor="#FFFFFF" />
+		    
+		    
+		    
+		    <se.lundakarnevalen.widget.LKTextView 
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_PUL" />
+		    <CheckBox
+		        android:id="@+id/checkbox_PUL"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:button="@drawable/checkbox_bg"
+	        	android:padding="5dp"
+	    		android:text="@string/registration_comfirmPUL"
 	    		android:textColor="#FFFFFF" />
 		</LinearLayout>
 		<!-- Personuppgifter - Slut -->
