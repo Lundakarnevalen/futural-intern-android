@@ -38,10 +38,12 @@ public class SectionsInformationFragment extends LKFragment {
 
 		TextView titleTextView = (TextView) root
 				.findViewById(R.id.Section_name);
+ 		ImageView icon = (ImageView) root.findViewById(R.id.Section_icon);
 		LKTextView informationTextView = (LKTextView) root
 				.findViewById(R.id.section_information);
 
 		titleTextView.setText(title.toUpperCase());
+		icon.setImageResource(pictureResourceId);
 		informationTextView.setText(Html.fromHtml(information));
 
 		return root;

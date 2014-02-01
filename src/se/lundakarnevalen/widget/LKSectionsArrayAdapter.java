@@ -37,24 +37,26 @@ public class LKSectionsArrayAdapter extends
 		row = inflater.inflate(R.layout.sections_row, parent, false);
 
 		LKTextViewBold title = (LKTextViewBold) row.findViewById(R.id.title);
-
+		ImageView icon = (ImageView) row.findViewById(R.id.image);
+		
 		LKSectionsItem item = list.get(position);
 
 		title.setText(item.title);
+		icon.setImageResource(item.icon);
 
 		return row;
 	}
 
 	public static class LKSectionsItem {
 		public String title;
-//		public int icon;
+		public int icon;
 		public String information;
 		public boolean like;
 
-		public LKSectionsItem(String title, /*int icon2,*/ String information,
+		public LKSectionsItem(String title, int icon2, String information,
 				boolean like) {
 			this.title = title;
-//			this.icon = icon2;
+			this.icon = icon2;
 			this.information = information;
 			this.like = like;
 		}
@@ -71,7 +73,7 @@ public class LKSectionsArrayAdapter extends
 		Bundle bundle = new Bundle();
 
 		bundle.putString("title", item.title);
-//		bundle.putInt("resourceId", item.icon);
+		bundle.putInt("resourceId", item.icon);
 		bundle.putString("information", item.information);
 
 		fragment.setArguments(bundle);

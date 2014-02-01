@@ -43,7 +43,7 @@ public class SectionSQLiteDB extends SQLiteOpenHelper{
 		SQLiteDatabase db = getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(SectionSQLiteDBContract.COLUMN_NAME_TITLE, item.title);
-//		values.put(SectionSQLiteDBContract.COLUMN_NAME_ICON, item.icon);
+		values.put(SectionSQLiteDBContract.COLUMN_NAME_ICON, item.icon);
 		values.put(SectionSQLiteDBContract.COLUMN_NAME_INFO, item.information);
 		values.put(SectionSQLiteDBContract.COLUMN_NAME_LIKED, item.like ? 1 : 0);
 		return db.insert(SectionSQLiteDBContract.TABLE_NAME, null, values);
@@ -64,14 +64,12 @@ public class SectionSQLiteDB extends SQLiteOpenHelper{
 	public List<LKSectionsItem> getSections() {
 		List<LKSectionsItem> data = new ArrayList<LKSectionsItem>();
 		SQLiteDatabase dbRead = getReadableDatabase();
-//		String[] dataProjection = {SectionSQLiteDBContract.COLUMN_NAME_ENTRY_ID, SectionSQLiteDBContract.COLUMN_NAME_TITLE, SectionSQLiteDBContract.COLUMN_NAME_ICON, SectionSQLiteDBContract.COLUMN_NAME_INFO, SectionSQLiteDBContract.COLUMN_NAME_LIKED};
-		String[] dataProjection = {SectionSQLiteDBContract.COLUMN_NAME_ENTRY_ID, SectionSQLiteDBContract.COLUMN_NAME_TITLE, SectionSQLiteDBContract.COLUMN_NAME_INFO, SectionSQLiteDBContract.COLUMN_NAME_LIKED};
+		String[] dataProjection = {SectionSQLiteDBContract.COLUMN_NAME_ENTRY_ID, SectionSQLiteDBContract.COLUMN_NAME_TITLE, SectionSQLiteDBContract.COLUMN_NAME_ICON, SectionSQLiteDBContract.COLUMN_NAME_INFO, SectionSQLiteDBContract.COLUMN_NAME_LIKED};
 		String sort = "title ASC";
 		Cursor cursor = dbRead.query(SectionSQLiteDBContract.TABLE_NAME, dataProjection, null, null, null, null, sort);
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()){
-			LKSectionsItem item = new LKSectionsItem(cursor.getString(1), cursor.getString(2), Boolean.getBoolean(cursor.getString(3)));
-//			LKSectionsItem item = new LKSectionsItem(cursor.getString(1), cursor.getInt(2), cursor.getString(3), Boolean.getBoolean(cursor.getString(4)));
+			LKSectionsItem item = new LKSectionsItem(cursor.getString(1), cursor.getInt(2), cursor.getString(3), Boolean.getBoolean(cursor.getString(4)));
 
 			data.add(item);
 			cursor.moveToNext();
@@ -90,14 +88,14 @@ public class SectionSQLiteDB extends SQLiteOpenHelper{
 		public final static String TABLE_NAME = "LKMessageTable";
 		public final static String COLUMN_NAME_ENTRY_ID = "entryid";
 		public final static String COLUMN_NAME_TITLE = "title";
-//		public final static String COLUMN_NAME_ICON = "message";
-		public final static String COLUMN_NAME_INFO = "image";
+		public final static String COLUMN_NAME_ICON = "icon";
+		public final static String COLUMN_NAME_INFO = "info";
 		public final static String COLUMN_NAME_LIKED = "unliked";
 		
 		public final static String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+" ("+" ID INTEGER PRIMARY KEY,"+
 												  COLUMN_NAME_ENTRY_ID + " TEXT," +
 												  COLUMN_NAME_TITLE + " TEXT,"+
-												  /*COLUMN_NAME_ICON + " IMAGE,"+*/
+												  COLUMN_NAME_ICON + " IMAGE,"+
 												  COLUMN_NAME_INFO + " TEXT,"+
 												  COLUMN_NAME_LIKED + " INTEGER)";
 		
