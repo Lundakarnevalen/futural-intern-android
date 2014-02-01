@@ -42,6 +42,7 @@ public class LKFragment extends Fragment{
 	public static final String SP_KEY_REGISTRATION_STEP = "LKRegistrationStep";
 	public static final String SP_KEY_REGISTRATION_LOCK = "LKRegistrationLock";
 
+	public static String timeF = "2014-02-09, 23:59:59";
 	
 	/**
 	 * Gets the application context
@@ -107,7 +108,19 @@ public class LKFragment extends Fragment{
 	 * @return
 	 */
 	public boolean appIsLocked(LKUser user){
-		return user.step >= 3;
+		long time = System.currentTimeMillis();
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
+		formatter.setLenient(false);
+
+		Date timeDate = null;
+		try {
+			timeDate = formatter.parse(timeF);
+		} catch (ParseException e) {
+			Log.d(LOG_TAG, "could not parse time");
+		}
+		long timeClose = timeDate.getTime();
+		return (user.step >= 3) || (time > timeClose);
 	}
 	
 	/**
@@ -137,7 +150,6 @@ public class LKFragment extends Fragment{
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
 		formatter.setLenient(false);
-		String timeF = "2014-02-09, 23:59:59";
 		Date timeDate = null;
 		try {
 			timeDate = formatter.parse(timeF);
