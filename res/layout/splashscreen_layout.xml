@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/base_pink"
     android:clickable="true"
-    android:id="@+id/splash_wrapper">
+    android:id="@+id/splash">
     <ImageView
         android:id="@+id/title"
         android:layout_width="wrap_content"

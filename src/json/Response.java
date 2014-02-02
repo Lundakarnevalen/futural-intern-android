@@ -38,6 +38,5 @@ public class Response {
 	}
 	
 	public static class GetGCM{
-		
 	}
 }

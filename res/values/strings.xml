@@ -160,7 +160,7 @@
     <string name="right_tab">Alla sektioner</string>
     <string name="all_sections">ALLA SEKTIONER</string>
 
-    <string name="inbox_empty_text">OH NO! No messages...</string>
+    <string name="inbox_empty_text">Du har inte fått något meddelande ännu</string>
     <string name="user_profile">DINA UPPGIFTER</string>
     <string name="user_phone">Telefonnummer:</string>
     <string name="user_name">Namn:</string>

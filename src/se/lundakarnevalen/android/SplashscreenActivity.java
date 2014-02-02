@@ -40,12 +40,13 @@ public class SplashscreenActivity extends Activity{
 		
 		// init some stuff
 		populateSp();
-				
-		wrapper = (RelativeLayout) findViewById(R.id.splash_wrapper);
+		
+		wrapper = (RelativeLayout) findViewById(R.id.splash);
+		Log.d(LOG_TAG, (wrapper == null) ? "wrapper was null" : "wrapper was NOT null");
 		wrapper.setOnClickListener(cont);
 
 		sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, Context.MODE_PRIVATE);
-		addDataSekBg();
+		addDataSekBg(); 
 		if(checkForGooglePlay()){
 			// GCM registration
 			gcmRegistration();
@@ -59,7 +60,7 @@ public class SplashscreenActivity extends Activity{
 	@Override
 	public void onResume(){
 		super.onResume();
-		checkForGooglePlay();
+		checkForGooglePlay(); 
 	}
 	
 	@Override
