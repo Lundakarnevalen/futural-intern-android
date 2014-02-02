@@ -3,6 +3,10 @@ package se.lundakarnevalen.widget;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.lundakarnevalen.android.R;
+
+import android.app.AlertDialog;
+import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewParent;
@@ -13,7 +17,7 @@ public class LKRadioGroup {
 
     ArrayList<RadioButton> radios = new ArrayList<RadioButton>();
     ArrayList<Integer> radioids = new ArrayList<Integer>();
-
+    Context context;
     /**
      * Constructor, which allows you to pass number of RadioButtons 
      * represented by resource IDs, making a group.
@@ -24,9 +28,9 @@ public class LKRadioGroup {
      * @param radiosIDs
      *            One RadioButton or more.
      */
-    public LKRadioGroup(View activity, int... radiosIDs) {
+    public LKRadioGroup(Context context, View activity, int... radiosIDs) {
         super();
-
+        this.context = context;
         for (int radioButtonID : radiosIDs) {
             RadioButton rb = (RadioButton)activity.findViewById(radioButtonID);
             if (rb != null) {
@@ -53,7 +57,13 @@ public class LKRadioGroup {
 
         @Override
         public void onClick(View v) {
-
+        	if(v.getId() == R.id.radio_dd_15) { //OBS SJUK HÅRDKODAT MÅSTE FIXAS OM NÅGOT ÄNDRAS
+        		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    			builder.setTitle("Superviktigt!");
+    			builder.setMessage("För dessa funktioner så måste du komma på audition! Auditionstid bokas hos Nöjessektionen.");
+    			builder.setPositiveButton("Ok", null);
+    			builder.show();
+        	}
             // let's deselect all radios in group
             for (RadioButton rb : radios) {
 

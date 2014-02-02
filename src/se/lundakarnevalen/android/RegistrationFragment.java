@@ -121,7 +121,7 @@ public class RegistrationFragment extends LKFragment{
 		wrapperLK = (LinearLayout) root.findViewById(R.id.wrapper_lk);
 		code = (LKEditText) root.findViewById(R.id.continue_code);
 		code.setOnEditorActionListener(sendEditorChangeListener);
-		rgsec = new LKRadioGroup(root, R.id.radio_section_0, R.id.radio_section_1, 
+		rgsec = new LKRadioGroup(getContext(), root, R.id.radio_section_0, R.id.radio_section_1, 
 				R.id.radio_section_2, R.id.radio_section_3, R.id.radio_section_4, R.id.radio_section_5, 
 				R.id.radio_section_6, R.id.radio_section_7, R.id.radio_section_8, R.id.radio_section_9, 
 				R.id.radio_section_10, R.id.radio_section_11, R.id.radio_section_12, R.id.radio_section_13, 
@@ -131,7 +131,7 @@ public class RegistrationFragment extends LKFragment{
 				R.id.radio_section_26, R.id.radio_section_100, R.id.radio_section_101, R.id.radio_section_102, 
 				R.id.radio_section_202, R.id.radio_section_203, R.id.radio_section_204, R.id.radio_section_300, 
 				R.id.radio_section_399, R.id.radio_section_400, R.id.radio_section_499);
-		rgint = new LKRadioGroup(root, R.id.radio_dd_0, R.id.radio_dd_1, 
+		rgint = new LKRadioGroup(getContext(), root, R.id.radio_dd_0, R.id.radio_dd_1, 
 				R.id.radio_dd_2, R.id.radio_dd_3, R.id.radio_dd_4, R.id.radio_dd_5, 
 				R.id.radio_dd_6, R.id.radio_dd_7, R.id.radio_dd_8, R.id.radio_dd_9, 
 				R.id.radio_dd_10, R.id.radio_dd_11, R.id.radio_dd_12, R.id.radio_dd_13, 
@@ -308,7 +308,7 @@ public class RegistrationFragment extends LKFragment{
 			if(b)
 				amount++;
 		}
-		return amount>4;	
+		return amount>2;	
 	}
 	
 	private void updateProgressBar() {
@@ -676,40 +676,40 @@ public class RegistrationFragment extends LKFragment{
 	public int starIntrest() {
 		int id = rgint.getActiveRB();
 		switch (id) {
-		case R.id.radio_dd_0:
-			return 0;		
-		case R.id.radio_dd_1:
-			return 1;
-		case R.id.radio_dd_2:
-			return 2;
-		case R.id.radio_dd_3:
-			return 3;		
-		case R.id.radio_dd_4:
-			return 4;
-		case R.id.radio_dd_5:
-			return 5;
-		case R.id.radio_dd_6:
-			return 6;
-		case R.id.radio_dd_7:
-			return 7;
-		case R.id.radio_dd_8:
-			return 8;
-		case R.id.radio_dd_9:
-			return 9;
-		case R.id.radio_dd_10:
-			return 10;
-		case R.id.radio_dd_11:
-			return 11;
-		case R.id.radio_dd_12:
-			return 12;
-		case R.id.radio_dd_13:
-			return 13;
-		case R.id.radio_dd_14:
-			return 14;
-		case R.id.radio_dd_15:
-			return 15;
-		default:
-			return 0;
+			case R.id.radio_dd_0:
+				return 0;		
+			case R.id.radio_dd_1:
+				return 1;
+			case R.id.radio_dd_2:
+				return 2;
+			case R.id.radio_dd_3:
+				return 3;		
+			case R.id.radio_dd_4:
+				return 4;
+			case R.id.radio_dd_5:
+				return 5;
+			case R.id.radio_dd_6:
+				return 6;
+			case R.id.radio_dd_7:
+				return 7;
+			case R.id.radio_dd_8:
+				return 8;
+			case R.id.radio_dd_9:
+				return 9;
+			case R.id.radio_dd_10:
+				return 10;
+			case R.id.radio_dd_11:
+				return 11;
+			case R.id.radio_dd_12:
+				return 12;
+			case R.id.radio_dd_13:
+				return 13;
+			case R.id.radio_dd_14:
+				return 14;
+			case R.id.radio_dd_15:
+				return 15;
+			default:
+				return 0;
 		}
 	}
 	
@@ -763,6 +763,13 @@ public class RegistrationFragment extends LKFragment{
 				intressenchecked[14] = checked;
 				break;
 			case R.id.dd_15:
+				if(checked){
+					AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+	    			builder.setTitle("Superviktigt!");
+	    			builder.setMessage("För dessa funktioner så måste du komma på audition! Auditionstid bokas hos Nöjessektionen.");
+	    			builder.setPositiveButton("Ok", null);
+	    			builder.show();				
+	    		}
 				intressenchecked[15] = checked;
 				break;	
 		}
@@ -771,82 +778,82 @@ public class RegistrationFragment extends LKFragment{
 	public int starSection() {
 		int id = rgsec.getActiveRB();
 		switch (id) {
-		case R.id.radio_section_0:
-			return 0;
-		case R.id.radio_section_1:
-			return 1;
-		case R.id.radio_section_2:
-			return 2;
-		case R.id.radio_section_3:
-			return 3;
-		case R.id.radio_section_4:
-			return 4;
-		case R.id.radio_section_5:
-			return 5;
-		case R.id.radio_section_6:
-			return 6;
-		case R.id.radio_section_7:
-			return 7;
-		case R.id.radio_section_8:
-			return 8;
-		case R.id.radio_section_9:
-			return 9;
-		case R.id.radio_section_10:
-			return 10;
-		case R.id.radio_section_11:
-			return 11;
-		case R.id.radio_section_12:
-			return 12;
-		case R.id.radio_section_13:
-			return 13;
-		case R.id.radio_section_14:
-			return 14;
-		case R.id.radio_section_15:
-			return 15;
-		case R.id.radio_section_16:
-			return 16;
-		case R.id.radio_section_17:
-			return 17;
-		case R.id.radio_section_18:
-			return 18;
-		case R.id.radio_section_19:
-			return 19;
-		case R.id.radio_section_20:
-			return 20;
-		case R.id.radio_section_21:
-			return 21;
-		case R.id.radio_section_22:
-			return 22;
-		case R.id.radio_section_23:
-			return 23;
-		case R.id.radio_section_24:
-			return 24;
-		case R.id.radio_section_25:
-			return 25;
-		case R.id.radio_section_26:
-			return 26;
-		case R.id.radio_section_100:
-			return 100;
-		case R.id.radio_section_101:
-			return 101;
-		case R.id.radio_section_102:
-			return 102;
-		case R.id.radio_section_202:
-			return 202;
-		case R.id.radio_section_203:
-			return 203;
-		case R.id.radio_section_204:
-			return 204;
-		case R.id.radio_section_300:
-			return 300;
-		case R.id.radio_section_399:
-			return 399;
-		case R.id.radio_section_400:
-			return 400;
-		case R.id.radio_section_499:
-			return 499;
-		default:
-			return 0;
+			case R.id.radio_section_0:
+				return 0;
+			case R.id.radio_section_1:
+				return 1;
+			case R.id.radio_section_2:
+				return 2;
+			case R.id.radio_section_3:
+				return 3;
+			case R.id.radio_section_4:
+				return 4;
+			case R.id.radio_section_5:
+				return 5;
+			case R.id.radio_section_6:
+				return 6;
+			case R.id.radio_section_7:
+				return 7;
+			case R.id.radio_section_8:
+				return 8;
+			case R.id.radio_section_9:
+				return 9;
+			case R.id.radio_section_10:
+				return 10;
+			case R.id.radio_section_11:
+				return 11;
+			case R.id.radio_section_12:
+				return 12;
+			case R.id.radio_section_13:
+				return 13;
+			case R.id.radio_section_14:
+				return 14;
+			case R.id.radio_section_15:
+				return 15;
+			case R.id.radio_section_16:
+				return 16;
+			case R.id.radio_section_17:
+				return 17;
+			case R.id.radio_section_18:
+				return 18;
+			case R.id.radio_section_19:
+				return 19;
+			case R.id.radio_section_20:
+				return 20;
+			case R.id.radio_section_21:
+				return 21;
+			case R.id.radio_section_22:
+				return 22;
+			case R.id.radio_section_23:
+				return 23;
+			case R.id.radio_section_24:
+				return 24;
+			case R.id.radio_section_25:
+				return 25;
+			case R.id.radio_section_26:
+				return 26;
+			case R.id.radio_section_100:
+				return 100;
+			case R.id.radio_section_101:
+				return 101;
+			case R.id.radio_section_102:
+				return 102;
+			case R.id.radio_section_202:
+				return 202;
+			case R.id.radio_section_203:
+				return 203;
+			case R.id.radio_section_204:
+				return 204;
+			case R.id.radio_section_300:
+				return 300;
+			case R.id.radio_section_399:
+				return 399;
+			case R.id.radio_section_400:
+				return 400;
+			case R.id.radio_section_499:
+				return 499;
+			default:
+				return 0;
 		}
 	}
 	
@@ -856,11 +863,9 @@ public class RegistrationFragment extends LKFragment{
 		switch (view.getId()) {
 			case R.id.checkbox_0:
 				sektionerchecked[0] = checked;
-				
 				break;
 			case R.id.checkbox_1:
 				sektionerchecked[1] = checked;
-				
 				break;
 			case R.id.checkbox_2:
 				sektionerchecked[2] = checked;
