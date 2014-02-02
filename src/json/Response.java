@@ -32,6 +32,11 @@ public class Response {
 		public String status, token;
 	}
 	
+	public static class Message {
+		public String status, notifications;
+		public int id;
+	}
+	
 	public static class GetGCM{
 		
 	}

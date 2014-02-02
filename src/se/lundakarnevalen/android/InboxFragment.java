@@ -63,9 +63,18 @@ public class InboxFragment extends LKFragment{
 		setTitle("Inbox");
 		fragmentManager = getActivity().getSupportFragmentManager();
 		if(!inboxEmpty) {
-			new RenderingTask().execute(context);
-		}		
-	}
+			RenderingTask rt = new RenderingTask();
+			Log.d("InboxFragment", "Executing RenderingTask");
+			rt.execute(context);
+		}
+		// Code to add dummy data into database.
+		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
+		//dbDummy.addItem(new LKMenuListItem("Title", "This is a short message.", "2015-15-34", true, null));
+
+		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
+		//dbDummy.addItem(new LKMenuListItem("Title", "Leet (or '1337'), also known as eleet or leetspeak, is an alternative alphabet for the English language that is used primarily on the Internet. It uses various combinations of ASCII characters to replace Latinate letters. For example, leet spellings of the word leet include 1337 and l33t; eleet may be spelled 31337 or 3l33t. The term leet is derived from the word elite. The leet alphabet is a specialized form of symbolic writing. Leet may also be considered a substitution cipher, although many dialects or linguistic varieties exist in different online communities. The term leet is also used as an adjective to describe formidable prowess or accomplishment, especially in the fields of online gaming and in its original usage – computer hacking.", "2015-15-34", true, null));
+		
+	}		
 	
 	/**
 	 * Add message from db.
@@ -74,9 +83,11 @@ public class InboxFragment extends LKFragment{
 	 * @param message
 	 * @param date
 	 */
-	public static void addMessage(Context context, String title, String message, String date){
+	public static void addMessage(Context context, String title, String message, String date, int id){
 		LKSQLiteDB db = new LKSQLiteDB(context);
-		db.addItem(new LKMenuListItem(title, message, date, true, null)); // Null är bitmappen.
+		Log.d("InboxFragment", "InboxFragment.addMessage.id = "+id);
+		db.addItem(new LKMenuListItem(title, message, date, id, true, null)); // Null är bitmappen.
+		db.close();
 	}
 	
 	public class RenderingTask extends AsyncTask<Context,Void,Void> {
@@ -97,13 +108,14 @@ public class InboxFragment extends LKFragment{
 			ListView.LayoutParams lp = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, context[0].getResources().getDimensionPixelSize(R.dimen.horizontal_margin));
 			RelativeLayout r = new RelativeLayout(context[0]);
 			r.setLayoutParams(lp);
-			LKMenuListItem l = new LKMenuListItem("","","",false,null);
+			LKMenuListItem l = new LKMenuListItem("","","", 0, false,null);
 			l.layout = r;
 			l.isStatic = true;
 			items.add(l);
 			
 			for(LKMenuListItem message : data){
 				items.add(message);
+				Log.d("InboxFragment", "fetched item with id = "+message.id);
 			}
 			
 			//Populate rowList with data from items
@@ -119,6 +131,7 @@ public class InboxFragment extends LKFragment{
 				
 				titleTextView.setText(item.title);
 				titleTextView.setTextColor(context[0].getResources().getColor((R.color.base_pink)));
+				
 				//TODO: Set bold text if item.unread == true
 				if(item.unread) {
 					Typeface tf = Typeface.createFromAsset(context[0].getAssets(), "fonts/Roboto-Bold.ttf");
@@ -158,7 +171,7 @@ public class InboxFragment extends LKFragment{
 			lp = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, context[0].getResources().getDimensionPixelSize(R.dimen.horizontal_margin_half));
 			r = new RelativeLayout(context[0]);
 			r.setLayoutParams(lp);
-			l = new LKMenuListItem("","","",false,null);
+			l = new LKMenuListItem("","","", 0, false,null);
 			l.layout = r;
 			items.add(l);
 			

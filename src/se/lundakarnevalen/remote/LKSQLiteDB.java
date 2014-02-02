@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class LKSQLiteDB extends SQLiteOpenHelper{
 	
@@ -35,7 +36,20 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		values.put(LKSQLiteDBContract.COLUMN_NAME_DATE, item.date);
 		values.put(LKSQLiteDBContract.COLUMN_NAME_IMG, "img path");
 		values.put(LKSQLiteDBContract.COLUMN_NAME_UNREAD, item.unread ? 1 : 0);
+		values.put(LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID, item.id);
 		return db.insert(LKSQLiteDBContract.TABLE_NAME, null, values);
+	}
+	
+	public int update(LKMenuListItem item) {
+		SQLiteDatabase db = getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(LKSQLiteDBContract.COLUMN_NAME_TITLE, item.title);
+		values.put(LKSQLiteDBContract.COLUMN_NAME_MESSAGE, item.message);
+		values.put(LKSQLiteDBContract.COLUMN_NAME_DATE, item.date);
+		values.put(LKSQLiteDBContract.COLUMN_NAME_IMG, "img path");
+		values.put(LKSQLiteDBContract.COLUMN_NAME_UNREAD, item.unread ? 1 : 0);
+		Log.d("LKSQLiteDB", "item.id = "+item.id);
+		return db.update(LKSQLiteDBContract.TABLE_NAME, values, LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID+" = "+item.id, null);
 	}
 	
 	public List<LKMenuListItem> getMessages(){
@@ -47,7 +61,7 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()){
 			boolean unread = cursor.getInt(5) == 1;
-			LKMenuListItem item = new LKMenuListItem(cursor.getString(1), cursor.getString(2), cursor.getString(3), unread, null);
+			LKMenuListItem item = new LKMenuListItem(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(0), unread, null);
 			data.add(item);
 			cursor.moveToNext();
 		}
@@ -56,6 +70,38 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 	
 	public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion){
 		onUpgrade(db, oldVersion, newVersion);
+	}
+	
+	public int numberOfUnreadMessages() {
+		SQLiteDatabase db = getReadableDatabase();
+		String[] dataProjection = {LKSQLiteDBContract.COLUMN_NAME_UNREAD};
+		String sort = "DATE DESC";
+		Cursor cursor = db.query(LKSQLiteDBContract.TABLE_NAME, dataProjection, null, null, null, null, sort);
+		cursor.moveToFirst();
+		int count = 0;
+		while(!cursor.isAfterLast()) {
+			if(Integer.parseInt(cursor.getString(0)) == 1) {
+				count++;
+			}
+		}
+		db.close();
+		return count;
+	}
+	
+	public int heighestMessageId() {
+		SQLiteDatabase db = getReadableDatabase();
+		String[] dataProjection = {LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID};
+		String sort = "DATE DESC";
+		Cursor cursor = db.query(LKSQLiteDBContract.TABLE_NAME, dataProjection, null, null, null, null, sort);
+		cursor.moveToFirst();
+		int tmp, max = 0;
+		while(!cursor.isAfterLast()) {
+			tmp = Integer.parseInt(cursor.getString(0));
+			if(tmp > max) {
+				max = tmp;
+			}
+		}
+		return max;
 	}
 	
 	public static final class LKSQLiteDBContract{
