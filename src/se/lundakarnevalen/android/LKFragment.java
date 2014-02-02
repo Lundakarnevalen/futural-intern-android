@@ -207,7 +207,7 @@ public class LKFragment extends Fragment{
 	 * Handles radiobuttons in the fragment
 	 * @param view radio button view
 	 */
-	public void onRadioButtonClicked(View view) {
+	public void onIntrestsRadioButtonClicked(View view) {
 		
 	}
 	/**
@@ -215,6 +215,20 @@ public class LKFragment extends Fragment{
 	 * @param view checkbox view
 	 */
 	public void onCheckBoxClicked(View view) {
+		
+	}	
+	/**
+	 * Handles checkboxes for sections in the fragment
+	 * @param view checkbox view
+	 */
+	public void onSectionCheckBoxClicked(View view) {
+		
+	}
+	/**
+	 * Handles checkboxes for intrests in the fragment
+	 * @param view checkbox view
+	 */
+	public void onIntrestsCheckBoxClicked(View view) {
 		
 	}
 	

@@ -120,10 +120,35 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	 * Handles radiobuttons in the fragment
 	 * @param view radio button view
 	 */
-	public void onRadioButtonClicked(View view) {
+	public void onIntrestsRadioButtonClicked(View view) {
 		try {
 			LKFragment fragment = (LKFragment) fragmentMgr.findFragmentById(R.id.content_frame);
-			fragment.onRadioButtonClicked(view);
+			fragment.onIntrestsRadioButtonClicked(view);
+		} catch(ClassCastException e) {
+			Log.e(LOG_TAG,"could not get fragment." + e.toString());
+			
+		}
+	}
+	/**
+	 * Handles checkboxes for sections in the fragment
+	 * @param view checkbox view
+	 */
+	public void onSectionCheckBoxClicked(View view) {
+		try {
+			LKFragment fragment = (LKFragment) fragmentMgr.findFragmentById(R.id.content_frame);
+			fragment.onSectionCheckBoxClicked(view);
+		} catch(ClassCastException e) {
+			Log.e(LOG_TAG,"could not get fragment.");
+		}
+	}
+	/**
+	 * Handles checkboxes for intrests in the fragment
+	 * @param view checkbox view
+	 */
+	public void onIntrestsCheckBoxClicked(View view) {
+		try {
+			LKFragment fragment = (LKFragment) fragmentMgr.findFragmentById(R.id.content_frame);
+			fragment.onIntrestsCheckBoxClicked(view);
 		} catch(ClassCastException e) {
 			Log.e(LOG_TAG,"could not get fragment.");
 		}
