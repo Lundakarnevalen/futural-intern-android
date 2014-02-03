@@ -6,13 +6,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.os.Handler;
 import android.widget.RelativeLayout;
 
 public class SplashscreenActivity extends Activity {
 
 	RelativeLayout wrapper;
 	Context context;
+	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds 
 	
 	
 
@@ -22,7 +23,8 @@ public class SplashscreenActivity extends Activity {
 		setContentView(R.layout.splashscreen_layout);
 		this.context = this;
 		wrapper = (RelativeLayout) findViewById(R.id.splash_wrapper);
-		wrapper.setOnClickListener(cont);
+//		wrapper.setOnClickListener(cont);
+		createMenuThread();
 		
 		
 	     // Information about the sections
@@ -207,12 +209,25 @@ public class SplashscreenActivity extends Activity {
 	}
 	
 	
+	private void createMenuThread() {
+		/*start up the splash screen and main menu in a time delayed thread*/
+		new Handler().postDelayed(new Thread() {
+			@Override
+			public void run() {
+				Intent intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
+				SplashscreenActivity.this.startActivity(intent);
+				SplashscreenActivity.this.finish();
+				overridePendingTransition(R.layout.fade_in, R.layout.fade_out);
+			}
+		}, THREAD_DELAY);
+	}
 	
-	View.OnClickListener cont = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			Intent intent = new Intent(context, ContentActivity.class);
-			context.startActivity(intent);
-		}
-	};
+	
+//	View.OnClickListener cont = new View.OnClickListener() {
+//		@Override
+//		public void onClick(View v) {
+//			Intent intent = new Intent(context, ContentActivity.class);
+//			context.startActivity(intent);
+//		}
+//	};
 }
