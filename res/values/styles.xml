@@ -2,21 +2,19 @@
     
     <!-- App theme -->
     <style name="ActionBarTheme" parent="@style/Theme.AppCompat.Light">
-        <!-- <item name="actionBarStyle">@style/ActionBarStyle</item> -->
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
     </style>
     
     <!-- Style for actionbar -->
-    <style name="ActionBarStyle">
-        <!-- <item name="background">@drawable/icon</item>
-        <item name="android:background">@drawable/actionbar_bg</item>
+    <style name="ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="background">@drawable/actionbar_bg</item>
         <item name="titleTextStyle">@style/ActionBarTitleTextStyle</item>
         <item name="displayOptions">showTitle</item>
-        <item name="android:height">50dp</item> -->
+        <item name="android:height">50dp</item>
     </style>
     
      <!-- Style for title text -->
     <style name="ActionBarTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <!-- <item name="android:textColor">#FFFFFF</item> -->
+        <item name="android:textColor">#FFFFFF</item>
     </style>
-    
 </resources>
