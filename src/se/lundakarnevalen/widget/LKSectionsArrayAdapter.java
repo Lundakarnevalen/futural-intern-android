@@ -7,6 +7,7 @@ import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.android.SectionsInformationFragment;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,7 @@ public class LKSectionsArrayAdapter extends
 	private Context context;
 	private ArrayList<LKSectionsItem> list;
 
-	public LKSectionsArrayAdapter(Context context,
-			ArrayList<LKSectionsItem> list) {
+	public LKSectionsArrayAdapter(Context context, ArrayList<LKSectionsItem> list) {
 		super(context, R.layout.sections_row, list);
 		this.context = context;
 		this.list = list;
@@ -56,7 +56,9 @@ public class LKSectionsArrayAdapter extends
 		public LKSectionsItem(String title, int icon2, String information,
 				boolean like) {
 			this.title = title;
+
 			this.icon = icon2;
+
 			this.information = information;
 			this.like = like;
 		}

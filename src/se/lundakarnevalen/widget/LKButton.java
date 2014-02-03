@@ -28,7 +28,7 @@ public class LKButton extends Button{
 	}
 	
 	private void init(){
-		setBackgroundResource(R.drawable.button_bg);
+		setBackgroundResource(R.drawable.button_selector);
 		int pxPadding = context.getResources().getDimensionPixelSize(R.dimen.horizontal_margin);
 		setPadding(pxPadding, pxPadding, pxPadding, pxPadding);
 		Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf");
