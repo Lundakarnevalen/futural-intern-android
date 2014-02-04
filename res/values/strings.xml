@@ -12,6 +12,9 @@
     <string name="registration_informationafterorigressbar2">karnevalist. Vi behöver bara en bild på dig.</string>
     <string name="code_explained">Inne i AF-borgen kommer du få en kod. Den behöver du för att kunna fortsätta registreringen som karnevalist.</string>
     
+    <string name="progress_notdone_1">karnevalist. Du måste bara fylla i hela</string>
+    <string name="progress_notdone_2">formuläret!</string>
+    
     <string name="reg_code_fail_title">Något gick fel!</string>
     <string name="reg_code_fail_msg">Du fyllde i fel lösenord, försök igen!</string>
     
@@ -136,7 +139,7 @@
     <string name="password">Lösenord</string>
     <string name="phone_nr">Mobilnummer</string>
     <string name="food_prefs">Matpreferenser</string>
-    <string name="terms">Terminer i Lund</string>
+    <string name="terms">Terminer i Lund (inkl. nuvarande)</string>
     <string name="dedication">Jag har tidigare engagerat mig i</string>
     <string name="sexTopic">Kön</string>
     <string name="teknolagkaren">En studentkår, vilken och hur?</string>
