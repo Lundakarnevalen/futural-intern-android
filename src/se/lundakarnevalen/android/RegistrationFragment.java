@@ -116,6 +116,7 @@ public class RegistrationFragment extends LKFragment{
 		driverLicensSpinner = (LKSpinner) root.findViewById(R.id.driver_licens);
 		driverLicensSpinner.setOnItemSelectedListener(driverLicensSpinnerListeners);
 		appendButton = (LKButton) root.findViewById(R.id.append_button);
+		appendButton.setOnClickListener(append);
 		wrapperPers = (LinearLayout) root.findViewById(R.id.wrapper_pers);
 		wrapperCode = (LinearLayout) root.findViewById(R.id.wrapper_code);
 		wrapperLK = (LinearLayout) root.findViewById(R.id.wrapper_lk);
@@ -204,22 +205,40 @@ public class RegistrationFragment extends LKFragment{
 	public void insertAllDataFromSP(){
 		LKUser user = new LKUser(getContext());
 		user.getUserLocaly();
-		personnumber.setText(user.personnummer);
-		name.setText(user.fornamn);
-		lastname.setText(user.efternamn);
-		email.setText(user.email);
-		validemail.setText(user.email);
-		adress.setText(user.gatuadress);
-		zipcode.setText(user.postnr);
-		city.setText(user.postort);
-		mobilnbr.setText(user.telnr);
-		foodpref.setText(user.matpref);
-		engageradKar.setText(user.engageradKar);
-		engageradNation.setText(user.engageradNation);
-		engageradStudentikos.setText(user.engageradStudentikos);
-		engageradEtc.setText(user.engageradEtc);
-		ovrigt.setText(String.valueOf(user.ovrigt));
-		//terms.setText(user.terminer);
+		if(user.personnummer != null)
+			personnumber.setText(user.personnummer);
+		if(user.fornamn != null)
+			name.setText(user.fornamn);
+		if(user.efternamn != null)
+			lastname.setText(user.efternamn);
+		if(user.email != null)
+			email.setText(user.email);
+		if(user.email != null)
+			validemail.setText(user.email);
+		if(user.gatuadress != null)
+				adress.setText(user.gatuadress);
+		if(user.postnr != null)
+			zipcode.setText(user.postnr);
+		if(user.postort != null)
+			city.setText(user.postort);
+		if(user.telnr != null)
+			mobilnbr.setText(user.telnr);
+		if(user.matpref != null)
+			foodpref.setText(user.matpref);
+		if(user.engageradKar != null)
+			engageradKar.setText(user.engageradKar);
+		if(user.engageradNation != null)
+			engageradNation.setText(user.engageradNation);
+		if(user.engageradStudentikos != null)
+			engageradStudentikos.setText(user.engageradStudentikos);
+		if(user.engageradEtc != null)
+			engageradEtc.setText(user.engageradEtc);
+		if(user.ovrigt != null)
+			ovrigt.setText(String.valueOf(user.ovrigt));
+		try{
+			terms.setText(String.valueOf(user.terminer));
+		}catch(Exception e){}
+		
 		work_fulltimecb.setChecked(user.jobbatHeltid);
 		work_styrelsecb.setChecked(user.jobbatStyrelse);
 		work_formancb.setChecked(user.jobbatForman);
@@ -252,6 +271,7 @@ public class RegistrationFragment extends LKFragment{
 			wrapperCode.setVisibility(View.VISIBLE);
 			wrapperLK.setVisibility(View.GONE);
 			appendButton.setVisibility(View.GONE);
+			insertAllDataFromSP();
 			break;
 		case 2:
 			// Karnevalsuppgifter
@@ -260,6 +280,7 @@ public class RegistrationFragment extends LKFragment{
 			wrapperCode.setVisibility(View.GONE);
 			wrapperLK.setVisibility(View.VISIBLE);
 			appendButton.setVisibility(View.VISIBLE);
+			insertAllDataFromSP();
 			break;
 		default:
 			// Redigera alla uppgifterss
@@ -480,6 +501,18 @@ public class RegistrationFragment extends LKFragment{
 		}
 	};
 	
+	View.OnClickListener append = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			wrapperPers.setVisibility(View.VISIBLE);
+			confirmButton.setVisibility(View.VISIBLE);
+			wrapperCode.setVisibility(View.GONE);
+			wrapperLK.setVisibility(View.VISIBLE);
+			appendButton.setVisibility(View.GONE);
+		}
+	};
+	
 	OnEditorActionListener sendEditorChangeListener = new OnEditorActionListener(){
 		@Override
 		public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -613,7 +646,32 @@ public class RegistrationFragment extends LKFragment{
 	 * @param user The user to populate. 
 	 */
 	private void populateUserWithData(LKUser user){
-		if(registrationStep >= 2) {
+		if(registrationStep == 0){
+			user.personnummer = personnumber.getText().toString();
+			user.fornamn = name.getText().toString();
+			user.efternamn = lastname.getText().toString();
+			user.email = email.getText().toString();
+			user.gatuadress = adress.getText().toString();
+			user.postnr = zipcode.getText().toString();
+			user.postort = city.getText().toString();
+			user.telnr = mobilnbr.getText().toString();
+			user.matpref = foodpref.getText().toString();
+			user.engageradKar = engageradKar.getText().toString();
+			user.engageradNation = engageradNation.getText().toString();
+			user.engageradStudentikos = engageradStudentikos.getText().toString();
+			user.engageradEtc = engageradEtc.getText().toString();
+			user.kon = sex;
+			user.nation = nation;
+			user.storlek = shirtSize;
+			if(terms.getText().toString()!=null)
+				user.terminer = Integer.parseInt(terms.getText().toString());
+			user.korkort = driverLicens;
+			user.karnevalist2010 = karnevalist2010cb.isChecked();
+			user.jobbatHeltid = work_fulltimecb.isChecked();
+			user.jobbatStyrelse = work_styrelsecb.isChecked();
+			user.jobbatForman = work_formancb.isChecked();
+			user.jobbatAktiv = work_aktivcb.isChecked();
+		}else if(registrationStep >= 2) { // TODO: måste göras för vissa fält även i steg 1.
 			user.personnummer = personnumber.getText().toString();
 			user.fornamn = name.getText().toString();
 			user.efternamn = lastname.getText().toString();
@@ -643,7 +701,6 @@ public class RegistrationFragment extends LKFragment{
 			user.jobbatStyrelse = work_styrelsecb.isChecked();
 			user.jobbatForman = work_formancb.isChecked();
 			user.jobbatAktiv = work_aktivcb.isChecked();
-			user.karnevalist2010 = karnevalist2010cb.isChecked();
 		}
 	}
 	
