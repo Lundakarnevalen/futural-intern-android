@@ -60,7 +60,7 @@
 
     <se.lundakarnevalen.widget.LKTextViewFat
         android:id="@+id/all_sections"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -73,7 +73,7 @@
 
     <ListView
         android:id="@+id/list_section"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/tabs"
         android:layout_below="@id/all_sections"

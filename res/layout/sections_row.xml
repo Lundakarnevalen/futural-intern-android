@@ -14,24 +14,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/horizontal_margin_half" >
-
-            <se.lundakarnevalen.widget.LKTextViewBold
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/image"
-                android:paddingLeft="@dimen/horizontal_margin"
-                android:textColor="@color/base_pink"
-                android:textSize="25sp" />
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/horizontal_margin_half" />
+            android:padding="@dimen/horizontal_margin_half" >
 
             <ImageView
                 android:id="@+id/forward"
@@ -39,7 +22,29 @@
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                                android:src="@drawable/row_arrow" />
+                android:contentDescription="@string/image"
+                android:src="@drawable/row_arrow" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/horizontal_margin_half"
+                android:layout_alignParentLeft="true"
+                android:contentDescription="@string/image"
+                android:scaleType="centerInside" />
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/forward"
+                android:layout_toRightOf="@id/image"
+                android:paddingLeft="@dimen/horizontal_margin"
+                android:textColor="@color/base_pink"
+                android:textSize="22sp" />
         </RelativeLayout>
     </RelativeLayout>
 

@@ -190,6 +190,7 @@
     <string name="user_name">Namn:</string>
     <string name="user_mail">E-post:</string>
     <string name="user_member">Sektion/-er:</string>
+    <string name="image">Some Image</string>
         
     
 </resources>
