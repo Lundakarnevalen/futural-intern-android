@@ -2,7 +2,7 @@
     <!-- The great registration password -->
     <string name="registrationpassword">FUTURAL</string>
     
-    <string name="app_name">Lundakarnevalen</string>
+    <string name="app_name">Karnevalisten</string>
     <string name="sign_in_button">Logga in</string>
     
     <string name="registration_hurra">HURRA!</string>
