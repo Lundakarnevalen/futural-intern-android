@@ -307,7 +307,7 @@ public class RegistrationFragment extends LKFragment{
 		driverLicensSpinner.setAdapter(driverLicensSizeAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> sexList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Annat", 1));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Vill inte definiera mig", 1));
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Man", 2));
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kvinna", 3));
 		sexAdapter = new LKSpinnerArrayAdapter(getContext(), sexList);
@@ -744,7 +744,7 @@ public class RegistrationFragment extends LKFragment{
 			}
 		});
 		remote.showProgressDialog(true);
-		remote.requestServerForText("karnevalister/"+user.id+".json", user.getJson(), LKRemote.RequestType.PUT, true);
+		remote.requestServerForText("karnevalister/"+user.id+".json", user.getJson(true), LKRemote.RequestType.PUT, true);
 	}
 	
 	private void postNewUser(final LKUser user) {
@@ -780,7 +780,7 @@ public class RegistrationFragment extends LKFragment{
 		if(user.gcmRegId == null)
 			user.gcmRegId = "null";
 		remote.showProgressDialog(true);
-		remote.requestServerForText("karnevalister.json", user.getJson(), LKRemote.RequestType.POST, true);
+		remote.requestServerForText("karnevalister.json", user.getJson(true), LKRemote.RequestType.POST, true);
 	}
 	
 	private boolean checkCode(){

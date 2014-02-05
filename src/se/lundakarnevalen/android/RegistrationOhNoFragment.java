@@ -1,6 +1,7 @@
 package se.lundakarnevalen.android;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,18 @@ public class RegistrationOhNoFragment extends LKFragment{
 			loginButton.setOnClickListener(loginClick);
 		if(registerButton != null)
 			registerButton.setOnClickListener(registerClick);
+	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		Log.d(LOG_TAG, "onResume");
+		// check if user
+		LKFragment fragment = getStartFragment(getContext());
+		if(!(fragment instanceof RegistrationOhNoFragment)){
+			Log.d(LOG_TAG, "change fragment!");
+			loadFragment(fragment, false);
+		}
 	}
 	
 	View.OnClickListener registerClick = new View.OnClickListener() {
