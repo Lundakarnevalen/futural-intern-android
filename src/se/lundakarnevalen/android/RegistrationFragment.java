@@ -193,7 +193,7 @@ public class RegistrationFragment extends LKFragment{
 		driverLicensSpinner.setAdapter(driverLicensSizeAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> sexList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Annat", 1));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Vill inte definiera mig", 1));
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Man", 2));
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kvinna", 3));
 		LKSpinnerArrayAdapter sexAdapter = new LKSpinnerArrayAdapter(getContext(), sexList);
