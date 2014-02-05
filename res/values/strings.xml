@@ -43,7 +43,7 @@
     <string name="registration_PUL">Genom denna blankett ger du Lundakarnevalen tillåtelse att använda fotot på dig samt behandla dina personuppgifter i datorsystemet och för egna utskick i enlighet med Personuppgiftslag (1998:204)</string>
 	<string name="registration_comfirmPUL">Jag godkänner dessa villkor</string>
 	<string name="registration_iwant">Jag vill vara:</string>
-	<string name="sektion_0">Jag vill bara vara med! Vilken sektion spelar ingen roll.</string> 
+	<string name="sektion_27">Jag vill bara vara med! Vilken sektion spelar ingen roll.</string> 
     <string name="sektion_1">Barnevalen</string>
     <string name="sektion_2">Biljetteriet</string>
     <string name="sektion_3">Blädderiet</string>
@@ -115,7 +115,7 @@
     <string name="sektion_taltnojen">Tältnöjen</string>
     <string name="sektion_vieriet">Vieriet</string>
     
-    <string name="dd_0">Allt! Jag kan göra vad som helst, jag vill bara vara med.</string>
+    <string name="dd_16">Allt! Jag kan göra vad som helst, jag vill bara vara med.</string>
     <string name="dd_1">Mat</string>
     <string name="dd_2">Dryck</string>
     <string name="dd_3">Teknik (ljud, ljus, el)</string>   
@@ -164,7 +164,7 @@
     <string name="register_desc">Det verkar som om du inte är karnevalist än.\nJag tycker att du ska bli det.\nOmedelbums.</string>
     <string name="register_desc_login_f">Är du redan karnevalist?&#160;</string>
     <string name="register_desc_login_l">Logga in här.</string>
-    <string name="pers_nr">Personnummer</string>
+    <string name="pers_nr">Personnummer ååmmddxxxx</string>
     <string name="intressen">Intressen</string>
     <string name="karnevalist_2010">Jag var karnevalist 2010</string>
     <string name="aktiv">Vill du ha ansvar?</string>

@@ -47,11 +47,17 @@ public class RegistrationFragment extends LKFragment{
 	private LKButton confirmButton, appendButton;
 	private LKSpinner nationsSpinner, shirtSpinner, driverLicensSpinner, sexSpinner;
 	private boolean[] sektionerchecked = new boolean[500];
-	private boolean[] intressenchecked = new boolean[16];
+	private boolean[] intressenchecked = new boolean[17];
+	private CheckBox[] intressenCheckBoxes = new CheckBox[17];
+	private CheckBox[] sektionerCheckBoxes = new CheckBox[500];
+	private RadioButton[] intressenRadioButton = new RadioButton[17];
+	private RadioButton[] sektionerRadioButton = new RadioButton[500];
+
+	
 	private LKRadioGroup rgsec;
 	private LKRadioGroup rgint;
 	private CheckBox pulcheckbox, karnevalist2010cb, work_fulltimecb, work_styrelsecb, work_formancb, work_aktivcb;
-
+	private LKSpinnerArrayAdapter nationsAdapter, shirtSizeAdapter, driverLicensSizeAdapter, sexAdapter;
 	
 	// Wrappers
 	private LinearLayout wrapperPers, wrapperCode, wrapperLK;
@@ -90,6 +96,114 @@ public class RegistrationFragment extends LKFragment{
 		work_formancb = (CheckBox) root.findViewById(R.id.checkbox_work_forman);
 		work_aktivcb = (CheckBox) root.findViewById(R.id.checkbox_work_aktiv);
 		karnevalist2010cb = (CheckBox) root.findViewById(R.id.checkbox_karnevalist_2010);
+		intressenCheckBoxes[16] = (CheckBox) root.findViewById(R.id.dd_16);
+		intressenCheckBoxes[1] = (CheckBox) root.findViewById(R.id.dd_1);
+		intressenCheckBoxes[2] = (CheckBox) root.findViewById(R.id.dd_2);
+		intressenCheckBoxes[3] = (CheckBox) root.findViewById(R.id.dd_3);
+		intressenCheckBoxes[4] = (CheckBox) root.findViewById(R.id.dd_4);
+		intressenCheckBoxes[5] = (CheckBox) root.findViewById(R.id.dd_5);
+		intressenCheckBoxes[6] = (CheckBox) root.findViewById(R.id.dd_6);
+		intressenCheckBoxes[7] = (CheckBox) root.findViewById(R.id.dd_7);
+		intressenCheckBoxes[8] = (CheckBox) root.findViewById(R.id.dd_8);
+		intressenCheckBoxes[9] = (CheckBox) root.findViewById(R.id.dd_9);
+		intressenCheckBoxes[10] = (CheckBox) root.findViewById(R.id.dd_10);
+		intressenCheckBoxes[11] = (CheckBox) root.findViewById(R.id.dd_11);
+		intressenCheckBoxes[12] = (CheckBox) root.findViewById(R.id.dd_12);
+		intressenCheckBoxes[13] = (CheckBox) root.findViewById(R.id.dd_13);
+		intressenCheckBoxes[14] = (CheckBox) root.findViewById(R.id.dd_14);
+		intressenCheckBoxes[15] = (CheckBox) root.findViewById(R.id.dd_15);
+		intressenRadioButton[16] = (RadioButton) root.findViewById(R.id.radio_dd_16);
+		intressenRadioButton[1] = (RadioButton) root.findViewById(R.id.radio_dd_1);
+		intressenRadioButton[2] = (RadioButton) root.findViewById(R.id.radio_dd_2);
+		intressenRadioButton[3] = (RadioButton) root.findViewById(R.id.radio_dd_3);
+		intressenRadioButton[4] = (RadioButton) root.findViewById(R.id.radio_dd_4);
+		intressenRadioButton[5] = (RadioButton) root.findViewById(R.id.radio_dd_5);
+		intressenRadioButton[6] = (RadioButton) root.findViewById(R.id.radio_dd_6);
+		intressenRadioButton[7] = (RadioButton) root.findViewById(R.id.radio_dd_7);
+		intressenRadioButton[8] = (RadioButton) root.findViewById(R.id.radio_dd_8);
+		intressenRadioButton[9] = (RadioButton) root.findViewById(R.id.radio_dd_9);
+		intressenRadioButton[10] = (RadioButton) root.findViewById(R.id.radio_dd_10);
+		intressenRadioButton[11] = (RadioButton) root.findViewById(R.id.radio_dd_11);
+		intressenRadioButton[12] = (RadioButton) root.findViewById(R.id.radio_dd_12);
+		intressenRadioButton[13] = (RadioButton) root.findViewById(R.id.radio_dd_13);
+		intressenRadioButton[14] = (RadioButton) root.findViewById(R.id.radio_dd_14);
+		intressenRadioButton[15] = (RadioButton) root.findViewById(R.id.radio_dd_15);
+		sektionerCheckBoxes[27] = (CheckBox) root.findViewById(R.id.checkbox_27);
+		sektionerCheckBoxes[1] = (CheckBox) root.findViewById(R.id.checkbox_1);
+		sektionerCheckBoxes[2] = (CheckBox) root.findViewById(R.id.checkbox_2);
+		sektionerCheckBoxes[3] = (CheckBox) root.findViewById(R.id.checkbox_3);
+		sektionerCheckBoxes[4] = (CheckBox) root.findViewById(R.id.checkbox_4);
+		sektionerCheckBoxes[5] = (CheckBox) root.findViewById(R.id.checkbox_5);
+		sektionerCheckBoxes[6] = (CheckBox) root.findViewById(R.id.checkbox_6);
+		sektionerCheckBoxes[7] = (CheckBox) root.findViewById(R.id.checkbox_7);
+		sektionerCheckBoxes[8] = (CheckBox) root.findViewById(R.id.checkbox_8);
+		sektionerCheckBoxes[9] = (CheckBox) root.findViewById(R.id.checkbox_9);
+		sektionerCheckBoxes[10] = (CheckBox) root.findViewById(R.id.checkbox_10);
+		sektionerCheckBoxes[11] = (CheckBox) root.findViewById(R.id.checkbox_11);
+		sektionerCheckBoxes[12] = (CheckBox) root.findViewById(R.id.checkbox_12);
+		sektionerCheckBoxes[13] = (CheckBox) root.findViewById(R.id.checkbox_13);
+		sektionerCheckBoxes[14] = (CheckBox) root.findViewById(R.id.checkbox_14);
+		sektionerCheckBoxes[15] = (CheckBox) root.findViewById(R.id.checkbox_15);
+		sektionerCheckBoxes[16] = (CheckBox) root.findViewById(R.id.checkbox_16);
+		sektionerCheckBoxes[17] = (CheckBox) root.findViewById(R.id.checkbox_17);
+		sektionerCheckBoxes[18] = (CheckBox) root.findViewById(R.id.checkbox_18);
+		sektionerCheckBoxes[19] = (CheckBox) root.findViewById(R.id.checkbox_19);
+		sektionerCheckBoxes[20] = (CheckBox) root.findViewById(R.id.checkbox_20);
+		sektionerCheckBoxes[21] = (CheckBox) root.findViewById(R.id.checkbox_21);
+		sektionerCheckBoxes[22] = (CheckBox) root.findViewById(R.id.checkbox_22);
+		sektionerCheckBoxes[23] = (CheckBox) root.findViewById(R.id.checkbox_23);
+		sektionerCheckBoxes[24] = (CheckBox) root.findViewById(R.id.checkbox_24);
+		sektionerCheckBoxes[25] = (CheckBox) root.findViewById(R.id.checkbox_25);
+		sektionerCheckBoxes[26] = (CheckBox) root.findViewById(R.id.checkbox_26);
+		sektionerCheckBoxes[100] = (CheckBox) root.findViewById(R.id.checkbox_100);
+		sektionerCheckBoxes[101] = (CheckBox) root.findViewById(R.id.checkbox_101);
+		sektionerCheckBoxes[102] = (CheckBox) root.findViewById(R.id.checkbox_102);
+		sektionerCheckBoxes[202] = (CheckBox) root.findViewById(R.id.checkbox_202);
+		sektionerCheckBoxes[203] = (CheckBox) root.findViewById(R.id.checkbox_203);
+		sektionerCheckBoxes[204] = (CheckBox) root.findViewById(R.id.checkbox_204);
+		sektionerCheckBoxes[300] = (CheckBox) root.findViewById(R.id.checkbox_300);
+		sektionerCheckBoxes[399] = (CheckBox) root.findViewById(R.id.checkbox_399);
+		sektionerCheckBoxes[400] = (CheckBox) root.findViewById(R.id.checkbox_400);
+		sektionerCheckBoxes[499] = (CheckBox) root.findViewById(R.id.checkbox_499);
+		sektionerRadioButton[27] = (RadioButton) root.findViewById(R.id.radio_section_27);
+		sektionerRadioButton[1] = (RadioButton) root.findViewById(R.id.radio_section_1);
+		sektionerRadioButton[2] = (RadioButton) root.findViewById(R.id.radio_section_2);
+		sektionerRadioButton[3] = (RadioButton) root.findViewById(R.id.radio_section_3);
+		sektionerRadioButton[4] = (RadioButton) root.findViewById(R.id.radio_section_4);
+		sektionerRadioButton[5] = (RadioButton) root.findViewById(R.id.radio_section_5);
+		sektionerRadioButton[6] = (RadioButton) root.findViewById(R.id.radio_section_6);
+		sektionerRadioButton[7] = (RadioButton) root.findViewById(R.id.radio_section_7);
+		sektionerRadioButton[8] = (RadioButton) root.findViewById(R.id.radio_section_8);
+		sektionerRadioButton[9] = (RadioButton) root.findViewById(R.id.radio_section_9);
+		sektionerRadioButton[10] = (RadioButton) root.findViewById(R.id.radio_section_10);
+		sektionerRadioButton[11] = (RadioButton) root.findViewById(R.id.radio_section_11);
+		sektionerRadioButton[12] = (RadioButton) root.findViewById(R.id.radio_section_12);
+		sektionerRadioButton[13] = (RadioButton) root.findViewById(R.id.radio_section_13);
+		sektionerRadioButton[14] = (RadioButton) root.findViewById(R.id.radio_section_14);
+		sektionerRadioButton[15] = (RadioButton) root.findViewById(R.id.radio_section_15);
+		sektionerRadioButton[16] = (RadioButton) root.findViewById(R.id.radio_section_16);
+		sektionerRadioButton[17] = (RadioButton) root.findViewById(R.id.radio_section_17);
+		sektionerRadioButton[18] = (RadioButton) root.findViewById(R.id.radio_section_18);
+		sektionerRadioButton[19] = (RadioButton) root.findViewById(R.id.radio_section_19);
+		sektionerRadioButton[20] = (RadioButton) root.findViewById(R.id.radio_section_20);
+		sektionerRadioButton[21] = (RadioButton) root.findViewById(R.id.radio_section_21);
+		sektionerRadioButton[22] = (RadioButton) root.findViewById(R.id.radio_section_22);
+		sektionerRadioButton[23] = (RadioButton) root.findViewById(R.id.radio_section_23);
+		sektionerRadioButton[24] = (RadioButton) root.findViewById(R.id.radio_section_24);
+		sektionerRadioButton[25] = (RadioButton) root.findViewById(R.id.radio_section_25);
+		sektionerRadioButton[26] = (RadioButton) root.findViewById(R.id.radio_section_26);
+		sektionerRadioButton[100] = (RadioButton) root.findViewById(R.id.radio_section_100);
+		sektionerRadioButton[101] = (RadioButton) root.findViewById(R.id.radio_section_101);
+		sektionerRadioButton[102] = (RadioButton) root.findViewById(R.id.radio_section_102);
+		sektionerRadioButton[202] = (RadioButton) root.findViewById(R.id.radio_section_202);
+		sektionerRadioButton[203] = (RadioButton) root.findViewById(R.id.radio_section_203);
+		sektionerRadioButton[204] = (RadioButton) root.findViewById(R.id.radio_section_204);
+		sektionerRadioButton[300] = (RadioButton) root.findViewById(R.id.radio_section_300);
+		sektionerRadioButton[399] = (RadioButton) root.findViewById(R.id.radio_section_399);
+		sektionerRadioButton[400] = (RadioButton) root.findViewById(R.id.radio_section_400);
+		sektionerRadioButton[499] = (RadioButton) root.findViewById(R.id.radio_section_499);
+		
+
 		confirmButton.setOnClickListener(confirm);
 		personnumber.addTextChangedListener(watcher);
 		name.addTextChangedListener(watcher);
@@ -122,7 +236,7 @@ public class RegistrationFragment extends LKFragment{
 		wrapperLK = (LinearLayout) root.findViewById(R.id.wrapper_lk);
 		code = (LKEditText) root.findViewById(R.id.continue_code);
 		code.setOnEditorActionListener(sendEditorChangeListener);
-		rgsec = new LKRadioGroup(getContext(), root, R.id.radio_section_0, R.id.radio_section_1, 
+		rgsec = new LKRadioGroup(getContext(), root, R.id.radio_section_27, R.id.radio_section_1, 
 				R.id.radio_section_2, R.id.radio_section_3, R.id.radio_section_4, R.id.radio_section_5, 
 				R.id.radio_section_6, R.id.radio_section_7, R.id.radio_section_8, R.id.radio_section_9, 
 				R.id.radio_section_10, R.id.radio_section_11, R.id.radio_section_12, R.id.radio_section_13, 
@@ -132,7 +246,7 @@ public class RegistrationFragment extends LKFragment{
 				R.id.radio_section_26, R.id.radio_section_100, R.id.radio_section_101, R.id.radio_section_102, 
 				R.id.radio_section_202, R.id.radio_section_203, R.id.radio_section_204, R.id.radio_section_300, 
 				R.id.radio_section_399, R.id.radio_section_400, R.id.radio_section_499);
-		rgint = new LKRadioGroup(getContext(), root, R.id.radio_dd_0, R.id.radio_dd_1, 
+		rgint = new LKRadioGroup(getContext(), root, R.id.radio_dd_16, R.id.radio_dd_1, 
 				R.id.radio_dd_2, R.id.radio_dd_3, R.id.radio_dd_4, R.id.radio_dd_5, 
 				R.id.radio_dd_6, R.id.radio_dd_7, R.id.radio_dd_8, R.id.radio_dd_9, 
 				R.id.radio_dd_10, R.id.radio_dd_11, R.id.radio_dd_12, R.id.radio_dd_13, 
@@ -169,7 +283,7 @@ public class RegistrationFragment extends LKFragment{
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Wermlands", 12));
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Östgöta", 13));
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Smålands", 14));
-		LKSpinnerArrayAdapter nationsAdapter = new LKSpinnerArrayAdapter(getContext(), nationsList);
+		nationsAdapter = new LKSpinnerArrayAdapter(getContext(), nationsList);
 		nationsSpinner.setAdapter(nationsAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> shirtSizeList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
@@ -180,7 +294,7 @@ public class RegistrationFragment extends LKFragment{
 		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XL", 5));
 		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XXL", 6));
 		shirtSizeList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("XXXL", 7));
-		LKSpinnerArrayAdapter shirtSizeAdapter = new LKSpinnerArrayAdapter(getContext(), shirtSizeList);
+		shirtSizeAdapter = new LKSpinnerArrayAdapter(getContext(), shirtSizeList);
 		shirtSpinner.setAdapter(shirtSizeAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> driverLicensList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
@@ -189,16 +303,23 @@ public class RegistrationFragment extends LKFragment{
 		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE", 3));
 		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + D/DE", 4));
 		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE + D/DE", 5));
-		LKSpinnerArrayAdapter driverLicensSizeAdapter = new LKSpinnerArrayAdapter(getContext(), driverLicensList);
+		driverLicensSizeAdapter = new LKSpinnerArrayAdapter(getContext(), driverLicensList);
 		driverLicensSpinner.setAdapter(driverLicensSizeAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> sexList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Annat", 1));
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Man", 2));
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kvinna", 3));
-		LKSpinnerArrayAdapter sexAdapter = new LKSpinnerArrayAdapter(getContext(), sexList);
+		sexAdapter = new LKSpinnerArrayAdapter(getContext(), sexList);
 		sexSpinner.setAdapter(sexAdapter);
-
+		
+		switch(registrationStep){
+		case 0:
+			break;
+		default:
+			insertAllDataFromSP();
+			break;
+		}
 	}
 	
 	
@@ -244,13 +365,47 @@ public class RegistrationFragment extends LKFragment{
 		work_formancb.setChecked(user.jobbatForman);
 		work_aktivcb.setChecked(user.jobbatAktiv);
 		karnevalist2010cb.setChecked(user.karnevalist2010);
-		/*	TODO:fixa s� att dropdownlistorna f�r r�tt v�rden.. - reverse this:
-			"user.kon = sex;
-			user.nation = nation;
-			user.storlek = shirtSize;
-			user.korkort = driverLicens;"
-		*/
+		pulcheckbox.setChecked(true);
+		
+		int[] itrs = user.intresse;
+		int[] seks = user.sektioner;
+		
+		
+		for(int i:itrs){
+			intressenCheckBoxes[i].setChecked(true);
+			intressenchecked[i] = true;
+		}
+		for(int i:seks){
+			sektionerCheckBoxes[i].setChecked(true);
+			sektionerchecked[i] = true;
+		}
+		intressenRadioButton[user.snallaIntresse].setChecked(true);
+		sektionerRadioButton[user.snallaSektion].setChecked(true);
+		
+		
+		sex = user.kon;
+		updateSpinner(sexSpinner, sexAdapter, sex);
+
+		nation = user.nation;
+		updateSpinner(nationsSpinner, nationsAdapter, nation);
+
+		shirtSize = user.storlek;
+		updateSpinner(shirtSpinner, shirtSizeAdapter, shirtSize);
+		
+		driverLicens = user.korkort;
+		updateSpinner(driverLicensSpinner, driverLicensSizeAdapter, driverLicens);
 	}
+	
+	private void updateSpinner(LKSpinner spinner, LKSpinnerArrayAdapter adapter, int saved) {
+		for(int i = 0; i<adapter.getCount(); i++) {
+			LKSpinnerArrayItem tmp = adapter.getItem(i);
+			if(tmp.value == saved) {
+				spinner.setSelection(i);
+				break;
+			}
+		}
+	}
+	
 	/**
 	 * Sets correct layout based on registrationstep
 	 */
@@ -271,7 +426,7 @@ public class RegistrationFragment extends LKFragment{
 			wrapperCode.setVisibility(View.VISIBLE);
 			wrapperLK.setVisibility(View.GONE);
 			appendButton.setVisibility(View.GONE);
-			insertAllDataFromSP();
+			//insertAllDataFromSP();
 			break;
 		case 2:
 			// Karnevalsuppgifter
@@ -280,7 +435,7 @@ public class RegistrationFragment extends LKFragment{
 			wrapperCode.setVisibility(View.GONE);
 			wrapperLK.setVisibility(View.VISIBLE);
 			appendButton.setVisibility(View.VISIBLE);
-			insertAllDataFromSP();
+			//insertAllDataFromSP();
 			break;
 		default:
 			// Redigera alla uppgifterss
@@ -289,7 +444,7 @@ public class RegistrationFragment extends LKFragment{
 			wrapperCode.setVisibility(View.GONE);
 			wrapperLK.setVisibility(View.VISIBLE);
 			appendButton.setVisibility(View.GONE);
-			insertAllDataFromSP();
+			//insertAllDataFromSP();
 			
 			break;
 		}
@@ -663,8 +818,13 @@ public class RegistrationFragment extends LKFragment{
 			user.kon = sex;
 			user.nation = nation;
 			user.storlek = shirtSize;
-			if(terms.getText().toString()!=null)
-				user.terminer = Integer.parseInt(terms.getText().toString());
+			if(!terms.getText().toString().equals("") && terms.getText().toString() != null){
+				try{
+					user.terminer = Integer.parseInt(terms.getText().toString());
+				} catch (NumberFormatException e) {
+					user.terminer = 0;
+				}
+			}
 			user.korkort = driverLicens;
 			user.karnevalist2010 = karnevalist2010cb.isChecked();
 			user.jobbatHeltid = work_fulltimecb.isChecked();
@@ -689,8 +849,13 @@ public class RegistrationFragment extends LKFragment{
 			user.kon = sex;
 			user.nation = nation;
 			user.storlek = shirtSize;
-			if(terms.getText().toString()!=null)
-				user.terminer = Integer.parseInt(terms.getText().toString());
+			if(!terms.getText().toString().equals("") && terms.getText().toString() != null){
+				try{
+					user.terminer = Integer.parseInt(terms.getText().toString());
+				} catch (NumberFormatException e) {
+					user.terminer = 0;
+				}
+			}
 			user.korkort = driverLicens;
 			user.snallaIntresse = starIntrest();
 			user.snallaSektion = starSection();
@@ -747,8 +912,8 @@ public class RegistrationFragment extends LKFragment{
 	public int starIntrest() {
 		int id = rgint.getActiveRB();
 		switch (id) {
-			case R.id.radio_dd_0:
-				return 0;		
+			case R.id.radio_dd_16:
+				return 16;		
 			case R.id.radio_dd_1:
 				return 1;
 			case R.id.radio_dd_2:
@@ -780,7 +945,7 @@ public class RegistrationFragment extends LKFragment{
 			case R.id.radio_dd_15:
 				return 15;
 			default:
-				return 0;
+				return 16;
 		}
 	}
 	
@@ -788,8 +953,8 @@ public class RegistrationFragment extends LKFragment{
 	public void onIntrestsCheckBoxClicked(View view) {
 		boolean checked = ((CheckBox) view).isChecked();
 		switch (view.getId()) {
-			case R.id.dd_0:
-				intressenchecked[0] = checked;
+			case R.id.dd_16:
+				intressenchecked[16] = checked;
 				break;
 			case R.id.dd_1:
 				intressenchecked[1] = checked;
@@ -849,8 +1014,8 @@ public class RegistrationFragment extends LKFragment{
 	public int starSection() {
 		int id = rgsec.getActiveRB();
 		switch (id) {
-			case R.id.radio_section_0:
-				return 0;
+			case R.id.radio_section_27:
+				return 27;
 			case R.id.radio_section_1:
 				return 1;
 			case R.id.radio_section_2:
@@ -924,7 +1089,7 @@ public class RegistrationFragment extends LKFragment{
 			case R.id.radio_section_499:
 				return 499;
 			default:
-				return 0;
+				return 27;
 		}
 	}
 	
@@ -932,8 +1097,8 @@ public class RegistrationFragment extends LKFragment{
 	public void onSectionCheckBoxClicked(View view) {
 	    boolean checked = ((CheckBox) view).isChecked();
 		switch (view.getId()) {
-			case R.id.checkbox_0:
-				sektionerchecked[0] = checked;
+			case R.id.checkbox_27:
+				sektionerchecked[27] = checked;
 				break;
 			case R.id.checkbox_1:
 				sektionerchecked[1] = checked;
