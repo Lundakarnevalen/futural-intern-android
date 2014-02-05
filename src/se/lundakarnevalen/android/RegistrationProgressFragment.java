@@ -42,6 +42,18 @@ public class RegistrationProgressFragment extends LKFragment{
 	}
 	
 	@Override
+	public void onResume(){
+		super.onResume();
+		Log.d(LOG_TAG, "check if registred");
+		// check if user
+		LKFragment fragment = getStartFragment(getContext());
+		if(!(fragment instanceof RegistrationProgressFragment)){
+			Log.d(LOG_TAG, "change fragment!");
+			loadFragment(fragment, false);
+		}
+	}
+	
+	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
 		super.onActivityCreated(savedInstanceState);
 		setTitle("Registrering");

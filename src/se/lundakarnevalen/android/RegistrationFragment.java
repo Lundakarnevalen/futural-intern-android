@@ -589,7 +589,7 @@ public class RegistrationFragment extends LKFragment{
 			}
 		});
 		remote.showProgressDialog(true);
-		remote.requestServerForText("karnevalister/"+user.id+".json", user.getJson(), LKRemote.RequestType.PUT, true);
+		remote.requestServerForText("karnevalister/"+user.id+".json", user.getJson(true), LKRemote.RequestType.PUT, true);
 	}
 	
 	private void postNewUser(final LKUser user) {
@@ -625,7 +625,7 @@ public class RegistrationFragment extends LKFragment{
 		if(user.gcmRegId == null)
 			user.gcmRegId = "null";
 		remote.showProgressDialog(true);
-		remote.requestServerForText("karnevalister.json", user.getJson(), LKRemote.RequestType.POST, true);
+		remote.requestServerForText("karnevalister.json", user.getJson(true), LKRemote.RequestType.POST, true);
 	}
 	
 	private boolean checkCode(){

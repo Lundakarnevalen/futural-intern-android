@@ -1,6 +1,6 @@
 package se.lundakarnevalen.remote;
 
-import json.Foto;
+import json.KarnevalistWrite;
 import json.Response;
 import json.User;
 import json.UserWrite;
@@ -144,7 +144,7 @@ public class LKUser {
 		return gson.toJson(karnevalist);
 	}
 	
-	public String getJson(){
+	public String getJson(boolean asKarnevalist){
 		Gson gson = new Gson();
 		UserWrite karnevalist = new UserWrite();
 		karnevalist.personnummer = this.personnummer;
@@ -184,6 +184,10 @@ public class LKUser {
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
 		karnevalist.token = this.token;
+		if(asKarnevalist){
+			KarnevalistWrite wrapper = new KarnevalistWrite(karnevalist);
+			return gson.toJson(wrapper);
+		}
 		return gson.toJson(karnevalist);
 	}
 	
