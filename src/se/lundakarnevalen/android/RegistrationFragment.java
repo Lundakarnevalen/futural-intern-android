@@ -46,12 +46,12 @@ public class RegistrationFragment extends LKFragment{
 	private LKTextView progressvalue;
 	private LKButton confirmButton, appendButton;
 	private LKSpinner nationsSpinner, shirtSpinner, driverLicensSpinner, sexSpinner;
-	private boolean[] sektionerchecked = new boolean[500];
+	private boolean[] sektionerchecked = new boolean[501];
 	private boolean[] intressenchecked = new boolean[17];
 	private CheckBox[] intressenCheckBoxes = new CheckBox[17];
-	private CheckBox[] sektionerCheckBoxes = new CheckBox[500];
+	private CheckBox[] sektionerCheckBoxes = new CheckBox[501];
 	private RadioButton[] intressenRadioButton = new RadioButton[17];
-	private RadioButton[] sektionerRadioButton = new RadioButton[500];
+	private RadioButton[] sektionerRadioButton = new RadioButton[501];
 
 	
 	private LKRadioGroup rgsec;
@@ -128,7 +128,7 @@ public class RegistrationFragment extends LKFragment{
 		intressenRadioButton[13] = (RadioButton) root.findViewById(R.id.radio_dd_13);
 		intressenRadioButton[14] = (RadioButton) root.findViewById(R.id.radio_dd_14);
 		intressenRadioButton[15] = (RadioButton) root.findViewById(R.id.radio_dd_15);
-		sektionerCheckBoxes[27] = (CheckBox) root.findViewById(R.id.checkbox_27);
+		sektionerCheckBoxes[27] = (CheckBox) root.findViewById(R.id.checkbox_500);
 		sektionerCheckBoxes[1] = (CheckBox) root.findViewById(R.id.checkbox_1);
 		sektionerCheckBoxes[2] = (CheckBox) root.findViewById(R.id.checkbox_2);
 		sektionerCheckBoxes[3] = (CheckBox) root.findViewById(R.id.checkbox_3);
@@ -165,7 +165,7 @@ public class RegistrationFragment extends LKFragment{
 		sektionerCheckBoxes[399] = (CheckBox) root.findViewById(R.id.checkbox_399);
 		sektionerCheckBoxes[400] = (CheckBox) root.findViewById(R.id.checkbox_400);
 		sektionerCheckBoxes[499] = (CheckBox) root.findViewById(R.id.checkbox_499);
-		sektionerRadioButton[27] = (RadioButton) root.findViewById(R.id.radio_section_27);
+		sektionerRadioButton[27] = (RadioButton) root.findViewById(R.id.radio_section_500);
 		sektionerRadioButton[1] = (RadioButton) root.findViewById(R.id.radio_section_1);
 		sektionerRadioButton[2] = (RadioButton) root.findViewById(R.id.radio_section_2);
 		sektionerRadioButton[3] = (RadioButton) root.findViewById(R.id.radio_section_3);
@@ -236,7 +236,7 @@ public class RegistrationFragment extends LKFragment{
 		wrapperLK = (LinearLayout) root.findViewById(R.id.wrapper_lk);
 		code = (LKEditText) root.findViewById(R.id.continue_code);
 		code.setOnEditorActionListener(sendEditorChangeListener);
-		rgsec = new LKRadioGroup(getContext(), root, R.id.radio_section_27, R.id.radio_section_1, 
+		rgsec = new LKRadioGroup(getContext(), root, R.id.radio_section_500, R.id.radio_section_1, 
 				R.id.radio_section_2, R.id.radio_section_3, R.id.radio_section_4, R.id.radio_section_5, 
 				R.id.radio_section_6, R.id.radio_section_7, R.id.radio_section_8, R.id.radio_section_9, 
 				R.id.radio_section_10, R.id.radio_section_11, R.id.radio_section_12, R.id.radio_section_13, 
@@ -1014,8 +1014,8 @@ public class RegistrationFragment extends LKFragment{
 	public int starSection() {
 		int id = rgsec.getActiveRB();
 		switch (id) {
-			case R.id.radio_section_27:
-				return 27;
+			case R.id.radio_section_500:
+				return 500;
 			case R.id.radio_section_1:
 				return 1;
 			case R.id.radio_section_2:
@@ -1089,7 +1089,7 @@ public class RegistrationFragment extends LKFragment{
 			case R.id.radio_section_499:
 				return 499;
 			default:
-				return 27;
+				return 500;
 		}
 	}
 	
@@ -1097,8 +1097,8 @@ public class RegistrationFragment extends LKFragment{
 	public void onSectionCheckBoxClicked(View view) {
 	    boolean checked = ((CheckBox) view).isChecked();
 		switch (view.getId()) {
-			case R.id.checkbox_27:
-				sektionerchecked[27] = checked;
+			case R.id.checkbox_500:
+				sektionerchecked[500] = checked;
 				break;
 			case R.id.checkbox_1:
 				sektionerchecked[1] = checked;
