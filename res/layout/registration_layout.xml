@@ -1290,6 +1290,7 @@
 		        android:layout_height="wrap_content"
 		        android:textColor="#FFFFFF"
 		        android:textColorHint="@color/bg_peach"
+		        android:inputType="textCapSentences"
 		        android:hint="@string/name" />
 		    <se.lundakarnevalen.widget.LKEditText
 		        android:singleLine="true"
@@ -1299,6 +1300,7 @@
 		        android:layout_height="wrap_content"
 		        android:textColor="#FFFFFF"
 		        android:textColorHint="@color/bg_peach"
+		        android:inputType="textCapSentences"
 		        android:hint="@string/lastname" />
 		    <se.lundakarnevalen.widget.LKEditText
 		        android:singleLine="true"
@@ -1308,13 +1310,14 @@
 		        android:layout_height="wrap_content"
 		        android:textColor="#FFFFFF"
 				android:textColorHint="@color/bg_peach"
+				android:inputType="textCapSentences"
 		        android:hint="@string/postal_address" />
 		    <LinearLayout 
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        android:orientation="horizontal">
 			    <se.lundakarnevalen.widget.LKEditText
-		        android:singleLine="true"
+		        	android:singleLine="true"
 			        android:layout_marginTop="@dimen/vertical_margin_half"
 			        android:id="@+id/zip_code"
 			        android:layout_width="0dp"
@@ -1327,7 +1330,7 @@
 					android:digits="0123456789"
 			        android:hint="@string/zip_code" />
 			    <se.lundakarnevalen.widget.LKEditText
-		        android:singleLine="true"
+		        	android:singleLine="true"
 			        android:layout_marginTop="@dimen/vertical_margin_half"
 			        android:id="@+id/zip_town"
 			        android:layout_width="0dp"
@@ -1335,6 +1338,7 @@
 			        android:layout_marginLeft="@dimen/vertical_margin_quarter"
 			        android:textColor="#FFFFFF"
 					android:layout_weight="1.0"
+					android:inputType="textCapSentences"
 					android:textColorHint="@color/bg_peach"
 			        android:hint="@string/zip_town" />
 		    </LinearLayout>

@@ -92,7 +92,7 @@ public class LKUser {
 					}
 				}
 			});
-			remote.requestServerForText("karnevalister/"+id+".json", "{}", LKRemote.RequestType.GET);
+			remote.requestServerForText("karnevalister/"+id+".json", "{}", LKRemote.RequestType.GET, false);
 			Log.d(LOG_TAG, "requested server for the user with id:"+id);
 		}else{
 			// No user downloaded.

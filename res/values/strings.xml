@@ -24,6 +24,9 @@
     <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
     <string name="registration_mobilenbr">Mobilnummer</string>
     
+    <string name="no_internet_title">Ojsan</string>
+    <string name="no_internet_msg">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
+    
     <string name="registration_choosesection_information1">Jag skulle vilja vara med i dessa sektioner:</string>
 	<string name="registration_choosesection_information2">Kryssa i minst fem. Om det är någon sektion som du extra gärna vill vara med i, stjärnmarkera denna.</string>
 	<string name="registration_chooseintrests_information1">Detta är jag bra på/detta tycker jag är roligt:</string>
@@ -160,7 +163,7 @@
     <string name="register_me">Registrera mig</string>
     <string name="register_desc">Det verkar som om du inte är karnevalist än.\nJag tycker att du ska bli det.\nOmedelbums.</string>
     <string name="register_desc_login_f">Är du redan karnevalist?&#160;</string>
-    <string name="register_desc_login_l">Logg in här.</string>
+    <string name="register_desc_login_l">Logga in här.</string>
     <string name="pers_nr">Personnummer</string>
     <string name="intressen">Intressen</string>
     <string name="karnevalist_2010">Jag var karnevalist 2010</string>

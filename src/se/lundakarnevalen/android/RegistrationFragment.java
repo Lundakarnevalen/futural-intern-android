@@ -155,20 +155,20 @@ public class RegistrationFragment extends LKFragment{
 		
 		// Populate spinners
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> nationsList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Vet ej", 0));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Blekingska", 1));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Göteborgs", 2));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Hallands", 3));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Helsingkrona", 4));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kalmar", 5));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Krischan", 6));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Lunds", 7));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Malmö", 8));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Sydskånska", 9));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Västgöta", 10));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Wermlands", 11));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Östgöta", 12));
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Smålands", 13));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Vet ej", 1));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Blekingska", 2));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Göteborgs", 3));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Hallands", 4));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Helsingkrona", 5));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kalmar", 6));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Krischan", 7));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Lunds", 8));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Malmö", 9));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Sydskånska", 10));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Västgöta", 11));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Wermlands", 12));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Östgöta", 13));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Smålands", 14));
 		LKSpinnerArrayAdapter nationsAdapter = new LKSpinnerArrayAdapter(getContext(), nationsList);
 		nationsSpinner.setAdapter(nationsAdapter);
 		
@@ -184,18 +184,18 @@ public class RegistrationFragment extends LKFragment{
 		shirtSpinner.setAdapter(shirtSizeAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> driverLicensList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Inget", 0));
-		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE", 1));
-		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE", 2));
-		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + D/DE", 3));
-		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE + D/DE", 4));
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Inget", 1));
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE", 2));
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE", 3));
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + D/DE", 4));
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE + D/DE", 5));
 		LKSpinnerArrayAdapter driverLicensSizeAdapter = new LKSpinnerArrayAdapter(getContext(), driverLicensList);
 		driverLicensSpinner.setAdapter(driverLicensSizeAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> sexList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Annat", 0));
-		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Man", 1));
-		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kvinna", 2));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Annat", 1));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Man", 2));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kvinna", 3));
 		LKSpinnerArrayAdapter sexAdapter = new LKSpinnerArrayAdapter(getContext(), sexList);
 		sexSpinner.setAdapter(sexAdapter);
 
@@ -589,7 +589,7 @@ public class RegistrationFragment extends LKFragment{
 			}
 		});
 		remote.showProgressDialog(true);
-		remote.requestServerForText("karnevalister/"+user.id+".json", user.getJson(), LKRemote.RequestType.PUT);
+		remote.requestServerForText("karnevalister/"+user.id+".json", user.getJson(), LKRemote.RequestType.PUT, true);
 	}
 	
 	private void postNewUser(final LKUser user) {
@@ -625,7 +625,7 @@ public class RegistrationFragment extends LKFragment{
 		if(user.gcmRegId == null)
 			user.gcmRegId = "null";
 		remote.showProgressDialog(true);
-		remote.requestServerForText("karnevalister.json", user.getJson(), LKRemote.RequestType.POST);
+		remote.requestServerForText("karnevalister.json", user.getJson(), LKRemote.RequestType.POST, true);
 	}
 	
 	private boolean checkCode(){

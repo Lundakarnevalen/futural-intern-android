@@ -338,7 +338,7 @@ public class SplashscreenActivity extends Activity{
 						Log.d(LOG_TAG, "regId result: "+result);
 					}
 				});
-				remote.requestServerForText("phones.json", "{\"google_token\":\""+regId+"\"}", LKRemote.RequestType.POST);
+				remote.requestServerForText("phones.json", "{\"google_token\":\""+regId+"\"}", LKRemote.RequestType.POST, false);
 				
 				return regId;
 			}

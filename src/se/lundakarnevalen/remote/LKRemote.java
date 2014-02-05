@@ -10,7 +10,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import se.lundakarnevalen.android.R;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -114,7 +116,7 @@ public class LKRemote {
      * @param file The file
      * @param data The data
      */
-    public void requestServerForText(String file, String data, RequestType type){
+    public void requestServerForText(String file, String data, RequestType type, boolean popup){
     	String requestType = getRequestTypeString(type);
     	
     	if(hasInternetConnection(context)){
@@ -122,6 +124,14 @@ public class LKRemote {
     		task.execute(file, data, requestType);
     	}else{
     		Log.e(LOG_TAG, "no internet connection");
+    		if(popup){
+    			// Show error popup
+    			AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    			builder.setTitle(context.getString(R.string.no_internet_title));
+    			builder.setMessage(context.getString(R.string.no_internet_msg));
+    			builder.setPositiveButton("Ok", null);
+    			builder.create().show();
+    		}
     	}
     }
     
