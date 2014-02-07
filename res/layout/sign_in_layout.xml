@@ -15,7 +15,7 @@
 	        android:id="@+id/sigill"
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="@dimen/vertical_margin"
-	        android:src="@drawable/moln"/>
+	        android:src="@drawable/molnet"/>
 	    <se.lundakarnevalen.widget.LKTextViewBold
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"

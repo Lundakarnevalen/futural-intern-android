@@ -727,6 +727,7 @@ public class RegistrationFragment extends LKFragment{
 		LKRemote remote = new LKRemote(getContext(), new LKRemote.TextResultListener() {
 			@Override
 			public void onResult(String result) {
+				Log.d(LOG_TAG, "server: "+result); 
 				if(result == null){
 					Log.e(LOG_TAG, "error - null response");
 					showPopup(getContext().getString(R.string.fail), getContext().getString(R.string.error));

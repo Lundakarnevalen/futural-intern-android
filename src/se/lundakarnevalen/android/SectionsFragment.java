@@ -151,7 +151,6 @@ public class SectionsFragment extends LKFragment {
     private WheelView getWheel(int id) {
         return (WheelView) root.findViewById(id);
     }
-
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -165,12 +164,13 @@ public class SectionsFragment extends LKFragment {
 		public void onClick(View v) {
 			Fragment fragment = new SectionsListFragment();
 
-			ContentActivity a = (ContentActivity) getActivity();
+			/*ContentActivity a = (ContentActivity) getActivity();
 			a.getSupportFragmentManager().beginTransaction()
 					.replace(R.id.content_frame, fragment).addToBackStack(null)
-					.commit();
+					.commit();*/
+			
+			loadFragment(fragment, false);
 		}
-
 	}
 	
 	/**
@@ -183,11 +183,11 @@ public class SectionsFragment extends LKFragment {
         
         // Slot machine symbols
         private final int items[] = new int[] {
-        		R.drawable.moln, 
         		R.drawable.eld,
         		R.drawable.kugghjul,
         		R.drawable.blobb,
-        		R.drawable.robothuvud
+        		R.drawable.robothuvud,
+        		R.drawable.moln_new
         };
         
         // Cached images

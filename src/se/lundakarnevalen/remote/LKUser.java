@@ -92,7 +92,7 @@ public class LKUser {
 					}
 				}
 			});
-			remote.requestServerForText("karnevalister/"+id+".json", "{}", LKRemote.RequestType.GET, false);
+			remote.requestServerForText("karnevalister/"+id+".json?token="+token, "", LKRemote.RequestType.GET, false);
 			Log.d(LOG_TAG, "requested server for the user with id:"+id);
 		}else{
 			// No user downloaded.
@@ -231,6 +231,7 @@ public class LKUser {
 		this.medlemKar = user.medlem_kar;
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
+		this.token = user.token;
 	}
 	
 	public void getDataFromUser(User user){
@@ -275,5 +276,6 @@ public class LKUser {
 		this.medlemKar = user.medlem_kar;
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
+		this.token = user.token;
 	}
 }
