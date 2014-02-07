@@ -178,6 +178,7 @@ public class LKRemote {
 			progressDialog = new ProgressDialog(context);
 			progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			progressDialog.setMessage(context.getString(R.string.loading));
+			progressDialog.setCancelable(false);
 			progressDialog.show();
 		}
 		

@@ -18,7 +18,7 @@
     <string name="reg_code_fail_title">Något gick fel!</string>
     <string name="reg_code_fail_msg">Du fyllde i fel lösenord, försök igen!</string>
     
-   	<string name="registration_informationbild1">Den tar du lägst fram i</string>
+   	<string name="registration_informationbild1">Den tar du längst fram i</string>
     <string name="registration_informationbild2">disken inuti AF-Borgen.</string>
     
     <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>

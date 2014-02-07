@@ -170,7 +170,6 @@ public class SectionsFragment extends LKFragment {
 					.replace(R.id.content_frame, fragment).addToBackStack(null)
 					.commit();
 		}
-
 	}
 	
 	/**
