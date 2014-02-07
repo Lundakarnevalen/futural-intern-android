@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.lundakarnevalen.android.LKFragment.MessangerMessage;
+import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -77,6 +79,8 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			fragmentToLoad = LKFragment.getStartFragment(this);
 		}
 		loadFragment(fragmentToLoad, false);
+		
+		
 	}
 	
 	@Override
@@ -96,6 +100,8 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 			SplashscreenActivity.regInBackground(this, gcm);
 		}
+		
+		this.setInboxCount();
 	}
 	
 	/**
@@ -108,7 +114,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 				setTitle(data.getString("title"));
 				break;
 			case SET_INBOX_COUNT:
-				setInboxCount(data.getInt("count", 0));
+				setInboxCount();
 				break;
 			case SHOW_ACTION_BAR_LOGO:
 				showActionBarLogo(data.getBoolean("show", false));
@@ -180,20 +186,46 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		}
 	}
 	
-	private void setInboxCount(int count){
-		if(count <= 0){
-			// Hide UI elements
-			inboxIndicatorWrapper.setVisibility(View.GONE);
-			inboxListItem.inboxCounterWrapper.setVisibility(View.GONE);	
-		}else{
-			// set values and show UI elements
-			inboxIndicatorWrapper.setVisibility(View.VISIBLE);
-			inboxListItem.inboxCounterWrapper.setVisibility(View.VISIBLE);
+	private void setInboxCount(){
+		final Context context = this;
+		AsyncTask task = new AsyncTask<Void, Void, Integer>(){
+
+			@Override
+			protected Integer doInBackground(Void... params) {
+				Log.d("AsyncTask", "Started background process.");
+				LKSQLiteDB db = new LKSQLiteDB(context);
+				int n = db.numberOfUnreadMessages();
+				db.close();
+				Log.d("AsyncTask", "Finnished background process.");
+				return n;
+			}
 			
-			actionbarInboxCounter.setText(String.valueOf(count));
-			inboxListItem.inboxCounter.setText(String.valueOf(count));
-		}
+			@Override
+			protected void onPostExecute(Integer result) {
+				Log.d("AsyncTask", "Started postexecute process.");
+				if(result <= 0){
+					// Hide UI elements
+					inboxIndicatorWrapper.setVisibility(View.GONE);
+					Log.d("ContentActivity", inboxListItem == null ? "null" : "not null");
+					Log.d("ContentActivity", inboxListItem.inboxCounterWrapper == null ? "null" : "not null");
+					inboxListItem.inboxCounterWrapper.setVisibility(View.GONE);	
+					Log.d("ContentActivity", "did some shitzz!");
+				}else{
+					// set values and show UI elements
+					inboxIndicatorWrapper.setVisibility(View.VISIBLE);
+					inboxListItem.inboxCounterWrapper.setVisibility(View.VISIBLE);
+					
+					actionbarInboxCounter.setText(String.valueOf(result));
+					inboxListItem.inboxCounter.setText(String.valueOf(result));
+					Log.d("ContentActivity", "did other shitz!");
+				}
+			}
+		}.execute();
+		
+		
 	}
+	
+	
 	
 	/**
 	 * Loads new fragment into the frame.

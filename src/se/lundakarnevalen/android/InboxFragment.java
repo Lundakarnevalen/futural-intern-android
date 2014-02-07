@@ -41,31 +41,49 @@ public class InboxFragment extends LKFragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		
 		context = getContext();
+		Log.d("InboxFragment", "Got context");
 		
-		db = new LKSQLiteDB(context);
-		data = db.getMessages();
+		Log.d("InboxFragment", "Starting getMessagesTask");
+		AsyncTask getMessagesTask = new AsyncTask<Void,Void,Void>() {
+			
+			@Override
+			protected Void doInBackground(Void... params) {
+				db = new LKSQLiteDB(context);
+				data = db.getMessages();
+				return null;
+			}		
+			
+		}.execute();
+		Log.d("InboxFragment", "Finished getMessagesTask");
+		
 		if(data.size() <= 0) {
+			Log.d("InboxFragment", "No messages. Loading no message fragment...");
 			View v = inflater.inflate(R.layout.inbox_empty_layout, null);
 			inboxEmpty = true;
 			return v;
 		} else {
+			Log.d("InboxFragment", "No messages. Loading no message fragment...");
 			RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.inbox_layout, null);
 			this.fragment = this;
 			listView = (ListView) root.findViewById(R.id.inbox_list_view);
 			progressCircle = (ProgressBar) root.findViewById(R.id.inbox_progress_circle);
 			return root;
 		}
+		
 	}
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
+		Log.d("InboxFragment", "Running on activity craeted");
 		super.onActivityCreated(savedInstanceState);
 		setTitle("Inbox");
 		fragmentManager = getActivity().getSupportFragmentManager();
+		Log.d("InboxFragment", "got fragmentManager");
 		if(!inboxEmpty) {
 			RenderingTask rt = new RenderingTask();
 			Log.d("InboxFragment", "Executing RenderingTask");
 			rt.execute(context);
+			Log.d("InboxFragment", "Completed RenderingTask");
 		}
 		// Code to add dummy data into database.
 		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
@@ -73,7 +91,7 @@ public class InboxFragment extends LKFragment{
 
 		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
 		//dbDummy.addItem(new LKMenuListItem("Title", "Leet (or '1337'), also known as eleet or leetspeak, is an alternative alphabet for the English language that is used primarily on the Internet. It uses various combinations of ASCII characters to replace Latinate letters. For example, leet spellings of the word leet include 1337 and l33t; eleet may be spelled 31337 or 3l33t. The term leet is derived from the word elite. The leet alphabet is a specialized form of symbolic writing. Leet may also be considered a substitution cipher, although many dialects or linguistic varieties exist in different online communities. The term leet is also used as an adjective to describe formidable prowess or accomplishment, especially in the fields of online gaming and in its original usage – computer hacking.", "2015-15-34", true, null));
-		
+		Log.d("InboxFragment", "Completed on activity craeted");
 	}		
 	
 	/**
@@ -137,6 +155,8 @@ public class InboxFragment extends LKFragment{
 					Typeface tf = Typeface.createFromAsset(context[0].getAssets(), "fonts/Roboto-Bold.ttf");
 					titleTextView.setTypeface(tf);
 				}
+				
+				
 				
 				int screenWidth = context[0].getResources().getDisplayMetrics().widthPixels;
 				int widthOfView = (int) (screenWidth * 0.5);

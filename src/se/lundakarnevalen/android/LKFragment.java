@@ -3,8 +3,12 @@ package se.lundakarnevalen.android;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.remote.LKUser;
+import se.lundakarnevalen.widget.LKInboxArrayAdapter;
+import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,6 +17,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -43,6 +48,8 @@ public class LKFragment extends Fragment{
 	public static final String SP_KEY_REGISTRATION_LOCK = "LKRegistrationLock";
 
 	public static String timeF = "2014-02-09, 23:59:59";
+	
+	boolean messageExists;
 	
 	/**
 	 * Gets the application context
@@ -178,9 +185,8 @@ public class LKFragment extends Fragment{
 	 * Updates UI inbox count in actionbar and menu.
 	 * @param count Number of unread messages. 
 	 */
-	public void setInboxCount(int count){
+	public void setInboxCount(){
 		Bundle data = new Bundle();
-		data.putInt("count", count);
 		messanger.message(MessangerMessage.SET_INBOX_COUNT, data);
 	}
 	
@@ -196,7 +202,7 @@ public class LKFragment extends Fragment{
 	
 	/**
 	 * Loads fragment into framlayout.
-	 * @param fragment The fragment to launch
+	 * @param fragment The fragment to launch h
 	 * @param addToBackstack If true it will be added to backstack on launch. 
 	 */
 	public void loadFragment(Fragment fragment, boolean addToBackstack){
@@ -230,6 +236,29 @@ public class LKFragment extends Fragment{
 	 */
 	public void onIntrestsCheckBoxClicked(View view) {
 		
+	}
+	
+	public boolean messageExistsInDb(int id) {
+		final Context context = getContext();
+		final int msgId = id;
+		AsyncTask task = new AsyncTask<Void, Void, Boolean>(){
+
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				LKSQLiteDB db = new LKSQLiteDB(context);
+				boolean b = db.messageExistsInDb(msgId);
+				db.close();
+				return b;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				messageExists = result;
+			}
+			
+		}.execute();
+		
+		return messageExists;
 	}
 	
 	

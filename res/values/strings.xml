@@ -33,7 +33,9 @@
     <string name="continue_code">Lösenord</string>
     <string name="notification_title">Meddelande från Lundakarnevalen!</string>
     <string name="edit_uppg">Redigera mina uppgifter</string>
+    <string name="registration_dd15_important">Superviktigt!</string>
     <string name="registration_dd15_agreement">För dessa funktioner så måste du komma på audition! Auditionstid bokas hos Nöjessektionen.</string>
+    <string name="registration_dd15_ok">Ok</string>
     <string name="registration_PUL">Genom denna blankett ger du Lundakarnevalen tillåtelse att använda fotot på dig samt behandla dina personuppgifter i datorsystemet och för egna utskick i enlighet med Personuppgiftslag (1998:204)</string>
 	<string name="registration_comfirmPUL">Jag godkänner dessa villkor</string>
 	<string name="registration_iwant">Jag vill vara:</string>
@@ -190,6 +192,27 @@
     <string name="user_name">Namn:</string>
     <string name="user_mail">E-post:</string>
     <string name="user_member">Sektion/-er:</string>
-        
     
+   	<string name="registration_nations_do_not_know">Vet ej</string>
+   	
+   	<string name="registration_drivers_licence_none">Inget</string>
+    
+   	<string name="registration_gender_other">Annat</string>
+   	<string name="registration_gender_male">Man</string>
+   	<string name="registration_gender_female">Kvinna</string>
+   	
+   	<string name="registration_valid_firstname">Förnamn</string>
+   	<string name="registration_valid_lastname">Efternamn</string>
+   	<string name="registration_valid_personnr">Personnummer</string>
+   	<string name="registration_valid_mobilenr">Mobilnummer</string>
+   	<string name="registration_valid_email">Mailadress</string>
+   	<string name="registration_valid_email_match">Ej samma mailadress</string>
+   	<string name="registration_valid_adress">Adress</string>
+   	<string name="registration_valid_zipcode">Postnummer</string>
+   	<string name="registration_valid_city">Stad</string>
+   	<string name="registration_valid_agreement">Godkännande av hanterandet av användardata</string>
+   	<string name="registration_valid_nr_of_sektions">Du måste välja minst 5 sektioner</string>
+   	<string name="registration_valid_nr_of_intrests">Du måste välja minst 3 intressen</string>
+   	
+   	
 </resources>

@@ -154,7 +154,7 @@ public class RegistrationFragment extends LKFragment{
 		
 		// Populate spinners
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> nationsList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Vet ej", 0));
+		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem(getString(R.string.registration_nations_do_not_know), 0));
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Blekingska", 1));
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Göteborgs", 2));
 		nationsList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Hallands", 3));
@@ -183,7 +183,7 @@ public class RegistrationFragment extends LKFragment{
 		shirtSpinner.setAdapter(shirtSizeAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> driverLicensList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Inget", 0));
+		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem(getString(R.string.registration_drivers_licence_none), 0));
 		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE", 1));
 		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + C/CE", 2));
 		driverLicensList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("B/BE + D/DE", 3));
@@ -192,9 +192,9 @@ public class RegistrationFragment extends LKFragment{
 		driverLicensSpinner.setAdapter(driverLicensSizeAdapter);
 		
 		List<LKSpinnerArrayAdapter.LKSpinnerArrayItem> sexList = new ArrayList<LKSpinnerArrayAdapter.LKSpinnerArrayItem>();
-		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Annat", 0));
-		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Man", 1));
-		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem("Kvinna", 2));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem(getString(R.string.registration_gender_other), 0));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem(getString(R.string.registration_gender_male), 1));
+		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem(getString(R.string.registration_gender_female), 2));
 		LKSpinnerArrayAdapter sexAdapter = new LKSpinnerArrayAdapter(getContext(), sexList);
 		sexSpinner.setAdapter(sexAdapter);
 
@@ -356,57 +356,57 @@ public class RegistrationFragment extends LKFragment{
 		switch(registrationStep){
 		case 0:
 			if(!isEditTextFilled(name))
-				Wrongs.add("F�rnamn");
+				Wrongs.add(getString(R.string.registration_valid_firstname));
 			if(!isEditTextFilled(lastname))
-				Wrongs.add("Efternamn");
+				Wrongs.add(getString(R.string.registration_valid_lastname));
 			if(!isEditTextOfThisLenght(personnumber,10))
-				Wrongs.add("Personnummer");
+				Wrongs.add(getString(R.string.registration_valid_personnr));
 			if(!isEditTextLongerThanThisLength(mobilnbr,4))
-				Wrongs.add("Mobilnummer");
+				Wrongs.add(getString(R.string.registration_valid_mobilenr));
 			if(!validEmail(email.getText().toString()))
-				Wrongs.add("Mailadress");
+				Wrongs.add(getString(R.string.registration_valid_email));
 			if(!equalEmail(email.getText().toString(), validemail.getText().toString()))
-				Wrongs.add("Ej samma mailadress");
+				Wrongs.add(getString(R.string.registration_valid_email_match));
 			if(!isEditTextFilled(adress))
-				Wrongs.add("Adress");
+				Wrongs.add(getString(R.string.registration_valid_adress));
 			if(!isEditTextOfThisLenght(zipcode,5))
-				Wrongs.add("Postnummer");
+				Wrongs.add(getString(R.string.registration_valid_zipcode));
 			if(!isEditTextFilled(city))
-				Wrongs.add("Stad");
+				Wrongs.add(getString(R.string.registration_valid_city));
 			if(!pulcheckbox.isChecked())
-				Wrongs.add("Godk�nnande av hanterandet av anv�ndardata");
+				Wrongs.add(getString(R.string.registration_valid_agreement));
 			break;
 		case 2:
 			if(!sectionChosen())
-				Wrongs.add("Du m�ste v�lja minst 5 sektioner");
+				Wrongs.add(getString(R.string.registration_valid_nr_of_sektions));
 			if(!intressenChosen())
-				Wrongs.add("Du m�ste v�lja minst 3 intressen");
+				Wrongs.add(getString(R.string.registration_valid_nr_of_intrests));
 			break;
 		case 3:
 			if(!isEditTextFilled(name))
-				Wrongs.add("F�rnamn");
+				Wrongs.add(getString(R.string.registration_valid_firstname));
 			if(!isEditTextFilled(lastname))
-				Wrongs.add("Efternamn");
+				Wrongs.add(getString(R.string.registration_valid_lastname));
 			if(!isEditTextOfThisLenght(personnumber,10))
-				Wrongs.add("Personnummer");
+				Wrongs.add(getString(R.string.registration_valid_personnr));
 			if(!isEditTextLongerThanThisLength(mobilnbr,4))
-				Wrongs.add("Mobilnummer");
+				Wrongs.add(getString(R.string.registration_valid_mobilenr));
 			if(!validEmail(email.getText().toString()))
-				Wrongs.add("Mailadress");
+				Wrongs.add(getString(R.string.registration_valid_email));
 			if(!equalEmail(email.getText().toString(), validemail.getText().toString()))
-				Wrongs.add("Ej samma mailadress");
+				Wrongs.add(getString(R.string.registration_valid_email_match));
 			if(!isEditTextFilled(adress))
-				Wrongs.add("Adress");
+				Wrongs.add(getString(R.string.registration_valid_adress));
 			if(!isEditTextOfThisLenght(zipcode,5))
-				Wrongs.add("Postnummer");
+				Wrongs.add(getString(R.string.registration_valid_zipcode));
 			if(!isEditTextFilled(city))
-				Wrongs.add("Stad");
+				Wrongs.add(getString(R.string.registration_valid_city));
 			if(!pulcheckbox.isChecked())
-				Wrongs.add("Godk�nnande av hanterandet av anv�ndardata");
+				Wrongs.add(getString(R.string.registration_valid_agreement));
 			if(!sectionChosen())
-				Wrongs.add("Du m�ste v�lja minst 5 sektioner");
+				Wrongs.add(getString(R.string.registration_valid_nr_of_sektions));
 			if(!intressenChosen())
-				Wrongs.add("Du m�ste v�lja minst 3 intressen");
+				Wrongs.add(getString(R.string.registration_valid_nr_of_intrests));
 		}
 		return Wrongs;
 	}
@@ -779,9 +779,9 @@ public class RegistrationFragment extends LKFragment{
 			case R.id.dd_15:
 				if(checked){
 					AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-	    			builder.setTitle("Superviktigt!");
-	    			builder.setMessage("F�r dessa funktioner s� m�ste du komma p� audition! Auditionstid bokas hos N�jessektionen.");
-	    			builder.setPositiveButton("Ok", null);
+	    			builder.setTitle(getString(R.string.registration_dd15_important));
+	    			builder.setMessage(R.string.registration_dd15_agreement);
+	    			builder.setPositiveButton(R.string.registration_dd15_ok, null);
 	    			builder.show();				
 	    		}
 				intressenchecked[15] = checked;
