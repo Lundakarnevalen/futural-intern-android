@@ -28,9 +28,9 @@
     <string name="no_internet_msg">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
     
     <string name="registration_choosesection_information1">Jag skulle vilja vara med i dessa sektioner:</string>
-	<string name="registration_choosesection_information2">Kryssa i minst fem. Om det är någon sektion som du extra gärna vill vara med i, stjärnmarkera denna.</string>
+	<string name="registration_choosesection_information2">Bocka för de sektioner du är intresserad av (minst 5). \n Stjärnmarkera den sektion du är mest intresserad av.</string>
 	<string name="registration_chooseintrests_information1">Detta är jag bra på/detta tycker jag är roligt:</string>
-	<string name="registration_chooseintrests_information2">Kryssa i minst tre olika saker. Om det är något du är extra bra på eller tycker är extra roligt, stjärnmarkera detta.</string>
+	<string name="registration_chooseintrests_information2">Bocka för det du är intresserad av (minst 3). \n Stjärnmarkera det du är mest intresserad av.</string>
     <string name="registration_submit">Skicka in</string>
     <string name="registration_submitinfo">Genom att klicka på knappen, förbinder\ndu dig att ha kul under karnevalstiden.</string>
     <string name="registration_mysections">Jag vill engagera mig i</string>
@@ -42,7 +42,7 @@
     <string name="registration_dd15_important">Superviktigt!</string>
     <string name="registration_dd15_agreement">För dessa funktioner så måste du komma på audition! Auditionstid bokas hos Nöjessektionen.</string>
     <string name="registration_dd15_ok">Ok</string>
-    <string name="registration_PUL">Genom denna blankett ger du Lundakarnevalen tillåtelse att använda fotot på dig samt behandla dina personuppgifter i datorsystemet och för egna utskick i enlighet med Personuppgiftslag (1998:204)</string>
+    <string name="registration_PUL">Genom detta formulär ger du Lundakarnevalen tillåtelse att använda fotot på dig samt behandla dina personuppgifter i datorsystemet och för egna utskick i enlighet med Personuppgiftslagen (1998:204)</string>
 	<string name="registration_comfirmPUL">Jag godkänner dessa villkor</string>
 	<string name="registration_iwant">Jag vill vara:</string>
 	<string name="sektion_500">Jag vill bara vara med! Vilken sektion spelar ingen roll.</string> 
@@ -135,25 +135,25 @@
     <string name="dd_15">Skådespela/sjunga/dansa/spela instrument</string>   
         
     
-    
+    <string name="name_name">Namn</string>
     <string name="name">Förnamn</string>
     <string name="lastname">Efternamn</string>
-    <string name="postal_address">Postadress</string>
+    <string name="postal_address">Gatuadress</string>
     <string name="zip_code">Postnummer</string>
-    <string name="zip_town">Postort</string>
+    <string name="zip_town">Ort</string>
     <string name="password">Lösenord</string>
-    <string name="phone_nr">Mobilnummer</string>
+    <string name="phone_nr">Telefonnummer</string>
     <string name="food_prefs">Matpreferenser</string>
-    <string name="terms">Terminer i Lund (inkl. nuvarande)</string>
-    <string name="dedication">Jag har tidigare engagerat mig i</string>
+    <string name="terms">Studieterminer i Lund</string>
+    <string name="dedication">Jag har varit engagerad i en</string>
     <string name="sexTopic">Kön</string>
-    <string name="teknolagkaren">En studentkår, vilken och hur?</string>
-    <string name="nationDed">En nation, vilken och hur?</string>
+    <string name="teknolagkaren">Studentkår, vilken och hur?</string>
+    <string name="nationDed">Studentnation, vilken och hur?</string>
     <string name="otherStud">Annan studentikos förening?</string>
     <string name="otherDed">Annan förening?</string>
     <string name="email">E-post</string>
     <string name="email_valid">E-post igen tack!</string>
-    <string name="nationTopic">Nation</string>
+    <string name="nationTopic">Studentnation</string>
     <string name="driverLicensTopic">Körkort</string>
     <string name="shirtTopic">Tröjstorlek</string>
     <string name="login_welcome_desc_f">Välkommen in i värmen.&#160;</string>
@@ -167,19 +167,21 @@
     <string name="register_desc_login_f">Är du redan karnevalist?&#160;</string>
     <string name="register_desc_login_l">Logga in här.</string>
     <string name="pers_nr">Personnummer ååmmddxxxx</string>
+    <string name="pers_nr2">Personnummer</string>
+    
     <string name="intressen">Intressen</string>
     <string name="karnevalist_2010">Jag var karnevalist 2010</string>
     <string name="aktiv">Vill du ha ansvar?</string>
-    <string name="other">Något annat?</string>
+    <string name="other">Övrigt</string>
     <string name="elseT">Övrigt</string>
     <string name="active">Aktiv</string>
-    <string name="responsible">Ansvarig</string>
-    <string name="activitylevel">Aktivitetsnivå</string>
-    <string name="work_fulltime">Heltidspost inom studentlivet</string>
-    <string name="work_styrelse">Styrelse</string>
-    <string name="work_forman">Utskottsansvarig/förman</string>
-    <string name="work_aktiv">Aktiv</string>
-    <string name="karnevalist_2010">Var du karnevalist 2010 också?</string>
+    <string name="responsible">Jag vill ha ansvar</string>
+    <string name="activitylevel">Jag har varit aktiv inom kår/nation/förening som</string>
+    <string name="work_fulltime">Heltidare</string>
+    <string name="work_styrelse">Styrelseledamot</string>
+    <string name="work_forman">Förman/Utskottsansvarig</string>
+    <string name="work_aktiv">Jobbare</string>
+    <string name="karnevalist_2010">Jag var karnevalist 2010</string>
     <string name="fail_creedentials">Felaktigt ifyllda fält:</string>
     
     
@@ -202,10 +204,25 @@
     <string name="image">Some Image</string>
     
    	<string name="registration_nations_do_not_know">Vet ej</string>
+   	<string name="registration_nations_2">Blekingska</string>
+   	<string name="registration_nations_3">Göteborgs</string>
+   	<string name="registration_nations_4">Hallands</string>
+   	<string name="registration_nations_5">Helsingkrona</string>
+   	<string name="registration_nations_6">Kalmar</string>
+   	<string name="registration_nations_7">Krischan</string>
+   	<string name="registration_nations_8">Lunds</string>
+   	<string name="registration_nations_9">Malmö</string>
+   	<string name="registration_nations_10">Sydskånska</string>
+   	<string name="registration_nations_11">Västgöta</string>
+   	<string name="registration_nations_12">Wermlands</string>
+   	<string name="registration_nations_13">Östgöta</string>
+   	<string name="registration_nations_14">Smålands</string> 	   	
+   	   	
+   	   	   			
    	
    	<string name="registration_drivers_licence_none">Inget</string>
     
-   	<string name="registration_gender_other">Annat</string>
+   	<string name="registration_gender_other">Vill inte definiera mig</string>
    	<string name="registration_gender_male">Man</string>
    	<string name="registration_gender_female">Kvinna</string>
    	
