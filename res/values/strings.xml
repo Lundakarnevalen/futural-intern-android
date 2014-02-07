@@ -2,7 +2,7 @@
     <!-- The great registration password -->
     <string name="registrationpassword">FUTURAL</string>
     
-    <string name="app_name">Lundakarnevalen</string>
+    <string name="app_name">Karnevalisten</string>
     <string name="sign_in_button">Logga in</string>
     
     <string name="registration_hurra">HURRA!</string>
@@ -12,6 +12,9 @@
     <string name="registration_informationafterorigressbar2">karnevalist. Vi behöver bara en bild på dig.</string>
     <string name="code_explained">Inne i AF-borgen kommer du få en kod. Den behöver du för att kunna fortsätta registreringen som karnevalist.</string>
     
+    <string name="progress_notdone_1">karnevalist. Du måste bara fylla i hela</string>
+    <string name="progress_notdone_2">formuläret!</string>
+    
     <string name="reg_code_fail_title">Något gick fel!</string>
     <string name="reg_code_fail_msg">Du fyllde i fel lösenord, försök igen!</string>
     
@@ -20,6 +23,9 @@
     
     <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
     <string name="registration_mobilenbr">Mobilnummer</string>
+    
+    <string name="no_internet_title">Ojsan</string>
+    <string name="no_internet_msg">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
     
     <string name="registration_choosesection_information1">Jag skulle vilja vara med i dessa sektioner:</string>
 	<string name="registration_choosesection_information2">Kryssa i minst fem. Om det är någon sektion som du extra gärna vill vara med i, stjärnmarkera denna.</string>
@@ -39,7 +45,7 @@
     <string name="registration_PUL">Genom denna blankett ger du Lundakarnevalen tillåtelse att använda fotot på dig samt behandla dina personuppgifter i datorsystemet och för egna utskick i enlighet med Personuppgiftslag (1998:204)</string>
 	<string name="registration_comfirmPUL">Jag godkänner dessa villkor</string>
 	<string name="registration_iwant">Jag vill vara:</string>
-	<string name="sektion_0">Jag vill bara vara med! Vilken sektion spelar ingen roll.</string> 
+	<string name="sektion_500">Jag vill bara vara med! Vilken sektion spelar ingen roll.</string> 
     <string name="sektion_1">Barnevalen</string>
     <string name="sektion_2">Biljetteriet</string>
     <string name="sektion_3">Blädderiet</string>
@@ -111,7 +117,7 @@
     <string name="sektion_taltnojen">Tältnöjen</string>
     <string name="sektion_vieriet">Vieriet</string>
     
-    <string name="dd_0">Allt! Jag kan göra vad som helst, jag vill bara vara med.</string>
+    <string name="dd_16">Allt! Jag kan göra vad som helst, jag vill bara vara med.</string>
     <string name="dd_1">Mat</string>
     <string name="dd_2">Dryck</string>
     <string name="dd_3">Teknik (ljud, ljus, el)</string>   
@@ -138,7 +144,7 @@
     <string name="password">Lösenord</string>
     <string name="phone_nr">Mobilnummer</string>
     <string name="food_prefs">Matpreferenser</string>
-    <string name="terms">Terminer i Lund</string>
+    <string name="terms">Terminer i Lund (inkl. nuvarande)</string>
     <string name="dedication">Jag har tidigare engagerat mig i</string>
     <string name="sexTopic">Kön</string>
     <string name="teknolagkaren">En studentkår, vilken och hur?</string>
@@ -159,8 +165,8 @@
     <string name="register_me">Registrera mig</string>
     <string name="register_desc">Det verkar som om du inte är karnevalist än.\nJag tycker att du ska bli det.\nOmedelbums.</string>
     <string name="register_desc_login_f">Är du redan karnevalist?&#160;</string>
-    <string name="register_desc_login_l">Logg in här.</string>
-    <string name="pers_nr">Personnummer</string>
+    <string name="register_desc_login_l">Logga in här.</string>
+    <string name="pers_nr">Personnummer ååmmddxxxx</string>
     <string name="intressen">Intressen</string>
     <string name="karnevalist_2010">Jag var karnevalist 2010</string>
     <string name="aktiv">Vill du ha ansvar?</string>
@@ -192,6 +198,8 @@
     <string name="user_name">Namn:</string>
     <string name="user_mail">E-post:</string>
     <string name="user_member">Sektion/-er:</string>
+
+    <string name="image">Some Image</string>
     
    	<string name="registration_nations_do_not_know">Vet ej</string>
    	

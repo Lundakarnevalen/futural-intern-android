@@ -14,18 +14,22 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+//github.com/Lundakarnevalen/futural-intern-android.git
 
 public class SplashscreenActivity extends Activity{
 
 	RelativeLayout wrapper;
 	Context context;
+	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds 
+	
+	
 	private static final String LOG_TAG = "splash";
 	GoogleCloudMessaging gcm;
 	String regId;
@@ -43,7 +47,8 @@ public class SplashscreenActivity extends Activity{
 		
 		wrapper = (RelativeLayout) findViewById(R.id.splash);
 		Log.d(LOG_TAG, (wrapper == null) ? "wrapper was null" : "wrapper was NOT null");
-		wrapper.setOnClickListener(cont);
+		//wrapper.setOnClickListener(cont);
+		createMenuThread();
 
 		sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, Context.MODE_PRIVATE);
 		addDataSekBg(); 
@@ -296,6 +301,19 @@ public class SplashscreenActivity extends Activity{
 		}.execute();
 	}
 	
+	private void createMenuThread() {
+		/*start up the splash screen and main menu in a time delayed thread*/
+		new Handler().postDelayed(new Thread() {
+			@Override
+			public void run() {
+				Intent intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
+				SplashscreenActivity.this.startActivity(intent);
+				SplashscreenActivity.this.finish();
+				overridePendingTransition(R.layout.fade_in, R.layout.fade_out);
+			}
+		}, THREAD_DELAY);
+	}
+	
 	public static void regInBackground(final Context context, final GoogleCloudMessaging gcm){
 		AsyncTask<?, String, String> regInBackground = new AsyncTask<Object, String, String>(){
 
@@ -320,7 +338,7 @@ public class SplashscreenActivity extends Activity{
 						Log.d(LOG_TAG, "regId result: "+result);
 					}
 				});
-				remote.requestServerForText("phones.json", "{\"google_token\":\""+regId+"\"}", LKRemote.RequestType.POST);
+				remote.requestServerForText("phones.json", "{\"google_token\":\""+regId+"\"}", LKRemote.RequestType.POST, false);
 				
 				return regId;
 			}
@@ -346,18 +364,19 @@ public class SplashscreenActivity extends Activity{
 		return true;
 	}
 	
-	View.OnClickListener cont = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			launchApp();
-		}
-	};
-	
-	private void launchApp(){
-		Intent intent = new Intent(context, ContentActivity.class);
-		startActivity(intent);
-		finish();
-	}
+
+//	View.OnClickListener cont = new View.OnClickListener() {
+//		@Override
+//		public void onClick(View v) {
+//			launchApp();
+//		}
+//	};
+//	
+//	private void launchApp(){
+//		Intent intent = new Intent(context, ContentActivity.class);
+//		startActivity(intent);
+//		finish();
+//	}
 	
 	/** 
 	 * Populate SP with some basic data if there is none.

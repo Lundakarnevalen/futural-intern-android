@@ -3,16 +3,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ScrollView
-        android:id="@+id/scroll"
+    <!-- The tabs -->
+
+    <LinearLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp" >
+        android:layout_alignParentBottom="true"
+        android:background="#000000"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/left_tab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/section_tab_left_active"
+            android:paddingBottom="5dp"
+            android:paddingTop="10dp" >
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/left_tab"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/right_tab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/section_tab_right_inactive"
+            android:paddingBottom="5dp"
+            android:paddingTop="10dp" >
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/right_tab"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tabs"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp" >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/vertical_margin_half"
             android:layout_marginLeft="@dimen/horizontal_margin"
             android:layout_marginRight="@dimen/horizontal_margin" >
 
@@ -93,54 +141,5 @@
                 android:textSize="@dimen/sections_button_text_size" />
         </RelativeLayout>
     </ScrollView>
-
-    <!-- The tabs -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/scroll"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="25dp"
-        android:background="#000000"
-        android:baselineAligned="false"
-        android:orientation="horizontal" >
-
-        <RelativeLayout
-            android:id="@+id/left_tab"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/section_tab_left_active"
-            android:paddingBottom="5dp"
-            android:paddingTop="10dp" >
-
-            <se.lundakarnevalen.widget.LKTextViewBold
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:text="@string/left_tab"
-                android:textColor="#FFFFFF" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/right_tab"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/section_tab_right_inactive"
-            android:paddingBottom="5dp"
-            android:paddingTop="10dp" >
-
-            <se.lundakarnevalen.widget.LKTextViewBold
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:text="@string/right_tab"
-                android:textColor="#FFFFFF" />
-        </RelativeLayout>
-    </LinearLayout>
 
 </RelativeLayout>
