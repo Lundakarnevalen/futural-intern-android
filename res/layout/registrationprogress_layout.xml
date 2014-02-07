@@ -121,7 +121,7 @@
 	        	android:layout_height="wrap_content"
 	        	android:textColor="@color/base_pink"
 	        	android:layout_below="@id/lKTextViewBold3" 
-	        	android:text="@string/name" />
+	        	android:text="@string/name_name" />
 	        <se.lundakarnevalen.widget.LKTextView 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
@@ -151,18 +151,18 @@
 	        	android:layout_marginBottom="@dimen/vertical_margin"
 	        	android:layout_marginLeft="@dimen/horizontal_margin"
 	        	android:textSize="18sp"
-	        	android:id="@+id/lKTextViewBoldMobileNbr"
+	        	android:id="@+id/lKTextViewBoldPersonNbr"
 	        	android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
 	        	android:textColor="@color/base_pink"
 	        	android:layout_below="@id/lKTextViewBoldEmail" 
-	        	android:text="@string/registration_mobilenbr" />
+	        	android:text="@string/pers_nr2" />
 	        <se.lundakarnevalen.widget.LKTextView 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:id="@+id/phone"
-	            android:layout_toRightOf="@id/lKTextViewBoldMobileNbr"
-	            android:layout_alignBaseline="@id/lKTextViewBoldMobileNbr"/>
+	            android:id="@+id/persnnbr"
+	            android:layout_toRightOf="@id/lKTextViewBoldPersonNbr"
+	            android:layout_alignBaseline="@id/lKTextViewBoldPersonNbr"/>
 	        <!-- <se.lundakarnevalen.widget.LKTextViewBold 
 	        	android:layout_marginTop="@dimen/vertical_margin"
 	        	android:id="@+id/lKTextViewBoldMySections"

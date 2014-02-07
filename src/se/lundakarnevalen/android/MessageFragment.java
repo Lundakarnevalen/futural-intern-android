@@ -1,5 +1,6 @@
 package se.lundakarnevalen.android;
 
+import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
@@ -30,6 +31,9 @@ public class MessageFragment extends LKFragment{
 		dateTextView.setText(listItem.date);
 		messageTextView.setText(listItem.message);
 		thumbnailImageView.setImageBitmap(listItem.image);
+		
+		//TODO:	Update the inbox counter
+		this.setInboxCount();
 		
 		return root;
 	}

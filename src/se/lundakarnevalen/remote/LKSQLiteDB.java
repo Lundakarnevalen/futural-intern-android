@@ -1,5 +1,6 @@
 package se.lundakarnevalen.remote;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -88,6 +89,35 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		return count;
 	}
 	
+	public boolean messageExistsInDb(int id) {
+		SQLiteDatabase db = getReadableDatabase();
+		String[] dataProjection = {LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID};
+		String sort = "DATE DESC";
+		Cursor cursor = db.query(LKSQLiteDBContract.TABLE_NAME, dataProjection, null, null, null, null, sort);
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()) {
+			if(Integer.parseInt(cursor.getString(0)) == id) {
+				return true;
+			}
+		}
+		db.close();
+		return false;
+	}
+	
+	public ArrayList<Integer> existingMessageIds() {
+		SQLiteDatabase db = getReadableDatabase();
+		String[] dataProjection = {LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID};
+		String sort = "DATE DESC";
+		Cursor cursor = db.query(LKSQLiteDBContract.TABLE_NAME, dataProjection, null, null, null, null, sort);
+		cursor.moveToFirst();
+		ArrayList<Integer> idList = new ArrayList<Integer>();
+		while(!cursor.isAfterLast()) {
+			idList.add(Integer.parseInt(cursor.getString(0)));
+		}
+		db.close();
+		return idList;
+	}
+	
 	public int heighestMessageId() {
 		SQLiteDatabase db = getReadableDatabase();
 		String[] dataProjection = {LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID};
@@ -101,6 +131,7 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 				max = tmp;
 			}
 		}
+		db.close();
 		return max;
 	}
 	

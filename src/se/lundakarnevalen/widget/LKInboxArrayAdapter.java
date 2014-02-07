@@ -49,9 +49,10 @@ public class LKInboxArrayAdapter extends ArrayAdapter<LKInboxArrayAdapter.LKMenu
 		item.unread = false;
 		Log.d("LKInboxArrayAdapter", "changed item.unread = "+item.unread);
 		LKSQLiteDB db = new LKSQLiteDB(context);
-		int bla = db.update(item);
+		int numOfAffectedMessages = db.update(item);
+		
 		db.close();
-		Log.d("LKInboxArrayAdapter", "DB query completed. "+bla+" rows affected");
+		Log.d("LKInboxArrayAdapter", "DB query completed. "+numOfAffectedMessages+" rows affected");
 		
 		
 		MessageFragment fragment = new MessageFragment();
