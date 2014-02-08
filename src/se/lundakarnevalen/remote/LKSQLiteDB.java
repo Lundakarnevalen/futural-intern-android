@@ -38,7 +38,9 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		values.put(LKSQLiteDBContract.COLUMN_NAME_IMG, "img path");
 		values.put(LKSQLiteDBContract.COLUMN_NAME_UNREAD, item.unread ? 1 : 0);
 		values.put(LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID, item.id);
-		return db.insert(LKSQLiteDBContract.TABLE_NAME, null, values);
+		float f = db.insert(LKSQLiteDBContract.TABLE_NAME, null, values);
+		db.close();
+		return f;
 	}
 	
 	public int update(LKMenuListItem item) {
@@ -101,6 +103,7 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 			}
 		}
 		db.close();
+		Log.d("LKSQLiteDB", "Completed messageExistsInDb");
 		return false;
 	}
 	

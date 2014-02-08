@@ -310,8 +310,8 @@ public class RegistrationFragment extends LKFragment{
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem(getString(R.string.registration_gender_other), 1));
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem(getString(R.string.registration_gender_male), 2));
 		sexList.add(new LKSpinnerArrayAdapter.LKSpinnerArrayItem(getString(R.string.registration_gender_female), 3));
-		sexAdapter = new LKSpinnerArrayAdapter(getContext(), sexList);
-		sexSpinner.setAdapter(sexAdapter);
+		sexAdapter = new LKSpinnerArrayAdapter(getContext(), sexList); 
+		sexSpinner.setAdapter(sexAdapter); 
 		
 		switch(registrationStep){
 		case 0:
