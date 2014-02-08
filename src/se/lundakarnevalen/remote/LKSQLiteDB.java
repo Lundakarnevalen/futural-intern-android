@@ -14,6 +14,8 @@ import android.util.Log;
 
 public class LKSQLiteDB extends SQLiteOpenHelper{
 	
+	private static final String LOG_TAG = "DB";
+	
 	public LKSQLiteDB(Context context) {
 		super(context, LKSQLiteDBContract.DATABASE_NAME, null, LKSQLiteDBContract.DATABASE_VERSION);
 	}
@@ -31,6 +33,9 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 	
 	public float addItem(LKMenuListItem item){
 		SQLiteDatabase db = getWritableDatabase();
+		/*if(messageExistsInDb(item.id)){
+			return -1;
+		}*/
 		ContentValues values = new ContentValues();
 		values.put(LKSQLiteDBContract.COLUMN_NAME_TITLE, item.title);
 		values.put(LKSQLiteDBContract.COLUMN_NAME_MESSAGE, item.message);
@@ -38,7 +43,9 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		values.put(LKSQLiteDBContract.COLUMN_NAME_IMG, "img path");
 		values.put(LKSQLiteDBContract.COLUMN_NAME_UNREAD, item.unread ? 1 : 0);
 		values.put(LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID, item.id);
-		return db.insert(LKSQLiteDBContract.TABLE_NAME, null, values);
+		float f = db.insert(LKSQLiteDBContract.TABLE_NAME, null, values);
+		//db.close();
+		return f;
 	}
 	
 	public int update(LKMenuListItem item) {
@@ -84,23 +91,32 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 			if(Integer.parseInt(cursor.getString(0)) == 1) {
 				count++;
 			}
+			cursor.moveToNext();
 		}
 		db.close();
 		return count;
 	}
-	
+	SQLiteDatabase db;
 	public boolean messageExistsInDb(int id) {
+		Log.d(LOG_TAG, "start");
+
 		SQLiteDatabase db = getReadableDatabase();
+		
 		String[] dataProjection = {LKSQLiteDBContract.COLUMN_NAME_ENTRY_ID};
 		String sort = "DATE DESC";
 		Cursor cursor = db.query(LKSQLiteDBContract.TABLE_NAME, dataProjection, null, null, null, null, sort);
 		cursor.moveToFirst();
+		
+		Log.d(LOG_TAG, "before loop");
 		while(!cursor.isAfterLast()) {
+			Log.d(LOG_TAG, "loop step");
 			if(Integer.parseInt(cursor.getString(0)) == id) {
 				return true;
 			}
+			cursor.moveToNext();
 		}
 		db.close();
+		Log.d("LKSQLiteDB", "Completed messageExistsInDb");
 		return false;
 	}
 	
@@ -113,6 +129,7 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		ArrayList<Integer> idList = new ArrayList<Integer>();
 		while(!cursor.isAfterLast()) {
 			idList.add(Integer.parseInt(cursor.getString(0)));
+			cursor.moveToNext();
 		}
 		db.close();
 		return idList;
@@ -130,6 +147,7 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 			if(tmp > max) {
 				max = tmp;
 			}
+			cursor.moveToNext();
 		}
 		db.close();
 		return max;

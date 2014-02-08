@@ -189,7 +189,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	private void setInboxCount(){
 		final Context context = this;
 		AsyncTask task = new AsyncTask<Void, Void, Integer>(){
-
+		
 			@Override
 			protected Integer doInBackground(Void... params) {
 				Log.d("AsyncTask", "Started background process.");

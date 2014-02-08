@@ -34,7 +34,7 @@ public class GCMIntentService extends IntentService{
 			// Handle data.
 			Log.d(LOG_TAG, extras.toString());
 			int type = Integer.parseInt(extras.getString("message_type"));
-			switch(type){
+			switch(type){ 
 			case TYPE_MESSAGE:
 				Log.d("GCMIntentService", "adding message with id = "+Integer.parseInt(extras.getString("id")));
 				addMessage(extras.getString("title"), extras.getString("message"), extras.getString("created_at"), Integer.parseInt(extras.getString("id")));
@@ -50,8 +50,12 @@ public class GCMIntentService extends IntentService{
 	private void addMessage(String title, String message, String date, int id){
 		// Add message to db.
 		Log.d("GCMIntentService", "GCMIntentService.id = "+id);
-		InboxFragment.addMessage(this, title, message, date, id);
+		float res = InboxFragment.addMessage(this, title, message, date, id);
 		
+		if(res == -1){
+			Log.e(LOG_TAG, "error inserting message, maybe already in db? with id: "+id);
+			return;
+		}
 		// Show notification
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 		builder.setContentTitle(this.getString(R.string.notification_title));

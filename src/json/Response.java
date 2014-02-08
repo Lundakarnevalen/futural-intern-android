@@ -37,6 +37,15 @@ public class Response {
 		public int id;
 	}
 	
+	public static class Notifications {
+		public String status;
+		public int records;
+		public boolean remaining;
+		public Notification[] notifications;
+	}
+	
+	
+	
 	public static class GetGCM{
 	}
 }

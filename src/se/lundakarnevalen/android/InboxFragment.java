@@ -43,18 +43,9 @@ public class InboxFragment extends LKFragment{
 		context = getContext();
 		Log.d("InboxFragment", "Got context");
 		
-		Log.d("InboxFragment", "Starting getMessagesTask");
-		AsyncTask getMessagesTask = new AsyncTask<Void,Void,Void>() {
-			
-			@Override
-			protected Void doInBackground(Void... params) {
-				db = new LKSQLiteDB(context);
-				data = db.getMessages();
-				return null;
-			}		
-			
-		}.execute();
-		Log.d("InboxFragment", "Finished getMessagesTask");
+		db = new LKSQLiteDB(context);
+		data = db.getMessages();
+		db.close();
 		
 		if(data.size() <= 0) {
 			Log.d("InboxFragment", "No messages. Loading no message fragment...");
@@ -62,7 +53,7 @@ public class InboxFragment extends LKFragment{
 			inboxEmpty = true;
 			return v;
 		} else {
-			Log.d("InboxFragment", "No messages. Loading no message fragment...");
+			Log.d("InboxFragment", "Messages. Loading message fragment...");
 			RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.inbox_layout, null);
 			this.fragment = this;
 			listView = (ListView) root.findViewById(R.id.inbox_list_view);
@@ -83,7 +74,6 @@ public class InboxFragment extends LKFragment{
 			RenderingTask rt = new RenderingTask();
 			Log.d("InboxFragment", "Executing RenderingTask");
 			rt.execute(context);
-			Log.d("InboxFragment", "Completed RenderingTask");
 		}
 		// Code to add dummy data into database.
 		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
@@ -101,11 +91,12 @@ public class InboxFragment extends LKFragment{
 	 * @param message
 	 * @param date
 	 */
-	public static void addMessage(Context context, String title, String message, String date, int id){
+	public static float addMessage(Context context, String title, String message, String date, int id){
 		LKSQLiteDB db = new LKSQLiteDB(context);
 		Log.d("InboxFragment", "InboxFragment.addMessage.id = "+id);
-		db.addItem(new LKMenuListItem(title, message, date, id, true, null)); // Null är bitmappen.
+		float data = db.addItem(new LKMenuListItem(title, message, date, id, true, null)); // Null är bitmappen.
 		db.close();
+		return data;
 	}
 	
 	public class RenderingTask extends AsyncTask<Context,Void,Void> {
@@ -213,6 +204,8 @@ public class InboxFragment extends LKFragment{
 			listView.setOnItemClickListener(adapt);
 			progressCircle.setVisibility(View.GONE);
 			listView.setAdapter(adapt);
+			
+			Log.d("InboxFragment", "Completed RenderingTask");
 		}
 		
 		

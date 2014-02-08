@@ -2,10 +2,15 @@ package se.lundakarnevalen.android;
 
 import java.io.IOException;
 
+import json.Notification;
+import json.Response;
 import se.lundakarnevalen.remote.GCMReceiver;
 import se.lundakarnevalen.remote.LKRemote;
+import se.lundakarnevalen.remote.LKRemote.RequestType;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
+import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.remote.SectionSQLiteDB;
+import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
 import android.app.Activity;
 import android.content.Context;
@@ -21,6 +26,7 @@ import android.widget.RelativeLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.gson.Gson;
 //github.com/Lundakarnevalen/futural-intern-android.git
 
 public class SplashscreenActivity extends Activity{
@@ -54,11 +60,13 @@ public class SplashscreenActivity extends Activity{
 		addDataSekBg(); 
 		if(checkForGooglePlay()){
 			// GCM registration
+			Log.d("SplashScreen", "starting gcmRegistration()");
 			gcmRegistration();
 		}else{
 			// What to do???
 		}
 		
+		getMessages();
 		//EasyTracker.getInstance().activityStart(this);
 	}
 	
@@ -74,7 +82,49 @@ public class SplashscreenActivity extends Activity{
 		//EasyTracker.getInstance().activityStop(this);
 	}
 	
+	public void getMessages() {
+		Log.d("SplashScreen", "Starting getMessages()");
+		LKRemote remote = new LKRemote(context, new LKRemote.TextResultListener() {
+	
+			@Override
+			public void onResult(String result) {
+				Log.d("SplashScreen", "onResult(): "+result);
+				if(result == null) {
+					Log.d("SplashScreen", "Result from server was null");
+					return;
+				}
+				Gson gson = new Gson();
+				Response.Notifications notifications = gson.fromJson(result, Response.Notifications.class);
+				Notification[] messages = notifications.notifications;
+				LKSQLiteDB db = new LKSQLiteDB(context);
+				Log.d("SplashScreen", "Created db object. Starting loop. messages.length = "+messages.length);
+				for(int i=0;i<messages.length;i++) {
+					Log.d("SplashScreen", "loop counter i = "+i);
+					if(!db.messageExistsInDb(messages[i].id)) {
+						Log.d("SplashScreen", "Message not in db");
+						addMessage(messages[i].title, messages[i].message, messages[i].created_at, messages[i].id, db);
+					}
+					Log.d(LOG_TAG, "done");
+				}
+				Log.d(LOG_TAG, "loop done");
+				db.close();
+				Log.d("SplashScreen", "Completed getMessages");
+			}
+		});
+		remote.showProgressDialog(false);
+		Log.d("SplashScreen", "Starting server request");
+		remote.requestServerForText("notifications.json", "", RequestType.GET, false);
+	}
+	
+	public void addMessage(String title, String message, String date, int id, LKSQLiteDB db) {
+		//LKSQLiteDB db = new LKSQLiteDB(context);
+		db.addItem(new LKMenuListItem(title, message, date, id, true, null));
+		//db.close();
+		Log.d("SplashScreen", "Added message with id = "+id);
+	}
+	
 	private String getRegId(){
+		Log.d("SplashScreen", "Starting getRegId()");
 		String regId = sp.getString(LKFragment.SP_GCM_REGID, "");
 		if(regId.length() <= 0)
 			return "";
@@ -84,11 +134,13 @@ public class SplashscreenActivity extends Activity{
 			Log.d(LOG_TAG, "New app version installed");
 			return "";
 		}
+		Log.d("SplashScreen", "Finished getRegId()");
 		return regId;
 	}
 	
 	private void gcmRegistration(){
 		gcm = GoogleCloudMessaging.getInstance(context);
+		Log.d("SplashScreen", "Got gcm instance");
 		regId = getRegId();
 		if(regId.length() <= 0){
 			Log.d(LOG_TAG, "Will try to register");
