@@ -168,6 +168,7 @@
     <string name="register_desc_login_l">Logga in här.</string>
     <string name="pers_nr">Personnummer ååmmddxxxx</string>
     <string name="pers_nr2">Personnummer</string>
+    <string name="id">Id</string>
     
     <string name="intressen">Intressen</string>
     <string name="karnevalist_2010">Jag var karnevalist 2010</string>

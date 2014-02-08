@@ -20,13 +20,13 @@
 			android:paddingLeft="@dimen/horizontal_margin"
 			android:paddingRight="@dimen/horizontal_margin"
 	    	android:contentDescription="@string/registration_hurra" />
-	    <RelativeLayout 
+	    <RelativeLayout
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:layout_centerHorizontal="true"
 	        android:layout_width="wrap_content"
 	      	android:layout_height="wrap_content"
 	      	android:id="@+id/lKCombinedTexts"
-			android:layout_below="@id/imageView1" >
+			android:layout_below="@id/imageView1">
 	    	<se.lundakarnevalen.widget.LKTextViewBold
 	        	android:id="@+id/lKTextViewBold1"
 	        	android:layout_width="wrap_content"
@@ -148,6 +148,7 @@
 	        <se.lundakarnevalen.widget.LKTextViewBold 
 	        	android:layout_marginTop="@dimen/vertical_margin_half"
 	        	android:layout_marginRight="@dimen/horizontal_margin_half"
+	        	android:layout_marginBottom="@dimen/vertical_margin_half"
 	        	android:layout_marginLeft="@dimen/horizontal_margin"
 	        	android:textSize="18sp"
 	        	android:id="@+id/lKTextViewBoldPersonNbr"
@@ -163,12 +164,11 @@
 	            android:layout_toRightOf="@id/lKTextViewBoldPersonNbr"
 	            android:layout_alignBaseline="@id/lKTextViewBoldPersonNbr"/>
 	        <se.lundakarnevalen.widget.LKTextViewBold 
-	        	android:layout_marginTop="@dimen/vertical_margin_half"
 	        	android:layout_marginRight="@dimen/horizontal_margin_half"
 	        	android:layout_marginBottom="@dimen/vertical_margin"
 	        	android:layout_marginLeft="@dimen/horizontal_margin"
 	        	android:textSize="18sp"
-	        	android:id="@+id/id"
+	        	android:id="@+id/lKTextViewBoldId"
 	        	android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
 	        	android:textColor="@color/base_pink"
@@ -177,10 +177,9 @@
 	        <se.lundakarnevalen.widget.LKTextView 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:id="@+id/id_val"
-	            android:layout_toRightOf="@id/id"
-	            android:layout_alignBaseline="@id/id"/>
-	        
+	            android:id="@+id/id"
+	            android:layout_toRightOf="@id/lKTextViewBoldId"
+	            android:layout_alignBaseline="@id/lKTextViewBoldId"/>
 	        <!-- <se.lundakarnevalen.widget.LKTextViewBold 
 	        	android:layout_marginTop="@dimen/vertical_margin"
 	        	android:id="@+id/lKTextViewBoldMySections"

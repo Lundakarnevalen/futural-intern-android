@@ -35,7 +35,7 @@ public class SignInFragment extends LKFragment{
 		@Override
 		public void onClick(View v) {
 			LKFragment fragment = new ResetPasswordFragment();
-			loadFragment(fragment, true);
+			loadFragment(fragment, false);//HAX
 		}
 	};
 }
