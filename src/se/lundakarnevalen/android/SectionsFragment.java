@@ -117,7 +117,7 @@ public class SectionsFragment extends LKFragment {
 
             		fragment.setArguments(bundle);
             		
-            		loadFragment(fragment, false);//HAX
+            		loadFragment(fragment, true);
                 	
                 }
 

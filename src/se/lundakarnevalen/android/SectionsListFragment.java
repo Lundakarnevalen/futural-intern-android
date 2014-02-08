@@ -52,7 +52,7 @@ public class SectionsListFragment extends LKFragment {
 			Log.d(LOG_TAG, "ohh yes");
 			//ContentActivity a = (ContentActivity) getActivity();
 			//a.getSupportFragmentManager().popBackStack();
-			loadFragment(new SectionsFragment(), false);//HAX
+			loadFragment(new SectionsFragment(), true);
 		}
 	}
 

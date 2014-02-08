@@ -62,7 +62,7 @@ public class SectionsInformationFragment extends LKFragment {
 		@Override
 		public void onClick(View v) {
 			LKFragment fragment = new RegistrationFragment();
-			loadFragment(fragment, false);//HAX
+			loadFragment(fragment, true);
 		}
 	}
 }
