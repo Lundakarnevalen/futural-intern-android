@@ -54,7 +54,7 @@ public class RegistrationOhNoFragment extends LKFragment{
 		@Override
 		public void onClick(View arg0) {
 			LKFragment fragment = new SignInFragment();
-			loadFragment(fragment, true);
+			loadFragment(fragment, false);//HAX
 		}
 	};
 }
