@@ -371,13 +371,21 @@ public class RegistrationFragment extends LKFragment{
 		
 			if(itrs!=null)
 				for(int i:itrs){
-					intressenCheckBoxes[i].setChecked(true);
-					intressenchecked[i] = true;
+					try{
+						intressenCheckBoxes[i].setChecked(true);
+						intressenchecked[i] = true;
+					} catch (Exception e) {
+						Log.d("LOG_TAG","Tried to change intrestscheckbox " + i + " , which does not exist.");
+					}
 				}
 			if(seks!=null)
 				for(int i:seks){
-					sektionerCheckBoxes[i].setChecked(true);
-					sektionerchecked[i] = true;
+					try {
+						sektionerCheckBoxes[i].setChecked(true);
+						sektionerchecked[i] = true;
+					} catch (Exception e) {
+						Log.d("LOG_TAG","Tried to change sektioncheckbox " + i + " , which does not exist.");
+					}
 				}
 			if(intressenRadioButton[user.snallaIntresse] != null)
 				intressenRadioButton[user.snallaIntresse].setChecked(true);

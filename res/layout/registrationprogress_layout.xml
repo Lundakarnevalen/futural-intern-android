@@ -148,7 +148,7 @@
 	        <se.lundakarnevalen.widget.LKTextViewBold 
 	        	android:layout_marginTop="@dimen/vertical_margin_half"
 	        	android:layout_marginRight="@dimen/horizontal_margin_half"
-	        	android:layout_marginBottom="@dimen/vertical_margin"
+	        	android:layout_marginBottom="@dimen/vertical_margin_half"
 	        	android:layout_marginLeft="@dimen/horizontal_margin"
 	        	android:textSize="18sp"
 	        	android:id="@+id/lKTextViewBoldPersonNbr"
@@ -163,6 +163,23 @@
 	            android:id="@+id/persnnbr"
 	            android:layout_toRightOf="@id/lKTextViewBoldPersonNbr"
 	            android:layout_alignBaseline="@id/lKTextViewBoldPersonNbr"/>
+	        <se.lundakarnevalen.widget.LKTextViewBold 
+	        	android:layout_marginRight="@dimen/horizontal_margin_half"
+	        	android:layout_marginBottom="@dimen/vertical_margin"
+	        	android:layout_marginLeft="@dimen/horizontal_margin"
+	        	android:textSize="18sp"
+	        	android:id="@+id/lKTextViewBoldId"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="@color/base_pink"
+	        	android:layout_below="@id/lKTextViewBoldPersonNbr" 
+	        	android:text="@string/id" />
+	        <se.lundakarnevalen.widget.LKTextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/id"
+	            android:layout_toRightOf="@id/lKTextViewBoldId"
+	            android:layout_alignBaseline="@id/lKTextViewBoldId"/>
 	        <!-- <se.lundakarnevalen.widget.LKTextViewBold 
 	        	android:layout_marginTop="@dimen/vertical_margin"
 	        	android:id="@+id/lKTextViewBoldMySections"

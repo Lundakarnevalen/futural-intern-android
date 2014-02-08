@@ -57,12 +57,12 @@ public class LKRadioGroup {
 
         @Override
         public void onClick(View v) {
-        	if(v.getId() == R.id.radio_dd_15) { //OBS SJUK HÅRDKODAT MÅSTE FIXAS OM NÅGOT ÄNDRAS
+        	if(v.getId() == R.id.radio_dd_15) {
         		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    			builder.setTitle("Superviktigt!");
-    			builder.setMessage("För dessa funktioner så måste du komma på audition! Auditionstid bokas hos Nöjessektionen.");
-    			builder.setPositiveButton("Ok", null);
-    			builder.show();
+        		builder.setTitle(context.getString(R.string.registration_dd15_important));
+    			builder.setMessage(R.string.registration_dd15_agreement);
+    			builder.setPositiveButton(R.string.registration_dd15_ok, null);
+    			builder.show();	
         	}
             // let's deselect all radios in group
             for (RadioButton rb : radios) {
