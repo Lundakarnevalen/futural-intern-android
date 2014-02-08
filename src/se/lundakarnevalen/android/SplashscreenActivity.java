@@ -88,7 +88,7 @@ public class SplashscreenActivity extends Activity{
 	
 			@Override
 			public void onResult(String result) {
-				Log.d("SplashScreen", "onResult()");
+				Log.d("SplashScreen", "onResult(): "+result);
 				if(result == null) {
 					Log.d("SplashScreen", "Result from server was null");
 					return;
@@ -102,9 +102,11 @@ public class SplashscreenActivity extends Activity{
 					Log.d("SplashScreen", "loop counter i = "+i);
 					if(!db.messageExistsInDb(messages[i].id)) {
 						Log.d("SplashScreen", "Message not in db");
-						addMessage(messages[i].title, messages[i].message, messages[i].created_at, messages[i].id);
+						addMessage(messages[i].title, messages[i].message, messages[i].created_at, messages[i].id, db);
 					}
+					Log.d(LOG_TAG, "done");
 				}
+				Log.d(LOG_TAG, "loop done");
 				db.close();
 				Log.d("SplashScreen", "Completed getMessages");
 			}
@@ -114,11 +116,10 @@ public class SplashscreenActivity extends Activity{
 		remote.requestServerForText("notifications.json", "", RequestType.GET, false);
 	}
 	
-	public void addMessage(String title, String message, String date, int id) {
-		LKSQLiteDB db = new LKSQLiteDB(context);
+	public void addMessage(String title, String message, String date, int id, LKSQLiteDB db) {
+		//LKSQLiteDB db = new LKSQLiteDB(context);
 		db.addItem(new LKMenuListItem(title, message, date, id, true, null));
-		db.close();
-		
+		//db.close();
 		Log.d("SplashScreen", "Added message with id = "+id);
 	}
 	

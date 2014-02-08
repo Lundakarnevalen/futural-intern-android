@@ -91,11 +91,12 @@ public class InboxFragment extends LKFragment{
 	 * @param message
 	 * @param date
 	 */
-	public static void addMessage(Context context, String title, String message, String date, int id){
+	public static float addMessage(Context context, String title, String message, String date, int id){
 		LKSQLiteDB db = new LKSQLiteDB(context);
 		Log.d("InboxFragment", "InboxFragment.addMessage.id = "+id);
-		db.addItem(new LKMenuListItem(title, message, date, id, true, null)); // Null är bitmappen.
+		float data = db.addItem(new LKMenuListItem(title, message, date, id, true, null)); // Null är bitmappen.
 		db.close();
+		return data;
 	}
 	
 	public class RenderingTask extends AsyncTask<Context,Void,Void> {
