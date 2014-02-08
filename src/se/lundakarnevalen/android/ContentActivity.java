@@ -79,8 +79,6 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			fragmentToLoad = LKFragment.getStartFragment(this);
 		}
 		loadFragment(fragmentToLoad, false);
-		
-		
 	}
 	
 	@Override
@@ -92,6 +90,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	@Override
 	public void onResume(){
 		super.onResume();
+		Log.d(LOG_TAG, "onResume");
 		// Check if need to register for new gcm.
 		SharedPreferences sp = getSharedPreferences(LKFragment.SP_GCM_NAME, MODE_PRIVATE);
 		String gcmId = sp.getString(LKFragment.SP_GCM_REGID, null);
@@ -99,7 +98,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			// Try to get new gcm.
 			GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 			SplashscreenActivity.regInBackground(this, gcm);
-		}
+		} 
 		
 		this.setInboxCount();
 	}
@@ -329,7 +328,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	        	Log.d(LOG_TAG, "open");
 	        }
 		};
-		
+		Log.d(LOG_TAG, "setup actionbar!");
 		drawerLayout.setDrawerListener(drawerToggle);
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayShowCustomEnabled(true);

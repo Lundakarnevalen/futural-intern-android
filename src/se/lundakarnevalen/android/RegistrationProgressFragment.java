@@ -35,7 +35,7 @@ public class RegistrationProgressFragment extends LKFragment{
 		edit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				loadFragment(new RegistrationFragment(), true);
+				loadFragment(new RegistrationFragment(), false);
 			}
 		});
 		return root;
