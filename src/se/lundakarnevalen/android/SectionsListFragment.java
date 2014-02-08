@@ -49,8 +49,10 @@ public class SectionsListFragment extends LKFragment {
 	public class ClickListener implements OnClickListener {
 		@Override
 		public void onClick(View v) {
-			ContentActivity a = (ContentActivity) getActivity();
-			a.getSupportFragmentManager().popBackStack();
+			Log.d(LOG_TAG, "ohh yes");
+			//ContentActivity a = (ContentActivity) getActivity();
+			//a.getSupportFragmentManager().popBackStack();
+			loadFragment(new SectionsFragment(), true);
 		}
 	}
 

@@ -44,7 +44,7 @@ public class SplashscreenActivity extends Activity{
 		
 		// init some stuff
 		populateSp();
-		
+
 		wrapper = (RelativeLayout) findViewById(R.id.splash);
 		Log.d(LOG_TAG, (wrapper == null) ? "wrapper was null" : "wrapper was NOT null");
 		//wrapper.setOnClickListener(cont);

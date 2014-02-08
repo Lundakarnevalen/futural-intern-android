@@ -488,7 +488,7 @@ public class RegistrationFragment extends LKFragment{
 			if(b)
 				amount++;
 		}
-		return amount>2;	
+		return amount>2;
 	}
 	
 	private void updateProgressBar() {
@@ -737,15 +737,20 @@ public class RegistrationFragment extends LKFragment{
 					showPopup(getContext().getString(R.string.fail), getContext().getString(R.string.error));
 					return;
 				}
-				Gson gson = new Gson();
-				Response.StdResponse resp = gson.fromJson(result, Response.StdResponse.class);
-				if(resp.status.equals("success")){
-					Log.d(LOG_TAG, "did put on user");
-					user.storeUserLocaly();
-					loadFragment(new RegistrationProgressFragment(), false);
-				}else{
-					showPopup(resp.message, getContext().getString(R.string.reg_code_fail_title));
+				try{
+					Gson gson = new Gson();
+					Response.StdResponse resp = gson.fromJson(result, Response.StdResponse.class);
+					if(resp.status.equals("success")){
+						Log.d(LOG_TAG, "did put on user");
+						user.storeUserLocaly();
+						loadFragment(new RegistrationProgressFragment(), false);
+					}else{
+						showPopup(resp.message, getContext().getString(R.string.reg_code_fail_title));
+					}
+				}catch(Exception e){
+					showPopup(getContext().getString(R.string.fail), getContext().getString(R.string.reg_code_fail_title));
 				}
+				
 			}
 		});
 		remote.showProgressDialog(true);
@@ -757,28 +762,32 @@ public class RegistrationFragment extends LKFragment{
 		LKRemote remote = new LKRemote(getContext(),new LKRemote.TextResultListener() {
 			@Override
 			public void onResult(String result) {
-				if(result == null){
-					Log.e(LOG_TAG, "error - null response");
-					showPopup(getContext().getString(R.string.fail), getContext().getString(R.string.error));
-					return;
+				try{
+					if(result == null){
+						Log.e(LOG_TAG, "error - null response");
+						showPopup(getContext().getString(R.string.fail), getContext().getString(R.string.error));
+						return;
+					}
+					Log.d(LOG_TAG, result);
+					Gson gson = new Gson();
+					Response.PostKarnevalist resp = gson.fromJson(result, Response.PostKarnevalist.class);
+					if(resp.status.equals("success")){
+						Log.d(LOG_TAG, "id: "+user.id);
+						user.id = resp.id;
+						user.token = resp.token;
+						user.step = 2; // TODO: what number to set on post
+						user.storeUserLocaly();
+						registrationStep++;
+						storeRegistrationStep();
+						user.storeUserLocaly();
+						loadFragment(new RegistrationProgressFragment(), false);
+					}else{
+						showPopup(resp.message, getContext().getString(R.string.reg_code_fail_title));
+					}
+				}catch(Exception e){
+					showPopup(getContext().getString(R.string.fail), getContext().getString(R.string.reg_code_fail_title));
 				}
-				Log.d(LOG_TAG, result);
-				Gson gson = new Gson();
-				Response.PostKarnevalist resp = gson.fromJson(result, Response.PostKarnevalist.class);
-				if(resp.status.equals("success")){
-					Log.d(LOG_TAG, "id: "+user.id);
-					user.id = resp.id;
-					user.token = resp.token;
-					user.step = 2; // TODO: what number to set on post
-					user.storeUserLocaly();
-					registrationStep++;
-					storeRegistrationStep();
-					user.storeUserLocaly();
-					loadFragment(new RegistrationProgressFragment(), false);
-				}else{
-					showPopup(resp.message, getContext().getString(R.string.reg_code_fail_title));
-				}
-			}	
+			}
 		});
 		
 		user.gcmRegId = getGcmRegId();

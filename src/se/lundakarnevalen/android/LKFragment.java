@@ -180,7 +180,7 @@ public class LKFragment extends Fragment{
 		else
 			return new SignInFragment();
 	}
-	
+
 	/**
 	 * Updates UI inbox count in actionbar and menu.
 	 * @param count Number of unread messages. 

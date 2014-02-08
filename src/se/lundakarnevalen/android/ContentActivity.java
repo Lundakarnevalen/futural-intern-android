@@ -205,19 +205,26 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 				Log.d("AsyncTask", "Started postexecute process.");
 				if(result <= 0){
 					// Hide UI elements
-					inboxIndicatorWrapper.setVisibility(View.GONE);
-					Log.d("ContentActivity", inboxListItem == null ? "null" : "not null");
-					Log.d("ContentActivity", inboxListItem.inboxCounterWrapper == null ? "null" : "not null");
-					inboxListItem.inboxCounterWrapper.setVisibility(View.GONE);	
-					Log.d("ContentActivity", "did some shitzz!");
+					try{
+						inboxIndicatorWrapper.setVisibility(View.GONE);
+						Log.d("ContentActivity", inboxListItem == null ? "null" : "not null");
+						Log.d("ContentActivity", inboxListItem.inboxCounterWrapper == null ? "null" : "not null");
+						inboxListItem.inboxCounterWrapper.setVisibility(View.GONE);	
+						Log.d("ContentActivity", "did some shitzz!");
+					}catch(NullPointerException e){
+						Log.e(LOG_TAG, "Was activity dead?");
+					}
 				}else{
 					// set values and show UI elements
-					inboxIndicatorWrapper.setVisibility(View.VISIBLE);
-					inboxListItem.inboxCounterWrapper.setVisibility(View.VISIBLE);
-					
-					actionbarInboxCounter.setText(String.valueOf(result));
-					inboxListItem.inboxCounter.setText(String.valueOf(result));
-					Log.d("ContentActivity", "did other shitz!");
+					try{
+						inboxIndicatorWrapper.setVisibility(View.VISIBLE);
+						inboxListItem.inboxCounterWrapper.setVisibility(View.VISIBLE);
+						actionbarInboxCounter.setText(String.valueOf(result));
+						inboxListItem.inboxCounter.setText(String.valueOf(result));
+						Log.d("ContentActivity", "did other shitz!");
+					}catch(NullPointerException e){
+						Log.e(LOG_TAG, "Was activity dead?");
+					}
 				}
 			}
 		}.execute();
