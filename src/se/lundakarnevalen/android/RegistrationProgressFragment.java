@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 
 public class RegistrationProgressFragment extends LKFragment{
-	LKTextView name, email, persnnbr, progressValue, tr1, tr2a;
+	LKTextView name, email, persnnbr, progressValue, tr1, tr2a, idVal;
 	LKTextViewBold tr2b;
 	LKButton edit;
 	LKProgressBar pr;
@@ -32,6 +32,7 @@ public class RegistrationProgressFragment extends LKFragment{
 		tr1 = (LKTextView) root.findViewById(R.id.lKTextView2);
 		tr2a = (LKTextView) root.findViewById(R.id.lKTextView3);
 		tr2b = (LKTextViewBold) root.findViewById(R.id.lKTextViewBold2);
+		idVal = (LKTextView) root.findViewById(R.id.id_val);
 		edit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -70,6 +71,7 @@ public class RegistrationProgressFragment extends LKFragment{
 		name.setText(user.fornamn+" "+user.efternamn);
 		email.setText(user.email);
 		persnnbr.setText(user.personnummer);
+		idVal.setText(String.valueOf(user.id));
 		
 		SharedPreferences sp = getContext().getSharedPreferences(LKFragment.SP_NAME, Context.MODE_PRIVATE);
 		int registrationStep = sp.getInt(LKFragment.SP_KEY_REGISTRATION_STEP, 0);
