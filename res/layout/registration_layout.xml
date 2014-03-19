@@ -1,0 +1,1673 @@
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+	android:layout_height="match_parent" >
+	<LinearLayout
+	    android:paddingLeft="@dimen/horizontal_margin"
+    	android:paddingRight="@dimen/horizontal_margin"
+    	android:paddingTop="@dimen/vertical_margin"
+    	android:paddingBottom="@dimen/vertical_margin"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:background="@color/bg_peach">
+	    <ImageView
+	    	android:src="@drawable/reg_title"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+			android:paddingLeft="@dimen/horizontal_margin"
+			android:paddingRight="@dimen/horizontal_margin"
+	    	android:contentDescription="@string/registration_hurra" />
+	    <RelativeLayout 
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:layout_width="wrap_content"
+	      	android:layout_height="wrap_content">  
+	    	<se.lundakarnevalen.widget.LKTextViewBold
+	        	android:id="@+id/lKTextViewBold1"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="#FFFFFF"
+	        	android:text="@string/registration_status" 
+	        	android:layout_marginRight="5dp"/>
+	    	<se.lundakarnevalen.widget.LKTextView
+	        	android:id="@+id/lKTextView1"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:layout_toRightOf="@+id/lKTextViewBold1"
+	        	android:textColor="#FFFFFF"
+	        	android:text="@string/registration_informationb4progessbar" /> 	
+	    </RelativeLayout>
+	    <LinearLayout
+	        android:id="@+id/progress_bar_wrapper"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_marginTop="@dimen/vertical_margin_half" >
+	       	<se.lundakarnevalen.widget.LKProgressBar
+	    		android:id="@+id/lKProgressBar1"
+	    		android:layout_width="0dp"
+	    		android:layout_weight="1.0"
+	    		android:layout_gravity="center_vertical"
+	    		android:layout_height="@dimen/progress_bar_height"
+	    		android:progress="1" /> 
+	    	<se.lundakarnevalen.widget.LKTextView
+	    	    android:textColor="#FFFFFF"
+	    	    android:id="@+id/progress_value"	    		
+	    	    android:layout_gravity="center_vertical"
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_marginLeft="@dimen/horizontal_margin_half"
+	    	    android:text="1 %"/>
+	    </LinearLayout>
+	    	    
+	    <se.lundakarnevalen.widget.LKTextView
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/lKTextView2"
+	       	android:layout_width="wrap_content"
+	       	android:layout_height="wrap_content"
+	       	android:textColor="#FFFFFF"
+	       	android:text="@string/registration_informationafterorigressbar1"  />
+	   
+	    <!-- Koddelen -->
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/wrapper_code"
+	        android:orientation="vertical"
+	        android:visibility="gone">
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="18sp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/code_explained" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/continue_code"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/continue_code" />
+	    </LinearLayout>
+	    <!-- Koddelen - Slut -->
+	    
+	    <!-- Karnevalsuppgifter -->
+	     
+	    <LinearLayout
+	        android:layout_width="fill_parent"	        
+	        android:layout_height="wrap_content"
+	        android:id="@+id/wrapper_lk"
+	        android:orientation="vertical"
+	        android:visibility="gone">
+		   
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="16sp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_chooseintrests_information1" />
+		    <se.lundakarnevalen.widget.LKTextView
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_chooseintrests_information2" />
+		    <LinearLayout
+		        android:id="@+id/intrestswrapper"
+		        android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:orientation="vertical">
+	    	    <LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_1" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_1"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_1"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_1"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+        		<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_2" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_2"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_2"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_2"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+        		<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_3" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_3"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_3"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_3"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_4" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_4"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_4"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_4"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_5" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_5"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_5"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_5"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_6" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_6"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_6"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_6"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_7" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_7"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_7"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_7"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_8" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_8"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_8"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_8"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_9" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_9"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_9"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_9"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_10" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_10"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_10"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_10"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_11" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_11"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_11"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_11"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_12" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_12"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_12"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_12"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_13" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_13"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_13"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_13"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"        				
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_14" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_14"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_14"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_14"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_15" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_15"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_15"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_15"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_dd_16" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_dd_16"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"            			
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/dd_16"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/dd_16"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onIntrestsCheckBoxClicked"/>
+				</LinearLayout>
+			</LinearLayout>
+			
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="16sp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_choosesection_information1" />	    
+		    <se.lundakarnevalen.widget.LKTextView
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_choosesection_information2" />	
+		    
+		    <RadioGroup
+		        android:id="@+id/sectionwrapper"
+		        android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:orientation="vertical">
+	        	
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_1" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_1"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_1"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_1"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_2" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_2"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_2"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_2"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_3" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_3"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_3"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_3"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_4" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_4"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_4"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_4"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_5" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_5"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_5"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_5"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_6" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_6"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_6"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_6"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_7" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_7"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_7"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_7"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_8" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_8"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_8"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_8"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_9" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_9"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_9"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_9"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_10" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_10"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_10"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_10"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_11" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_11"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_11"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_11"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_12" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_12"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_12"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_12"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_13" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_13"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_13"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_13"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_14" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_14"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_14"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_14"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_15" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_15"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_15"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_15"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_16" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_16"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_16"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_16"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_17" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_17"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_17"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_17"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_18" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_18"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_18"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_18"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_19" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_19"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_19"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_19"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_20" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_20"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_20"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_20"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_21" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_21"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_21"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_21"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_22" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_22"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_22"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_22"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_23" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_23"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_23"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_23"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_24" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_24"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_24"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_24"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_25" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_25"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_25"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_25"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_26" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_26"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_26"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_26"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_100" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_100"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_100"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_100"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_101" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_101"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_101"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_101"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_102" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_102"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_102"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_102"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_202" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_202"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_202"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_202"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_203" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_203"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_203"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_203"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_204" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_204"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_204"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_204"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_300" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_300"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_300"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_300"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_399" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_399"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_399"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_399"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_400" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_400"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_400"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_400"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_499" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_499"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_499"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_499"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+				<LinearLayout
+	        	    android:layout_width="fill_parent"	        
+	        		android:layout_height="wrap_content"
+	        		android:id="@+id/wrapper_section_500" 
+	        		android:orientation="horizontal" >
+	        		<RadioButton android:id="@+id/radio_section_500"
+	        			android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:layout_gravity="center_vertical"
+            			android:button="@drawable/radiobutton_bg"
+            			/> 
+	        		<CheckBox android:id="@+id/checkbox_500"
+	            		android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="@string/sektion_500"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
+        				android:textColor="#FFFFFF"
+        				android:onClick="onSectionCheckBoxClicked"/>
+				</LinearLayout>
+		    </RadioGroup>
+		    
+			<se.lundakarnevalen.widget.LKTextViewBold
+	        	android:layout_marginTop="@dimen/vertical_margin"
+	        	android:textSize="18sp"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="#FFFFFF"
+	        	android:text="@string/elseT" />
+			<CheckBox android:id="@+id/checkbox_responsible"
+			   	android:layout_marginTop="@dimen/vertical_margin_half"
+           		android:layout_width="wrap_content"
+   				android:layout_height="wrap_content"
+   				android:text="@string/responsible"
+  				android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
+   				android:textColor="#FFFFFF" />
+	    	<se.lundakarnevalen.widget.LKEditText
+	        	android:singleLine="true"
+	        	android:layout_marginTop="@dimen/vertical_margin_half"
+	        	android:id="@+id/other"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="#FFFFFF"
+	        	android:lines="3"
+	        	android:textColorHint="@color/bg_peach"
+	        	android:hint="@string/other" />
+		</LinearLayout>
+		<!-- Karnevalsuppgifter - Slut -->
+		
+		<!-- Personuppgifter -->
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:id="@+id/wrapper_pers">
+		    <se.lundakarnevalen.widget.LKTextViewBold 
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:id="@+id/lKTextViewBold2"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_yourcreedentials" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/pers_nr"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:textColorHint="@color/bg_peach"
+		        android:inputType="phone"
+		        android:digits="0123456789"
+		        android:hint="@string/pers_nr" />
+		    
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/name"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:textColorHint="@color/bg_peach"
+		        android:inputType="textCapSentences"
+		        android:hint="@string/name" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/lastname"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:textColorHint="@color/bg_peach"
+		        android:inputType="textCapSentences"
+		        android:hint="@string/lastname" />
+		    <se.lundakarnevalen.widget.LKTextViewFat
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="16sp"
+		        android:layout_marginTop="@dimen/horizontal_margin_half"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/sexTopic"/>
+		    <se.lundakarnevalen.widget.LKSpinner
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/sex"/>
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/postal_address"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+				android:inputType="textCapSentences"
+		        android:hint="@string/postal_address" />
+		    <LinearLayout 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal">
+			    <se.lundakarnevalen.widget.LKEditText
+		        	android:singleLine="true"
+			        android:layout_marginTop="@dimen/vertical_margin_half"
+			        android:id="@+id/zip_code"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:textColor="#FFFFFF"
+					android:textColorHint="@color/bg_peach"
+					android:inputType="phone"
+					android:layout_weight="1.0"
+					android:layout_marginRight="@dimen/vertical_margin_quarter"
+					android:digits="0123456789"
+			        android:hint="@string/zip_code" />
+			    <se.lundakarnevalen.widget.LKEditText
+		        	android:singleLine="true"
+			        android:layout_marginTop="@dimen/vertical_margin_half"
+			        android:id="@+id/zip_town"
+			        android:layout_width="0dp"
+			        android:layout_height="wrap_content"
+			        android:layout_marginLeft="@dimen/vertical_margin_quarter"
+			        android:textColor="#FFFFFF"
+					android:layout_weight="1.0"
+					android:inputType="textCapSentences"
+					android:textColorHint="@color/bg_peach"
+			        android:hint="@string/zip_town" />
+		    </LinearLayout>
+			<se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/email"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:inputType="textEmailAddress"
+		        android:hint="@string/email" />
+			<se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/email_valid"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:inputType="textEmailAddress"
+		        android:hint="@string/email_valid" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/phone_nr"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+				android:inputType="phone"
+				android:digits="0123456789"
+		        android:hint="@string/phone_nr" />
+		    <se.lundakarnevalen.widget.LKTextViewFat
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="16sp"
+		        android:layout_marginTop="@dimen/horizontal_margin_half"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/nationTopic"/>
+		    <se.lundakarnevalen.widget.LKSpinner
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/nations"/>
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/food_prefs"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/food_prefs" />
+		    <se.lundakarnevalen.widget.LKTextViewFat
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="16sp"
+		        android:layout_marginTop="@dimen/horizontal_margin_half"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/shirtTopic"/>
+		    <se.lundakarnevalen.widget.LKSpinner
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/shirt_size"/>
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/terms"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+				android:inputType="phone"
+				android:digits="0123456789"
+		        android:hint="@string/terms" />
+		    <se.lundakarnevalen.widget.LKTextViewFat
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="16sp"
+		        android:layout_marginTop="@dimen/horizontal_margin_half"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/driverLicensTopic"/>
+		    <se.lundakarnevalen.widget.LKSpinner
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/driver_licens"/>
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="18sp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/dedication" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/teknologkaren"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/teknolagkaren" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/nationDed"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/nationDed" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/otherStud"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/otherStud" />
+		    <se.lundakarnevalen.widget.LKEditText
+		        android:singleLine="true"
+		        android:layout_marginTop="@dimen/vertical_margin_half"
+		        android:id="@+id/otherDed"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+				android:textColorHint="@color/bg_peach"
+		        android:hint="@string/otherDed" />
+		    <se.lundakarnevalen.widget.LKTextViewBold
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:textSize="18sp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/activitylevel" />
+		    <CheckBox
+		        android:id="@+id/checkbox_work_fulltime"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
+	    		android:text="@string/work_fulltime"
+	    		android:textColor="#FFFFFF" />
+		    <CheckBox
+		        android:id="@+id/checkbox_work_styrelse"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
+	    		android:text="@string/work_styrelse"
+	    		android:textColor="#FFFFFF" />
+		    <CheckBox
+		        android:id="@+id/checkbox_work_forman"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
+	    		android:text="@string/work_forman"
+	    		android:textColor="#FFFFFF" />
+		    <CheckBox
+		        android:id="@+id/checkbox_work_aktiv"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
+	    		android:text="@string/work_aktiv"
+	    		android:textColor="#FFFFFF" />
+		    <CheckBox
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:id="@+id/checkbox_karnevalist_2010"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
+	    		android:text="@string/karnevalist_2010"
+	    		android:textColor="#FFFFFF" />
+		    
+		    <se.lundakarnevalen.widget.LKTextView 
+		        android:layout_marginTop="@dimen/vertical_margin"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/registration_PUL" />
+		    <CheckBox
+		        android:id="@+id/checkbox_PUL"
+	           	android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
+	    		android:text="@string/registration_comfirmPUL"
+	    		android:textColor="#FFFFFF" />
+		</LinearLayout>
+		<!-- Personuppgifter - Slut -->
+		
+	    <se.lundakarnevalen.widget.LKButton
+	        android:layout_marginTop="@dimen/vertical_margin"
+	        android:id="@+id/append_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+	        android:text="@string/registration_append"
+	        android:visibility="gone" />
+	    <se.lundakarnevalen.widget.LKButton
+	        android:layout_marginTop="@dimen/vertical_margin"
+	        android:id="@+id/confirm_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"
+	        android:text="@string/registration_submit" />
+	    <se.lundakarnevalen.widget.LKTextView
+	        android:layout_marginTop="@dimen/vertical_margin_half"
+	        android:id="@+id/lKTextView3"
+	       	android:layout_width="fill_parent"
+	       	android:layout_height="wrap_content"
+	       	android:layout_gravity="center"
+	       	android:textColor="#FFFFFF"
+	       	android:textSize="12sp"
+	    	android:gravity="center"
+	       	android:text="@string/registration_submitinfo" />
+	</LinearLayout>
+</ScrollView>

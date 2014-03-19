@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- The tabs -->
+
+    <LinearLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#000000"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/left_tab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/section_tab_left_active"
+            android:paddingBottom="5dp"
+            android:paddingTop="10dp" >
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/left_tab"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/right_tab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/section_tab_right_inactive"
+            android:paddingBottom="5dp"
+            android:paddingTop="10dp" >
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/right_tab"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tabs"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/horizontal_margin"
+            android:layout_marginRight="@dimen/horizontal_margin" >
+
+            <RelativeLayout
+                android:id="@+id/spin_to_win"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/spin_to_win" />
+            </RelativeLayout>
+
+            <!-- The slot/spinner machine -->
+
+            <RelativeLayout
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/spin_to_win" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/spinner_background"
+                    android:orientation="horizontal" >
+
+                    <se.lundakarnevalen.widget.slotMachine.WheelView
+                        android:id="@+id/slot_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1" />
+
+                    <se.lundakarnevalen.widget.slotMachine.WheelView
+                        android:id="@+id/slot_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1" />
+
+                    <se.lundakarnevalen.widget.slotMachine.WheelView
+                        android:id="@+id/slot_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <!-- The yellow line -->
+
+                <View
+                    android:id="@+id/stroke"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/spinner_stroke" >
+                </View>
+            </RelativeLayout>
+
+            <!-- Lucky button -->
+
+            <se.lundakarnevalen.widget.LKButton
+                android:id="@+id/lucky"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spinner"
+                android:layout_marginLeft="@dimen/horizontal_margin_double"
+                android:layout_marginRight="@dimen/horizontal_margin_double"
+                android:layout_marginTop="@dimen/horizontal_margin"
+                android:text="@string/lucky"
+                android:textSize="@dimen/sections_button_text_size" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

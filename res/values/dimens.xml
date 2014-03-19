@@ -1,0 +1,14 @@
+<resources>
+    <dimen name="horizontal_margin">16dp</dimen>
+    <dimen name="horizontal_margin_half">8dp</dimen>
+    <dimen name="vertical_margin_quarter">4dp</dimen>
+    <dimen name="horizontal_margin_double">32dp</dimen>    
+    <dimen name="horizontal_margin_tripple">48dp</dimen>   
+    <dimen name="vertical_margin">16dp</dimen>
+    <dimen name="title_text_size">20sp</dimen>
+    <dimen name="message_preview_text_size">14sp</dimen>
+    <dimen name="sections_button_text_size">25sp</dimen>
+    <dimen name="small_date_text_size">10sp</dimen>
+    <dimen name="vertical_margin_half">8dp</dimen>
+    <dimen name="progress_bar_height">16dp</dimen>
+</resources>
