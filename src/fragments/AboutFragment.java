@@ -1,5 +1,8 @@
-package se.lundakarnevalen.android;
+package fragments;
 
+import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.android.R.id;
+import se.lundakarnevalen.android.R.layout;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;

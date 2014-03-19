@@ -1,5 +1,8 @@
-package se.lundakarnevalen.android;
+package fragments;
 
+import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.android.R.id;
+import se.lundakarnevalen.android.R.layout;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +38,7 @@ public class SignInFragment extends LKFragment{
 		@Override
 		public void onClick(View v) {
 			LKFragment fragment = new ResetPasswordFragment();
-			loadFragment(fragment, false);//HAX
+			loadFragment(fragment, true);//HAX
 		}
 	};
 }

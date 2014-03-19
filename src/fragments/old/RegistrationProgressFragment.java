@@ -1,5 +1,10 @@
-package se.lundakarnevalen.android;
+package fragments.old;
 
+import fragments.LKFragment;
+import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.android.R.id;
+import se.lundakarnevalen.android.R.layout;
+import se.lundakarnevalen.android.R.string;
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKButton;
 import se.lundakarnevalen.widget.LKProgressBar;
@@ -41,7 +46,7 @@ public class RegistrationProgressFragment extends LKFragment{
 		edit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				loadFragment(new RegistrationFragment(), false);
+				loadFragment(new RegistrationFragment(), true);
 			}
 		});
 		return root;

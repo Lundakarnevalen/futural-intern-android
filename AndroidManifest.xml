@@ -21,7 +21,7 @@
         android:theme="@style/ActionBarTheme" >
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
         <activity
-            android:name="se.lundakarnevalen.android.SplashscreenActivity"
+            android:name="activities.SplashscreenActivity"
             android:label="@string/app_name"
         	android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="se.lundakarnevalen.android.ContentActivity"
+            android:name="activities.ContentActivity"
         	android:label="@string/app_name"
         	android:configChanges="orientation|screenSize"/>
         <receiver 

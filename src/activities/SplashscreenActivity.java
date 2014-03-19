@@ -1,9 +1,14 @@
-package se.lundakarnevalen.android;
+package activities;
 
 import java.io.IOException;
 
 import json.Notification;
 import json.Response;
+import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.android.R.drawable;
+import se.lundakarnevalen.android.R.id;
+import se.lundakarnevalen.android.R.layout;
+import se.lundakarnevalen.android.R.string;
 import se.lundakarnevalen.remote.GCMReceiver;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.RequestType;
@@ -29,6 +34,8 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
 //github.com/Lundakarnevalen/futural-intern-android.git
+
+import fragments.LKFragment;
 
 public class SplashscreenActivity extends Activity{
 

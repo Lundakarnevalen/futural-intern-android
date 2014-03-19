@@ -2,8 +2,9 @@ package se.lundakarnevalen.widget;
 
 import java.util.List;
 
-import se.lundakarnevalen.android.LKFragment;
-import se.lundakarnevalen.android.MessageFragment;
+import fragments.LKFragment;
+import fragments.MessageFragment;
+
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import android.content.Context;

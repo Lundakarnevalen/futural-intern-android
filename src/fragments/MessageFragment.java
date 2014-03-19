@@ -1,5 +1,8 @@
-package se.lundakarnevalen.android;
+package fragments;
 
+import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.android.R.id;
+import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKTextView;

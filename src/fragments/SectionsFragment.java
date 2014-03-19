@@ -1,9 +1,13 @@
-package se.lundakarnevalen.android;
+package fragments;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.android.R.drawable;
+import se.lundakarnevalen.android.R.id;
+import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKButton;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
@@ -163,11 +167,6 @@ public class SectionsFragment extends LKFragment {
 		@Override
 		public void onClick(View v) {
 			Fragment fragment = new SectionsListFragment();
-
-			/*ContentActivity a = (ContentActivity) getActivity();
-			a.getSupportFragmentManager().beginTransaction()
-					.replace(R.id.content_frame, fragment).addToBackStack(null)
-					.commit();*/
 			
 			loadFragment(fragment, false);
 		}

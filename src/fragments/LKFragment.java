@@ -1,9 +1,12 @@
-package se.lundakarnevalen.android;
+package fragments;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import fragments.old.RegistrationOhNoFragment;
+import fragments.old.RegistrationProgressFragment;
 
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.remote.LKUser;
@@ -201,12 +204,13 @@ public class LKFragment extends Fragment{
 	}
 	
 	/**
-	 * Loads fragment into framlayout.
+	 * Loads fragment into framelayout.
 	 * @param fragment The fragment to launch h
 	 * @param addToBackstack If true it will be added to backstack on launch. 
 	 */
 	public void loadFragment(Fragment fragment, boolean addToBackstack){
 		Log.d(LOG_TAG, "messenger was" + ((messanger == null) ? "null" : "not null"));
+	
 		messanger.loadFragment(fragment, addToBackstack);
 	}
 	/**

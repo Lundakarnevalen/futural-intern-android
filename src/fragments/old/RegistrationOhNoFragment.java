@@ -1,5 +1,10 @@
-package se.lundakarnevalen.android;
+package fragments.old;
 
+import fragments.LKFragment;
+import fragments.SignInFragment;
+import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.android.R.id;
+import se.lundakarnevalen.android.R.layout;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,7 +51,7 @@ public class RegistrationOhNoFragment extends LKFragment{
 		@Override
 		public void onClick(View v) {
 			LKFragment fragment = new RegistrationFragment();
-			loadFragment(fragment, false);
+			loadFragment(fragment, true);
 		}
 	};
 	
@@ -54,7 +59,7 @@ public class RegistrationOhNoFragment extends LKFragment{
 		@Override
 		public void onClick(View arg0) {
 			LKFragment fragment = new SignInFragment();
-			loadFragment(fragment, false);//HAX
+			loadFragment(fragment, true);//HAX
 		}
 	};
 }

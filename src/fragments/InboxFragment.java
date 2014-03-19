@@ -1,9 +1,14 @@
-package se.lundakarnevalen.android;
+package fragments;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.android.R.color;
+import se.lundakarnevalen.android.R.dimen;
+import se.lundakarnevalen.android.R.id;
+import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
@@ -32,7 +37,6 @@ public class InboxFragment extends LKFragment{
 	Context context;
 	ProgressBar progressCircle;
 	LKFragment fragment;
-	FragmentManager fragmentManager;
 	LKSQLiteDB db;
 	List<LKMenuListItem> data;
 	boolean inboxEmpty = false;
@@ -68,7 +72,7 @@ public class InboxFragment extends LKFragment{
 		Log.d("InboxFragment", "Running on activity craeted");
 		super.onActivityCreated(savedInstanceState);
 		setTitle("Inbox");
-		fragmentManager = getActivity().getSupportFragmentManager();
+		
 		Log.d("InboxFragment", "got fragmentManager");
 		if(!inboxEmpty) {
 			RenderingTask rt = new RenderingTask();
@@ -194,10 +198,10 @@ public class InboxFragment extends LKFragment{
 		protected void onPostExecute(Void v) {
 			Log.d("RenderingTask", "fragment was "+((fragment==null) ? "null" : "not null"));
 			Log.d("RenderingTask", "items was "+((items==null) ? "null" : "not null"));
-			Log.d("RenderingTask", "activity was "+((getActivity()==null) ? "null" : "not null"));
-			LKInboxArrayAdapter adapt = new LKInboxArrayAdapter(getActivity(), items, fragment);
+			Log.d("RenderingTask", "activity was "+((context==null) ? "null" : "not null"));
+			LKInboxArrayAdapter adapt = new LKInboxArrayAdapter(context, items, fragment);
 			try {
-				adapt.setFragmentManager(fragmentManager);
+				adapt.setFragmentManager(getActivity().getSupportFragmentManager());
 			} catch(NullPointerException e) {
 				Log.wtf("RenderingTask",e.toString());
 			}

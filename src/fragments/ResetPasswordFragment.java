@@ -1,5 +1,7 @@
-package se.lundakarnevalen.android;
+package fragments;
 
+import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.android.R.layout;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

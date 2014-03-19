@@ -1,5 +1,9 @@
-package se.lundakarnevalen.android;
+package fragments;
 
+import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.android.R.drawable;
+import se.lundakarnevalen.android.R.id;
+import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.BitmapResultListener;
 import se.lundakarnevalen.remote.LKUser;
