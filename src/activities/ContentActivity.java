@@ -1,3 +1,4 @@
+
 package activities;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import android.widget.TextView;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import fragments.CountdownFragment;
 import fragments.InboxFragment;
 import fragments.LKFragment;
 import fragments.LKFragment.MessangerMessage;
@@ -268,6 +270,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 		//listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		listItems.add(new LKMenuListItem("Map", 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem("Nedräkning", 0, new CountdownFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
 		listItems.add(inboxListItem);
