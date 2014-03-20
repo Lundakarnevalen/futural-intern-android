@@ -41,7 +41,8 @@ public class SplashscreenActivity extends Activity{
 
 	RelativeLayout wrapper;
 	Context context;
-	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds 
+	//private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds
+	private final int THREAD_DELAY = 200; //Splashscreen shown in milliseconds
 	
 	
 	private static final String LOG_TAG = "splash";
@@ -369,7 +370,7 @@ public class SplashscreenActivity extends Activity{
 		new Handler().postDelayed(new Thread() {
 			@Override
 			public void run() {
-				Intent intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
+				Intent intent = new Intent(SplashscreenActivity.this, AcLogin.class);
 				SplashscreenActivity.this.startActivity(intent);
 				SplashscreenActivity.this.finish();
 				overridePendingTransition(R.layout.fade_in, R.layout.fade_out);

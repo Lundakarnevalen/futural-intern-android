@@ -182,7 +182,6 @@
     <string name="work_styrelse">Styrelseledamot</string>
     <string name="work_forman">Förman/Utskottsansvarig</string>
     <string name="work_aktiv">Jobbare</string>
-    <string name="karnevalist_2010">Jag var karnevalist 2010</string>
     <string name="fail_creedentials">Felaktigt ifyllda fält:</string>
     
     <!-- Infotexter -->
@@ -398,5 +397,6 @@
    	<string name="registration_valid_nr_of_sektions">Du måste välja minst 5 sektioner</string>
    	<string name="registration_valid_nr_of_intrests">Du måste välja minst 3 intressen</string>
    	
+   	<string name="title_activity_login">Login</string>
    	
 </resources>
