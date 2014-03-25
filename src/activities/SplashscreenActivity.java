@@ -368,12 +368,16 @@ public class SplashscreenActivity extends Activity{
 			@Override
 			public void run() {
 				
+				Intent intent;
+				
 				if(LKUser.localUserStored(context)) {
 					Log.d(SplashscreenActivity.class.getSimpleName(), "User stored locally");
-//					TODO Means that we should go to the main screen instantly and not to the login 
+					
+					intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
+				} else {
+					intent = new Intent(SplashscreenActivity.this, AcLogin.class);					
 				}
 				
-				Intent intent = new Intent(SplashscreenActivity.this, AcLogin.class);
 				SplashscreenActivity.this.startActivity(intent);
 				SplashscreenActivity.this.finish();
 				overridePendingTransition(R.layout.fade_in, R.layout.fade_out);

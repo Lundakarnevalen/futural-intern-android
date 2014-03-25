@@ -262,6 +262,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		// Create logo and sigill objects. 
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);
+		View logout = inflater.inflate(R.layout.menu_sign_out, null);
 		
 		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
 		
