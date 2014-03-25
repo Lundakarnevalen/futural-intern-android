@@ -5,15 +5,12 @@ import java.io.IOException;
 import json.Notification;
 import json.Response;
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.android.R.drawable;
-import se.lundakarnevalen.android.R.id;
-import se.lundakarnevalen.android.R.layout;
-import se.lundakarnevalen.android.R.string;
 import se.lundakarnevalen.remote.GCMReceiver;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.RequestType;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import se.lundakarnevalen.remote.LKSQLiteDB;
+import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
@@ -33,9 +30,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
-//github.com/Lundakarnevalen/futural-intern-android.git
 
 import fragments.LKFragment;
+//github.com/Lundakarnevalen/futural-intern-android.git
 
 public class SplashscreenActivity extends Activity{
 
@@ -370,6 +367,12 @@ public class SplashscreenActivity extends Activity{
 		new Handler().postDelayed(new Thread() {
 			@Override
 			public void run() {
+				
+				if(LKUser.localUserStored(context)) {
+					Log.d(SplashscreenActivity.class.getSimpleName(), "User stored locally");
+//					TODO Means that we should go to the main screen instantly and not to the login 
+				}
+				
 				Intent intent = new Intent(SplashscreenActivity.this, AcLogin.class);
 				SplashscreenActivity.this.startActivity(intent);
 				SplashscreenActivity.this.finish();

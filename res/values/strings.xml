@@ -398,5 +398,6 @@
    	<string name="registration_valid_nr_of_intrests">Du måste välja minst 3 intressen</string>
    	
    	<string name="title_activity_login">Login</string>
+   	<string name="sound_service">Sound</string>
    	
 </resources>

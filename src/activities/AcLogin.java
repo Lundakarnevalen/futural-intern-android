@@ -1,6 +1,8 @@
 package activities;
 
+import json.LoginCredentialsWrite;
 import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.remote.LKRemote;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -10,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -18,6 +21,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -52,6 +57,8 @@ public class AcLogin extends Activity {
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
 
+	private LKRemote remote;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,9 +98,25 @@ public class AcLogin extends Activity {
 						attemptLogin();
 					}
 				});
+		
+		remote = new LKRemote(this, new ButtonLogin());
 	}
 
-	
+	private class ButtonLogin implements LKRemote.TextResultListener {
+
+		@Override
+		public void onResult(String result) {
+			Log.d("Success", "Yay, some result!");
+			
+			if(result == null) {
+				return;
+			}
+			
+			
+			Log.d("Success", result);
+		}
+	}
+ 	
 //	TODO TO be removed when the login works as intended
 	private class CheatButton implements OnClickListener {
 
@@ -132,6 +155,9 @@ public class AcLogin extends Activity {
 		mEmail = mEmailView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
 
+		mEmail = "email@email.com";
+		mPassword = "12345678";
+		
 		boolean cancel = false;
 		View focusView = null;
 
@@ -166,12 +192,21 @@ public class AcLogin extends Activity {
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
-			mAuthTask = new UserLoginTask();
-			mAuthTask.execute((Void) null);
+			
+			
+			LoginCredentialsWrite credentials = new LoginCredentialsWrite(mEmail, mPassword);
+			
+			Gson g = new Gson();
+			
+			String js = g.toJson(credentials);
+			
+			Log.d("Sending", js.toString());
+			
+			remote.requestServerForText("api/users/sign_in", js, LKRemote.RequestType.POST, false);
 		}
 	}
 
-	/**
+	/** 
 	 * Shows the progress UI and hides the login form.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
