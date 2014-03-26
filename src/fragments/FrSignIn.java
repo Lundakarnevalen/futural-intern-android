@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -99,9 +101,26 @@ public class FrSignIn extends LKFragment {
 				});
 		
 		remote = new LKRemote(context, new ButtonLogin());
+		
+		Button buttonReset = (Button) rootView.findViewById(R.id.password_reset);
+		buttonReset.setOnClickListener(new ButtonResetPassword());
 
 		return rootView;
 	}
+	
+	private class ButtonResetPassword implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			FragmentManager manager = getActivity().getSupportFragmentManager();
+			FragmentTransaction ft = manager.beginTransaction();
+			
+			
+			ft.replace(R.id.content_frame, new FrRestorePassword());
+			ft.addToBackStack(null);
+			ft.commit();
+		}
+	}
+	
 	private class ButtonLogin implements LKRemote.TextResultListener {
 
 		@Override
@@ -298,5 +317,4 @@ public class FrSignIn extends LKFragment {
 			showProgress(false);
 		}
 	}
-
 }
