@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import se.lundakarnevalen.android.R;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ public class CountdownFragment extends LKFragment {
 		// TODO Change the layout
 		View rootView = inflater.inflate(R.layout.fr_layout_countdown, null);
 		tv = (TextView) rootView.findViewById(R.id.tvCountDown);
+	
 
 		return rootView;
 	}
@@ -30,9 +32,9 @@ public class CountdownFragment extends LKFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setTitle("Countdown");
-
-		tv.setText("asd");
-
+		
+		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Bold.ttf");
+		tv.setTypeface(tf);
 		Date karneval = new GregorianCalendar(2014, 4, 16, 14, 0, 0).getTime();
 		Date today = new Date();
 
