@@ -142,7 +142,7 @@
 	        <se.lundakarnevalen.widget.LKTextView 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:id="@+id/email"
+	            android:id="@+id/email_field"
 	            android:layout_toRightOf="@id/lKTextViewBoldEmail"
 	            android:layout_alignBaseline="@id/lKTextViewBoldEmail"/>
 	        <se.lundakarnevalen.widget.LKTextViewBold 

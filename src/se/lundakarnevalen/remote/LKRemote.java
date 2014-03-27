@@ -107,6 +107,8 @@ public class LKRemote {
     		return "GET";
     	case PUT:
     		return "PUT";
+    	case DELETE:
+    		return "DELETE";
     	default:
     		return "GET";
     	}
@@ -401,6 +403,6 @@ public class LKRemote {
 	}
 	
 	public enum RequestType{
-		POST, GET, PUT;
+		POST, GET, PUT, DELETE;
 	}
 }

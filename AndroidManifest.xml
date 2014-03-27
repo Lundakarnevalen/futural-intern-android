@@ -30,8 +30,7 @@
             </intent-filter>
         </activity>
         
-        
-        
+
         <activity
             android:name="activities.ContentActivity"
         	android:label="@string/app_name"
@@ -47,9 +46,9 @@
         <service android:name="se.lundakarnevalen.remote.GCMIntentService" />
         <activity
             android:name="activities.AcLogin"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
-        <activity android:name="AcLogin" android:screenOrientation="portrait"></activity>
     </application>
 </manifest>

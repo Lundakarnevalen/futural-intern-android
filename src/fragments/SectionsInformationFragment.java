@@ -1,13 +1,9 @@
 
 package fragments;
 
-import fragments.old.RegistrationFragment;
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.android.R.id;
-import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKTextView;
-import se.lundakarnevalen.widget.LKTextViewBold;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -65,8 +61,8 @@ public class SectionsInformationFragment extends LKFragment {
 
 		@Override
 		public void onClick(View v) {
-			LKFragment fragment = new RegistrationFragment();
-			loadFragment(fragment, true);
+//			LKFragment fragment = new RegistrationFragment();
+//			loadFragment(fragment, true);
 		}
 	}
 }

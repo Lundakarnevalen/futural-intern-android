@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
@@ -29,7 +30,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-public class FrSignIn extends LKFragment {
+public class FrSignIn extends Fragment {
 
 	private Context context;
 	
@@ -64,14 +65,14 @@ public class FrSignIn extends LKFragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fr_sign_in, null);
 
-		context = getContext();
+		context = getActivity();
 		
 		Button button = (Button) rootView.findViewById(R.id.cheat);
 		button.setOnClickListener(new CheatButton());
 		
 		// Set up the login form.
 		mEmail = getActivity().getIntent().getStringExtra(EXTRA_EMAIL);
-		mEmailView = (EditText) rootView.findViewById(R.id.email);
+		mEmailView = (EditText) rootView.findViewById(R.id.email_field);
 		mEmailView.setText(mEmail);
 
 		mPasswordView = (EditText) rootView.findViewById(R.id.password);
@@ -114,8 +115,7 @@ public class FrSignIn extends LKFragment {
 			FragmentManager manager = getActivity().getSupportFragmentManager();
 			FragmentTransaction ft = manager.beginTransaction();
 			
-			
-			ft.replace(R.id.content_frame, new FrRestorePassword());
+			ft.replace(R.id.content_frame, new FrResetPassword());
 			ft.addToBackStack(null);
 			ft.commit();
 		}
@@ -137,13 +137,15 @@ public class FrSignIn extends LKFragment {
 			
 			user.parseJson(result);
 			
-			user.storeUserLocaly();
 			
-			Intent intent = new Intent(context, ContentActivity.class);		
+			
+			
+//			user.storeUserLocaly();
+			
+//			Intent intent = new Intent(context, ContentActivity.class);		
 		
-			context.startActivity(intent);
-			getActivity().finish();
-			
+//			context.startActivity(intent);
+//			getActivity().finish();
 		}
 	}
  	
@@ -220,11 +222,9 @@ public class FrSignIn extends LKFragment {
 			
 			Gson g = new Gson();
 			
-			String js = g.toJson(credentials);
+			String json = g.toJson(credentials);
 			
-			Log.d("Sending", js.toString());
-			
-			remote.requestServerForText("api/users/sign_in", js, LKRemote.RequestType.POST, false);
+			remote.requestServerForText("api/users/sign_in", json, LKRemote.RequestType.POST, false);
 		}
 	}
 

@@ -38,7 +38,7 @@ import fragments.LKFragment.MessangerMessage;
 import fragments.MapFragment;
 import fragments.SectionsFragment;
 
-public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger{
+public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger {
 	
 	private final String LOG_TAG = "ContentActivity";
 	
