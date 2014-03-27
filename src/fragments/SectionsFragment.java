@@ -42,7 +42,7 @@ public class SectionsFragment extends LKFragment {
 			Bundle savedInstanceState) {
 		root = (View) inflater.inflate(R.layout.sections_layout, null);
 		right = (RelativeLayout) root
-				.findViewById(R.id.right_tab);
+				.findViewById(R.id.right_tab);  
 		right.setOnClickListener(new ClickListener());
 		
 		LKButton lucky = (LKButton) root.findViewById(R.id.lucky);

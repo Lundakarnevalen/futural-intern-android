@@ -348,6 +348,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		
 		title = (TextView) root.findViewById(R.id.title);
 		
+		
 		menuButtonWrapper.setOnClickListener(menuToggleListener);
 		actionBar.setCustomView(root);
 	}

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import se.lundakarnevalen.android.R;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,20 +14,28 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 public class MapFragment extends LKFragment implements OnTouchListener{
 	HashMap<Integer, Position> positions;
 
+	
 	private boolean firstTime; 
 	
 	private double myLat;
@@ -39,6 +48,8 @@ public class MapFragment extends LKFragment implements OnTouchListener{
 	private Matrix matrix = new Matrix();
 	private Matrix savedMatrix = new Matrix();
 
+	private boolean gpsOn = true;
+	
 	// States onTouchEvent
 	private final int NONE = 0;
 	private final int DRAG = 1;
@@ -58,13 +69,23 @@ public class MapFragment extends LKFragment implements OnTouchListener{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		//TODO Change the layout
-		//View rootView = inflater.inflate(R.layout.fr_layout_map, null);
-
-		sendPosition();
+		View rootView = inflater.inflate(R.layout.fr_layout_map, null);
+		//rootView.setBackgroundColor(Color.BLUE);
+		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
+		View root = actionBar.getCustomView();
+		RelativeLayout gpsCheckbox = (RelativeLayout) root.findViewById(R.id.gps_checkbox);	
+		gpsCheckbox.setOnClickListener(gpsCheckboxListener);
+		gpsCheckbox.setVisibility(View.VISIBLE);
+		
+		sendPosition(); 
 
 		// Background image
-		Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.radio);
-
+		//Bitmap mBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.map_skane);
+		img = (ImageView)rootView.findViewById(R.id.map_id);
+		BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();	
+		Bitmap mBitmap = drawable.getBitmap();
+	            
+		
 		//Bitmap mBitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.row_arrow);
 		Bitmap bmOverlay = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), mBitmap.getConfig());
 		Canvas canvas = new Canvas();
@@ -74,7 +95,7 @@ public class MapFragment extends LKFragment implements OnTouchListener{
 		//canvas.drawBitmap(mBitmap2, mBitmap.getWidth()/3, mBitmap.getHeight()/3, null);
 
 		Paint p = new Paint();
-		p.setColor(Color.GREEN);
+		p.setColor(Color.GREEN); 
 		int i = 0;
 		int counter[][] = new int[50][50];
 		Random r = new Random();
@@ -91,20 +112,50 @@ public class MapFragment extends LKFragment implements OnTouchListener{
 		}
 
 
-		img = new ImageView(getActivity());
+		//img = new ImageView(getActivity());
+		
 		img.setImageBitmap(bmOverlay);
 		img.setOnTouchListener(this);
 		firstTime = true;
-		return img;
+		rootView.setBackgroundResource(R.drawable.waves);
+		return rootView;
 
 	}
+	
+
+	
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		setTitle("Map");
+		setTitle("Karta");
+		//TODO
+		// Fix both eng and swe.
 	}
 
+	@Override
+	public void onCreateOptionsMenu(
+	      Menu menu, MenuInflater inflater) {
+		Log.d("Bllaa,","vdvsvsd");
+		
+			//inflater.inflate(R.menu.activity_itemdetail, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	   // handle item selection
+	   Log.d("Fick",""+item);
+		switch (item.getItemId()) {
+	   //   case R.id.edit_item:
+	         // do s.th.
+	     //    return true;
+	      default:
+	         return super.onOptionsItemSelected(item);
+	   }
+	}
+
+	
+	
 	/**
 	 * Send current lat/lng, id and section to the database.
 	 * 
@@ -181,7 +232,7 @@ public class MapFragment extends LKFragment implements OnTouchListener{
 		double diffLat = endLatMap - startLatMap;
 
 		//Change this to the map.png..
-		Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.radio);
+		Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.map_skane);
 
 		// Create an overlay bitmap
 		Bitmap bmOverlay = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), mBitmap.getConfig());
@@ -229,7 +280,8 @@ public class MapFragment extends LKFragment implements OnTouchListener{
 			canvas.drawCircle((float) (((float)m.x)/((double)a) * mBitmap.getWidth()), (float) (((float)m.y)/((double)b) * mBitmap.getHeight()), m.counter,p);
 
 		}
-
+ 
+		
 		img.setImageBitmap(bmOverlay);
 	}
 
@@ -397,7 +449,7 @@ public class MapFragment extends LKFragment implements OnTouchListener{
 	 * ReGenerate dots every time you zoom in/out
 	 */
 	private void generateDots(float scale){
-		Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.radio);
+		Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.map_skane);
 
 		Bitmap bmOverlay = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), mBitmap.getConfig());
 		Canvas canvas = new Canvas();
@@ -443,4 +495,20 @@ public class MapFragment extends LKFragment implements OnTouchListener{
 		float y = event.getY(0) + event.getY(1);
 		point.set(x / 2, y / 2);
 	}
+	
+	private View.OnClickListener gpsCheckboxListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			ImageView iv= (ImageView)v.findViewById(R.id.gps_checkmark);
+			if(gpsOn) {
+				iv.setVisibility(View.GONE); 
+				gpsOn = false;
+			} else {
+				iv.setVisibility(View.VISIBLE);
+				gpsOn = true;
+			}
+			
+		}
+	};
+	
 }
