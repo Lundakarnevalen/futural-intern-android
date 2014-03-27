@@ -16,6 +16,7 @@ public class CountdownFragment extends LKFragment {
 
 	TextView tv;
 	long diff;
+	private String antonsTestHAHAHAAHA;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
