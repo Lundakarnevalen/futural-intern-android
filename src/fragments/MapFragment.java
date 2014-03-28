@@ -6,6 +6,7 @@ import java.util.List;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -27,6 +28,8 @@ import android.widget.RelativeLayout;
 import com.google.gson.Gson;
 public class MapFragment extends LKFragment {
 	private LKRemote remote;
+
+	private final String SHARED_ID = "SHAREDID";
 	
 	private float maxDotSize = 40;
 	private float minDotSize = 10;
@@ -38,8 +41,12 @@ public class MapFragment extends LKFragment {
 	private float diffLon = endLonMap - startLonMap;
 	private float diffLat = endLatMap - startLatMap;
 
+	
 	private int clusterId = -1; 
 	private int nbrOfPersons;
+
+	private final String key_cluster = "key_cluster_id";
+
 	
 	private float myLat;
 	private float myLng;
@@ -51,28 +58,36 @@ public class MapFragment extends LKFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fr_layout_map, null);
+		
 		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
 		View root = actionBar.getCustomView();
 		RelativeLayout gpsCheckbox = (RelativeLayout) root.findViewById(R.id.gps_checkbox);	
 		gpsCheckbox.setOnClickListener(gpsCheckboxListener);
 		gpsCheckbox.setVisibility(View.VISIBLE);
-		
+
 		img = (ImageView) rootView.findViewById(R.id.map_id);
 		remote = new LKRemote(getContext());
+		
+		SharedPreferences prefs = getContext().getSharedPreferences(SHARED_ID, getContext().MODE_PRIVATE);
+		
+		clusterId = prefs.getInt(key_cluster, -1); 
+		
+		
 		/*
 		//remote = new LKRemote(getContext(), new ButtonLogin());
 		//TODO 
 		// Call updatePositions(positions) instead.
 
 		//testCreatePosition((float)55.704660,(float)13.191007);
-	
+
 		//TODO 
 		// Call every ??
 		//sendPosition();
 		Log.d("GPS!:",""+gpsOn);
-		*/
+		 */
 		//getAndUpdatePositions();
 		//TODO Do this in background..
+		
 		sendPosition();
 		testGetPosition();
 		return rootView;
@@ -85,7 +100,6 @@ public class MapFragment extends LKFragment {
 		setTitle("Karta");
 		//TODO
 		// Fix both eng and swe.
-		
 	}
 
 	/**
@@ -94,7 +108,7 @@ public class MapFragment extends LKFragment {
 	 */
 	private boolean sendPosition() {
 		Log.d("Går in här: ","På: "+gpsOn);
-		
+
 		if(gpsOn) {
 			LocationManager mlocManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE); 
 			Log.d("denna hiottade: ",":"+getLastKnownLocation());
@@ -113,7 +127,7 @@ public class MapFragment extends LKFragment {
 							myLat = (float)location.getLatitude();
 							Log.d("Network1:Position",myLng +" "+myLat);
 						} else {
-							 	Log.d("Fail1","FAIL1");
+							Log.d("Fail1","FAIL1");
 							return false;
 						}
 					} else {
@@ -143,7 +157,7 @@ public class MapFragment extends LKFragment {
 			//TODO
 			// Send position here!
 			testCreatePosition(myLat, myLng);
-			
+
 			return true;
 		} else {
 
@@ -151,9 +165,9 @@ public class MapFragment extends LKFragment {
 			return false;
 		}
 	}
-	
+
 	private void updatePositions(List<Position> positions) {
-		
+
 		if(positions != null && (positions.size() != 0)) {
 			float biggestDot = 0;
 			float smallestDot = Float.MAX_VALUE;
@@ -219,24 +233,26 @@ public class MapFragment extends LKFragment {
 		updatePositions(newPositions);
 
 	}
-	
+
 	private void testGetPosition() {
 		Gson g = new Gson();
 		// String js = g.toJson(credentials);
 		// TODO
 		// TOKEN ???		
 		remote.setTextResultListener(new ResponseListener());
+		LKRemote remote = new LKRemote(getContext(), new ResponseListener());
 		remote.requestServerForText("api/clusters?token=P6VmxzvTypzP3qb3TEW7", "", LKRemote.RequestType.GET, false);
 	}
-	
+
 	private void testCreatePosition(float lat, float lng) {
 		Gson g =  new Gson();
 		String token = "P6VmxzvTypzP3qb3TEW7";
-		
+
 		MyPos mp = new MyPos(lat,lng,token);
+
 		
 		String js = g.toJson(mp);
-		
+
 		Log.d("Gettt",""+js);
 		// TODO
 		// TOKEN ???
@@ -248,12 +264,12 @@ public class MapFragment extends LKFragment {
 		}else {
 			// Står fel i mail, ska vara put istället för post....
 			remote.requestServerForText("api/clusters"+"/"+clusterId, js, LKRemote.RequestType.PUT, false);			
-				
+
 		}
-		
+
 	}
-	
-	
+
+
 
 
 	private class Position {
@@ -289,7 +305,7 @@ public class MapFragment extends LKFragment {
 			}
 		}
 	};
-	
+
 	private class ResponseListener implements LKRemote.TextResultListener {
 
 		@Override
@@ -304,25 +320,13 @@ public class MapFragment extends LKFragment {
 
 			Gson gson = new Gson();
 			CheckerJson checker = gson.fromJson(result, CheckerJson.class);
-					
+
 			Log.d("Get!",""+checker.toString());
 			if(checker.sucess) {	
 				Cluster cluster = gson.fromJson("{\"clusters\":" + checker.getClusters()+"}", Cluster.class);
 				Log.d("Get!",""+cluster.toString());
 				updatePositions(cluster.getPositions());
 			}
-	
-	//		LKUser user = new LKUser(context);
-
-//			user.parseJson(result);
-
-
-//			user.storeUserLocaly();
-
-//			Intent intent = new Intent(context, ContentActivity.class);		
-
-//			context.startActivity(intent);
-//			getActivity().finish();
 		}
 	}
 
@@ -330,45 +334,33 @@ public class MapFragment extends LKFragment {
 
 		@Override
 		public void onResult(String result) {
-			Log.d("Success", "Yay, some result!");
+			Log.d("Success", "Result:" + result);
 
 			if(result == null) {
 				return;
 			}
 
-			Log.d("Success , create",""+ result);
-
 			Gson gson = new Gson();
-			
+
 			ResultPost res = gson.fromJson(result, ResultPost.class);
 
 			Log.d("Success?:",""+res.getSuccess());
 			if(res.getSuccess()) {
 				clusterId = res.getId();
+				SharedPreferences prefs = getContext().getSharedPreferences(SHARED_ID, getContext().MODE_PRIVATE);
+				prefs.edit().putInt(key_cluster, clusterId).commit();
 				Log.d("update clusterId to:",""+clusterId);
 			} else {
 				//TODO
 			}
-			
-	//		LKUser user = new LKUser(context);
-
-//			user.parseJson(result);
-
-
-//			user.storeUserLocaly();
-
-//			Intent intent = new Intent(context, ContentActivity.class);		
-
-//			context.startActivity(intent);
-//			getActivity().finish();
 		}
 	}
 
-	
+
 	private class CheckerJson {
 		private boolean sucess;
 		private String clusters;
-		
+
 		@Override
 		public String toString() {
 			return "Checker [success=" + sucess 
@@ -377,9 +369,9 @@ public class MapFragment extends LKFragment {
 		public String getClusters() {
 			return clusters;
 		}
-		
+
 	}
-	
+
 	private class Cluster {
 		private List<Position> clusters;
 		@Override
@@ -409,7 +401,7 @@ public class MapFragment extends LKFragment {
 	private class ResultPost {
 		private boolean success;
 		private int cluster_id;
-		
+
 		public boolean getSuccess() {
 			return success;
 		}
@@ -417,25 +409,25 @@ public class MapFragment extends LKFragment {
 			return cluster_id;
 		}
 	}
-	
+
 	private Location getLastKnownLocation() {
 		LocationManager mLocationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 		List<String> providers = mLocationManager.getProviders(true);
-	    Location bestLocation = null;
-	    for (String provider : providers) {
-	        Location l = mLocationManager.getLastKnownLocation(provider);
-	        
-	        if (l == null) {
-	            continue;
-	        }
-	        if (bestLocation == null
-	                || l.getAccuracy() < bestLocation.getAccuracy()) {
-	            bestLocation = l;
-	        }
-	    }
-	    if (bestLocation == null) {
-	        return null;
-	    }
-	    return bestLocation;
+		Location bestLocation = null;
+		for (String provider : providers) {
+			Location l = mLocationManager.getLastKnownLocation(provider);
+
+			if (l == null) {
+				continue;
+			}
+			if (bestLocation == null
+					|| l.getAccuracy() < bestLocation.getAccuracy()) {
+				bestLocation = l;
+			}
+		}
+		if (bestLocation == null) {
+			return null;
+		}
+		return bestLocation;
 	}
 }
