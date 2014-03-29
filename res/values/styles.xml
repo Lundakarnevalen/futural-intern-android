@@ -7,7 +7,7 @@
     
     <!-- Style for actionbar -->
     <style name="ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
-        <item name="background">@drawable/actionbar_bg</item>
+        <item name="background">@color/dark_blue</item>
         <item name="titleTextStyle">@style/ActionBarTitleTextStyle</item>
         <item name="displayOptions">showTitle</item>
         <item name="android:height">50dp</item>
