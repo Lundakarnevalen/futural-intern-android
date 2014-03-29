@@ -1,8 +1,9 @@
 package fragments;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import json.MapGet;
+import json.MapPost;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
 import android.content.Context;
@@ -26,9 +27,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
-public class MapFragment extends LKFragment {
-	private LKRemote remote;
 
+
+public class MapFragment extends LKFragment {
+
+	private final String token = "P6VmxzvTypzP3qb3TEW7";
+	
 	private final String SHARED_ID = "SHAREDID";
 	
 	private float maxDotSize = 40;
@@ -40,17 +44,14 @@ public class MapFragment extends LKFragment {
 	private float endLatMap = (float)56.52300194685981;
 	private float diffLon = endLonMap - startLonMap;
 	private float diffLat = endLatMap - startLatMap;
-
 	
 	private int clusterId = -1; 
 	private int nbrOfPersons;
 
 	private final String key_cluster = "key_cluster_id";
 
+	private List<Position> positions;
 	
-	private float myLat;
-	private float myLng;
-
 	private ImageView img;
 	private boolean gpsOn = true;
 
@@ -66,30 +67,23 @@ public class MapFragment extends LKFragment {
 		gpsCheckbox.setVisibility(View.VISIBLE);
 
 		img = (ImageView) rootView.findViewById(R.id.map_id);
-		remote = new LKRemote(getContext());
 		
 		SharedPreferences prefs = getContext().getSharedPreferences(SHARED_ID, getContext().MODE_PRIVATE);
-		
 		clusterId = prefs.getInt(key_cluster, -1); 
+		Log.d("CLUSTER_ID",""+clusterId);
 		
-		
-		/*
-		//remote = new LKRemote(getContext(), new ButtonLogin());
 		//TODO 
 		// Call updatePositions(positions) instead.
-
-		//testCreatePosition((float)55.704660,(float)13.191007);
 
 		//TODO 
 		// Call every ??
 		//sendPosition();
-		Log.d("GPS!:",""+gpsOn);
-		 */
 		//getAndUpdatePositions();
-		//TODO Do this in background..
 		
+		//TODO Do this in background..
+		// If we dont want to update the position we do updatePositions(positions) in background...
 		sendPosition();
-		testGetPosition();
+		getPositions();
 		return rootView;
 	}
 
@@ -97,7 +91,7 @@ public class MapFragment extends LKFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		setTitle("Karta");
+		setTitle(getString(R.string.karta));
 		//TODO
 		// Fix both eng and swe.
 	}
@@ -107,31 +101,31 @@ public class MapFragment extends LKFragment {
 	 * 
 	 */
 	private boolean sendPosition() {
-		Log.d("Går in här: ","På: "+gpsOn);
-
+		Log.d("GPS on:",""+gpsOn);
 		if(gpsOn) {
+			float lng;
+			float lat;
 			LocationManager mlocManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE); 
-			Log.d("denna hiottade: ",":"+getLastKnownLocation());
 			Location location = null;
 			if(mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 				location= mlocManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 				if(location!=null) {
-					myLng = (float)location.getLongitude();
-					myLat = (float)location.getLatitude();
-					Log.d("GPS:Position",myLng +" "+myLat);
+					lng = (float)location.getLongitude();
+					lat = (float)location.getLatitude();
+					Log.d("Find GPS_position",lng +" "+lat);
 				} else {
 					if(mlocManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
 						location= mlocManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 						if(location!=null){
-							myLng = (float)location.getLongitude();
-							myLat = (float)location.getLatitude();
-							Log.d("Network1:Position",myLng +" "+myLat);
+							lng = (float)location.getLongitude();
+							lat = (float)location.getLatitude();
+							Log.d("Find Network_position",lng +" "+lat);
 						} else {
-							Log.d("Fail1","FAIL1");
+							Log.d("No GPS or Network position","FAIL1");
 							return false;
 						}
 					} else {
-						Log.d("Fail2","FAIL2");
+						Log.d("No GPS or Network position","FAIL2");
 						return false;
 					}
 				}
@@ -139,35 +133,28 @@ public class MapFragment extends LKFragment {
 				if(mlocManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
 					location= mlocManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 					if(location!=null){ 
-						myLng = (float)location.getLongitude();
-						myLat = (float)location.getLatitude();
-						Log.d("Network2:Position",myLng +" "+myLat);
+						lng = (float)location.getLongitude();
+						lat = (float)location.getLatitude();
+						Log.d("Find Network_position2",lng +" "+lat);
 					} else {
-
-						Log.d("Fail3","FAIL3");
+						Log.d("No GPS or Network position","FAIL3");
 						return false;
 					}
 				} else {
-
-					Log.d("Fail4","FAIL4");
+					Log.d("No GPS or Network position","FAIL4");
 					return false;
 				}
 			}
-
-			//TODO
-			// Send position here!
-			testCreatePosition(myLat, myLng);
+			postPosition(lat, lng);
 
 			return true;
 		} else {
-
-			Log.d("Fail5","FAIL5");
+			Log.d("Don´t want to send position.","FAIL5");
 			return false;
 		}
 	}
 
 	private void updatePositions(List<Position> positions) {
-
 		if(positions != null && (positions.size() != 0)) {
 			float biggestDot = 0;
 			float smallestDot = Float.MAX_VALUE;
@@ -181,41 +168,37 @@ public class MapFragment extends LKFragment {
 			canvas.setBitmap(bmOverlay);
 			canvas.drawBitmap(mapBitmap, new Matrix(), null);
 
+			//TODO
+			// Change color to correct red
 			Paint paintGray = new Paint();
 			Paint paintRed = new Paint();
 			paintRed.setColor(Color.RED);
 			paintGray.setColor(Color.GRAY);
 			nbrOfPersons = 0;
 			for(Position p: positions)  {
-				biggestDot = Math.max(biggestDot, p.getSize());
-				smallestDot = Math.min(smallestDot, p.getSize());
-				nbrOfPersons += p.getSize();
+				biggestDot = Math.max(biggestDot, p.quantity);
+				smallestDot = Math.min(smallestDot, p.quantity);
+				nbrOfPersons += p.quantity;
 			}
 
 			float difference = biggestDot - smallestDot; 
 
 			for(Position p: positions)  {
-				float lat = (p.getLat() - startLatMap) / diffLat;
-
-				float lon = (p.getLng() - startLonMap) / diffLon;
-				float cur = minDotSize + ((p.getSize() - smallestDot)/difference)*diffDotSize;
+				float lat = (p.lat - startLatMap) / diffLat;
+				float lon = (p.lng - startLonMap) / diffLon;
+				float cur = minDotSize + ((p.quantity - smallestDot)/difference)*diffDotSize;
 
 				float x = lon*mapBitmap.getWidth();
 				float y = mapBitmap.getHeight()-lat * mapBitmap.getHeight();
-				canvas.drawCircle(x, (float)(y+6), cur ,paintGray); 
-				//TODO
-				// Delete gray ?
+				canvas.drawCircle(x, y+6, cur ,paintGray); 
+				//TODO Delete gray ?
 				canvas.drawCircle(x, y, cur ,paintRed);	
 			}
-			Log.d("view1",""+getView());
 			se.lundakarnevalen.widget.LKTextView text = (se.lundakarnevalen.widget.LKTextView) getView().findViewById(R.id.nbr_of);
-
-			Log.d("view2",""+text);
 			//TODO change to english!
-			text.setText(nbrOfPersons+"\nkarnevalister");
+			text.setText(nbrOfPersons+getString(R.string.map_karnevalister));
 			img.setImageBitmap(bmOverlay);
 		}
-
 	}
 
 	/**
@@ -223,72 +206,41 @@ public class MapFragment extends LKFragment {
 	 * 
 	 */
 	private void getAndUpdatePositions() {
-
 		// Connect and get positions...
+		/*
 		ArrayList<Position> newPositions = new ArrayList<Position>();
 		newPositions.add(new Position((float)55.704660,(float)13.191007,65)); //LUND
 		newPositions.add(new Position((float)55.374660,(float)13.191007,17));
 		newPositions.add(new Position((float)55.374660,(float)13.391007,40));
 		newPositions.add(new Position((float)55.934660,(float)13.951007,10));
-		updatePositions(newPositions);
+		*/
+		updatePositions(positions);
 
 	}
 
-	private void testGetPosition() {
-		Gson g = new Gson();
-		// String js = g.toJson(credentials);
+	private void getPositions() {
 		// TODO
 		// TOKEN ???		
-		remote.setTextResultListener(new ResponseListener());
-		LKRemote remote = new LKRemote(getContext(), new ResponseListener());
-		remote.requestServerForText("api/clusters?token=P6VmxzvTypzP3qb3TEW7", "", LKRemote.RequestType.GET, false);
+		LKRemote remote = new LKRemote(getContext(), new GetListener());
+		remote.requestServerForText("api/clusters?token=" + token, "", LKRemote.RequestType.GET, false);
 	}
 
-	private void testCreatePosition(float lat, float lng) {
+	private void postPosition(float lat, float lng) {
 		Gson g =  new Gson();
-		String token = "P6VmxzvTypzP3qb3TEW7";
-
-		MyPos mp = new MyPos(lat,lng,token);
-
 		
+		MapPost mp = new MapPost(lat,lng,token);	
 		String js = g.toJson(mp);
-
-		Log.d("Gettt",""+js);
+		Log.d("Send json: ",""+js);
+	
 		// TODO
 		// TOKEN ???
-		Log.d("Getid: ",""+clusterId);
-		LKRemote remote = new LKRemote(getContext(), new CreateListener());
-		//remote.setTextResultListener(new CreateListener());
+		Log.d("Cluster id before post: ",""+clusterId);
+		LKRemote remote = new LKRemote(getContext(), new PostListener());
 		if(clusterId == -1) {
 			remote.requestServerForText("api/clusters", js, LKRemote.RequestType.POST, false);			
 		}else {
 			// Står fel i mail, ska vara put istället för post....
 			remote.requestServerForText("api/clusters"+"/"+clusterId, js, LKRemote.RequestType.PUT, false);			
-
-		}
-
-	}
-
-
-
-
-	private class Position {
-		private float lat;
-		private float lng;
-		private int quantity;
-		public Position(float lat, float lng, int size) {
-			this.lat = lat;
-			this.lng = lng;
-			this.quantity = size;
-		}
-		public float getLat() {
-			return lat;
-		}
-		public float getLng() {
-			return lng;
-		}
-		public int getSize() {
-			return quantity;
 		}
 	}
 
@@ -306,108 +258,76 @@ public class MapFragment extends LKFragment {
 		}
 	};
 
-	private class ResponseListener implements LKRemote.TextResultListener {
-
+	private class GetListener implements LKRemote.TextResultListener {
 		@Override
 		public void onResult(String result) {
-			Log.d("Success", "Yay, some result!");
-
 			if(result == null) {
+				Log.d("GetListener get result: ", "null");
 				return;
 			}
-
-			Log.d("Success", result);
-
+			Log.d("GetListener get result: ", result);
+			
 			Gson gson = new Gson();
-			CheckerJson checker = gson.fromJson(result, CheckerJson.class);
+			MapGet checker = gson.fromJson(result, MapGet.class);
 
-			Log.d("Get!",""+checker.toString());
-			if(checker.sucess) {	
-				Cluster cluster = gson.fromJson("{\"clusters\":" + checker.getClusters()+"}", Cluster.class);
-				Log.d("Get!",""+cluster.toString());
-				updatePositions(cluster.getPositions());
+			if(checker.success) {	
+				Clusters clusters = gson.fromJson("{\"clusters\":" + checker.clusters+"}", Clusters.class);
+				Log.d("GetListener sucess:","true, size:"+clusters.clusters.size());
+				positions = clusters.clusters;
+				updatePositions(clusters.clusters);
+			} else {
+				Log.d("GetListener sucess:","false");
 			}
 		}
 	}
 
-	private class CreateListener implements LKRemote.TextResultListener {
+	private class PostListener implements LKRemote.TextResultListener {
 
 		@Override
-		public void onResult(String result) {
-			Log.d("Success", "Result:" + result);
-
+		public void onResult(String result) {			
 			if(result == null) {
+				Log.d("PostListener get result: ", "null");
 				return;
 			}
 
+			Log.d("PostListener get result: ", result);
+			
 			Gson gson = new Gson();
-
 			ResultPost res = gson.fromJson(result, ResultPost.class);
 
-			Log.d("Success?:",""+res.getSuccess());
-			if(res.getSuccess()) {
-				clusterId = res.getId();
-				SharedPreferences prefs = getContext().getSharedPreferences(SHARED_ID, getContext().MODE_PRIVATE);
-				prefs.edit().putInt(key_cluster, clusterId).commit();
-				Log.d("update clusterId to:",""+clusterId);
+			if(res.success) {
+				Log.d("PostListener sucess:","true, clusterId:"+clusterId);
+				if(clusterId != res.cluster_id) {
+					clusterId = res.cluster_id;
+					SharedPreferences prefs = getContext().getSharedPreferences(SHARED_ID, getContext().MODE_PRIVATE);
+					prefs.edit().putInt(key_cluster, clusterId).commit();
+					Log.d("Update clusterId to:",""+clusterId);					
+				}
 			} else {
 				//TODO
+				Log.d("PostListener sucess:","false");	
 			}
 		}
 	}
-
-
-	private class CheckerJson {
-		private boolean sucess;
-		private String clusters;
-
-		@Override
-		public String toString() {
-			return "Checker [success=" + sucess 
-					+ ", clusters=" + clusters + "]";
-		}
-		public String getClusters() {
-			return clusters;
-		}
-
-	}
-
-	private class Cluster {
-		private List<Position> clusters;
-		@Override
-		public String toString() {
-			return "Cluster [clusters=" + clusters.get(0) + "]";
-		}
-		public List<Position> getPositions() {
-			return clusters;
-		}
-	}
-	private class MyPos {
-		private GPSpos cluster;
-		private String token;
-		public MyPos(float lat, float lng,String token) {
-			this.token = token;
-			cluster = new GPSpos(lat,lng);
-		}
-	}
-	private class GPSpos {
+	
+	private class Position {
 		private float lat;
 		private float lng;
-		public GPSpos(float lat, float lng) {
+		private int quantity;
+		public Position(float lat, float lng, int size) {
 			this.lat = lat;
 			this.lng = lng;
+			this.quantity = size;
 		}
 	}
+
+	private class Clusters {
+		private List<Position> clusters;
+	}
+	
 	private class ResultPost {
 		private boolean success;
 		private int cluster_id;
-
-		public boolean getSuccess() {
-			return success;
-		}
-		public int getId() {
-			return cluster_id;
-		}
 	}
 
 	private Location getLastKnownLocation() {
