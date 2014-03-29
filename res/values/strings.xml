@@ -345,5 +345,6 @@
     <string name="karta">KARTA</string>
     <string name="map_right_now">Var är karnevalisterna\njust nu?</string>
     <string name="map_karnevalister">\nkarnevalister</string>
+	<string name="desc_map">map</string>
 	
 </resources>

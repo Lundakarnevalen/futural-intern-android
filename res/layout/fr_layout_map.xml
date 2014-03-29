@@ -5,11 +5,14 @@
     android:background="@drawable/waves" >
 
     <RelativeLayout
+        
+        android:id="@+id/map_upper_box"
         android:layout_width="210dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:background="@drawable/map_upper_textbox" >
+        
+         >
 
         <se.lundakarnevalen.widget.LKTextViewBold
             android:layout_width="wrap_content"
@@ -18,11 +21,16 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:text="@string/map_right_now"
+        	android:background="@drawable/map_upper_textbox"
             android:textColor="#FF0000"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            
+             />
     </RelativeLayout>
 
     <RelativeLayout
+        
+        android:id="@+id/map_lower_box"
         android:layout_width="140dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
@@ -44,12 +52,24 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/map_id"
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleX="0.9"
-        android:scaleY="0.9"
-        android:src="@drawable/map_skane" />
+        android:layout_above="@id/map_lower_box"
+        android:layout_below="@id/map_upper_box"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <ImageView
+            android:id="@+id/map_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/desc_map"
+            android:src="@drawable/map_skane" />
+    </RelativeLayout>
 
 </RelativeLayout>
