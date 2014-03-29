@@ -5,64 +5,65 @@
     android:background="@drawable/waves" >
 
     <RelativeLayout
-        
         android:id="@+id/map_upper_box"
-        android:layout_width="210dp"
-        android:layout_height="60dp"
+        android:layout_width="245dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        
-         >
+        android:layout_marginTop="15dp" >
 
         <se.lundakarnevalen.widget.LKTextViewBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:background="@drawable/map_upper_textbox"
             android:gravity="center"
             android:text="@string/map_right_now"
-        	android:background="@drawable/map_upper_textbox"
             android:textColor="#FF0000"
-            android:textSize="20sp"
-            
-             />
+            android:textSize="18sp" />
     </RelativeLayout>
 
     <RelativeLayout
-        
         android:id="@+id/map_lower_box"
-        android:layout_width="140dp"
-        android:layout_height="60dp"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp" >
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/map_lower_textbox" >
 
-        <se.lundakarnevalen.widget.LKTextView
+        <se.lundakarnevalen.widget.LKTextViewBold
             android:id="@+id/nbr_of"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/map_lower_textbox"
             android:gravity="center"
-            
-	        android:text="@string/map_karnevalister"
-            
+            android:text="@string/map_nbr_of_people"
             android:textColor="#FF0000"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
+
+        <se.lundakarnevalen.widget.LKTextViewBold
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nbr_of"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/map_karnevalister"
+            android:textColor="#FF0000"
+            android:textSize="12sp" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/map_lower_box"
         android:layout_below="@id/map_upper_box"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp" >
 
         <ImageView
             android:id="@+id/map_id"

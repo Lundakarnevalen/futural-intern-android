@@ -1,7 +1,8 @@
 package fragments;
 
+import java.util.Calendar;
 import java.util.List;
-
+ 
 import json.MapGet;
 import json.MapPost;
 import se.lundakarnevalen.android.R;
@@ -12,7 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
+import android.graphics.Matrix; 
 import android.graphics.Paint;
 import android.location.Location;
 import android.location.LocationListener;
@@ -27,7 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
+ 
 import com.google.gson.Gson;
 
 
@@ -49,6 +50,7 @@ public class MapFragment extends LKFragment {
 	private Handler getHandler;
 
 	private Handler handler;
+	
 	private LocationManager locMan;
 
 	private static final int TIME_INTERVAL = 1800000; // get gps location every 30 min
@@ -93,11 +95,11 @@ public class MapFragment extends LKFragment {
 		View root = actionBar.getCustomView();
 		RelativeLayout gpsCheckbox = (RelativeLayout) root.findViewById(R.id.gps_checkbox);	
 		gpsCheckbox.setOnClickListener(gpsCheckboxListener);
-		gpsCheckbox.setVisibility(View.VISIBLE);
+		
 
-		se.lundakarnevalen.widget.LKTextView text = (se.lundakarnevalen.widget.LKTextView) rootView.findViewById(R.id.nbr_of);
+		se.lundakarnevalen.widget.LKTextViewBold text = (se.lundakarnevalen.widget.LKTextViewBold) rootView.findViewById(R.id.nbr_of);
 		//TODO change to english!
-		text.setText(nbrOfPersons+getString(R.string.map_karnevalister));
+		text.setText(""+nbrOfPersons);
 				
 		img = (ImageView) rootView.findViewById(R.id.map_id);
 		if(bmOverlay != null) {
@@ -113,8 +115,15 @@ public class MapFragment extends LKFragment {
 		if(handler == null) {
 			handler = new Handler();
 
+			final Calendar end = Calendar.getInstance();
+			end.set(2014,Calendar.APRIL,13,06,00,00);
+			
 			handler.postDelayed(new Runnable() {
 				public void run() {
+					Calendar c = Calendar.getInstance(); 
+					if(c.compareTo(end)==1) {
+						return;
+					}
 					sendPosition();
 					handler.postDelayed(this, HANDLER_DELAY);
 				}
@@ -123,9 +132,15 @@ public class MapFragment extends LKFragment {
 
 		if(getHandler == null) {
 			getHandler = new Handler();
-
+			final Calendar end = Calendar.getInstance();
+			end.set(2014,Calendar.APRIL,13,06,00,00);
+			
 			getHandler.postDelayed(new Runnable() {
-				public void run() {
+				public void run() { 
+					Calendar c = Calendar.getInstance(); 
+					if(c.compareTo(end)==1) {
+						return;
+					}
 					if(isVisible()) {
 						getPositions();
 					}
@@ -243,9 +258,9 @@ public class MapFragment extends LKFragment {
 				//TODO Delete gray ?
 				canvas.drawCircle(x, y, cur ,paintRed);	
 			}
-			se.lundakarnevalen.widget.LKTextView text = (se.lundakarnevalen.widget.LKTextView) getView().findViewById(R.id.nbr_of);
+			se.lundakarnevalen.widget.LKTextViewBold text = (se.lundakarnevalen.widget.LKTextViewBold) getView().findViewById(R.id.nbr_of);
 			//TODO change to english!
-			text.setText(nbrOfPersons+getString(R.string.map_karnevalister));
+			text.setText(""+nbrOfPersons);
 			img.setImageBitmap(bmOverlay);
 		}
 	}
@@ -396,9 +411,6 @@ public class MapFragment extends LKFragment {
 		}
 		return bestLocation;
 	}
-
-
-
 
 	private LocationListener PositionListener = new LocationListener(){
 		public void onLocationChanged(Location location) {

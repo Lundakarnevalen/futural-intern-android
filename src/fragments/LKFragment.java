@@ -8,6 +8,7 @@ import java.util.List;
 import fragments.old.RegistrationOhNoFragment;
 import fragments.old.RegistrationProgressFragment;
 
+import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
@@ -23,9 +24,12 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 public class LKFragment extends Fragment{
 	protected final static String LOG_TAG = "LKFragment";
@@ -76,10 +80,19 @@ public class LKFragment extends Fragment{
 	/**
 	 * Set the Titlebar title
 	 */
-	public void setTitle(String title){
+	public void setTitle(String title){	
 		Bundle data = new Bundle();
 		data.putString("title", title);
 		messanger.message(MessangerMessage.SET_TITLE, data);
+		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
+		View root = actionBar.getCustomView();
+		RelativeLayout gpsCheckbox = (RelativeLayout) root.findViewById(R.id.gps_checkbox);		
+		if(title.equals(getString(R.string.karta))) {
+			gpsCheckbox.setVisibility(View.VISIBLE);
+		} else {
+			gpsCheckbox.setVisibility(View.INVISIBLE);
+			
+		}
 		showActionBarLogo(false);
 	}
 	
