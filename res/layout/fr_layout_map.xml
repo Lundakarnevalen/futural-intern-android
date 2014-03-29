@@ -16,7 +16,7 @@
               >
               
 
-<se.lundakarnevalen.widget.LKTextView 
+<se.lundakarnevalen.widget.LKTextViewBold
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:textColor="#FF0000"
@@ -25,7 +25,7 @@
 	        android:layout_centerHorizontal="true"
 	        android:layout_centerVertical="true"
 	        android:textSize="20sp"
-	        android:text="Var är karnevalisterna\njust nu?"
+	        android:text="@string/map_right_now"
 	        />
         
 
