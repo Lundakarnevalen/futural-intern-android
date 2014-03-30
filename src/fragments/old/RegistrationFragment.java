@@ -13,7 +13,7 @@ import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.android.R.string;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKUser;
-import se.lundakarnevalen.widget.LKButton;
+import se.lundakarnevalen.widget.LKButtonGreen;
 import se.lundakarnevalen.widget.LKEditText;
 import se.lundakarnevalen.widget.LKProgressBar;
 import se.lundakarnevalen.widget.LKSpinner;
@@ -50,7 +50,7 @@ public class RegistrationFragment extends LKFragment{
 	private LKEditText code, name, lastname, email, validemail, mobilnbr, adress, zipcode, city, personnumber, foodpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt, terms;
 	private LKProgressBar progressbar;
 	private LKTextView progressvalue;
-	private LKButton confirmButton, appendButton;
+	private LKButtonGreen confirmButton, appendButton;
 	private LKSpinner nationsSpinner, shirtSpinner, driverLicensSpinner, sexSpinner;
 	private boolean[] sektionerchecked = new boolean[501];
 	private boolean[] intressenchecked = new boolean[17];
@@ -95,7 +95,7 @@ public class RegistrationFragment extends LKFragment{
 		terms = (LKEditText) root.findViewById(R.id.terms);
 		progressbar = (LKProgressBar) root.findViewById(R.id.lKProgressBar1);
 		progressvalue = (LKTextView) root.findViewById(R.id.progress_value);
-		confirmButton = (LKButton) root.findViewById(R.id.confirm_button);
+		confirmButton = (LKButtonGreen) root.findViewById(R.id.confirm_button);
 		pulcheckbox = (CheckBox) root.findViewById(R.id.checkbox_PUL);
 		work_fulltimecb = (CheckBox) root.findViewById(R.id.checkbox_work_fulltime);
 		work_styrelsecb = (CheckBox) root.findViewById(R.id.checkbox_work_styrelse);
@@ -236,7 +236,7 @@ public class RegistrationFragment extends LKFragment{
 		shirtSpinner.setOnItemSelectedListener(shirtSpinnerListeners);
 		driverLicensSpinner = (LKSpinner) root.findViewById(R.id.driver_licens);
 		driverLicensSpinner.setOnItemSelectedListener(driverLicensSpinnerListeners);
-		appendButton = (LKButton) root.findViewById(R.id.append_button);
+		appendButton = (LKButtonGreen) root.findViewById(R.id.append_button);
 		appendButton.setOnClickListener(append);
 		wrapperPers = (LinearLayout) root.findViewById(R.id.wrapper_pers);
 		wrapperCode = (LinearLayout) root.findViewById(R.id.wrapper_code);

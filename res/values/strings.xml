@@ -344,5 +344,6 @@
     <string name="registration_valid_nr_of_intrests">Du måste välja minst 3 intressen</string>
     <string name="karta">KARTA</string>
     <string name="map_right_now">Var är karnevalisterna\njust nu?</string>
+    <string name="Inkorg">INKORG</string>
 
 </resources>

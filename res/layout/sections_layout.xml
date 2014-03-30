@@ -131,7 +131,7 @@
 
             <!-- Lucky button -->
 
-            <se.lundakarnevalen.widget.LKButton
+            <se.lundakarnevalen.widget.LKButtonGreen
                 android:id="@+id/lucky"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
