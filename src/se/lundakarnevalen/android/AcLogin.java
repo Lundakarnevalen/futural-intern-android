@@ -1,10 +1,9 @@
-package activities;
+package se.lundakarnevalen.android;
 
-import se.lundakarnevalen.android.R;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import fragments.FrSignIn;
 
@@ -12,7 +11,7 @@ import fragments.FrSignIn;
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
-public class AcLogin extends ActionBarActivity {
+public class AcLogin extends FragmentActivity {
 	/**
 	 * A dummy authentication store containing known user names and passwords.
 	 * TODO: remove after connecting to a real authentication system.
@@ -40,6 +39,4 @@ public class AcLogin extends ActionBarActivity {
 //		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
-
-	
 }

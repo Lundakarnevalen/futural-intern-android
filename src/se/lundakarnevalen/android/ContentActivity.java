@@ -1,9 +1,8 @@
-package activities;
+package se.lundakarnevalen.android;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
@@ -33,12 +32,12 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import fragments.InboxFragment;
 import fragments.LKFragment;
-import fragments.MusicFragment;
 import fragments.LKFragment.MessangerMessage;
 import fragments.MapFragment;
+import fragments.MusicFragment;
 import fragments.SectionsFragment;
 
-public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger{
+public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger {
 	
 	private final String LOG_TAG = "ContentActivity";
 	
@@ -98,6 +97,16 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 			SplashscreenActivity.regInBackground(this, gcm);
 		} 
+		
+		
+		SharedPreferences sharedVersion = getSharedPreferences(LKFragment.SP_VERSION_NAME, MODE_PRIVATE);
+		float version = sp.getFloat("Version", Float.MIN_VALUE);
+		
+		if (version < 0.0f) {
+			
+		} else {
+			
+		}
 		
 		this.setInboxCount();
 	}
@@ -186,7 +195,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	
 	private void setInboxCount(){
 		final Context context = this;
-		AsyncTask task = new AsyncTask<Void, Void, Integer>(){
+		new AsyncTask<Void, Void, Integer>(){
 		
 			@Override
 			protected Integer doInBackground(Void... params) {
@@ -262,7 +271,6 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		// Create logo and sigill objects. 
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);
-		View logout = inflater.inflate(R.layout.menu_sign_out, null);
 		
 		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
 		
@@ -351,7 +359,6 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		actionBarLogo = (ImageView) root.findViewById(R.id.action_bar_logo);
 		
 		title = (TextView) root.findViewById(R.id.title);
-		
 		
 		menuButtonWrapper.setOnClickListener(menuToggleListener);
 		actionBar.setCustomView(root);

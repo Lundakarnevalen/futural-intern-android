@@ -349,6 +349,7 @@
    	
    	<string name="title_activity_login">Login</string>
    	<string name="sound_service">Sound</string>
+   	<string name="reset_password">Glömt lösenord</string>
    	
 
     <string name="registration_nations_do_not_know">Vet ej</string>

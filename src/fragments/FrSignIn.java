@@ -1,10 +1,11 @@
 package fragments;
 
 import json.LoginCredentialsWrite;
+import se.lundakarnevalen.android.ContentActivity;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKUser;
-import activities.ContentActivity;
+import util.HelperEmail;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -13,6 +14,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
@@ -29,7 +31,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-public class FrSignIn extends LKFragment {
+public class FrSignIn extends Fragment {
 
 	private Context context;
 	
@@ -41,10 +43,10 @@ public class FrSignIn extends LKFragment {
 	 */
 	public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
 
-	/**
-	 * Keep track of the login task to ensure we can cancel it if requested.
-	 */
-	private UserLoginTask mAuthTask = null;
+//	/**
+//	 * Keep track of the login task to ensure we can cancel it if requested.
+//	 */
+//	private UserLoginTask mAuthTask = null;
 
 	// Values for email and password at the time of the login attempt.
 	private String mEmail;
@@ -64,14 +66,14 @@ public class FrSignIn extends LKFragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fr_sign_in, null);
 
-		context = getContext();
+		context = getActivity();
 		
 		Button button = (Button) rootView.findViewById(R.id.cheat);
 		button.setOnClickListener(new CheatButton());
 		
 		// Set up the login form.
 		mEmail = getActivity().getIntent().getStringExtra(EXTRA_EMAIL);
-		mEmailView = (EditText) rootView.findViewById(R.id.email);
+		mEmailView = (EditText) rootView.findViewById(R.id.email_field);
 		mEmailView.setText(mEmail);
 
 		mPasswordView = (EditText) rootView.findViewById(R.id.password);
@@ -114,8 +116,7 @@ public class FrSignIn extends LKFragment {
 			FragmentManager manager = getActivity().getSupportFragmentManager();
 			FragmentTransaction ft = manager.beginTransaction();
 			
-			
-			ft.replace(R.id.content_frame, new FrRestorePassword());
+			ft.replace(R.id.content_frame, new FrResetPassword());
 			ft.addToBackStack(null);
 			ft.commit();
 		}
@@ -143,7 +144,6 @@ public class FrSignIn extends LKFragment {
 		
 			context.startActivity(intent);
 			getActivity().finish();
-			
 		}
 	}
  	
@@ -157,6 +157,7 @@ public class FrSignIn extends LKFragment {
 			getActivity().finish();
 		}
 	}
+	
 //	End of removal
 
 	/**
@@ -165,9 +166,6 @@ public class FrSignIn extends LKFragment {
 	 * errors are presented and no actual login attempt is made.
 	 */
 	public void attemptLogin() {
-		if (mAuthTask != null) {
-			return;
-		}
 
 		// Reset errors.
 		mEmailView.setError(null);
@@ -177,8 +175,8 @@ public class FrSignIn extends LKFragment {
 		mEmail = mEmailView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
 
-		mEmail = "email@email.com";
-		mPassword = "12345678";
+//		mEmail = "email@email.com";
+//		mPassword = "12345678";
 		
 		boolean cancel = false;
 		View focusView = null;
@@ -193,13 +191,13 @@ public class FrSignIn extends LKFragment {
 			focusView = mPasswordView;
 			cancel = true;
 		}
-
+		
 		// Check for a valid email address.
 		if (TextUtils.isEmpty(mEmail)) {
 			mEmailView.setError(getString(R.string.error_field_required));
 			focusView = mEmailView;
 			cancel = true;
-		} else if (!mEmail.contains("@")) {
+		} else if (!HelperEmail.validEmail(mEmail)) {
 			mEmailView.setError(getString(R.string.error_invalid_email));
 			focusView = mEmailView;
 			cancel = true;
@@ -213,24 +211,23 @@ public class FrSignIn extends LKFragment {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-			showProgress(true);
+//			showProgress(true);
 			
 			
 			LoginCredentialsWrite credentials = new LoginCredentialsWrite(mEmail, mPassword);
 			
 			Gson g = new Gson();
 			
-			String js = g.toJson(credentials);
+			String json = g.toJson(credentials);
 			
-			Log.d("Sending", js.toString());
-			
-			remote.requestServerForText("api/users/sign_in", js, LKRemote.RequestType.POST, false);
+			remote.requestServerForText("api/users/sign_in", json, LKRemote.RequestType.POST, false);
 		}
 	}
 
+	/*
 	/** 
 	 * Shows the progress UI and hides the login form.
-	 */
+	 * 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 	private void showProgress(final boolean show) {
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -272,7 +269,7 @@ public class FrSignIn extends LKFragment {
 	/**
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
-	 */
+	 *
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 		@Override
 		protected Boolean doInBackground(Void... params) {
@@ -316,5 +313,5 @@ public class FrSignIn extends LKFragment {
 			mAuthTask = null;
 			showProgress(false);
 		}
-	}
+	}*/
 }

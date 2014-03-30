@@ -45,8 +45,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/email"
+            <se.lundakarnevalen.widget.LKEditText
+                android:id="@+id/email_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_email"
@@ -54,7 +54,7 @@
                 android:maxLines="1"
                 android:singleLine="true" />
 
-            <EditText
+            <se.lundakarnevalen.widget.LKEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 android:maxLines="1"
                 android:singleLine="true" />
 
-            <Button
+            <se.lundakarnevalen.widget.LKButton
                 android:id="@+id/sign_in_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                 android:layout_marginTop="16dp"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
-                android:text="@string/action_sign_in_register" />
+                android:text="@string/sign_in_button" />
 
             <Button
                 android:id="@+id/cheat"
@@ -82,9 +82,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             
-            <Button
+            <se.lundakarnevalen.widget.LKButton
                 android:id="@+id/password_reset"
-                android:text="Reset Password"
+                android:text="@string/reset_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>

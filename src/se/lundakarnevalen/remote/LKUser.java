@@ -24,7 +24,7 @@ public class LKUser {
 	Context context;
 	public int id = Integer.MIN_VALUE;
 	public String imgUrl, token, gcmRegId, personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
-	public int step, kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion;
+	public int step, kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion, tilldelad_sektion;
 	public int[] intresse, sektioner;
 	public boolean jobbatHeltid, jobbatStyrelse, jobbatForman, jobbatAktiv, karnevalist2010, villAnsvara, medlemAf, medlemKar, medlemNation, karneveljsbiljett;
 	SharedPreferences sp;
@@ -144,6 +144,9 @@ public class LKUser {
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
 		karnevalist.token = this.token;
+		
+		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
+		
 		return gson.toJson(karnevalist);
 	}
 	
@@ -186,6 +189,9 @@ public class LKUser {
 		karnevalist.medlem_nation = this.medlemNation;
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
+		
+		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
+		
 		if(asKarnevalist){
 			KarnevalistWrite wrapper = new KarnevalistWrite(karnevalist, token);
 			return gson.toJson(wrapper);
@@ -234,6 +240,9 @@ public class LKUser {
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
 		this.token = user.token;
+		
+		this.tilldelad_sektion = user.tilldelad_sektion;
+		
 	}
 	
 	public void getDataFromUser(User user){
@@ -279,5 +288,7 @@ public class LKUser {
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
 		this.token = user.token;
+		
+		this.tilldelad_sektion = user.tilldelad_sektion;
 	}
 }
