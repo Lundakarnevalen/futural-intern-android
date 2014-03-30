@@ -5,6 +5,7 @@ import se.lundakarnevalen.android.ContentActivity;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKUser;
+import util.HelperEmail;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -42,10 +43,10 @@ public class FrSignIn extends Fragment {
 	 */
 	public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
 
-	/**
-	 * Keep track of the login task to ensure we can cancel it if requested.
-	 */
-	private UserLoginTask mAuthTask = null;
+//	/**
+//	 * Keep track of the login task to ensure we can cancel it if requested.
+//	 */
+//	private UserLoginTask mAuthTask = null;
 
 	// Values for email and password at the time of the login attempt.
 	private String mEmail;
@@ -165,9 +166,6 @@ public class FrSignIn extends Fragment {
 	 * errors are presented and no actual login attempt is made.
 	 */
 	public void attemptLogin() {
-		if (mAuthTask != null) {
-			return;
-		}
 
 		// Reset errors.
 		mEmailView.setError(null);
@@ -177,8 +175,8 @@ public class FrSignIn extends Fragment {
 		mEmail = mEmailView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
 
-		mEmail = "email@email.com";
-		mPassword = "12345678";
+//		mEmail = "email@email.com";
+//		mPassword = "12345678";
 		
 		boolean cancel = false;
 		View focusView = null;
@@ -193,13 +191,13 @@ public class FrSignIn extends Fragment {
 			focusView = mPasswordView;
 			cancel = true;
 		}
-
+		
 		// Check for a valid email address.
 		if (TextUtils.isEmpty(mEmail)) {
 			mEmailView.setError(getString(R.string.error_field_required));
 			focusView = mEmailView;
 			cancel = true;
-		} else if (!mEmail.contains("@")) {
+		} else if (!HelperEmail.validEmail(mEmail)) {
 			mEmailView.setError(getString(R.string.error_invalid_email));
 			focusView = mEmailView;
 			cancel = true;
@@ -213,7 +211,7 @@ public class FrSignIn extends Fragment {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-			showProgress(true);
+//			showProgress(true);
 			
 			
 			LoginCredentialsWrite credentials = new LoginCredentialsWrite(mEmail, mPassword);
@@ -226,9 +224,10 @@ public class FrSignIn extends Fragment {
 		}
 	}
 
+	/*
 	/** 
 	 * Shows the progress UI and hides the login form.
-	 */
+	 * 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 	private void showProgress(final boolean show) {
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -270,7 +269,7 @@ public class FrSignIn extends Fragment {
 	/**
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
-	 */
+	 *
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 		@Override
 		protected Boolean doInBackground(Void... params) {
@@ -314,5 +313,5 @@ public class FrSignIn extends Fragment {
 			mAuthTask = null;
 			showProgress(false);
 		}
-	}
+	}*/
 }

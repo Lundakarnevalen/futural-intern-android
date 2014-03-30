@@ -33,8 +33,10 @@ public class LKFragment extends Fragment {
 	public static final int RESET_PASSWORD_FRAGMENT = 0x007;
 	public static final int SEKTIONER_FRAGMENT = 0x008;
 	public static final int SIGN_IN_FRAGMENT = 0x009;
+	public static final int VERSION = 0x010;
 
 	// Shared preferences keys
+	public static final String SP_VERSION_NAME = "0.4";
 	public static final String SP_GCM_NAME = "LKGCM";
 	public static final String SP_GCM_REGID = "LKGCM_REG_ID";
 	public static final String SP_GCM_REG_APP = "LKGCM_APPV";

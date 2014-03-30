@@ -12,7 +12,6 @@ import java.net.URL;
 import se.lundakarnevalen.android.R;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,10 +19,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
 
 /**
  * Class used to talk to the server API. 
