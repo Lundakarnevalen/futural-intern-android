@@ -1,69 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/waves"
-     >
-     
-     <RelativeLayout     
-                    android:layout_width="210dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="15dp"
-	        android:layout_centerHorizontal="true"
+    android:background="@drawable/waves" >
+
+    <RelativeLayout
+        android:id="@+id/map_upper_box"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" >
+
+        <se.lundakarnevalen.widget.LKTextViewBold
+            android:layout_width="wrap_content"
+            android:layout_height="51dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:background="@drawable/map_upper_textbox"
-              >
-              
-
-
-<se.lundakarnevalen.widget.LKTextViewBold
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textColor="#FF0000"
-	        android:gravity="center"
-	        
-	        android:layout_centerHorizontal="true"
-	        android:layout_centerVertical="true"
-	        android:textSize="20sp"
-	        android:text="@string/map_right_now"
-	        />
+            android:gravity="center"
+            android:text="@string/map_right_now"
+            android:textColor="#FF0000"
+            android:textSize="18sp" />
+  
+        <ImageView 
+        android:layout_width="wrap_content"
+     	android:layout_marginBottom="-4dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/map_upper_textbox_shadow" />
+      
         
+        </RelativeLayout>
 
-</RelativeLayout>
-<RelativeLayout 
+    <RelativeLayout
+        android:id="@+id/map_lower_box"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp" >
 
-    android:layout_width="140dp"
-    android:layout_height="60dp"
+        <se.lundakarnevalen.widget.LKTextViewBold
+            android:id="@+id/nbr_of"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/map_nbr_of_people"
+            android:textColor="#FF0000"
+            android:textSize="24sp"
+            android:background="@drawable/map_lower_textbox" />
 
-    android:layout_marginBottom="15dp"
-    android:layout_centerHorizontal="true"
-    android:layout_alignParentBottom="true"
-    >
-<se.lundakarnevalen.widget.LKTextView 
-	        
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:id="@+id/nbr_of"
-	        android:textColor="#FF0000"
-	        android:gravity="center"
-	        android:layout_centerHorizontal="true"
-	        android:layout_centerVertical="true"
-	        android:textSize="20sp"
-	        
-    		android:background="@drawable/map_lower_textbox"
-	        android:text="2321\nkarnevalister"
-	        />
+        <se.lundakarnevalen.widget.LKTextViewBold
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_below="@id/nbr_of"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/map_karnevalister"
+            android:textColor="#FF0000"
+            android:textSize="12sp"
+            android:background="@drawable/map_lower_textbox" />
+  <ImageView 
+        android:layout_width="wrap_content"
+     	android:layout_marginBottom="-4dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/map_lower_textbox_shadow" />
+      
+        </RelativeLayout>
+
     
     
-</RelativeLayout>
-
-<ImageView
     
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-     android:src="@drawable/map_skane"
-     android:scaleX="0.9"
-     android:scaleY="0.9"
-    android:id="@+id/map_id"
-    />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/map_lower_box"
+        android:layout_below="@id/map_upper_box"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:id="@+id/map_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/desc_map"
+            android:src="@drawable/map_skane" />
+    </RelativeLayout>
+
 </RelativeLayout>
