@@ -37,7 +37,7 @@ public class MapFragment extends LKFragment {
 
 	private long lastUpdate;
 
-	// Pre pic.
+	// Pre pic. 
 	private Bitmap bmOverlay;
 
 	private static final int HANDLER_DELAY = 1800000; //30min
@@ -56,7 +56,6 @@ public class MapFragment extends LKFragment {
 	private static final int TIME_INTERVAL = 1800000; // get gps location every 30 min
 	//private static final int TIME_INTERVAL = 10000; // get gps location every 30 min
 
-	//private static final int TIME_INTERVAL = 1800000; // get gps location every 30 min
 	private static final int GPS_DISTANCE = 0; // set the distance value in meter
 
 
@@ -64,8 +63,8 @@ public class MapFragment extends LKFragment {
 
 	private final String SHARED_ID = "SHAREDID";
 
-	private float maxDotSize = 40;
-	private float minDotSize = 10;
+	private float maxDotSize = 45;
+	private float minDotSize = 15;
 	private float diffDotSize = maxDotSize - minDotSize;
 	private float startLonMap = (float)12.445449839578941;
 	private float startLatMap = (float)55.33715099913018;
@@ -104,7 +103,6 @@ public class MapFragment extends LKFragment {
 		img = (ImageView) rootView.findViewById(R.id.map_id);
 		if(bmOverlay != null) {
 			((ImageView) rootView.findViewById(R.id.map_id)).setImageBitmap(bmOverlay);
-  
 		} 		
 		if(clusterId == -1) {
 			SharedPreferences prefs = getContext().getSharedPreferences(SHARED_ID, Context.MODE_PRIVATE);
@@ -165,7 +163,6 @@ public class MapFragment extends LKFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setTitle(getString(R.string.karta));
-	
 		//TODO
 		// Fix both eng and swe.
 	}
@@ -244,9 +241,7 @@ public class MapFragment extends LKFragment {
 				smallestDot = Math.min(smallestDot, p.quantity);
 				nbrOfPersons += p.quantity;
 			}
-
 			float difference = biggestDot - smallestDot; 
-
 			for(Position p: positions)  {
 				float lat = (p.lat - startLatMap) / diffLat;
 				float lon = (p.lng - startLonMap) / diffLon;
@@ -263,23 +258,6 @@ public class MapFragment extends LKFragment {
 			text.setText(""+nbrOfPersons);
 			img.setImageBitmap(bmOverlay);
 		}
-	}
-
-	/**
-	 * Get lat/lng, cluster from the database and update positions.
-	 * 
-	 */
-	private void getAndUpdatePositions() {
-		// Connect and get positions...
-		/*
-		ArrayList<Position> newPositions = new ArrayList<Position>();
-		newPositions.add(new Position((float)55.704660,(float)13.191007,65)); //LUND
-		newPositions.add(new Position((float)55.374660,(float)13.191007,17));
-		newPositions.add(new Position((float)55.374660,(float)13.391007,40));
-		newPositions.add(new Position((float)55.934660,(float)13.951007,10));
-		 */
-		updatePositions(positions);
-
 	}
 
 	private void getPositions() {
@@ -391,33 +369,12 @@ public class MapFragment extends LKFragment {
 		private int cluster_id;
 	}
 
-	private Location getLastKnownLocation() {
-		LocationManager mLocationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-		List<String> providers = mLocationManager.getProviders(true);
-		Location bestLocation = null;
-		for (String provider : providers) {
-			Location l = mLocationManager.getLastKnownLocation(provider);
-
-			if (l == null) {
-				continue;
-			}
-			if (bestLocation == null
-					|| l.getAccuracy() < bestLocation.getAccuracy()) {
-				bestLocation = l;
-			}
-		}
-		if (bestLocation == null) {
-			return null;
-		}
-		return bestLocation;
-	}
-
+	
 	private LocationListener PositionListener = new LocationListener(){
 		public void onLocationChanged(Location location) {
 			// update location
 			locMan.removeUpdates(PositionListener); // remove this listener
 		}
-
 		public void onProviderDisabled(String provider) {
 		}
 
