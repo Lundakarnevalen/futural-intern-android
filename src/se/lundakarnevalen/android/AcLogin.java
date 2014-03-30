@@ -1,4 +1,4 @@
-package activities;
+package se.lundakarnevalen.android;
 
 import se.lundakarnevalen.android.R;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package activities;
+package se.lundakarnevalen.android;
 
 import java.io.IOException;
 

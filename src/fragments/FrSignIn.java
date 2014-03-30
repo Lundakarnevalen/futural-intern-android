@@ -1,10 +1,10 @@
 package fragments;
 
 import json.LoginCredentialsWrite;
+import se.lundakarnevalen.android.ContentActivity;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKUser;
-import activities.ContentActivity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -137,15 +137,12 @@ public class FrSignIn extends Fragment {
 			
 			user.parseJson(result);
 			
+			user.storeUserLocaly();
 			
-			
-			
-//			user.storeUserLocaly();
-			
-//			Intent intent = new Intent(context, ContentActivity.class);		
+			Intent intent = new Intent(context, ContentActivity.class);		
 		
-//			context.startActivity(intent);
-//			getActivity().finish();
+			context.startActivity(intent);
+			getActivity().finish();
 		}
 	}
  	
@@ -159,6 +156,7 @@ public class FrSignIn extends Fragment {
 			getActivity().finish();
 		}
 	}
+	
 //	End of removal
 
 	/**
