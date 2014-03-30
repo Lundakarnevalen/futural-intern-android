@@ -198,6 +198,19 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 		//TODO
 		// Fix both eng and swe.
 	}
+	
+	@Override
+	public void onPause() {
+		sm.unregisterListener(this);
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+	@Override
+	public void onResume() {
+		sm.registerListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+				SensorManager.SENSOR_DELAY_GAME);// TODO Auto-generated method stub
+		super.onResume();
+	}
 
 	/**
 	 * Send current lat/lng, id and section to the database.
@@ -426,14 +439,14 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-
+		
 		synchronized (this) {
 			switch (event.sensor.getType()) {
 			case Sensor.TYPE_ACCELEROMETER:
 				float x = (float)event.values[0];
 				float y = (float)event.values[1];
 				float z = (float)event.values[2];
-
+			
 				Matrix matrix = new Matrix();
 				background.setScaleType(ImageView.ScaleType.MATRIX);
 				matrix.set(background.getImageMatrix());
