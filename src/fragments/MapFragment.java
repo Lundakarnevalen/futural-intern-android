@@ -198,7 +198,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 		//TODO
 		// Fix both eng and swe.
 	}
-	
+
 	@Override
 	public void onPause() {
 		sm.unregisterListener(this);
@@ -433,46 +433,45 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		// TODO Auto-generated method stub
-		Log.d("accel","cccc");
 	}
 
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		
+
 		synchronized (this) {
 			switch (event.sensor.getType()) {
 			case Sensor.TYPE_ACCELEROMETER:
 				float x = (float)event.values[0];
 				float y = (float)event.values[1];
 				float z = (float)event.values[2];
-			
+
 				Matrix matrix = new Matrix();
 				background.setScaleType(ImageView.ScaleType.MATRIX);
 				matrix.set(background.getImageMatrix());
 				float multFactor = 5;
 				if(lastX == -1000) {
-					
+
 					if(x > 4) {
 						x = 4;
 
- 					} else if(x < -4) {
- 						x = -4;
- 					}
+					} else if(x < -4) {
+						x = -4;
+					}
 					if(y < 0) {
 						y = 0;
 
- 					} else if(y > 9) {
- 						y = 9;
- 					}
-												
-//					// 7 mitten
-					
+					} else if(y > 9) {
+						y = 9;
+					}
+
+					//					// 7 mitten
+
 					matrix.postTranslate(x*multFactor, -(y-7)*multFactor);
-					
+
 					lastX = x;
 					lastY = y;
-					
+
 
 
 				} else {
@@ -498,19 +497,19 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 						//move up
 					}
 					 */
-					
+
 					if(x > 4) {
 						x = 4;
 
- 					} else if(x < -4) {
- 						x = -4;
- 					}
+					} else if(x < -4) {
+						x = -4;
+					}
 					if(y < 0) {
 						y = 0;
 
- 					} else if(y > 9) {
- 						y = 9;
- 					}
+					} else if(y > 9) {
+						y = 9;
+					}
 
 					float resX = 0;
 					float resY = 0;
@@ -554,12 +553,12 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 						} else {
 							lastY = y;
 						}
-						
+
 					}
-					
-					
+
+
 					matrix.postTranslate(resX*multFactor, resY*multFactor);
-				
+
 				}
 				background.setImageMatrix(matrix); // display the transformation on screen
 
