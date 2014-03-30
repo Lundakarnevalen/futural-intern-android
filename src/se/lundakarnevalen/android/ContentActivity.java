@@ -8,6 +8,7 @@ import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ import fragments.SectionsFragment;
 
 public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger {
 	
-	private final String LOG_TAG = "ContentActivity";
+	private final String LOG_TAG = ContentActivity.class.getSimpleName();
 	
 	boolean drawerOpen;
 	private ActionBar actionBar;
@@ -100,12 +101,21 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		
 		
 		SharedPreferences sharedVersion = getSharedPreferences(LKFragment.SP_VERSION_NAME, MODE_PRIVATE);
-		float version = sp.getFloat("Version", Float.MIN_VALUE);
+		int version = sp.getInt("Version", -1);
 		
-		if (version < 0.0f) {
+		if (version < R.integer.version_code) {
+			Log.d(LOG_TAG, "Update of user information required");
+			//If this happens the current user information is old, so we need to update it.
 			
-		} else {
+//			TODO check how to update the users information without signing in to the application.
 			
+			//Update current version number
+			
+			Log.d(LOG_TAG, "Updating the version number");
+			
+			Editor edit = sharedVersion.edit();
+			edit.putFloat("Version", R.integer.version_code);
+			edit.commit();
 		}
 		
 		this.setInboxCount();

@@ -1,15 +1,15 @@
 package fragments;
 
-import com.google.gson.Gson;
-
 import json.LoginCredentialsWrite;
+import json.ResetResponse;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
-import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import util.HelperEmail;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +17,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 
 public class FrResetPassword extends Fragment{
@@ -32,7 +35,7 @@ public class FrResetPassword extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.fr_layout_reset_password, null); 
 		
-		remote = new LKRemote(rootView.getContext(), new TextListener());
+		remote = new LKRemote(rootView.getContext(), new ResetRemoteListener());
 		
 		mEmailView = (EditText) rootView.findViewById(R.id.email_field);
 		
@@ -47,19 +50,31 @@ public class FrResetPassword extends Fragment{
 		
 	}
 	
-	private class TextListener implements TextResultListener {
+	private class ResetRemoteListener implements TextResultListener {
 
 		@Override
 		public void onResult(String result) {
-
 			if(result == null) {
 				Log.d(log, "Result was null");
 				return;
 			}
 			
-//			gson.fromJson(result, classOfT)
-		
+			ResetResponse response = gson.fromJson(result, ResetResponse.class);
 			
+			Log.d(LOG_TAG, response.toString());
+			
+			if(!response.success) {
+				Toast.makeText(getActivity(), response.errors.toString(), Toast.LENGTH_LONG).show();
+				return;
+			}
+			
+			Toast.makeText(getActivity(), "Successfully reset password, check your mail", Toast.LENGTH_LONG).show();
+			
+			FragmentManager manager = getActivity().getSupportFragmentManager();
+			FragmentTransaction ft = manager.beginTransaction();
+			
+			ft.replace(R.id.content_frame, new FrSignIn());
+			ft.commit();
 		}
 	}
 	
