@@ -12,6 +12,7 @@
             android:layout_width="wrap_content"
             android:id="@+id/menu_drawer_toggle_wrapper"
             android:layout_alignParentLeft="true"
+            android:visibility="visible"
             android:clickable="true">
             <ImageView
                 android:layout_width="wrap_content"
@@ -62,4 +63,43 @@
 	        android:src="@drawable/top_logo_white"
 	        android:visibility="gone"/>
     </RelativeLayout>
+    
+    <RelativeLayout 
+            android:layout_height="44dp"
+            android:layout_width="32dp"
+            android:id="@+id/info_pic"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/horizontal_margin"
+            android:clickable="true"
+            >
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/info"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                
+                />
+                
+        
+            
+            </RelativeLayout>
+	    <RelativeLayout 
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/back_to_map"
+            android:layout_alignParentLeft="true"
+            android:clickable="true"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/info"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/horizontal_margin"
+                />
+        </RelativeLayout>
+    
 </RelativeLayout>

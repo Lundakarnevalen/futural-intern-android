@@ -17,7 +17,7 @@
 	        android:layout_centerHorizontal="true"
 	        android:id="@+id/sad_robot"
 	        android:layout_marginTop="@dimen/vertical_margin"/>
-	    <ImageView 
+	    <ImageView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:src="@drawable/oh_no_text"
@@ -36,13 +36,13 @@
 	        android:gravity="center"
 	        android:layout_centerHorizontal="true"
 	        android:text="@string/register_desc"/>
-	    <se.lundakarnevalen.widget.LKButton 
+	    <se.lundakarnevalen.widget.LKButtonGreen 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:text="@string/register_me"
 	        android:id="@+id/register"
 	        android:layout_below="@id/register_desc"/>
-	    <RelativeLayout
+	    <!-- <RelativeLayout
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_below="@id/register"
@@ -63,6 +63,6 @@
 		        android:id="@+id/login_text"
 		        android:layout_toRightOf="@id/register_desc"
 		        android:text="@string/register_desc_login_l"/>
-	    </RelativeLayout>
+	    </RelativeLayout> -->
 	</RelativeLayout>
 </ScrollView>

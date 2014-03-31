@@ -103,27 +103,6 @@
 	        android:id="@+id/wrapper_lk"
 	        android:orientation="vertical"
 	        android:visibility="gone">
-		    <se.lundakarnevalen.widget.LKTextViewBold
-		        android:layout_marginTop="@dimen/vertical_margin"
-		        android:textSize="16sp"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:textColor="#FFFFFF"
-		        android:text="@string/registration_iwant" />
-		    <CheckBox android:id="@+id/checkbox_responsible"
-	            		android:layout_width="wrap_content"
-        				android:layout_height="wrap_content"
-        				android:text="@string/responsible"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
-        				android:textColor="#FFFFFF" />
-		    <CheckBox android:id="@+id/checkbox_active"
-	            		android:layout_width="wrap_content"
-        				android:layout_height="wrap_content"
-        				android:text="@string/active"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
-        				android:textColor="#FFFFFF" />
 		   
 		    <se.lundakarnevalen.widget.LKTextViewBold
 		        android:layout_marginTop="@dimen/vertical_margin"
@@ -158,8 +137,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_1"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -178,8 +159,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_2"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -198,8 +181,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_3"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -218,8 +203,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_4"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -238,8 +225,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_5"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -258,8 +247,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_6"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -278,8 +269,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_7"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -298,8 +291,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_8"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -318,8 +313,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_9"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -338,8 +335,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_10"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -358,8 +357,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_11"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -378,8 +379,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_12"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -398,8 +401,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_13"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"        				
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -418,8 +423,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_14"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -438,8 +445,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_15"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -458,8 +467,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/dd_16"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onIntrestsCheckBoxClicked"/>
 				</LinearLayout>
@@ -500,8 +511,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_1"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -521,8 +534,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_2"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -541,8 +556,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_3"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -561,8 +578,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_4"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -581,8 +600,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_5"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -601,8 +622,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_6"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -621,8 +644,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_7"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -641,8 +666,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_8"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -661,8 +688,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_9"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -681,8 +710,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_10"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -701,8 +732,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_11"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -721,8 +754,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_12"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -741,8 +776,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_13"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -761,8 +798,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_14"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -781,8 +820,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_15"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -801,8 +842,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_16"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -821,8 +864,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_17"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -841,8 +886,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_18"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -861,8 +908,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_19"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -881,8 +930,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_20"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -901,8 +952,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_21"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -921,8 +974,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_22"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -941,8 +996,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_23"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -961,8 +1018,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_24"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -981,8 +1040,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_25"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1001,8 +1062,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_26"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1021,8 +1084,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_100"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1041,8 +1106,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_101"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1061,8 +1128,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_102"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1081,8 +1150,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_202"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1101,8 +1172,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_203"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1121,8 +1194,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_204"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1141,8 +1216,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_300"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1161,8 +1238,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_399"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1181,8 +1260,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_400"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1201,8 +1282,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_499"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1221,8 +1304,10 @@
 	            		android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:text="@string/sektion_500"
-        				android:button="@drawable/checkbox_bg"
-        				android:padding="5dp"
+        				android:drawableLeft="@drawable/checkbox_bg"
+	        			android:drawablePadding="5dp"
+	            		android:padding="5dp"
+	            		android:button="@android:color/transparent"
         				android:textColor="#FFFFFF"
         				android:onClick="onSectionCheckBoxClicked"/>
 				</LinearLayout>
@@ -1235,6 +1320,16 @@
 	        	android:layout_height="wrap_content"
 	        	android:textColor="#FFFFFF"
 	        	android:text="@string/elseT" />
+			<CheckBox android:id="@+id/checkbox_responsible"
+			   	android:layout_marginTop="@dimen/vertical_margin_half"
+           		android:layout_width="wrap_content"
+   				android:layout_height="wrap_content"
+   				android:text="@string/responsible"
+  				android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
+   				android:textColor="#FFFFFF" />
 	    	<se.lundakarnevalen.widget.LKEditText
 	        	android:singleLine="true"
 	        	android:layout_marginTop="@dimen/vertical_margin_half"
@@ -1272,17 +1367,7 @@
 		        android:inputType="phone"
 		        android:digits="0123456789"
 		        android:hint="@string/pers_nr" />
-		    <se.lundakarnevalen.widget.LKTextViewFat
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:textSize="16sp"
-		        android:layout_marginTop="@dimen/horizontal_margin_half"
-		        android:textColor="#FFFFFF"
-		        android:text="@string/sexTopic"/>
-		    <se.lundakarnevalen.widget.LKSpinner
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:id="@+id/sex"/>
+		    
 		    <se.lundakarnevalen.widget.LKEditText
 		        android:singleLine="true"
 		        android:layout_marginTop="@dimen/vertical_margin_half"
@@ -1303,6 +1388,17 @@
 		        android:textColorHint="@color/bg_peach"
 		        android:inputType="textCapSentences"
 		        android:hint="@string/lastname" />
+		    <se.lundakarnevalen.widget.LKTextViewFat
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="16sp"
+		        android:layout_marginTop="@dimen/horizontal_margin_half"
+		        android:textColor="#FFFFFF"
+		        android:text="@string/sexTopic"/>
+		    <se.lundakarnevalen.widget.LKSpinner
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/sex"/>
 		    <se.lundakarnevalen.widget.LKEditText
 		        android:singleLine="true"
 		        android:layout_marginTop="@dimen/vertical_margin_half"
@@ -1481,44 +1577,53 @@
 		        android:id="@+id/checkbox_work_fulltime"
 	           	android:layout_width="wrap_content"
 	    		android:layout_height="wrap_content"
-	    		android:button="@drawable/checkbox_bg"
-	        	android:padding="5dp"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
 	    		android:text="@string/work_fulltime"
 	    		android:textColor="#FFFFFF" />
 		    <CheckBox
 		        android:id="@+id/checkbox_work_styrelse"
 	           	android:layout_width="wrap_content"
 	    		android:layout_height="wrap_content"
-	    		android:button="@drawable/checkbox_bg"
-	        	android:padding="5dp"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
 	    		android:text="@string/work_styrelse"
 	    		android:textColor="#FFFFFF" />
 		    <CheckBox
 		        android:id="@+id/checkbox_work_forman"
 	           	android:layout_width="wrap_content"
 	    		android:layout_height="wrap_content"
-	    		android:button="@drawable/checkbox_bg"
-	        	android:padding="5dp"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
 	    		android:text="@string/work_forman"
 	    		android:textColor="#FFFFFF" />
 		    <CheckBox
 		        android:id="@+id/checkbox_work_aktiv"
 	           	android:layout_width="wrap_content"
 	    		android:layout_height="wrap_content"
-	    		android:button="@drawable/checkbox_bg"
-	        	android:padding="5dp"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
 	    		android:text="@string/work_aktiv"
 	    		android:textColor="#FFFFFF" />
 		    <CheckBox
+		        android:layout_marginTop="@dimen/vertical_margin"
 		        android:id="@+id/checkbox_karnevalist_2010"
 	           	android:layout_width="wrap_content"
 	    		android:layout_height="wrap_content"
-	    		android:button="@drawable/checkbox_bg"
-	        	android:padding="5dp"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
 	    		android:text="@string/karnevalist_2010"
 	    		android:textColor="#FFFFFF" />
-		    
-		    
 		    
 		    <se.lundakarnevalen.widget.LKTextView 
 		        android:layout_marginTop="@dimen/vertical_margin"
@@ -1530,14 +1635,16 @@
 		        android:id="@+id/checkbox_PUL"
 	           	android:layout_width="wrap_content"
 	    		android:layout_height="wrap_content"
-	    		android:button="@drawable/checkbox_bg"
-	        	android:padding="5dp"
+	    		android:drawableLeft="@drawable/checkbox_bg"
+	        	android:drawablePadding="5dp"
+	            android:padding="5dp"
+	            android:button="@android:color/transparent"
 	    		android:text="@string/registration_comfirmPUL"
 	    		android:textColor="#FFFFFF" />
 		</LinearLayout>
 		<!-- Personuppgifter - Slut -->
 		
-	    <se.lundakarnevalen.widget.LKButton
+	    <se.lundakarnevalen.widget.LKButtonGreen
 	        android:layout_marginTop="@dimen/vertical_margin"
 	        android:id="@+id/append_button"
 	        android:layout_width="match_parent"
@@ -1545,7 +1652,7 @@
 	        android:textColor="#FFFFFF"
 	        android:text="@string/registration_append"
 	        android:visibility="gone" />
-	    <se.lundakarnevalen.widget.LKButton
+	    <se.lundakarnevalen.widget.LKButtonGreen
 	        android:layout_marginTop="@dimen/vertical_margin"
 	        android:id="@+id/confirm_button"
 	        android:layout_width="match_parent"

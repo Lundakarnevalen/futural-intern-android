@@ -74,6 +74,7 @@ public class LKUser {
 			LKRemote remote = new LKRemote(context, new LKRemote.TextResultListener(){
 				@Override
 				public void onResult(String result) {
+					Log.d(LOG_TAG, "result from get request");
 					Log.d(LOG_TAG, "server: "+result);
 					if(result == null){
 						Log.e(LOG_TAG, "error - null response");
@@ -81,10 +82,11 @@ public class LKUser {
 					}
 					// Update user with data
 					Gson gson = new Gson();
-					Response.GetKarnevalist data = gson.fromJson(result, Response.GetKarnevalist.class);
+					Response.GetKarnevalistSpecial data = gson.fromJson(result, Response.GetKarnevalistSpecial.class);
 					
 					if(data.status.equals("success")){
 						getDataFromUser(data.karnevalist);
+						token = data.token;
 						Log.d(LOG_TAG, "url: "+imgUrl);
 						storeUserLocaly();
 					}else{
@@ -92,7 +94,7 @@ public class LKUser {
 					}
 				}
 			});
-			remote.requestServerForText("karnevalister/"+id+".json", "{}", LKRemote.RequestType.GET, false);
+			remote.requestServerForText("karnevalister/"+id+".json?token="+token, "", LKRemote.RequestType.GET, false);
 			Log.d(LOG_TAG, "requested server for the user with id:"+id);
 		}else{
 			// No user downloaded.
@@ -183,9 +185,8 @@ public class LKUser {
 		karnevalist.medlem_nation = this.medlemNation;
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
-		karnevalist.token = this.token;
 		if(asKarnevalist){
-			KarnevalistWrite wrapper = new KarnevalistWrite(karnevalist);
+			KarnevalistWrite wrapper = new KarnevalistWrite(karnevalist, token);
 			return gson.toJson(wrapper);
 		}
 		return gson.toJson(karnevalist);
@@ -231,6 +232,7 @@ public class LKUser {
 		this.medlemKar = user.medlem_kar;
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
+		this.token = user.token;
 	}
 	
 	public void getDataFromUser(User user){
@@ -275,5 +277,6 @@ public class LKUser {
 		this.medlemKar = user.medlem_kar;
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
+		this.token = user.token;
 	}
 }

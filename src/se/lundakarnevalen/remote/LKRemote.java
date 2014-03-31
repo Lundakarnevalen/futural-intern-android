@@ -1,3 +1,4 @@
+
 package se.lundakarnevalen.remote;
 
 import java.io.BufferedReader;
@@ -12,7 +13,6 @@ import java.net.URL;
 import se.lundakarnevalen.android.R;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,10 +20,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
 
 /**
  * Class used to talk to the server API. 
@@ -32,11 +28,12 @@ import android.view.animation.DecelerateInterpolator;
  */
 
 public class LKRemote {
-	
+
 	private final String LOG_TAG = "API call";
-	
+
 	Context context;
-	private String remoteAdr = "http://www.karnevalist.se/";
+	private String remoteAdr = "https://karnevalist-stage.herokuapp.com/";
+	private String remoteAdrOld = "http://www.karnevalist.se/";
 	//private String remoteAdr = "http://httpbin.org/put";
 	private boolean showProgressDialog = false;
 	TextResultListener textResultListener;
@@ -48,7 +45,7 @@ public class LKRemote {
 	public LKRemote(Context context){
 		this.context = context;
 	}
-	
+
 	/**
 	 * Creates remote object and sets a listener for the result
 	 * @param context Application context
@@ -58,15 +55,15 @@ public class LKRemote {
 		this.context = context; 
 		this.textResultListener = textResultListener;
 	}
-	
+
 	/**
 	 * Sets a text result listener
 	 * @param textResultListener the listener.
 	 */
-	public void setTextResultListener(TextResultListener textResulListener){
+	public void setTextResultListener(TextResultListener textResultListener){
 		this.textResultListener = textResultListener;
 	}
-	
+
 	/**
 	 * Show a progressbar when performing the post. 
 	 * @param showProgressBar
@@ -74,7 +71,7 @@ public class LKRemote {
 	public void showProgressDialog(boolean showProgressDialog){
 		this.showProgressDialog = showProgressDialog;
 	}
-	
+
 	/**
      * Checks if device is connected to internet. 
      * @return True if internet is available, otherwise false. 
@@ -106,6 +103,8 @@ public class LKRemote {
     		return "GET";
     	case PUT:
     		return "PUT";
+    	case DELETE:
+    		return "DELETE";
     	default:
     		return "GET";
     	}
@@ -156,16 +155,16 @@ public class LKRemote {
     	this.bitmapListener = l;
     }
 
-	
+
 	/**
 	 * Inner class used to perform http calls with a textresponse. 
 	 * @author Alexander Najafi
 	 */
 	class ServerTextTask extends AsyncTask<String, Void, String>{
-		
+
 		ProgressDialog progressDialog;
 		boolean progressDialogVisible;
-		
+
 		@Override
 		protected void onPreExecute(){
 			if(showProgressDialog){
@@ -173,19 +172,20 @@ public class LKRemote {
 				buildProgressDialog();
 			}
 		}
-		
+
 		protected void buildProgressDialog(){
 			progressDialog = new ProgressDialog(context);
 			progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			progressDialog.setMessage(context.getString(R.string.loading));
+			progressDialog.setCancelable(false);
 			progressDialog.show();
 		}
-		
+
 		protected void hideProgressDialog(){
 			if(progressDialog != null)
 				progressDialog.cancel();
 		}
-		
+
 		@Override
 		protected String doInBackground(String... params) {
 			String file, data, requestType;
@@ -201,7 +201,7 @@ public class LKRemote {
 				Log.e(LOG_TAG, "No parameters, post data or file is missing. usage: [file, data]");
 				return null;
 			}
-			
+
 			URL url;
 			try {
 				url = new URL(remoteAdr+file);
@@ -209,7 +209,7 @@ public class LKRemote {
 				Log.e(LOG_TAG, "Malformed URL");
 				return null;
 			}
-			
+
 			HttpURLConnection con;
 			try {
 				con = (HttpURLConnection) url.openConnection();
@@ -234,7 +234,7 @@ public class LKRemote {
 			con.setDoInput(true);
 			if(write)
 				con.setDoOutput(true);
-			
+
 			/*Log.i(LOG_TAG, "Will now open stream for writing with:");
 			for (String header : con.getRequestProperties().keySet()) {
 				   if (header != null) {
@@ -243,7 +243,7 @@ public class LKRemote {
 				      }
 				   }
 			}*/
-			
+
 			try{
 				con.connect();
 			}catch(IOException e){ 
@@ -271,7 +271,7 @@ public class LKRemote {
 					return null;
 				}
 			}
-			
+
 			InputStreamReader isr;
 			try {
 				Log.d(LOG_TAG, "Response: "+con.getResponseCode());
@@ -292,7 +292,7 @@ public class LKRemote {
 				Log.e(LOG_TAG, "Failed when reading from stream");
 				return null;
 			}
-			
+
 			try {
 				br.close();
 				isr.close();
@@ -300,40 +300,40 @@ public class LKRemote {
 			} catch (IOException e) {
 				Log.w(LOG_TAG, "Could not close connection");
 			}
-			
+
 			return result.toString();
 		}
-		
+
 		@Override
 		protected void onPostExecute(String result){
 			if(showProgressDialog){
 				hideProgressDialog();
 			}
-			
+
 			if(result == null)
 				Log.e(LOG_TAG, "Warning result was null");
-			
+
 			if(textResultListener != null){
 				textResultListener.onResult(result);
 			}			
 		}
-		
+
 		@Override
 		protected void onCancelled(String result){
 			if(showProgressDialog){
 				hideProgressDialog();
 			}
-			
+
 			if(result == null)
 				Log.e(LOG_TAG, "WARNING - THE CALL WAS CANCELED");
-			
+
 			if(textResultListener != null){
 				textResultListener.onResult(result);
 			}	
 		}
-		
+
 	}
-	
+
 	/**
      * @author alexandernajafi
      * Use this class to fetch a bitmap image from server. Input param is only the path (absolute) to the image. 
@@ -377,7 +377,7 @@ public class LKRemote {
 	    }
     }
 
-	
+
 	/**
 	 * Interface for callback on text result from server call. 
 	 * @author Alexander Najafi
@@ -387,7 +387,7 @@ public class LKRemote {
 		public static final String LOG_TAG = "Result listener";
 		public void onResult(String result);
 	}
-	
+
 	/**
 	 * Interface for callback on text result from server call. 
 	 * @author Alexander Najafi
@@ -397,8 +397,8 @@ public class LKRemote {
 		public static final String LOG_TAG = "Result listener";
 		public void onResult(Bitmap result);
 	}
-	
+
 	public enum RequestType{
-		POST, GET, PUT;
+		POST, GET, PUT, DELETE;
 	}
 }

@@ -20,13 +20,13 @@
 			android:paddingLeft="@dimen/horizontal_margin"
 			android:paddingRight="@dimen/horizontal_margin"
 	    	android:contentDescription="@string/registration_hurra" />
-	    <RelativeLayout 
+	    <RelativeLayout
 	        android:layout_marginTop="@dimen/vertical_margin_half"
 	        android:layout_centerHorizontal="true"
 	        android:layout_width="wrap_content"
 	      	android:layout_height="wrap_content"
 	      	android:id="@+id/lKCombinedTexts"
-			android:layout_below="@id/imageView1" >
+			android:layout_below="@id/imageView1">
 	    	<se.lundakarnevalen.widget.LKTextViewBold
 	        	android:id="@+id/lKTextViewBold1"
 	        	android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
 	        	android:layout_height="wrap_content"
 	        	android:textColor="@color/base_pink"
 	        	android:layout_below="@id/lKTextViewBold3" 
-	        	android:text="@string/name" />
+	        	android:text="@string/name_name" />
 	        <se.lundakarnevalen.widget.LKTextView 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
@@ -148,21 +148,38 @@
 	        <se.lundakarnevalen.widget.LKTextViewBold 
 	        	android:layout_marginTop="@dimen/vertical_margin_half"
 	        	android:layout_marginRight="@dimen/horizontal_margin_half"
-	        	android:layout_marginBottom="@dimen/vertical_margin"
+	        	android:layout_marginBottom="@dimen/vertical_margin_half"
 	        	android:layout_marginLeft="@dimen/horizontal_margin"
 	        	android:textSize="18sp"
-	        	android:id="@+id/lKTextViewBoldMobileNbr"
+	        	android:id="@+id/lKTextViewBoldPersonNbr"
 	        	android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
 	        	android:textColor="@color/base_pink"
 	        	android:layout_below="@id/lKTextViewBoldEmail" 
-	        	android:text="@string/registration_mobilenbr" />
+	        	android:text="@string/pers_nr2" />
 	        <se.lundakarnevalen.widget.LKTextView 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:id="@+id/phone"
-	            android:layout_toRightOf="@id/lKTextViewBoldMobileNbr"
-	            android:layout_alignBaseline="@id/lKTextViewBoldMobileNbr"/>
+	            android:id="@+id/persnnbr"
+	            android:layout_toRightOf="@id/lKTextViewBoldPersonNbr"
+	            android:layout_alignBaseline="@id/lKTextViewBoldPersonNbr"/>
+	        <se.lundakarnevalen.widget.LKTextViewBold 
+	        	android:layout_marginRight="@dimen/horizontal_margin_half"
+	        	android:layout_marginBottom="@dimen/vertical_margin"
+	        	android:layout_marginLeft="@dimen/horizontal_margin"
+	        	android:textSize="18sp"
+	        	android:id="@+id/lKTextViewBoldId"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:textColor="@color/base_pink"
+	        	android:layout_below="@id/lKTextViewBoldPersonNbr" 
+	        	android:text="Id " />
+	        <se.lundakarnevalen.widget.LKTextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/id"
+	            android:layout_toRightOf="@id/lKTextViewBoldId"
+	            android:layout_alignBaseline="@id/lKTextViewBoldId"/>
 	        <!-- <se.lundakarnevalen.widget.LKTextViewBold 
 	        	android:layout_marginTop="@dimen/vertical_margin"
 	        	android:id="@+id/lKTextViewBoldMySections"
@@ -180,7 +197,7 @@
 	            android:layout_below="@id/lKTextViewBoldMySections"
 	            android:layout_alignLeft="@id/lKTextViewBoldMySections"/> -->
 		</RelativeLayout>
-		<se.lundakarnevalen.widget.LKButton 
+		<se.lundakarnevalen.widget.LKButtonGreen 
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:id="@+id/edit_button"
