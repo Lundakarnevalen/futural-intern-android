@@ -293,7 +293,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		//TODO Map only available on tidningsdagen
 		//listItems.add(new LKMenuListItem("Map", 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		//listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
-		listItems.add(new LKMenuListItem("info", 0, new InfoTextFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+//		listItems.add(new LKMenuListItem("info", 0, new InfoTextFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
 		listItems.add(inboxListItem);
 		//listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
