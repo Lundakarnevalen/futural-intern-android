@@ -1,6 +1,7 @@
 package activities;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import se.lundakarnevalen.android.R;
@@ -39,8 +40,11 @@ import fragments.MapFragment;
 import fragments.SectionsFragment;
 
 public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger{
-	
+	final Calendar startTimeMap = Calendar.getInstance();
+	final Calendar endTimeMap = Calendar.getInstance();
 	private final String LOG_TAG = "ContentActivity";
+	
+	private LKMenuListItem mapItem = null;
 	
 	boolean drawerOpen;
 	private ActionBar actionBar;
@@ -269,7 +273,23 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		
 
 		//listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
-		listItems.add(new LKMenuListItem(getString(R.string.karta), 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+		// TODO fix block
+		
+		startTimeMap.set(2014,Calendar.MARCH,30,23,58,00);
+		endTimeMap.set(2014,Calendar.APRIL,30,23,59,00);
+		Calendar c = Calendar.getInstance();
+		
+		if(c.compareTo(startTimeMap)==1) {
+			if(!(c.compareTo(endTimeMap)==1)) {
+				mapItem = new LKMenuListItem(getString(R.string.karta), 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isMapRow(true);
+				listItems.add(mapItem);
+			}
+		} else {
+			mapItem = new LKMenuListItem(getString(R.string.karta), 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout);
+			listItems.add(mapItem);
+		}
+				
+		
 		//TODO Map only available on tidningsdagen
 		//listItems.add(new LKMenuListItem("Map", 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		//listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
@@ -327,11 +347,28 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	        	Log.d(LOG_TAG, "closed");
 	        }
 
+	        
 	        /**
 	         * Drawer opened
 	         * */
 	        public void onDrawerOpened(View drawerView) {
 	            // TODO: Fix UI in actionBar
+	        	/*
+	        	Log.d("Get1:",startTimeMap.toString());
+	        	if(mapItem != null) {
+	        		Calendar c = Calendar.getInstance();
+	        		Log.d("Get:",c.toString());
+	        		if(c.compareTo(startTimeMap)==1) {
+	        			if(!(c.compareTo(endTimeMap)==1)) {
+	        				mapItem.isMapRow(true);
+	        				mapItem.set();
+	        				Log.d("Komit hitt","yeaa");
+	        			}
+	        		} else {
+	        			mapItem.isMapRow(false);
+	        		}
+	    		}
+	        	*/
 	        	drawerOpen = true;
 	        	Log.d(LOG_TAG, "open");
 	        }

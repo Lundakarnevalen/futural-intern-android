@@ -2,7 +2,7 @@ package fragments;
 
 import java.util.Calendar;
 import java.util.List;
- 
+
 import json.MapGet;
 import json.MapPost;
 import se.lundakarnevalen.android.R;
@@ -13,8 +13,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix; 
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PointF;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -24,16 +29,29 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
- 
+
 import com.google.gson.Gson;
 
 
-public class MapFragment extends LKFragment {
+public class MapFragment extends LKFragment implements SensorEventListener {
+	SensorManager sm;
+	private Sensor mAccelerometer;
+	float lastX = -1000;
+	float lastY = -1000;
 
+	float totX;
+	float totY;
+
+	private PointF start = new PointF();
+	private PointF mid = new PointF();
+
+	ImageView background;	
 
 	private long lastUpdate;
 
@@ -50,7 +68,7 @@ public class MapFragment extends LKFragment {
 	private Handler getHandler;
 
 	private Handler handler;
-	
+
 	private LocationManager locMan;
 
 	private static final int TIME_INTERVAL = 1800000; // get gps location every 30 min
@@ -83,23 +101,37 @@ public class MapFragment extends LKFragment {
 	private ImageView img;
 	private boolean gpsOn = true;
 
-	// Every time you switch to this fragment.
+	// Every time you switch to this fragment. 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fr_layout_map, null);
+		totX = 0;
+		totY = 0;
+
+		background = (ImageView) rootView.findViewById(R.id.map_test_move);
 
 		context = getContext();
+
+		sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+		if(sm == null) {
+			Log.d("sm NUll","ff");
+		} else {
+			Log.d("Okey!"," ");
+			mAccelerometer = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+			sm.registerListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+					SensorManager.SENSOR_DELAY_GAME);
+		}
 
 		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
 		View root = actionBar.getCustomView();
 		RelativeLayout gpsCheckbox = (RelativeLayout) root.findViewById(R.id.gps_checkbox);	
 		gpsCheckbox.setOnClickListener(gpsCheckboxListener);
-		
+
 
 		se.lundakarnevalen.widget.LKTextViewBold text = (se.lundakarnevalen.widget.LKTextViewBold) rootView.findViewById(R.id.nbr_of);
 		//TODO change to english!
 		text.setText(""+nbrOfPersons);
-				
+
 		img = (ImageView) rootView.findViewById(R.id.map_id);
 		if(bmOverlay != null) {
 			((ImageView) rootView.findViewById(R.id.map_id)).setImageBitmap(bmOverlay);
@@ -115,7 +147,7 @@ public class MapFragment extends LKFragment {
 
 			final Calendar end = Calendar.getInstance();
 			end.set(2014,Calendar.APRIL,13,06,00,00);
-			
+
 			handler.postDelayed(new Runnable() {
 				public void run() {
 					Calendar c = Calendar.getInstance(); 
@@ -132,7 +164,7 @@ public class MapFragment extends LKFragment {
 			getHandler = new Handler();
 			final Calendar end = Calendar.getInstance();
 			end.set(2014,Calendar.APRIL,13,06,00,00);
-			
+
 			getHandler.postDelayed(new Runnable() {
 				public void run() { 
 					Calendar c = Calendar.getInstance(); 
@@ -165,6 +197,19 @@ public class MapFragment extends LKFragment {
 		setTitle(getString(R.string.karta));
 		//TODO
 		// Fix both eng and swe.
+	}
+
+	@Override
+	public void onPause() {
+		sm.unregisterListener(this);
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+	@Override
+	public void onResume() {
+		sm.registerListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+				SensorManager.SENSOR_DELAY_GAME);// TODO Auto-generated method stub
+		super.onResume();
 	}
 
 	/**
@@ -369,7 +414,7 @@ public class MapFragment extends LKFragment {
 		private int cluster_id;
 	}
 
-	
+
 	private LocationListener PositionListener = new LocationListener(){
 		public void onLocationChanged(Location location) {
 			// update location
@@ -384,4 +429,168 @@ public class MapFragment extends LKFragment {
 		public void onStatusChanged(String provider, int status, Bundle extras) {
 		}
 	};
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// TODO Auto-generated method stub
+	}
+
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+
+		synchronized (this) {
+			switch (event.sensor.getType()) {
+			case Sensor.TYPE_ACCELEROMETER:
+				float x = (float)event.values[0];
+				float y = (float)event.values[1];
+				float z = (float)event.values[2];
+
+				Matrix matrix = new Matrix();
+				background.setScaleType(ImageView.ScaleType.MATRIX);
+				matrix.set(background.getImageMatrix());
+				float multFactor = 5;
+				if(lastX == -1000) {
+
+					if(x > 4) {
+						x = 4;
+
+					} else if(x < -4) {
+						x = -4;
+					}
+					if(y < 0) {
+						y = 0;
+
+					} else if(y > 9) {
+						y = 9;
+					}
+
+					//					// 7 mitten
+
+					matrix.postTranslate(x*multFactor, -(y-7)*multFactor);
+
+					lastX = x;
+					lastY = y;
+
+
+
+				} else {
+					/*
+					if(lastX < x && totX < 8) {
+						Log.d("Heere","happens");
+						// move right
+						totX+=1;
+						matrix.postTranslate(1, 0);
+						Log.d("TotX",""+totX);
+					} else if(totX > -8){
+						totX -= 1;
+						matrix.postTranslate(-1, 0);
+						//move left
+					}
+					if(lastY < y && totY > -8) {
+						totY -= 1;
+						matrix.postTranslate(0, -1);
+						// move down
+					} else if(totY < 8){
+						totY += 1;
+						matrix.postTranslate(0, 1);
+						//move up
+					}
+					 */
+
+					if(x > 4) {
+						x = 4;
+
+					} else if(x < -4) {
+						x = -4;
+					}
+					if(y < 0) {
+						y = 0;
+
+					} else if(y > 9) {
+						y = 9;
+					}
+
+					float resX = 0;
+					float resY = 0;
+					if(lastX < x ) {
+						resX = Math.abs(x - lastX);
+						// move right
+						//totX+=1;
+						if(resX < 0.15) {
+							resX = 0;
+						} else {
+							lastX = x;
+						}
+						//Log.d("TotX",""+totX);
+					} else {
+						//totX -= 1;
+						resX = Math.abs(lastX - x);
+						if(resX <0.15) {
+							resX = 0;
+						} else {
+							resX = -resX;
+							lastX = x;
+						}
+						//move left
+					}
+					if(lastY < y ) {
+						resY = Math.abs(y - lastY);
+						if(resY <0.15 || z < 0) {
+							resY = 0;
+						} else {
+							resY = -resY;
+							lastY = y;
+						}			
+						//matrix.postTranslate(0, -1);
+						// move down
+					} else {
+						resY = Math.abs(lastY - y);
+						//matrix.postTranslate(0, 1);
+						//move up
+						if(resY <0.15 || z < 0) {
+							resY = 0;
+						} else {
+							lastY = y;
+						}
+
+					}
+
+
+					matrix.postTranslate(resX*multFactor, resY*multFactor);
+
+				}
+				background.setImageMatrix(matrix); // display the transformation on screen
+
+				break;
+			}
+		}
+	}
+
+	/*
+	private void updateSpritePosition() {
+        if ((accellerometerSpeedX != 0) || (accellerometerSpeedY != 0)) {
+            // Set the Boundary limits
+            int tL = 0;
+            int lL = 0;
+            int rL = CAMERA_WIDTH - (int)sprite.getWidth();
+            int bL = CAMERA_HEIGHT - (int)sprite.getHeight();
+
+            // Calculate New X,Y Coordinates within Limits
+            if (sX >= lL) sX += accellerometerSpeedX; else sX = lL;
+            if (sX <= rL) sX += accellerometerSpeedX; else sX = rL;
+            if (sY >= tL) sY += accellerometerSpeedY; else sY = tL;
+            if (sY <= bL) sY += accellerometerSpeedY; else sY = bL;
+
+            // Double Check That New X,Y Coordinates are within Limits
+            if (sX < lL)      sX = lL;
+            else if (sX > rL) sX = rL;
+            if (sY < tL)      sY = tL;
+            else if (sY > bL) sY = bL;
+
+            sprite.setPosition(sX, sY);
+        }
+    }
+	 */
+
 }
