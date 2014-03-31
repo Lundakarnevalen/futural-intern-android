@@ -14,16 +14,17 @@
     <color name="bg_peach">#C1D3EE</color>
     <color name="purple">#BEBDE1</color>
     <color name="hint_peach">#FAD2CB</color>
-    <color name="light_peach">#FFDFD3</color>
+    <!-- <color name="light_peach">#FFDFD3</color> CONFLICT!? -->
     <color name="tainted_white">#FFFBFB</color>
     <color name="dark_peach">#F66557</color>
     <color name="light_blue">#C1D3EE</color>
     <color name="dark_blue">#5D617F</color>
     <color name="yellow">#f5d408</color>
-    <color name="red">#ff2b33</color>
+    <!-- <color name="red">#ff2b33</color> CONFLICT!? -->
     <color name="green">#6ecaae</color>
     <color name="dark_green">#58a18b</color>
     <color name="dark_yellow">#dcbe07</color>
-    <color name="red">#F0533E</color>
+    <!--  <color name="red">#F0533E</color> CONFLICT!? -->
 
+    <color name="bg_sangbok">#f6ead4</color>
 </resources>
