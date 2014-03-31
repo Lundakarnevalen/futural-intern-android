@@ -8,7 +8,7 @@ import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
-import android.content.Context;
+import android.content.Context; 
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
@@ -298,7 +298,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		// TODO fix block
 
 		startTimeMap.set(2014,Calendar.APRIL,1,00,05,00);
-		endTimeMap.set(2014,Calendar.APRIL,1,00,07,00);
+		endTimeMap.set(2014,Calendar.APRIL,10,00,07,00);
 		Calendar c = Calendar.getInstance();
 
 
@@ -314,7 +314,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		//TODO Map only available on tidningsdagen
 		//listItems.add(new LKMenuListItem("Map", 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		//listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
-//		listItems.add(new LKMenuListItem("info", 0, new InfoTextFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+		listItems.add(new LKMenuListItem("info", 0, new InfoTextFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
 		listItems.add(inboxListItem);
 		//listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
