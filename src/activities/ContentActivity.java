@@ -43,9 +43,9 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	final Calendar startTimeMap = Calendar.getInstance();
 	final Calendar endTimeMap = Calendar.getInstance();
 	private final String LOG_TAG = "ContentActivity";
-	
+
 	private LKMenuListItem mapItem = null;
-	
+
 	boolean drawerOpen;
 	private ActionBar actionBar;
 	private ActionBarDrawerToggle drawerToggle;
@@ -53,43 +53,43 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	private ListView menuList;
 	private FragmentManager fragmentMgr;
 	LKMenuListItem inboxListItem;
-	
+
 	private RelativeLayout menuButtonWrapper;
 	private RelativeLayout inboxIndicatorWrapper;
 	private TextView actionbarInboxCounter;
-	
+
 	private ImageView actionBarLogo;
 	private TextView title;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		
+
 		trackingStart();
-		
+
 		setContentView(R.layout.content_wrapper);
-		
+
 		actionBar = getSupportActionBar();
-		
+
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		menuList = (ListView) findViewById(R.id.menu_list);
-		
+
 		fragmentMgr = getSupportFragmentManager();
-		
+
 		setupActionBar();
-		
+
 		populateMenu();
-		
+
 		loadFragment(new SectionsFragment(), false);
 	}
 
-	
+
 	@Override
 	public void onStop(){
 		super.onStop();
 		trackingStop();
 	}
-	
+
 	@Override
 	public void onResume(){
 		super.onResume();
@@ -102,28 +102,29 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 			SplashscreenActivity.regInBackground(this, gcm);
 		} 
-		
+
 		this.setInboxCount();
+
 	}
-	
+
 	/**
 	 * Called when a fragment messages the activity.
 	 */
 	@Override
 	public void message(MessangerMessage message, Bundle data) {
-			switch(message){
-			case SET_TITLE:
-				setTitle(data.getString("title"));
-				break;
-			case SET_INBOX_COUNT:
-				setInboxCount();
-				break;
-			case SHOW_ACTION_BAR_LOGO:
-				showActionBarLogo(data.getBoolean("show", false));
-				break;
-			}
+		switch(message){
+		case SET_TITLE:
+			setTitle(data.getString("title"));
+			break;
+		case SET_INBOX_COUNT:
+			setInboxCount();
+			break;
+		case SHOW_ACTION_BAR_LOGO:
+			showActionBarLogo(data.getBoolean("show", false));
+			break;
+		}
 	}
-	
+
 	/**
 	 * Handles radiobuttons in the fragment
 	 * @param view radio button view
@@ -134,7 +135,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			fragment.onIntrestsRadioButtonClicked(view);
 		} catch(ClassCastException e) {
 			Log.e(LOG_TAG,"could not get fragment." + e.toString());
-			
+
 		}
 	}
 	/**
@@ -173,7 +174,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			Log.e(LOG_TAG,"could not get fragment.");
 		}
 	}
-	
+
 	/**
 	 * Show actionbar logo or text
 	 * @param show If true, the logo will be visible if false, the text will be shown. 
@@ -187,13 +188,34 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			actionBarLogo.setVisibility(View.VISIBLE);
 		}
 	}
-	
+	// -1 = nothing
+	// 0 = press
+	// 1 = !
+	private void setMapMark(int nbr) {
+		if(mapItem != null) {
+			if(nbr == 1) {
+				mapItem.inboxCounter.setText("!");
+				mapItem.inboxCounterWrapper.setVisibility(View.VISIBLE);
+			} else if(nbr == 0) {
+				mapItem.inboxCounterWrapper.setVisibility(View.GONE);
+			} else if(nbr==-1) {
+				//TODO DO DARKER!!
+				// Not click able
+			} else if(nbr==2) {
+				// TODO 
+				// Nu blir det tomt. Ändra så blir mörk igen..
+				mapItem.rowLayout.setVisibility(View.GONE);
+			}
+		}
+	}
+
 	private void setInboxCount(){
 		final Context context = this;
 		AsyncTask task = new AsyncTask<Void, Void, Integer>(){
-		
+
 			@Override
 			protected Integer doInBackground(Void... params) {
+
 				Log.d("AsyncTask", "Started background process.");
 				LKSQLiteDB db = new LKSQLiteDB(context);
 				int n = db.numberOfUnreadMessages();
@@ -201,7 +223,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 				Log.d("AsyncTask", "Finnished background process.");
 				return n;
 			}
-			
+
 			@Override
 			protected void onPostExecute(Integer result) {
 				Log.d("AsyncTask", "Started postexecute process.");
@@ -230,27 +252,27 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 				}
 			}
 		}.execute();
-		
-		
+
+
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Loads new fragment into the frame.
 	 */
 	@Override
 	public void loadFragment(Fragment fragment, boolean addToBackstack){
-		
+
 		FragmentTransaction transaction = fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment);
-		
+
 		Log.d("Inside ContentActivity", "yeeah");
-		
+
 		if(addToBackstack)
 			transaction.addToBackStack(null);
 		transaction.commit();
 	}
-	
+
 	/**
 	 * Set title in actionbar
 	 * @param title The new title to set. 
@@ -258,7 +280,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	public void setTitle(String title){
 		this.title.setText(title);
 	}
-	
+
 	/**
 	 * Sets up the ListView in the navigationdrawer menu.
 	 */
@@ -267,29 +289,28 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
-		
+
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
 		inboxListItem = new LKMenuListItem(getString(R.string.Inkorg), 0, new InboxFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
-		
+
 
 		//listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		// TODO fix block
-		
-		startTimeMap.set(2014,Calendar.MARCH,30,23,58,00);
-		endTimeMap.set(2014,Calendar.APRIL,30,23,59,00);
+
+		startTimeMap.set(2014,Calendar.APRIL,1,00,05,00);
+		endTimeMap.set(2014,Calendar.APRIL,1,00,07,00);
 		Calendar c = Calendar.getInstance();
-		
-		if(c.compareTo(startTimeMap)==1) {
-			if(!(c.compareTo(endTimeMap)==1)) {
-				mapItem = new LKMenuListItem(getString(R.string.karta), 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isMapRow(true);
-				listItems.add(mapItem);
-			}
-		} else {
-			mapItem = new LKMenuListItem(getString(R.string.karta), 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout);
+
+
+		//only add map if before..
+		if(!(c.compareTo(endTimeMap)==1)) {
+			mapItem = new LKMenuListItem(getString(R.string.karta), 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isMapRow(true);
+
 			listItems.add(mapItem);
 		}
-				
-		
+
+
+
 		//TODO Map only available on tidningsdagen
 		//listItems.add(new LKMenuListItem("Map", 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		//listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
@@ -297,8 +318,8 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 		listItems.add(inboxListItem);
 		//listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
-		
-		
+
+
 		LKMenuArrayAdapter adapter = new LKMenuArrayAdapter(this, listItems);
 		menuList.setAdapter(adapter);
 		menuList.setOnItemClickListener(adapter);
@@ -313,7 +334,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			return true;
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	/**
 	 * Called to init actionbar.
 	 */
@@ -322,7 +343,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		super.onPostCreate(savedInstanceState);
 		drawerToggle.syncState();
 	}
-	
+
 	/**
 	 * Called to init actionbar. 
 	 */
@@ -331,47 +352,52 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		super.onConfigurationChanged(config);
 		drawerToggle.onConfigurationChanged(config);
 	}
-	
+
 	/**
 	 * Sets up the actionbar with listener and its UI. 
 	 */
 	private void setupActionBar(){		
 		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.drawer_toggle_icon, 0, 0){
-			
+
 			/**
 			 * Drawer closed
 			 * */
-	        public void onDrawerClosed(View view) {
-	            // TODO: Fix UI in actionBar
-	        	drawerOpen = false;
-	        	Log.d(LOG_TAG, "closed");
-	        }
+			public void onDrawerClosed(View view) {
+				// TODO: Fix UI in actionBar
+				drawerOpen = false;
+				Log.d(LOG_TAG, "closed");
+			}
 
-	        
-	        /**
-	         * Drawer opened
-	         * */
-	        public void onDrawerOpened(View drawerView) {
-	            // TODO: Fix UI in actionBar
-	        	/*
-	        	Log.d("Get1:",startTimeMap.toString());
-	        	if(mapItem != null) {
-	        		Calendar c = Calendar.getInstance();
-	        		Log.d("Get:",c.toString());
-	        		if(c.compareTo(startTimeMap)==1) {
-	        			if(!(c.compareTo(endTimeMap)==1)) {
-	        				mapItem.isMapRow(true);
-	        				mapItem.set();
-	        				Log.d("Komit hitt","yeaa");
-	        			}
-	        		} else {
-	        			mapItem.isMapRow(false);
-	        		}
-	    		}
-	        	*/
-	        	drawerOpen = true;
-	        	Log.d(LOG_TAG, "open");
-	        }
+
+			/**
+			 * Drawer opened
+			 * */
+			public void onDrawerOpened(View drawerView) {
+				// TODO: Fix UI in actionBar
+
+				if(mapItem != null) {
+					Calendar c = Calendar.getInstance();
+					if(c.compareTo(startTimeMap)==1) {
+						if(!(c.compareTo(endTimeMap)==1)) {
+							SharedPreferences prefs = getSharedPreferences("MAP_FIRST", Context.MODE_PRIVATE);
+							int first = prefs.getInt("firstTime", -1); 
+							if(first == 1) {
+								setMapMark(0);								
+							} else {
+								setMapMark(1);								
+							}
+						} else {
+							setMapMark(2);
+							mapItem = null;
+						}
+					} else {
+						setMapMark(-1);
+					}
+				}
+
+				drawerOpen = true;
+				Log.d(LOG_TAG, "open");
+			}
 		};
 		Log.d(LOG_TAG, "setup actionbar!");
 		drawerLayout.setDrawerListener(drawerToggle);
@@ -386,16 +412,18 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		inboxIndicatorWrapper = (RelativeLayout) root.findViewById(R.id.inbox_indicator_wrapper);
 		actionbarInboxCounter = (TextView) root.findViewById(R.id.inbox_indicator);
 		actionBarLogo = (ImageView) root.findViewById(R.id.action_bar_logo);
-		
+
+
+
 		title = (TextView) root.findViewById(R.id.title);
-		
-		
+
+
 		menuButtonWrapper.setOnClickListener(menuToggleListener);
 		actionBar.setCustomView(root);
 	}
-	
+
 	private View.OnClickListener menuToggleListener = new View.OnClickListener() {
-		
+
 		@Override
 		public void onClick(View v) {
 			if(drawerOpen)
@@ -404,11 +432,11 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 				drawerLayout.openDrawer(menuList);
 		}
 	};
-	
+
 	private void trackingStart() {
 		EasyTracker.getInstance().activityStart(this);
 	}
-	
+
 	private void trackingStop() {
 		EasyTracker.getInstance().activityStop(this);
 	}

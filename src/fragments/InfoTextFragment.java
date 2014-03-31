@@ -14,8 +14,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 public class InfoTextFragment extends LKFragment {
-
+	MapFragment mf;
+	
 	public InfoTextFragment() {
+		
+		
 	}
 	
 	@Override
@@ -62,10 +65,20 @@ public class InfoTextFragment extends LKFragment {
 	private View.OnClickListener backListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			loadFragment(new MapFragment(), false);
+			if(mf == null) {
+				loadFragment(new MapFragment(), false);
+					
+			} else {
+				loadFragment(mf, false);
+			}
 			//TODO start fragment
 		}
 	};
+
+	public void setMapFragment(MapFragment mapFragment) {
+		// TODO Auto-generated method stub
+		mf = mapFragment;
+	}
 
 	
 }

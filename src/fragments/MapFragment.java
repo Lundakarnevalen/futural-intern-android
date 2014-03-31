@@ -15,7 +15,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PointF;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -29,33 +28,24 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 
 
 public class MapFragment extends LKFragment implements SensorEventListener {
-	SensorManager sm;
-	private Sensor mAccelerometer;
-	float lastX = -1000;
-	float lastY = -1000;
+	private SensorManager sm;
+	private InfoTextFragment infoTextFragment;
+	private float lastX = -1000;
+	private float lastY = -1000;
 
-	float totX;
-	float totY;
-
-	private PointF start = new PointF();
-	private PointF mid = new PointF();
-
-	ImageView background;	
+	private ImageView background;	
 
 	private long lastUpdate;
 
-	// Pre pic. 
 	private Bitmap bmOverlay;
 
 	private static final int HANDLER_DELAY = 1800000; //30min
@@ -75,7 +65,6 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	//private static final int TIME_INTERVAL = 10000; // get gps location every 30 min
 
 	private static final int GPS_DISTANCE = 0; // set the distance value in meter
-
 
 	private final String token = "P6VmxzvTypzP3qb3TEW7";
 
@@ -99,37 +88,33 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	private List<Position> positions;
 
 	private ImageView img;
-	private boolean gpsOn = true;
 
 	// Every time you switch to this fragment. 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fr_layout_map, null);
-		totX = 0;
-		totY = 0;
 
-		background = (ImageView) rootView.findViewById(R.id.map_test_move);
+		if(infoTextFragment == null) {
+			infoTextFragment = new InfoTextFragment();
+			infoTextFragment.setMapFragment(this);
+		}
+		background = (ImageView) rootView.findViewById(R.id.map_move);
 
 		context = getContext();
 
 		sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 		if(sm == null) {
-			Log.d("sm NUll","ff");
+			Log.d("sm NUll","error");
 		} else {
-			Log.d("Okey!"," ");
-			mAccelerometer = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-			sm.registerListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-					SensorManager.SENSOR_DELAY_GAME);
+			sm.registerListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_GAME);
 		}
 
 		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
 		View root = actionBar.getCustomView();
-		RelativeLayout gpsCheckbox = (RelativeLayout) root.findViewById(R.id.info_pic);	
-		gpsCheckbox.setOnClickListener(gpsCheckboxListener);
-
+		RelativeLayout infoMark = (RelativeLayout) root.findViewById(R.id.info_pic);	
+		infoMark.setOnClickListener(infoMarkListener);
 
 		se.lundakarnevalen.widget.LKTextViewBold text = (se.lundakarnevalen.widget.LKTextViewBold) rootView.findViewById(R.id.nbr_of);
-		//TODO change to english!
 		text.setText(""+nbrOfPersons);
 
 		img = (ImageView) rootView.findViewById(R.id.map_id);
@@ -195,20 +180,16 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setTitle(getString(R.string.karta));
-		//TODO
-		// Fix both eng and swe.
 	}
 
 	@Override
 	public void onPause() {
 		sm.unregisterListener(this);
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 	@Override
 	public void onResume() {
-		sm.registerListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-				SensorManager.SENSOR_DELAY_GAME);// TODO Auto-generated method stub
+		sm.registerListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_GAME);// TODO Auto-generated method stub
 		super.onResume();
 	}
 
@@ -217,12 +198,11 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	 * 
 	 */
 	private boolean sendPosition() {
-		Log.d("GPS on:",""+gpsOn);
 		if(locMan==null) {
 			locMan = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		}
 		// Only turn off get position with GPS. Ok with network...
-		if(gpsOn && locMan.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+		if(locMan.isProviderEnabled(LocationManager.GPS_PROVIDER)){
 			//if(isLocationListener){
 			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, TIME_INTERVAL, GPS_DISTANCE, PositionListener);
 			Log.d("Updateing GPS!","Update");
@@ -234,7 +214,6 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 				Log.d("Updateing Position with network!","Update");
 			}
 		}
-
 		float lng;
 		float lat;
 		Location location = null;
@@ -254,10 +233,8 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 				return false;
 			}
 		} 
-
 		postPosition(lat, lng);
 		return true;
-
 	}
 
 	private void updatePositions(List<Position> positions) {
@@ -274,11 +251,9 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			canvas.setBitmap(bmOverlay);
 			canvas.drawBitmap(mapBitmap, new Matrix(), null);
 
-			//TODO
-			// Change color to correct red
 			Paint paintGray = new Paint();
 			Paint paintRed = new Paint();
-			paintRed.setColor(Color.RED);
+			paintRed.setColor(getResources().getColor(R.color.red));
 			paintGray.setColor(Color.GRAY);
 			nbrOfPersons = 0;
 			for(Position p: positions)  {
@@ -323,20 +298,18 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 		// TOKEN ???
 		Log.d("Cluster id before post: ",""+clusterId);
 		LKRemote remote = new LKRemote(context, new PostListener());
-
 		if(clusterId == -1) {
 			remote.requestServerForText("api/clusters", js, LKRemote.RequestType.POST, false);			
 		}else {	
-			// Står fel i mail, ska vara put istället för post....
+			// Error in mail, put instead of post....
 			remote.requestServerForText("api/clusters"+"/"+clusterId, js, LKRemote.RequestType.PUT, false);			
 		}
 	}
 
-	private View.OnClickListener gpsCheckboxListener = new View.OnClickListener() {
+	private View.OnClickListener infoMarkListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			loadFragment(new InfoTextFragment(), false);
-			//TODO start fragment
+			loadFragment(infoTextFragment, false);
 		}
 	};
 
@@ -348,16 +321,13 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 				return;
 			}
 			Log.d("GetListener get result: ", result);
-
 			Gson gson = new Gson();
 			MapGet checker = gson.fromJson(result, MapGet.class);
-
 			if(checker.success) {	
 				Clusters clusters = gson.fromJson("{\"clusters\":" + checker.clusters+"}", Clusters.class);
 				Log.d("GetListener sucess:","true, size:"+clusters.clusters.size());
 				positions = clusters.clusters;
 				updatePositions(clusters.clusters);
-
 			} else {
 				Log.d("GetListener sucess:","false");
 			}
@@ -365,14 +335,12 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	}
 
 	private class PostListener implements LKRemote.TextResultListener {
-
 		@Override
 		public void onResult(String result) {			
 			if(result == null) {
 				Log.d("PostListener get result: ", "null");
 				return;
 			}
-
 			Log.d("PostListener get result: ", result);
 
 			Gson gson = new Gson();
@@ -387,7 +355,6 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 					Log.d("Update clusterId to:",""+clusterId);					
 				}
 			} else {
-				//TODO
 				Log.d("PostListener sucess:","false");	
 			}
 		}
@@ -426,165 +393,78 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		// TODO Auto-generated method stub
+	
 	}
 
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-
 		synchronized (this) {
 			switch (event.sensor.getType()) {
 			case Sensor.TYPE_ACCELEROMETER:
 				float x = (float)event.values[0];
 				float y = (float)event.values[1];
 				float z = (float)event.values[2];
-
+				//Log.d("y:",""+y);
 				Matrix matrix = new Matrix();
 				background.setScaleType(ImageView.ScaleType.MATRIX);
 				matrix.set(background.getImageMatrix());
-				float multFactor = 5;
+				float multFactor = (float)2;
+				if(x > 5) {
+					x = 5;
+				} else if(x < -5) {
+					x = -5;
+				}
+				if(y < 0) {
+					y = 0;
+				} else if(y > 10) {
+					y = 10;
+				}
 				if(lastX == -1000) {
-
-					if(x > 4) {
-						x = 4;
-
-					} else if(x < -4) {
-						x = -4;
-					}
-					if(y < 0) {
-						y = 0;
-
-					} else if(y > 9) {
-						y = 9;
-					}
-
-					//					// 7 mitten
-
+					// 7 mitten
 					matrix.postTranslate(x*multFactor, -(y-7)*multFactor);
-
 					lastX = x;
 					lastY = y;
-
-
-
 				} else {
-					/*
-					if(lastX < x && totX < 8) {
-						Log.d("Heere","happens");
-						// move right
-						totX+=1;
-						matrix.postTranslate(1, 0);
-						Log.d("TotX",""+totX);
-					} else if(totX > -8){
-						totX -= 1;
-						matrix.postTranslate(-1, 0);
-						//move left
-					}
-					if(lastY < y && totY > -8) {
-						totY -= 1;
-						matrix.postTranslate(0, -1);
-						// move down
-					} else if(totY < 8){
-						totY += 1;
-						matrix.postTranslate(0, 1);
-						//move up
-					}
-					 */
-
-					if(x > 4) {
-						x = 4;
-
-					} else if(x < -4) {
-						x = -4;
-					}
-					if(y < 0) {
-						y = 0;
-
-					} else if(y > 9) {
-						y = 9;
-					}
-
 					float resX = 0;
 					float resY = 0;
 					if(lastX < x ) {
 						resX = Math.abs(x - lastX);
-						// move right
-						//totX+=1;
-						if(resX < 0.15) {
+						if(resX < 0) {
 							resX = 0;
 						} else {
 							lastX = x;
-						}
-						//Log.d("TotX",""+totX);
+						}	
 					} else {
-						//totX -= 1;
 						resX = Math.abs(lastX - x);
-						if(resX <0.15) {
+						if(resX <0) {
 							resX = 0;
 						} else {
 							resX = -resX;
 							lastX = x;
 						}
-						//move left
 					}
 					if(lastY < y ) {
 						resY = Math.abs(y - lastY);
-						if(resY <0.15 || z < 0) {
+						if(resY <0 || z < 0) {
 							resY = 0;
 						} else {
 							resY = -resY;
 							lastY = y;
 						}			
-						//matrix.postTranslate(0, -1);
-						// move down
 					} else {
 						resY = Math.abs(lastY - y);
-						//matrix.postTranslate(0, 1);
-						//move up
-						if(resY <0.15 || z < 0) {
+						if(resY <0 || z < 0) {
 							resY = 0;
 						} else {
 							lastY = y;
 						}
-
 					}
-
-
 					matrix.postTranslate(resX*multFactor, resY*multFactor);
-
 				}
 				background.setImageMatrix(matrix); // display the transformation on screen
-
 				break;
 			}
 		}
 	}
-
-	/*
-	private void updateSpritePosition() {
-        if ((accellerometerSpeedX != 0) || (accellerometerSpeedY != 0)) {
-            // Set the Boundary limits
-            int tL = 0;
-            int lL = 0;
-            int rL = CAMERA_WIDTH - (int)sprite.getWidth();
-            int bL = CAMERA_HEIGHT - (int)sprite.getHeight();
-
-            // Calculate New X,Y Coordinates within Limits
-            if (sX >= lL) sX += accellerometerSpeedX; else sX = lL;
-            if (sX <= rL) sX += accellerometerSpeedX; else sX = rL;
-            if (sY >= tL) sY += accellerometerSpeedY; else sY = tL;
-            if (sY <= bL) sY += accellerometerSpeedY; else sY = bL;
-
-            // Double Check That New X,Y Coordinates are within Limits
-            if (sX < lL)      sX = lL;
-            else if (sX > rL) sX = rL;
-            if (sY < tL)      sY = tL;
-            else if (sY > bL) sY = bL;
-
-            sprite.setPosition(sX, sY);
-        }
-    }
-	 */
-
 }

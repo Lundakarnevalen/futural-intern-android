@@ -8,7 +8,7 @@
 		android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
         android:src="@drawable/waves"
-        android:id="@+id/map_test_move"
+        android:id="@+id/map_move"
         android:scaleX="2"
         android:scaleY="2"
 	    />
