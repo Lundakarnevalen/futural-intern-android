@@ -15,6 +15,7 @@
             android:layout_margin="@dimen/horizontal_margin"
             android:orientation="vertical" >
 
+            
             <se.lundakarnevalen.widget.LKTextViewFat
                 android:id="@+id/text_1"
                 android:layout_width="wrap_content"
@@ -75,6 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_blue"
+                
                 android:textSize="19sp" />
         </LinearLayout>
     </RelativeLayout>
