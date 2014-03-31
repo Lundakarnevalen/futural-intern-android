@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@color/bg_sangbok"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+    	android:layout_height="50dp">
+    	
+    	<se.lundakarnevalen.widget.LKTextViewBold
+    		android:textStyle="bold" 
+    		android:textSize="20sp"
+    		android:id="@+id/sangbok_layout_song_layout_title"
+    		android:layout_alignParentLeft="true"
+    		android:layout_alignParentTop="true"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content" />
+
+    	<se.lundakarnevalen.widget.LKTextView 
+    	    android:textStyle="bold"
+    		android:textSize="16sp"
+    		android:layout_alignParentLeft="true"
+    		android:layout_alignParentBottom="true"
+    		android:id="@+id/sangbok_layout_song_layout_subtitle"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content" />
+    	
+    	<ImageView 
+    	    android:contentDescription="Icon for song"
+    	    android:src="@drawable/kommunikation"
+    	    android:layout_width="60dp"
+    	    android:layout_alignParentRight="true"
+    	    android:layout_alignParentTop="true"
+    	    android:layout_alignParentBottom="true"
+    	    android:layout_height="match_parent" />
+    </RelativeLayout>
+    
+    <se.lundakarnevalen.widget.LKTextView
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:textSize="30sp"
+    	android:maxLines="1"
+    	android:text="............................................................................" />
+	
+	<ScrollView 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent">
+	    <se.lundakarnevalen.widget.LKTextView 
+		    android:id="@+id/sangbok_layout_song_layout_text"
+		    android:layout_width="match_parent"
+		    android:textSize="16sp"
+		    android:paddingTop="10dp"
+	    	android:layout_height="wrap_content" />
+	
+	</ScrollView>
+	
+	
+</LinearLayout>

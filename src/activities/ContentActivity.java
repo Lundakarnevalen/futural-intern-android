@@ -35,6 +35,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import fragments.InboxFragment;
 import fragments.InfoTextFragment;
 import fragments.LKFragment;
+import fragments.SangBokFragment;
 import fragments.LKFragment.MessangerMessage;
 import fragments.MapFragment;
 import fragments.SectionsFragment;
@@ -297,6 +298,9 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 		listItems.add(inboxListItem);
 		//listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+		
+		LKMenuListItem sangbok = new LKMenuListItem(getString(R.string.sangbok_title), 0, new SangBokFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout);  
+		listItems.add(sangbok);
 		
 		
 		LKMenuArrayAdapter adapter = new LKMenuArrayAdapter(this, listItems);
