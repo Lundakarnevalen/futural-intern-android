@@ -7,32 +7,45 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.Button;
 
-public class LKButtonYellow extends Button{
-	Context context;
+public class LKButtonYellow extends Button {
+	private Context context;
+
 	public LKButtonYellow(Context context) {
 		super(context);
 		this.context = context;
 		init();
 	}
-	
-	public LKButtonYellow(Context context, AttributeSet attrs){
+
+	public LKButtonYellow(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
 		init();
 	}
-	
-	public LKButtonYellow(Context context, AttributeSet attrs, int defstyle){
+
+	public LKButtonYellow(Context context, AttributeSet attrs, int defstyle) {
 		super(context, attrs, defstyle);
 		this.context = context;
 		init();
 	}
-	
-	private void init(){
-		setBackgroundResource(R.drawable.button_selector_green);
-		int pxPadding = context.getResources().getDimensionPixelSize(R.dimen.horizontal_margin);
+
+	private void init() {
+		final int pxPadding = context.getResources().getDimensionPixelSize(
+				R.dimen.horizontal_margin);
 		setPadding(pxPadding, pxPadding, pxPadding, pxPadding);
-		Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf");
-		setTypeface(tf);
+		setBackgroundResource(R.drawable.button_selector_yellow);
 		setTextColor(Color.WHITE);
+	}
+
+	public void setTypeface(Typeface tf, int style) {
+		if (style == Typeface.BOLD) {
+			super.setTypeface(Typeface.createFromAsset(
+					getContext().getAssets(), "fonts/Roboto-Bold.ttf"));
+		} else if (style == Typeface.ITALIC) {
+			super.setTypeface(Typeface.createFromAsset(
+					getContext().getAssets(), "fonts/Roboto-Thin.ttf"));
+		} else {
+			super.setTypeface(Typeface.createFromAsset(
+					getContext().getAssets(), "fonts/Roboto-Light.ttf"));
+		}
 	}
 }
