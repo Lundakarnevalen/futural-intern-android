@@ -17,8 +17,6 @@
     <string name="registration_informationbild2">disken inuti AF-Borgen.</string>
     <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
     <string name="registration_mobilenbr">Mobilnummer</string>
-    <string name="no_internet_title">Ojsan</string>
-    <string name="no_internet_msg">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
     <string name="registration_choosesection_information1">Jag skulle vilja vara med i dessa sektioner:</string>
     <string name="registration_choosesection_information2">Bocka för de sektioner du är intresserad av (minst 5). \n Stjärnmarkera den sektion du är mest intresserad av.</string>
     <string name="registration_chooseintrests_information1">Detta är jag bra på/detta tycker jag är roligt:</string>
@@ -351,39 +349,17 @@
    	<string name="sound_service">Sound</string>
    	<string name="reset_password">Glömt lösenord</string>
    	
-
-    <string name="registration_nations_do_not_know">Vet ej</string>
-    <string name="registration_nations_2">Blekingska</string>
-    <string name="registration_nations_3">Göteborgs</string>
-    <string name="registration_nations_4">Hallands</string>
-    <string name="registration_nations_5">Helsingkrona</string>
-    <string name="registration_nations_6">Kalmar</string>
-    <string name="registration_nations_7">Krischan</string>
-    <string name="registration_nations_8">Lunds</string>
-    <string name="registration_nations_9">Malmö</string>
-    <string name="registration_nations_10">Sydskånska</string>
-    <string name="registration_nations_11">Västgöta</string>
-    <string name="registration_nations_12">Wermlands</string>
-    <string name="registration_nations_13">Östgöta</string>
-    <string name="registration_nations_14">Smålands</string>
-    <string name="registration_drivers_licence_none">Inget</string>
-    <string name="registration_gender_other">Vill inte definiera mig</string>
-    <string name="registration_gender_male">Man</string>
-    <string name="registration_gender_female">Kvinna</string>
-    <string name="registration_valid_firstname">Förnamn</string>
-    <string name="registration_valid_lastname">Efternamn</string>
-    <string name="registration_valid_personnr">Personnummer</string>
-    <string name="registration_valid_mobilenr">Mobilnummer</string>
-    <string name="registration_valid_email">Mailadress</string>
-    <string name="registration_valid_email_match">Ej samma mailadress</string>
-    <string name="registration_valid_adress">Adress</string>
-    <string name="registration_valid_zipcode">Postnummer</string>
-    <string name="registration_valid_city">Stad</string>
-    <string name="registration_valid_agreement">Godkännande av hanterandet av användardata</string>
-    <string name="registration_valid_nr_of_sektions">Du måste välja minst 5 sektioner</string>
-    <string name="registration_valid_nr_of_intrests">Du måste välja minst 3 intressen</string>
     <string name="karta">KARTA</string>
     <string name="map_right_now">Var är karnevalisterna\njust nu?</string>
 
+    
+    <!-- General -->
+    
+    <!-- End General -->
+    
+    <!-- FrSignIn -->
+    <string name="no_internet">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
+    
+    <!-- FrSignIn -->
 </resources>
 

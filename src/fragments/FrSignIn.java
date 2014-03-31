@@ -11,7 +11,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,10 +23,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -102,12 +104,27 @@ public class FrSignIn extends Fragment {
 					}
 				});
 		
-		remote = new LKRemote(context, new ButtonLogin());
+		remote = new LKRemote(context, new ButtonLoginResponse());
 		
 		Button buttonReset = (Button) rootView.findViewById(R.id.password_reset);
 		buttonReset.setOnClickListener(new ButtonResetPassword());
 
+		
+//		TODO Only for debugging purpose! Remove before release!
+		mEmailView.setText("email@email.com");
+		mPasswordView.setText("12345678"); 
+		
+		hideVirtualKeyboard();
+		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		
 		return rootView;
+	}
+
+
+	private void hideVirtualKeyboard() {
+		InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
+			      Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(mPasswordView.getWindowToken(), 0);
 	}
 	
 	private class ButtonResetPassword implements OnClickListener {
@@ -122,13 +139,17 @@ public class FrSignIn extends Fragment {
 		}
 	}
 	
-	private class ButtonLogin implements LKRemote.TextResultListener {
+	private class ButtonLoginResponse implements LKRemote.TextResultListener {
 
 		@Override
 		public void onResult(String result) {
 			Log.d("Success", "Yay, some result!");
 			
+			showProgress(false);
+			
 			if(result == null) {
+				Toast.makeText(getActivity(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
+				mPasswordView.setText(null);
 				return;
 			}
 			
@@ -174,9 +195,6 @@ public class FrSignIn extends Fragment {
 		// Store values at the time of the login attempt.
 		mEmail = mEmailView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
-
-//		mEmail = "email@email.com";
-//		mPassword = "12345678";
 		
 		boolean cancel = false;
 		View focusView = null;
@@ -208,26 +226,36 @@ public class FrSignIn extends Fragment {
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
+			
+			if(!LKRemote.hasInternetConnection(getActivity())) {
+				Toast.makeText(getActivity(), R.string.no_internet, Toast.LENGTH_LONG).show();
+				return;
+			}
+			
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-//			showProgress(true);
 			
+			hideVirtualKeyboard();
 			
+//			Show the loading screen
+			showProgress(true);
+			
+//			Create the JSON object to send to the server
 			LoginCredentialsWrite credentials = new LoginCredentialsWrite(mEmail, mPassword);
 			
 			Gson g = new Gson();
 			
 			String json = g.toJson(credentials);
 			
-			remote.requestServerForText("api/users/sign_in", json, LKRemote.RequestType.POST, false);
+			remote.requestServerForText("api/users/sign_in", json, LKRemote.RequestType.POST, true);
 		}
 	}
 
-	/*
+	
 	/** 
 	 * Shows the progress UI and hides the login form.
-	 * 
+	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 	private void showProgress(final boolean show) {
 		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -265,53 +293,4 @@ public class FrSignIn extends Fragment {
 			mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
 		}
 	}
-
-	/**
-	 * Represents an asynchronous login/registration task used to authenticate
-	 * the user.
-	 *
-	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-		@Override
-		protected Boolean doInBackground(Void... params) {
-			// TODO: attempt authentication against a network service.
-
-			try {
-				// Simulate network access.
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				return false;
-			}
-
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mEmail)) {
-					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
-				}
-			}
-
-			// TODO: register the new account here.
-			return true;
-		}
-
-		@Override
-		protected void onPostExecute(final Boolean success) {
-			mAuthTask = null;
-			showProgress(false);
-
-			if (success) {
-//				finish();
-			} else {
-				mPasswordView
-						.setError(getString(R.string.error_incorrect_password));
-				mPasswordView.requestFocus();
-			}
-		}
-
-		@Override
-		protected void onCancelled() {
-			mAuthTask = null;
-			showProgress(false);
-		}
-	}*/
 }

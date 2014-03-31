@@ -4,7 +4,7 @@
     <string name="app_name">Karnevalisten</string>
     <string name="sign_in_button">Login</string>
     <string name="no_internet_title">Ojsan</string>
-    <string name="no_internet_msg">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
+    
     <string name="continue_code">Lösenord</string>
     <string name="notification_title">Meddelande från Lundakarnevalen!</string>
     <string name="edit_uppg">Redigera mina uppgifter</string>
@@ -310,5 +310,12 @@
     <string name="karta">KARTA</string>
     <string name="map_right_now">Var är karnevalisterna\njust nu?</string>
 
+    <!-- FrSignIn -->
+    
+    <string name="no_internet">Your device does not have an internet connection right now</string>
+    
+    
+    <!--  End FrSignIn -->
+    
 </resources>
 

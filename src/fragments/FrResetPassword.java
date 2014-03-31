@@ -1,5 +1,6 @@
 package fragments;
 
+import json.CredentialEmailWrite;
 import json.LoginCredentialsWrite;
 import json.ResetResponse;
 import se.lundakarnevalen.android.R;
@@ -41,10 +42,8 @@ public class FrResetPassword extends Fragment{
 		
 		Button reset = (Button) rootView.findViewById(R.id.reset_password);
 		reset.setOnClickListener(new ButtonReset());
-		
+
 		gson = new Gson();
-		
-		Log.d("ASDASD", "asdasd");
 		
 		return rootView;
 		
@@ -95,9 +94,9 @@ public class FrResetPassword extends Fragment{
 			}
 			 
 			Gson gson = new Gson();
-			LoginCredentialsWrite credentials = new LoginCredentialsWrite(email, "");
+			CredentialEmailWrite credentials = new CredentialEmailWrite(email);
 			
-			remote.requestServerForText("hostname/api/users/password", gson.toJson(credentials) , LKRemote.RequestType.POST, false);	
+			remote.requestServerForText("api/users/password", gson.toJson(credentials), LKRemote.RequestType.POST, false);	
 		}
 	}
 }
