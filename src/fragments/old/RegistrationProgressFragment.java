@@ -6,7 +6,7 @@ import se.lundakarnevalen.android.R.id;
 import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.android.R.string;
 import se.lundakarnevalen.remote.LKUser;
-import se.lundakarnevalen.widget.LKButton;
+import se.lundakarnevalen.widget.LKButtonGreen;
 import se.lundakarnevalen.widget.LKProgressBar;
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
@@ -24,7 +24,7 @@ public class RegistrationProgressFragment extends LKFragment{
 	LKTextView name, email, persnnbr, progressValue, tr1, tr2a, id;
 	LKTextViewBold tr2b, idBold;
 
-	LKButton edit;
+	LKButtonGreen edit;
 	LKProgressBar pr;
 	
 	@Override
@@ -34,7 +34,7 @@ public class RegistrationProgressFragment extends LKFragment{
 		email = (LKTextView) root.findViewById(R.id.email);
 		persnnbr = (LKTextView) root.findViewById(R.id.persnnbr);
 		id = (LKTextView) root.findViewById(R.id.id);
-		edit = (LKButton) root.findViewById(R.id.edit_button);
+		edit = (LKButtonGreen) root.findViewById(R.id.edit_button);
 		pr = (LKProgressBar) root.findViewById(R.id.progressBar1);
 		progressValue = (LKTextView) root.findViewById(R.id.progress_value);
 		tr1 = (LKTextView) root.findViewById(R.id.lKTextView2);

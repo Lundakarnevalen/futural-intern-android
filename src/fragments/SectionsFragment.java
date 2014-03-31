@@ -9,7 +9,7 @@ import se.lundakarnevalen.android.R.drawable;
 import se.lundakarnevalen.android.R.id;
 import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.remote.SectionSQLiteDB;
-import se.lundakarnevalen.widget.LKButton;
+import se.lundakarnevalen.widget.LKButtonGreen;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
 import se.lundakarnevalen.widget.slotMachine.AbstractWheelAdapter;
 import se.lundakarnevalen.widget.slotMachine.OnWheelChangedListener;
@@ -42,10 +42,10 @@ public class SectionsFragment extends LKFragment {
 			Bundle savedInstanceState) {
 		root = (View) inflater.inflate(R.layout.sections_layout, null);
 		right = (RelativeLayout) root
-				.findViewById(R.id.right_tab);
+				.findViewById(R.id.right_tab);  
 		right.setOnClickListener(new ClickListener());
 		
-		LKButton lucky = (LKButton) root.findViewById(R.id.lucky);
+		LKButtonGreen lucky = (LKButtonGreen) root.findViewById(R.id.lucky);
 
 		// Slot machine wheels
         initWheel(R.id.slot_1);

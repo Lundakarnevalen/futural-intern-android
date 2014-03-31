@@ -36,7 +36,7 @@ public class InboxFragment extends LKFragment{
 	ListView listView;
 	Context context;
 	ProgressBar progressCircle;
-	LKFragment fragment;
+	LKFragment fragment; 
 	LKSQLiteDB db;
 	List<LKMenuListItem> data;
 	boolean inboxEmpty = false;

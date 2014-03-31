@@ -197,7 +197,7 @@
 	            android:layout_below="@id/lKTextViewBoldMySections"
 	            android:layout_alignLeft="@id/lKTextViewBoldMySections"/> -->
 		</RelativeLayout>
-		<se.lundakarnevalen.widget.LKButton 
+		<se.lundakarnevalen.widget.LKButtonGreen 
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:id="@+id/edit_button"
