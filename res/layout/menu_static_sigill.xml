@@ -17,7 +17,6 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"
-            android:background="@drawable/spin_to_win"
             android:scaleType="centerCrop" />
 
         <se.lundakarnevalen.widget.LKTextViewBold
@@ -26,7 +25,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/user_picture"
             android:gravity="center"
-            android:text="REBECKA ALVES-MARTINS"
             android:textColor="#ffffff"
             android:textSize="20sp" >
         </se.lundakarnevalen.widget.LKTextViewBold>
