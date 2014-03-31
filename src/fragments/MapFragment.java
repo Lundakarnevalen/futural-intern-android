@@ -124,7 +124,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 
 		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
 		View root = actionBar.getCustomView();
-		RelativeLayout gpsCheckbox = (RelativeLayout) root.findViewById(R.id.gps_checkbox);	
+		RelativeLayout gpsCheckbox = (RelativeLayout) root.findViewById(R.id.info_pic);	
 		gpsCheckbox.setOnClickListener(gpsCheckboxListener);
 
 
@@ -335,14 +335,8 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	private View.OnClickListener gpsCheckboxListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			ImageView iv= (ImageView)v.findViewById(R.id.gps_checkmark);
-			if(gpsOn) {
-				iv.setVisibility(View.GONE); 
-				gpsOn = false;
-			} else {
-				iv.setVisibility(View.VISIBLE);
-				gpsOn = true;
-			}
+			loadFragment(new InfoTextFragment(), false);
+			//TODO start fragment
 		}
 	};
 

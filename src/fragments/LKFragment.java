@@ -86,12 +86,24 @@ public class LKFragment extends Fragment{
 		messanger.message(MessangerMessage.SET_TITLE, data);
 		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
 		View root = actionBar.getCustomView();
-		RelativeLayout gpsCheckbox = (RelativeLayout) root.findViewById(R.id.gps_checkbox);		
+		RelativeLayout infoPic = (RelativeLayout) root.findViewById(R.id.info_pic);		
 		if(title.equals(getString(R.string.karta))) {
-			gpsCheckbox.setVisibility(View.VISIBLE);
-		} else {
-			gpsCheckbox.setVisibility(View.INVISIBLE);
+			infoPic.setVisibility(View.VISIBLE);
 			
+		} else {
+			infoPic.setVisibility(View.INVISIBLE);
+			
+		}
+		
+		RelativeLayout backToMap = (RelativeLayout) root.findViewById(R.id.back_to_map);		
+		RelativeLayout menuPic = (RelativeLayout) root.findViewById(R.id.menu_drawer_toggle_wrapper);		
+		if(title.equals(getString(R.string.info_text_actionbar))) {
+			backToMap.setVisibility(View.VISIBLE);
+			menuPic.setVisibility(View.GONE);
+		} else {
+			backToMap.setVisibility(View.GONE);
+			menuPic.setVisibility(View.VISIBLE);
+				
 		}
 		showActionBarLogo(false);
 	}
@@ -297,4 +309,6 @@ public class LKFragment extends Fragment{
 	public enum MessangerMessage{
 		SET_TITLE, SET_INBOX_COUNT, SHOW_ACTION_BAR_LOGO;
 	}
+
+	
 }
