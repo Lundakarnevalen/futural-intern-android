@@ -26,6 +26,8 @@
 	   	        android:layout_height="wrap_content"
 	   	        android:layout_below="@id/message_thumbnail"
 	   	        android:layout_centerHorizontal="true"
+	   	        android:layout_marginTop="@dimen/horizontal_margin_half"
+	   	        android:textColor="@color/red"
 	   	  		android:text="Kommunikationen"/>   	   
 	   	</RelativeLayout> 
 				
@@ -63,7 +65,7 @@
 	        <se.lundakarnevalen.widget.LKTextView android:id="@+id/message_message_text"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:textColor="@color/peach"
+	            android:textColor="@color/dark_blue"
 	            android:textSize="18sp"/>
 	    </RelativeLayout>	    
 	    

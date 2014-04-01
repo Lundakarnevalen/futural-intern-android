@@ -12,10 +12,12 @@
 	    android:layout_marginTop="12dp">
     
 	    <ImageView android:id="@+id/inbox_message_thumbnail"
-	        android:layout_height="60dp"
-	      	android:layout_width="60dp"
+	        android:layout_height="100dp"
+	      	android:layout_width="100dp"
 	      	android:layout_alignParentLeft="true"
-	      	android:layout_centerVertical="true"/>
+	      	android:layout_centerVertical="true"
+	      	android:background="@drawable/sender_image"
+	      	android:layout_marginLeft="@dimen/horizontal_margin"/>
 	    
 	    <RelativeLayout android:id="@+id/inbox_message_text_container"
 	        android:layout_height="wrap_content"
@@ -30,12 +32,13 @@
 		        android:textSize="@dimen/title_text_size"
 		        android:layout_alignParentLeft="true"/>
 		    
-		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_sektion_title"
+		    <se.lundakarnevalen.widget.LKTextViewBold android:id="@+id/inbox_message_sektion_title"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:textSize="@dimen/inbox_message_sektion_title_text_size"
 		        android:text="Kommunikation"
-		        android:layout_marginTop="3dp"
+		        android:textColor="@color/red"
+		        android:layout_marginTop="1dp"
 		        android:layout_below="@id/inbox_message_title"/>
 		    
 		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_preview"
