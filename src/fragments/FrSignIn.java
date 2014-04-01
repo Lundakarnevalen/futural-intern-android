@@ -111,7 +111,7 @@ public class FrSignIn extends Fragment {
 
 		
 //		TODO Only for debugging purpose! Remove before release!
-		mEmailView.setText("email@email.com");
+		mEmailView.setText("karnevalstestaren@gmail.com");
 		mPasswordView.setText("12345678"); 
 		
 		hideVirtualKeyboard();
@@ -178,7 +178,7 @@ public class FrSignIn extends Fragment {
 			getActivity().finish();
 		}
 	}
-	
+	 
 //	End of removal
 
 	/**

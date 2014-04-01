@@ -167,7 +167,7 @@ public class SplashscreenActivity extends Activity{
 		editor.putString(LKFragment.SP_GCM_REG_APP, LKFragment.getAppVersion(context));
 		editor.commit();	
 	}
-	
+	/*
 	private void storeSekData(){
 	     // Information about the sections
 		SectionSQLiteDB db = new SectionSQLiteDB(this);
@@ -334,7 +334,7 @@ public class SplashscreenActivity extends Activity{
  				q1("Vieriet") + getString(R.string.vieriet_b1) + q2() + getString(R.string.vieriet_b2) + q3() + getString(R.string.vieriet_b3) + q4("Vieriet") + getString(R.string.vieriet_b1),
  				true));
 	}
-
+*/
 	/* The questions*/
 	public String q1(String sName) {
 		return "<b><i>Vad ska " + sName + " göra? Var är den övergripande \"uppgiften?\"</i></b><br>";
@@ -354,7 +354,7 @@ public class SplashscreenActivity extends Activity{
 
 			@Override
 			protected String doInBackground(Object... params) {
-				storeSekData();
+//				storeSekData();
 				Log.d(LOG_TAG, "added sek data!");
 				return null;
 			}

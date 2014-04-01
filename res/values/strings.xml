@@ -221,11 +221,13 @@ I\'ve been active in a union/a nation/an association as
 <string name="registration_valid_personnr">Social security number</string>
 <string name="registration_valid_mobilenr">Cell phone</string>
 <string name="registration_valid_email">E-mail address</string>
-<string name="registration_valid_email_match">Not the same e-mail adress</string>
+<string name="registration_valid_email_match">Not the same e-mail address</string>
 <string name="registration_valid_adress">Address</string>
 <string name="registration_valid_zipcode">Zip Code</string>
 <string name="registration_valid_city">City</string>
 <string name="registration_valid_agreement">Approval of handling user data</string>
 <string name="registration_valid_nr_of_sektions">You have to choose at least five (5) sections</string>
 <string name="registration_valid_nr_of_intrests">You have to choose at least three (3) interests</string>
+<string name="reset_password">Forgot Password</string>
+<string name="map_right_now">Where are people \nright now?</string>
 </resources>
