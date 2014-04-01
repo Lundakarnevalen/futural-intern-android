@@ -260,7 +260,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			Paint paintGray = new Paint();
 			Paint paintRed = new Paint();
 			paintRed.setColor(getResources().getColor(R.color.red));
-			paintGray.setColor(Color.GRAY);
+			paintGray.setColor(Color.GRAY); 
 			nbrOfPersons = 0;
 			for (Position p : positions) {
 				biggestDot = Math.max(biggestDot, p.quantity);
