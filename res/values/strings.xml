@@ -26,6 +26,7 @@
     
     <string name="no_internet_title">Ojsan</string>
     <string name="no_internet_msg">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
+    <string name="no_play_service">Det verkar som att din telefon inte stödjer Google Play</string>
     
     <string name="registration_choosesection_information1">Jag skulle vilja vara med i dessa sektioner:</string>
 	<string name="registration_choosesection_information2">Bocka för de sektioner du är intresserad av (minst 5). \n Stjärnmarkera den sektion du är mest intresserad av.</string>
@@ -375,9 +376,7 @@
    	<string name="registration_nations_11">Västgöta</string>
    	<string name="registration_nations_12">Wermlands</string>
    	<string name="registration_nations_13">Östgöta</string>
-   	<string name="registration_nations_14">Smålands</string> 	   	
-   	   	
-   	   	   			
+   	<string name="registration_nations_14">Smålands</string>
    	
    	<string name="registration_drivers_licence_none">Inget</string>
     

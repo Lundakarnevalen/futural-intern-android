@@ -23,6 +23,7 @@ import android.os.Handler;
 import android.text.format.Time;
 import android.util.Log;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -64,7 +65,8 @@ public class SplashscreenActivity extends Activity{
 			Log.d("SplashScreen", "starting gcmRegistration()");
 			gcmRegistration();
 		}else{
-			// What to do???
+			// Show toast. 
+			Toast.makeText(this, context.getString(R.string.no_play_service), Toast.LENGTH_SHORT).show();
 		}
 		
 		getMessages();
@@ -131,12 +133,12 @@ public class SplashscreenActivity extends Activity{
 		Log.d("SplashScreen", "Starting getRegId()");
 		String regId = sp.getString(LKFragment.SP_GCM_REGID, "");
 		if(regId.length() <= 0)
-			return "";
+			return null; // Will case it to fetch a new id.
 		String regAppV = sp.getString(LKFragment.SP_GCM_REG_APP, "-1");
 		String currentVersion = LKFragment.getAppVersion(this);
 		if(!regAppV.equals(currentVersion)){
 			Log.d(LOG_TAG, "New app version installed");
-			return "";
+			return null; // Will cause it to fetch an new id.
 		}
 		Log.d("SplashScreen", "Finished getRegId()");
 		return regId;
@@ -146,7 +148,7 @@ public class SplashscreenActivity extends Activity{
 		gcm = GoogleCloudMessaging.getInstance(context);
 		Log.d("SplashScreen", "Got gcm instance");
 		regId = getRegId();
-		if(regId.length() <= 0){
+		if(regId == null || regId.length() <= 0){
 			Log.d(LOG_TAG, "Will try to register");
 			// Register for gcm.
 			regInBackground(context, gcm);
@@ -369,7 +371,7 @@ public class SplashscreenActivity extends Activity{
 			}
 		}, THREAD_DELAY);
 	}
-	
+
 	public static void regInBackground(final Context context, final GoogleCloudMessaging gcm){
 		AsyncTask<?, String, String> regInBackground = new AsyncTask<Object, String, String>(){
 
@@ -377,10 +379,11 @@ public class SplashscreenActivity extends Activity{
 			protected String doInBackground(Object... params) {
 				String regId = null;
 				try{
-					/*if(gcm == null){
-						gcm = GoogleCloudMessaging.getInstance(context);
-					}*/
-					regId = gcm.register(GCMReceiver.SENDER_ID);
+					GoogleCloudMessaging gcmReg = gcm;
+					if(gcm == null){
+						gcmReg = GoogleCloudMessaging.getInstance(context);
+					}
+					regId = gcmReg.register(GCMReceiver.SENDER_ID);
 					Log.d(LOG_TAG, "Got regId: "+regId);
 					storeAsRegId(regId, context);					
 				}catch(IOException e){
@@ -394,6 +397,8 @@ public class SplashscreenActivity extends Activity{
 						Log.d(LOG_TAG, "regId result: "+result);
 					}
 				});
+				
+				// TODO: Send to karnevalis instead of phones.json. phones.json will not be used!
 				remote.requestServerForText("phones.json", "{\"google_token\":\""+regId+"\"}", LKRemote.RequestType.POST, false);
 				
 				return regId;
@@ -415,6 +420,7 @@ public class SplashscreenActivity extends Activity{
 	        } else {
 	            Log.e(LOG_TAG, "This device is not supported.");
 	            // TODO: What to do?? 
+	            finish();
 	        }
 		}
 		return true;
