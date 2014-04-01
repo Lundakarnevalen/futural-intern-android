@@ -281,7 +281,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			// Change color to correct red
 			Paint paintGray = new Paint();
 			Paint paintRed = new Paint();
-			paintRed.setColor(Color.RED);
+			paintRed.setColor(getResources().getColor(R.color.red));
 			paintGray.setColor(Color.GRAY);
 			nbrOfPersons = 0;
 			for (Position p : positions) {
