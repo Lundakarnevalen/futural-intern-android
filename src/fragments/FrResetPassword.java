@@ -35,10 +35,8 @@ public class FrResetPassword extends Fragment {
 	private ActionBar bar;
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fr_layout_reset_password,
-				null);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.fr_layout_reset_password, null);
 
 		remote = new LKRemote(rootView.getContext(), new ResetRemoteListener());
 
@@ -61,6 +59,7 @@ public class FrResetPassword extends Fragment {
 		ActionBarActivity AcBar = (ActionBarActivity) getActivity();
 		bar = AcBar.getSupportActionBar();
 
+//		Shows and enables the upper left icon and up navigation
 		bar.setDisplayHomeAsUpEnabled(true);
 		bar.setDisplayShowHomeEnabled(true);
 	}
@@ -69,6 +68,8 @@ public class FrResetPassword extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			
+//			Return to FrSignIn
 			getFragmentManager().popBackStack();
 			return true;
 		}
@@ -90,14 +91,11 @@ public class FrResetPassword extends Fragment {
 			Log.d(LOG_TAG, response.toString());
 
 			if (!response.success) {
-				Toast.makeText(getActivity(), response.errors.toString(),
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(getActivity(), response.errors.toString(), Toast.LENGTH_LONG).show();
 				return;
 			}
 
-			Toast.makeText(getActivity(),
-					"Successfully reset password, check your mail",
-					Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), R.string.reset_password_successful, Toast.LENGTH_LONG).show();
 
 			//Return to Sign in
 			getFragmentManager().popBackStack();
@@ -115,7 +113,7 @@ public class FrResetPassword extends Fragment {
 			Log.d("Email", email);
 
 			if (!HelperEmail.validEmail(email)) {
-				mEmailView.setError("Incorrectly formated email");
+				mEmailView.setError(getString(R.string.error_invalid_email));
 				mEmailView.requestFocus();
 				return;
 			}

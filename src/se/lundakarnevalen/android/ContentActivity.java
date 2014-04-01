@@ -36,7 +36,6 @@ import fragments.LKFragment;
 import fragments.LKFragment.MessangerMessage;
 import fragments.MapFragment;
 import fragments.MusicFragment;
-import fragments.SectionsFragment;
 
 public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger {
 	
@@ -100,10 +99,10 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		} 
 		
 		
-		SharedPreferences sharedVersion = getSharedPreferences(LKFragment.SP_VERSION_NAME, MODE_PRIVATE);
+		SharedPreferences sharedVersion = getSharedPreferences(LKFragment.SP_JSON_VERSION, MODE_PRIVATE);
 		int version = sp.getInt("Version", -1);
 		
-		if (version < R.integer.version_code) {
+		if (version < R.integer.json_version) {
 			Log.d(LOG_TAG, "Update of user information required");
 			//If this happens the current user information is old, so we need to update it.
 			
@@ -114,7 +113,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			Log.d(LOG_TAG, "Updating the version number");
 			
 			Editor edit = sharedVersion.edit();
-			edit.putFloat("Version", R.integer.version_code);
+			edit.putFloat("Version", R.integer.json_version);
 			edit.commit();
 		}
 		

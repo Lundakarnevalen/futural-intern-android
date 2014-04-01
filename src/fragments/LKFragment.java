@@ -36,7 +36,7 @@ public class LKFragment extends Fragment {
 	public static final int VERSION = 0x010;
 
 	// Shared preferences keys
-	public static final String SP_VERSION_NAME = "0.4";
+	public static final String SP_JSON_VERSION = "0.4";
 	public static final String SP_GCM_NAME = "LKGCM";
 	public static final String SP_GCM_REGID = "LKGCM_REG_ID";
 	public static final String SP_GCM_REG_APP = "LKGCM_APPV";

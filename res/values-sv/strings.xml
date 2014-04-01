@@ -353,12 +353,23 @@
     <string name="map_right_now">Var är karnevalisterna\njust nu?</string>
 
     
+    
+    
     <!-- General -->
     
     <!-- End General -->
     
+    <!-- FrResetPassword -->
+    <string name="reset_password_successful">Återställningen lyckades, kolla din E-post</string>
+    <!-- End FrResetPassword -->
+    
     <!-- FrSignIn -->
     <string name="no_internet_msg">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
+	<string name="prompt_email">E-post</string>
+    <string name="prompt_password">Lösenord</string>
+    <string name="error_invalid_email">Invalid email</string>
+    <string name="error_invalid_password">Too short password</string>
+    <string name="error_field_required">Fältet är nödvändigt</string>
     
     <!-- FrSignIn -->
 </resources>
