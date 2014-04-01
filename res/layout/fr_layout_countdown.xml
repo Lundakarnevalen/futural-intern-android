@@ -92,13 +92,17 @@
                 android:textColor="#ffffff"
                 android:textSize="12sp" />
         </FrameLayout>
-
+		<RelativeLayout 
+		    android:id="@+id/countdown_song_layout"
+		    android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/countdown_yellow_rectangle_frame"
+            android:layout_marginTop="20dp"
+		    >
         <ImageView
             android:id="@+id/countdown_playbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/countdown_yellow_rectangle_frame"
-            android:layout_marginTop="20dp"
             android:scaleType="fitXY"
             android:src="@drawable/playerbutton" />
         <ImageView
@@ -106,10 +110,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/countdown_playbutton"
-            android:layout_below="@id/countdown_yellow_rectangle_frame"
-            android:layout_marginTop="20dp"
             android:scaleType="fitXY"
             android:src="@drawable/song" />
+        
         <ImageView
             android:id="@+id/countdown_waves_line"
             android:layout_width="wrap_content"
@@ -118,6 +121,7 @@
             android:layout_marginTop="20dp"
             android:scaleType="fitXY"
             android:src="@drawable/timeline" />
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/countdown_yellow_bottomShadow"
