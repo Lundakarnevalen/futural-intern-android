@@ -20,7 +20,7 @@ public class SangBokFragment extends LKFragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.sangbok_layout, container, false);
+		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.sangbok_songs_layout, container, false);
 		
 		final Context c = inflater.getContext();
 		final FragmentManager fm = getActivity().getSupportFragmentManager();
@@ -65,6 +65,8 @@ public class SangBokFragment extends LKFragment {
     	{
     		return 0.93f;
     	}
+        
+       
     }
 	
 	public static class SongFragment extends Fragment {
@@ -79,6 +81,7 @@ public class SangBokFragment extends LKFragment {
 			b.putString(KEY_TEXT, text);
 			b.putString(KEY_SUBTITLE, subtitle);
 			f.setArguments(b);
+			f.setRetainInstance(true);
 			return f;
 		}
 
