@@ -127,7 +127,7 @@ public class LKRemote {
     			// Show error popup
     			AlertDialog.Builder builder = new AlertDialog.Builder(context);
     			builder.setTitle(context.getString(R.string.no_internet_title));
-    			builder.setMessage(context.getString(R.string.no_internet));
+    			builder.setMessage(context.getString(R.string.no_internet_msg));
     			builder.setPositiveButton("Ok", null);
     			builder.create().show();
     		}
