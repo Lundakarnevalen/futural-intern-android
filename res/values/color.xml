@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="red">#FF0000</color>
+    <!--  <color name="red">#FF0000</color> -->
     <color name="menu_bg">#2B2B28</color>
     <color name="bullet_grey">#85857E</color>
     <color name="menu_inbox_ctr_box">#4c4c4c</color>
     <color name="menu_item_selected">#22231E</color>
     <color name="menu_divider">#22231E</color>
-    <color name="tanted_peach">#F7897E</color>
+    <color name="tainted_peach">#F7897E</color>
     <color name="base_pink">#EF6860</color>
     <color name="peach">#FAA69C</color>
     <color name="light_peach">#FEEDEB</color>
@@ -20,10 +20,11 @@
     <color name="light_blue">#C1D3EE</color>
     <color name="dark_blue">#5D617F</color>
     <color name="yellow">#f5d408</color>
-    <color name="red">#ff2b33</color>
+    <!--  <color name="red">#ff2b33</color>  -->
     <color name="green">#6ecaae</color>
     <color name="dark_green">#58a18b</color>
     <color name="dark_yellow">#dcbe07</color>
     <color name="red">#F0533E</color>
+    <color name="beige_bg">#F7EAD4</color>
 
 </resources>
