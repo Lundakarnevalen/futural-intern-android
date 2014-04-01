@@ -2,9 +2,9 @@ package se.lundakarnevalen.widget;
 
 import java.util.List;
 
-import se.lundakarnevalen.android.LKFragment;
 import se.lundakarnevalen.android.R;
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -17,23 +17,22 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import fragments.LKFragment;
 
 /**
  * Class used for the navigation drawers list view.
  * @author Alexander Najafi
  *
  */
-public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuListItem> implements OnItemClickListener{
+public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuListItem> implements OnItemClickListener {
 	
 	private final String LOG_TAG = "ArrayAdapter";
-	Context context;
-	LayoutInflater inflater;
+	private LayoutInflater inflater;
 	public RelativeLayout inboxCounterWrapper;
 	public TextView inboxCounter;
 	
 	public LKMenuArrayAdapter(Context context, List<LKMenuListItem> items){
 		super(context, android.R.layout.simple_list_item_1, items);
-		this.context = context;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
@@ -178,7 +177,7 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		 * @param icon Icon next to text
 		 * @param fragment Fragment to show
 		 */
-		public LKMenuListItem(final String title, int icon, final LKFragment fragment, final FragmentManager fragmentMgr, final Context context){
+		public LKMenuListItem(final String title, int icon, final Fragment fragment, final FragmentManager fragmentMgr, final Context context){
 			this.title = title;
 			this.icon = icon;
 			
@@ -186,15 +185,22 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 				
 				@Override
 				public void onClick(View v) {
-					if(fragment == null){
-						LKFragment fragmentStart = LKFragment.getStartFragment(context);
-						fragmentMgr.beginTransaction().replace(R.id.content_frame, fragmentStart).commit();
-					}else{
+						
+						hej(fragmentMgr);
 						fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment).commit();
+				}
+
+				private void hej(FragmentManager fragmentMgr) {
+					
+					for(int i = 0; i < fragmentMgr.getBackStackEntryCount(); i++) {
+						Log.d("ContentActivity", "Removed from backstack");
+						fragmentMgr.popBackStack(); 
 					}
 				}
 			};
 		}
+		
+		
 		
 		/**
 		 * Call this to close the navigationdrawer when item is clicked. 

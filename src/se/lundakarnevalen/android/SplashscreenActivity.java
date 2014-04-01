@@ -4,11 +4,13 @@ import java.io.IOException;
 
 import json.Notification;
 import json.Response;
+import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.GCMReceiver;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.RequestType;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import se.lundakarnevalen.remote.LKSQLiteDB;
+import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
@@ -29,13 +31,16 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
+
+import fragments.LKFragment;
 //github.com/Lundakarnevalen/futural-intern-android.git
 
 public class SplashscreenActivity extends Activity{
 
 	RelativeLayout wrapper;
 	Context context;
-	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds 
+	//private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds
+	private final int THREAD_DELAY = 200; //Splashscreen shown in milliseconds
 	
 	
 	private static final String LOG_TAG = "splash";
@@ -347,7 +352,7 @@ public class SplashscreenActivity extends Activity{
 	}
 	
 	public void addDataSekBg(){
-		AsyncTask<?, String, String> regInBackground = new AsyncTask<Object, String, String>(){
+		new AsyncTask<Object, String, String>(){
 
 			@Override
 			protected String doInBackground(Object... params) {
@@ -364,7 +369,17 @@ public class SplashscreenActivity extends Activity{
 		new Handler().postDelayed(new Thread() {
 			@Override
 			public void run() {
-				Intent intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
+				
+				Intent intent;
+				
+				if(LKUser.localUserStored(context)) {
+					Log.d(SplashscreenActivity.class.getSimpleName(), "User stored locally");
+					
+					intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
+				} else {
+					intent = new Intent(SplashscreenActivity.this, AcLogin.class);					
+				}
+				
 				SplashscreenActivity.this.startActivity(intent);
 				SplashscreenActivity.this.finish();
 				overridePendingTransition(R.layout.fade_in, R.layout.fade_out);
@@ -373,7 +388,7 @@ public class SplashscreenActivity extends Activity{
 	}
 
 	public static void regInBackground(final Context context, final GoogleCloudMessaging gcm){
-		AsyncTask<?, String, String> regInBackground = new AsyncTask<Object, String, String>(){
+		new AsyncTask<Object, String, String>(){
 
 			@Override
 			protected String doInBackground(Object... params) {
@@ -418,27 +433,17 @@ public class SplashscreenActivity extends Activity{
 			if (GooglePlayServicesUtil.isUserRecoverableError(result)) {
 	            GooglePlayServicesUtil.getErrorDialog(result, this, GCMReceiver.PLAY_SERVICES_RESOLUTION_REQUEST).show();
 	        } else {
+<<<<<<< HEAD
 	            Log.e(LOG_TAG, "This device is not supported.");
 	            // TODO: What to do?? 
 	            finish();
+=======
+	            Log.e(LOG_TAG, "This device is not supported."); 
+>>>>>>> login
 	        }
 		}
 		return true;
 	}
-	
-
-//	View.OnClickListener cont = new View.OnClickListener() {
-//		@Override
-//		public void onClick(View v) {
-//			launchApp();
-//		}
-//	};
-//	
-//	private void launchApp(){
-//		Intent intent = new Intent(context, ContentActivity.class);
-//		startActivity(intent);
-//		finish();
-//	}
 	
 	/** 
 	 * Populate SP with some basic data if there is none.
@@ -455,27 +460,5 @@ public class SplashscreenActivity extends Activity{
 		}
 		
 		editor.commit();
-		
-//		LKSQLiteDB db = new LKSQLiteDB(context);
-//		int heigestLocalId = db.heighestMessageId();
-//		db.close();
-		
-//		LKRemote remote = new LKRemote(this,new LKRemote.TextResultListener() {
-//			@Override
-//			public void onResult(String result) {
-//				LKSQLiteDB db = new LKSQLiteDB(context);
-//				Log.d(LOG_TAG, result);
-//				Gson gson = new Gson();
-//				Response.Message resp = gson.fromJson(result, Response.Message.class);
-//				if(resp.status.equals("success")){
-//					Log.d("SplashScreenActivity", resp.notifications);
-//				}else{
-//					Log.d("SplashScreenActivity", "Something went horribly wrong...");
-//				}
-//				db.close();
-//			}
-//		});
-		
-		
 	}
 }

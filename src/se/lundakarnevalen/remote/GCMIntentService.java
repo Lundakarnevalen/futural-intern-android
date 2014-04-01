@@ -1,8 +1,6 @@
 package se.lundakarnevalen.remote;
 
 import se.lundakarnevalen.android.ContentActivity;
-import se.lundakarnevalen.android.InboxFragment;
-import se.lundakarnevalen.android.LKFragment;
 import se.lundakarnevalen.android.R;
 import android.app.IntentService;
 import android.app.Notification;
@@ -16,6 +14,9 @@ import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import fragments.InboxFragment;
+import fragments.LKFragment;
 
 public class GCMIntentService extends IntentService{
 	public static final int TYPE_MESSAGE = 0, TYPE_UPDATEUSER = 1;

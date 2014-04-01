@@ -3,13 +3,12 @@ package se.lundakarnevalen.android;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.lundakarnevalen.android.LKFragment.MessangerMessage;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,9 +31,16 @@ import android.widget.TextView;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger{
+import fragments.InboxFragment;
+import fragments.LKFragment;
+import fragments.LKFragment.MessangerMessage;
+import fragments.MapFragment;
+import fragments.MusicFragment;
+import fragments.SectionsFragment;
+
+public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger {
 	
-	private final String LOG_TAG = "ContentActivity";
+	private final String LOG_TAG = ContentActivity.class.getSimpleName();
 	
 	boolean drawerOpen;
 	private ActionBar actionBar;
@@ -54,11 +60,11 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		Bundle inData = getIntent().getExtras();
 		
-		EasyTracker.getInstance().activityStart(this);
+		trackingStart();
 		
 		setContentView(R.layout.content_wrapper);
+		
 		actionBar = getSupportActionBar();
 		
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -67,24 +73,17 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		fragmentMgr = getSupportFragmentManager();
 		
 		setupActionBar();
+		
 		populateMenu();
-		Intent intent = getIntent();
-		int fragment = intent.getIntExtra("fragment", Integer.MIN_VALUE);
-		LKFragment fragmentToLoad = null;
-		switch(fragment){
-		case LKFragment.INBOX_FRAGMENT:
-			fragmentToLoad = new InboxFragment();
-			break;
-		default:
-			fragmentToLoad = LKFragment.getStartFragment(this);
-		}
-		loadFragment(fragmentToLoad, false);
+		
+		loadFragment(new SectionsFragment(), false);
 	}
+
 	
 	@Override
 	public void onStop(){
 		super.onStop();
-		EasyTracker.getInstance().activityStop(this);
+		trackingStop();
 	}
 	
 	@Override
@@ -99,6 +98,25 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 			SplashscreenActivity.regInBackground(this, gcm);
 		} 
+		
+		
+		SharedPreferences sharedVersion = getSharedPreferences(LKFragment.SP_VERSION_NAME, MODE_PRIVATE);
+		int version = sp.getInt("Version", -1);
+		
+		if (version < R.integer.version_code) {
+			Log.d(LOG_TAG, "Update of user information required");
+			//If this happens the current user information is old, so we need to update it.
+			
+//			TODO check how to update the users information without signing in to the application.
+			
+			//Update current version number
+			
+			Log.d(LOG_TAG, "Updating the version number");
+			
+			Editor edit = sharedVersion.edit();
+			edit.putFloat("Version", R.integer.version_code);
+			edit.commit();
+		}
 		
 		this.setInboxCount();
 	}
@@ -187,7 +205,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	
 	private void setInboxCount(){
 		final Context context = this;
-		AsyncTask task = new AsyncTask<Void, Void, Integer>(){
+		new AsyncTask<Void, Void, Integer>(){
 		
 			@Override
 			protected Integer doInBackground(Void... params) {
@@ -238,7 +256,11 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	 */
 	@Override
 	public void loadFragment(Fragment fragment, boolean addToBackstack){
+		
 		FragmentTransaction transaction = fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment);
+		
+		Log.d("Inside ContentActivity", "yeeah");
+		
 		if(addToBackstack)
 			transaction.addToBackStack(null);
 		transaction.commit();
@@ -261,10 +283,14 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);
 		
 		inboxListItem = new LKMenuListItem("Inkorg", 0, new InboxFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
+		
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
 
-		listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
+		//listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
+		listItems.add(new LKMenuListItem("Map", 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+		
+		listItems.add(new LKMenuListItem("Music", 0, new MusicFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
 		listItems.add(inboxListItem);
 		//listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
@@ -358,4 +384,12 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 				drawerLayout.openDrawer(menuList);
 		}
 	};
+	
+	private void trackingStart() {
+		EasyTracker.getInstance().activityStart(this);
+	}
+	
+	private void trackingStop() {
+		EasyTracker.getInstance().activityStop(this);
+	}
 }
