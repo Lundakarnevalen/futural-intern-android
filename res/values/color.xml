@@ -24,5 +24,6 @@
     <color name="dark_yellow">#dcbe07</color>
     <color name="red">#F0533E</color>
     <color name="beige_bg">#F7EAD4</color>
+    <color name="shadow_black">#66000000</color>
 
 </resources>
