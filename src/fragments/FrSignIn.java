@@ -72,9 +72,6 @@ public class FrSignIn extends Fragment {
 
 		context = getActivity();
 		
-		Button button = (Button) rootView.findViewById(R.id.cheat);
-		button.setOnClickListener(new CheatButton());
-		
 		// Set up the login form.
 		mEmail = getActivity().getIntent().getStringExtra(EXTRA_EMAIL);
 		mEmailView = (EditText) rootView.findViewById(R.id.email_field);
@@ -180,19 +177,6 @@ public class FrSignIn extends Fragment {
 			getActivity().finish();
 		}
 	}
- 	
-//	TODO TO be removed when the login works as intended
-	private class CheatButton implements OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			Intent intent = new Intent(context, ContentActivity.class);
-			context.startActivity(intent);
-			getActivity().finish();
-		}
-	}
-	 
-//	End of removal
 
 	/**
 	 * Attempts to sign in or register the account specified by the login form.
