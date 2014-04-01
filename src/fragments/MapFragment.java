@@ -409,7 +409,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 				Matrix matrix = new Matrix();
 				background.setScaleType(ImageView.ScaleType.MATRIX);
 				matrix.set(background.getImageMatrix());
-				float multFactor = (float)2;
+				float multFactor = (float) 2;
 				if(x > 5) {
 					x = 5;
 				} else if(x < -5) {

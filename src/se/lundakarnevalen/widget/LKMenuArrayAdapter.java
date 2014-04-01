@@ -36,6 +36,10 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		super(context, android.R.layout.simple_list_item_1, items);
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
+	
+	public void deleteItem(LKMenuListItem item) {
+		remove(item);
+	}
 
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent){

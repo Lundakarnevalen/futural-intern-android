@@ -44,6 +44,8 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	final Calendar endTimeMap = Calendar.getInstance();
 	private final String LOG_TAG = "ContentActivity";
 
+	private LKMenuArrayAdapter adapter;
+
 	private LKMenuListItem mapItem = null;
 
 	boolean drawerOpen;
@@ -135,7 +137,6 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			fragment.onIntrestsRadioButtonClicked(view);
 		} catch(ClassCastException e) {
 			Log.e(LOG_TAG,"could not get fragment." + e.toString());
-
 		}
 	}
 	/**
@@ -200,11 +201,10 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 				mapItem.inboxCounterWrapper.setVisibility(View.GONE);
 			} else if(nbr==-1) {
 				//TODO DO DARKER!!
-				// Not click able
 			} else if(nbr==2) {
 				// TODO 
 				// Nu blir det tomt. Ändra så blir mörk igen..
-				mapItem.rowLayout.setVisibility(View.GONE);
+				adapter.remove(mapItem);
 			}
 		}
 	}
@@ -290,25 +290,23 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
 
-		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill));
+		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill)); 
 		inboxListItem = new LKMenuListItem(getString(R.string.Inkorg), 0, new InboxFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
-
 
 		//listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		// TODO fix block
 
-		startTimeMap.set(2014,Calendar.APRIL,1,00,05,00);
-		endTimeMap.set(2014,Calendar.APRIL,10,00,07,00);
-		Calendar c = Calendar.getInstance();
 
+		startTimeMap.set(2014,Calendar.APRIL,1,15,15,00);
+		
+		endTimeMap.set(2014,Calendar.APRIL,10,16,23,00);
+		Calendar c = Calendar.getInstance();
 
 		//only add map if before..
 		if(!(c.compareTo(endTimeMap)==1)) {
 			mapItem = new LKMenuListItem(getString(R.string.karta), 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isMapRow(true);
-
 			listItems.add(mapItem);
 		}
-
 
 
 		//TODO Map only available on tidningsdagen
@@ -320,8 +318,9 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		//listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
 
-		LKMenuArrayAdapter adapter = new LKMenuArrayAdapter(this, listItems);
+		adapter = new LKMenuArrayAdapter(this, listItems);
 		menuList.setAdapter(adapter);
+
 		menuList.setOnItemClickListener(adapter);
 	}
 
@@ -374,7 +373,6 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			 * */
 			public void onDrawerOpened(View drawerView) {
 				// TODO: Fix UI in actionBar
-
 				if(mapItem != null) {
 					Calendar c = Calendar.getInstance();
 					if(c.compareTo(startTimeMap)==1) {
@@ -394,7 +392,6 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 						setMapMark(-1);
 					}
 				}
-
 				drawerOpen = true;
 				Log.d(LOG_TAG, "open");
 			}
