@@ -62,7 +62,6 @@ public class FrResetPassword extends Fragment {
 		bar = AcBar.getSupportActionBar();
 
 		bar.setDisplayHomeAsUpEnabled(true);
-		bar.addOnMenuVisibilityListener(new MenuListener());
 		bar.setDisplayShowHomeEnabled(true);
 	}
 
@@ -71,21 +70,10 @@ public class FrResetPassword extends Fragment {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			getFragmentManager().popBackStack();
-			bar.setDisplayHomeAsUpEnabled(false);
 			return true;
 		}
 
 		return super.onOptionsItemSelected(item);
-	}
-
-	private class MenuListener implements OnMenuVisibilityListener {
-
-		@Override
-		public void onMenuVisibilityChanged(boolean arg0) {
-			System.out.println("KLICKADE PÅ MIG!!!");
-
-		}
-
 	}
 
 	private class ResetRemoteListener implements TextResultListener {
@@ -111,11 +99,8 @@ public class FrResetPassword extends Fragment {
 					"Successfully reset password, check your mail",
 					Toast.LENGTH_LONG).show();
 
-			FragmentManager manager = getActivity().getSupportFragmentManager();
-			FragmentTransaction ft = manager.beginTransaction();
-
-			ft.replace(R.id.content_frame, new FrSignIn());
-			ft.commit();
+			//Return to Sign in
+			getFragmentManager().popBackStack();
 		}
 	}
 
