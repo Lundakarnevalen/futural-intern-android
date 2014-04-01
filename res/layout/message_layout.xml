@@ -39,8 +39,7 @@
 		            android:paddingLeft="@dimen/horizontal_margin_double"
 		            android:paddingRight="@dimen/horizontal_margin_double"
 		            android:paddingTop="@dimen/horizontal_margin_half"
-		            android:paddingBottom="@dimen/horizontal_margin_half"
-		            android:layout_marginBottom="-8dp">   
+		            android:paddingBottom="@dimen/horizontal_margin_half">   
 			        <se.lundakarnevalen.widget.LKTextViewBold android:id="@+id/message_title"
 			            android:layout_width="wrap_content"
 			            android:layout_height="wrap_content"
