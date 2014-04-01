@@ -1,6 +1,7 @@
 
-package fragments;
+package fragments.old;
 
+import fragments.LKFragment;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKTextView;

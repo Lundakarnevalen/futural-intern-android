@@ -1,26 +1,18 @@
 package fragments;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.android.R.color;
-import se.lundakarnevalen.android.R.dimen;
-import se.lundakarnevalen.android.R.id;
-import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKTextView;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

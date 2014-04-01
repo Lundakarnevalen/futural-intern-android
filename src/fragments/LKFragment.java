@@ -230,7 +230,7 @@ public class LKFragment extends Fragment {
 	public boolean messageExistsInDb(int id) {
 		final Context context = getContext();
 		final int msgId = id;
-		AsyncTask task = new AsyncTask<Void, Void, Boolean>() {
+		new AsyncTask<Void, Void, Boolean>() {
 
 			@Override
 			protected Boolean doInBackground(Void... params) {

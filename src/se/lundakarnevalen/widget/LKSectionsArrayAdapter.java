@@ -2,7 +2,7 @@ package se.lundakarnevalen.widget;
 
 import java.util.ArrayList;
 
-import fragments.SectionsInformationFragment;
+import fragments.old.SectionsInformationFragment;
 
 import se.lundakarnevalen.android.ContentActivity;
 import se.lundakarnevalen.android.R;

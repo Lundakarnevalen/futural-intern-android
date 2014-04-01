@@ -8,10 +8,7 @@ import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import util.HelperEmail;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.OnMenuVisibilityListener;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,6 +63,7 @@ public class FrResetPassword extends Fragment {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Log.d(LOG_TAG, "Entered onOptionsItemSelected");
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			
@@ -81,6 +79,8 @@ public class FrResetPassword extends Fragment {
 
 		@Override
 		public void onResult(String result) {
+			Log.d(LOG_TAG, "Got result from server");
+			
 			if (result == null) {
 				Log.d(LOG_TAG, "Result was null");
 				return;
@@ -106,7 +106,7 @@ public class FrResetPassword extends Fragment {
 		@Override
 		public void onClick(View v) {
 			mEmailView.setError(null);
-			Log.d("Reset", "Pressed Reset");
+			Log.d(LOG_TAG, "Pressed Reset");
 
 			String email = mEmailView.getText().toString();
 
@@ -121,8 +121,7 @@ public class FrResetPassword extends Fragment {
 			Gson gson = new Gson();
 			CredentialEmailWrite credentials = new CredentialEmailWrite(email);
 
-			remote.requestServerForText("api/users/password",
-					gson.toJson(credentials), LKRemote.RequestType.POST, false);
+			remote.requestServerForText("api/users/password", gson.toJson(credentials), LKRemote.RequestType.POST, false);
 		}
 	}
 }
