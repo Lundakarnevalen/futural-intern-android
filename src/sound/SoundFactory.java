@@ -10,6 +10,7 @@ public class SoundFactory implements OnAudioFocusChangeListener {
 	private SparseArray<SoundLong> sparseArrayMediaPlayers;
 	private Context context;
 	private static SoundShort shortMedia;
+	private boolean wakeLock;
 	
 	public SoundFactory(Context context) {
 		this.context = context;
@@ -66,13 +67,13 @@ public class SoundFactory implements OnAudioFocusChangeListener {
 		return true;
 	}
 	
-	public void createLongMediaAndStart(int resourceID, boolean looping) {
-		createLongMedia(resourceID, looping);
+	public void createLongMediaAndStart(int resourceID, boolean looping, boolean aquireWakelock) {
+		createLongMedia(resourceID, looping, aquireWakelock);
 		start(resourceID);
 	}
 	
-	public void createLongMedia(int resourceID, boolean looping) {
-		SoundLong media = new SoundLong(context, resourceID, looping);
+	public void createLongMedia(int resourceID, boolean looping, boolean aquireWakelock) {
+		SoundLong media = new SoundLong(context, resourceID, looping, aquireWakelock);
 		sparseArrayMediaPlayers.put(resourceID, media);
 	}
 	
