@@ -71,15 +71,15 @@
 
         <FrameLayout
             android:id="@+id/countdown_yellow_rectangle_frame"
-			android:layout_width="150dp"
+            android:layout_width="150dp"
             android:layout_height="30dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp" >
 
             <View
-                android:layout_width="match_parent"
-				android:layout_height="match_parent"             
                 android:id="@+id/countdown_yellow_rectangle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/button_bg_yellow" >
             </View>
 
@@ -94,6 +94,32 @@
         </FrameLayout>
 
         <ImageView
+            android:id="@+id/countdown_playbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/countdown_yellow_rectangle_frame"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/playerbutton" />
+        <ImageView
+            android:id="@+id/countdown_waves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/countdown_playbutton"
+            android:layout_below="@id/countdown_yellow_rectangle_frame"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/song" />
+        <ImageView
+            android:id="@+id/countdown_waves_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/countdown_waves"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/timeline" />
+
+        <ImageView
             android:id="@+id/countdown_yellow_bottomShadow"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -101,7 +127,6 @@
             android:layout_centerHorizontal="true"
             android:scaleType="fitXY"
             android:src="@drawable/shadow" />
-
     </RelativeLayout>
 
     <ImageView
