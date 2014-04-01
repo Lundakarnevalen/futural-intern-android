@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -117,7 +119,18 @@ public class FrSignIn extends Fragment {
 		hideVirtualKeyboard();
 		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
+		initializeActionBar();
+		
 		return rootView;
+	}
+
+
+	private void initializeActionBar() {
+		ActionBarActivity AcBar = (ActionBarActivity) getActivity();
+		ActionBar bar = AcBar.getSupportActionBar();
+
+		bar.setDisplayHomeAsUpEnabled(false);
+		bar.setDisplayShowHomeEnabled(false);
 	}
 
 
