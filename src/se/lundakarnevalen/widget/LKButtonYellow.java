@@ -28,7 +28,7 @@ public class LKButtonYellow extends Button{
 	}
 	
 	private void init(){
-		setBackgroundResource(R.drawable.button_selector_green);
+		setBackgroundResource(R.drawable.button_selector_yellow);
 		int pxPadding = context.getResources().getDimensionPixelSize(R.dimen.horizontal_margin);
 		setPadding(pxPadding, pxPadding, pxPadding, pxPadding);
 		Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf");

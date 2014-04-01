@@ -12,8 +12,6 @@
         android:scaleX="2"
         android:scaleY="2"
 	    />
-    
-    
     	
     <RelativeLayout
         android:id="@+id/map_upper_box"
@@ -30,7 +28,7 @@
             android:background="@drawable/map_upper_textbox"
             android:gravity="center"
             android:text="@string/map_right_now"
-            android:textColor="#FF0000"
+            android:textColor="@color/red"
             android:textSize="18sp" />
   
         <ImageView 

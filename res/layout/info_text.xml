@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="match_parent" >
 
     <RelativeLayout
+        android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/horizontal_margin"
-        >
+        android:layout_margin="@dimen/horizontal_margin"
+        android:background="@color/light_blue"
+        android:paddingBottom="@dimen/horizontal_margin" >
 
         <LinearLayout
+            android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/horizontal_margin"
-            android:orientation="vertical" >
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:padding="@dimen/horizontal_margin" >
 
-            
-            <se.lundakarnevalen.widget.LKTextViewFat
+            <se.lundakarnevalen.widget.LKTextViewBold
                 android:id="@+id/text_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:gravity="center_horizontal"
-                android:textColor="@color/dark_blue"
-                android:textSize="32sp" />
+                android:textColor="@color/red"
+                android:textSize="22sp" />
 
-            <se.lundakarnevalen.widget.LKTextViewBold
+            <se.lundakarnevalen.widget.LKTextView
                 android:id="@+id/text_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,15 +42,14 @@
                 android:textColor="@color/dark_blue"
                 android:textSize="19sp" />
 
-            <se.lundakarnevalen.widget.LKTextViewFat
+            <se.lundakarnevalen.widget.LKTextViewBold
                 android:id="@+id/text_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="12dp"
                 android:gravity="center_horizontal"
-                android:textColor="@color/dark_blue"
-                android:textSize="32sp" />
+                android:textColor="@color/red"
+                android:textSize="22sp" />
 
             <se.lundakarnevalen.widget.LKTextView
                 android:id="@+id/text_5"
@@ -56,7 +58,7 @@
                 android:textColor="@color/dark_blue"
                 android:textSize="19sp" />
 
-            <se.lundakarnevalen.widget.LKTextViewBold
+            <se.lundakarnevalen.widget.LKTextView
                 android:id="@+id/text_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,18 +69,26 @@
                 android:id="@+id/text_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_blue"
                 android:autoLink="web"
+                android:textColor="@color/dark_blue"
                 android:textSize="19sp" />
 
-            <se.lundakarnevalen.widget.LKTextView
-                android:id="@+id/text_8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/dark_blue"
-                
-                android:textSize="19sp" />
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text"
+            android:background="#ffffff"
+            android:layout_marginBottom="@dimen/horizontal_margin" >
+
+            <se.lundakarnevalen.widget.LKButtonYellow
+                android:id="@+id/next"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/horizontal_margin" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </ScrollView>
