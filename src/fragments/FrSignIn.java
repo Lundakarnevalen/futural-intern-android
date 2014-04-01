@@ -228,7 +228,7 @@ public class FrSignIn extends Fragment {
 		} else {
 			
 			if(!LKRemote.hasInternetConnection(getActivity())) {
-				Toast.makeText(getActivity(), R.string.no_internet, Toast.LENGTH_LONG).show();
+				Toast.makeText(getActivity(), R.string.no_internet_msg, Toast.LENGTH_LONG).show();
 				return;
 			}
 			

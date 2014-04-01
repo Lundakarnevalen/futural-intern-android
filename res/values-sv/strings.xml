@@ -358,7 +358,7 @@
     <!-- End General -->
     
     <!-- FrSignIn -->
-    <string name="no_internet">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
+    <string name="no_internet_msg">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
     
     <!-- FrSignIn -->
 </resources>
