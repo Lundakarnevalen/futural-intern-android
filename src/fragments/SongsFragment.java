@@ -10,10 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import static util.ViewHelper.*;
 
-public class SangBokFragment extends LKFragment {
+public class SongsFragment extends LKFragment {
 	
 	private ViewPager mViewPager;
 	private static int PAGE_MARGIN_DP = 20;
@@ -25,7 +26,7 @@ public class SangBokFragment extends LKFragment {
 		final Context c = inflater.getContext();
 		final FragmentManager fm = getActivity().getSupportFragmentManager();
 		mViewPager = get(R.id.sangbok_layout_viewpager, root, ViewPager.class);
-		mViewPager.setAdapter(new MyAdapter(fm, c));
+		mViewPager.setAdapter(new MyAdapter(fm, c, R.array.sangbok_songs, R.drawable.kommunikation));
 		mViewPager.setPageMargin(Math.round(LKFragment.dpToPx(PAGE_MARGIN_DP, c)));
 		mViewPager.setClipToPadding(false);
 		
@@ -39,25 +40,30 @@ public class SangBokFragment extends LKFragment {
 	}
 	
 	private static class MyAdapter extends FragmentPagerAdapter {
-        final String[] songs;
+        private final String[] songs;
+		private final int icon;
         
-		public MyAdapter(FragmentManager fm, Context c) {
+		public MyAdapter(FragmentManager fm, Context c, int songsArray, int iconDrawable) {
             super(fm);
-            songs = c.getResources().getStringArray(R.array.sangbok_songs);
+            this.songs = c.getResources().getStringArray(songsArray);
+            this.icon = iconDrawable;
         }
 
         @Override
         public int getCount() {
-            return songs.length;
+            return songs.length + 1;
         }
 
         @Override
         public Fragment getItem(int position) {
+        	if(position == 0){
+        		return SongGroupsFragment.newInstance();
+        	}
         	String[] split = songs[position].split("\\|", 3);
     		String title = split[0];
     		String subtitle = split[1];
     		String text = split[2];
-    		return SongFragment.newInstance(title, subtitle, text);
+    		return ShowSongFragment.newInstance(title, subtitle, text, icon);
         }
         
         @Override
@@ -69,34 +75,38 @@ public class SangBokFragment extends LKFragment {
        
     }
 	
-	public static class SongFragment extends Fragment {
-		private static String KEY_TITLE = "title";
+	public static class ShowSongFragment extends Fragment {
 		private static String KEY_SUBTITLE = "subtitle";
+		private static String KEY_TITLE = "title";
 		private static String KEY_TEXT = "text";
+		private static String KEY_ICON = "icon";
 		
-		public static SongFragment newInstance(String title, String subtitle, String text){
-			SongFragment f = new SongFragment();
+		public static ShowSongFragment newInstance(String title, String subtitle, String text, int icon){
+			ShowSongFragment f = new ShowSongFragment();
 			Bundle b = new Bundle();
 			b.putString(KEY_TITLE, title);
 			b.putString(KEY_TEXT, text);
 			b.putString(KEY_SUBTITLE, subtitle);
+			b.putInt(KEY_ICON, icon);
 			f.setArguments(b);
 			f.setRetainInstance(true);
 			return f;
 		}
 
-		public SongFragment(){
+		public ShowSongFragment(){
 			super();
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			ViewGroup root = (ViewGroup) inflater.inflate(R.layout.sangbok_layout_song_layout, container, false);
+			ViewGroup root = (ViewGroup) inflater.inflate(R.layout.sangbok_songs_inflated_song_layout, container, false);
 			Bundle b = getArguments();
 			
 			get(R.id.sangbok_layout_song_layout_title, root, TextView.class).setText(b.getString(KEY_TITLE));
 			get(R.id.sangbok_layout_song_layout_subtitle, root, TextView.class).setText(b.getString(KEY_SUBTITLE));
 			get(R.id.sangbok_layout_song_layout_text, root, TextView.class).setText(b.getString(KEY_TEXT));
+			
+			get(R.id.sangbok_layout_song_layout_icon, root, ImageView.class).setImageResource(b.getInt(KEY_ICON));
 			
 			return root;
 		}

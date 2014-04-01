@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:background="@color/bg_sangbok"
     android:orientation="vertical" >
     
     <RelativeLayout
@@ -31,6 +30,7 @@
     	<ImageView 
     	    android:contentDescription="Icon for song"
     	    android:src="@drawable/kommunikation"
+    	    android:id="@+id/sangbok_layout_song_layout_icon"
     	    android:layout_width="60dp"
     	    android:layout_alignParentRight="true"
     	    android:layout_alignParentTop="true"

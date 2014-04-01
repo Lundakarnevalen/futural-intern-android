@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="60dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:paddingTop="10dp" >
+
+    <TextView
+        android:id="@+id/sangbok_groups_inflated_groupitem_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/sangbok_groups_inflated_groupitem_box_shadow"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/songs_box"
+        android:gravity="center"
+        android:text="NAME"
+        android:textColor="@color/dark_peach"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/sangbok_groups_inflated_groupitem_box_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/songs_shadow" />
+
+    <LinearLayout
+        android:id="@+id/sangbok_groups_inflated_groupitem_nbr_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/sangbok_groups_inflated_groupitem_nbr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/songs_page_nbr_box"
+            android:gravity="center"
+            android:text="4"
+            android:textColor="#FFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/sangbok_groups_inflated_groupitem_nbr_shadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/sangbok_groups_inflated_groupitem_nbr"
+            android:layout_alignParentRight="false"
+            android:layout_alignRight="@id/sangbok_groups_inflated_groupitem_nbr"
+            android:layout_below="@+id/sangbok_groups_inflated_groupitem_nbr"
+            android:src="@drawable/songs_page_nbr_shadow" />
+    </LinearLayout>
+
+</RelativeLayout>
