@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.remote.LKUser;
 import android.app.Activity;
@@ -15,9 +16,12 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 public class LKFragment extends Fragment {
 	protected final static String LOG_TAG = "LKFragment";
@@ -71,10 +75,32 @@ public class LKFragment extends Fragment {
 	/**
 	 * Set the Titlebar title
 	 */
+
 	public void setTitle(String title) {
 		Bundle data = new Bundle();
 		data.putString("title", title);
 		messanger.message(MessangerMessage.SET_TITLE, data);
+		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
+		View root = actionBar.getCustomView();
+		RelativeLayout infoPic = (RelativeLayout) root.findViewById(R.id.info_pic);		
+		if(title.equals(getString(R.string.karta))) {
+			infoPic.setVisibility(View.VISIBLE);
+			
+		} else {
+			infoPic.setVisibility(View.INVISIBLE);
+			
+		}
+		
+		RelativeLayout backToMap = (RelativeLayout) root.findViewById(R.id.back_to_map);		
+		RelativeLayout menuPic = (RelativeLayout) root.findViewById(R.id.menu_drawer_toggle_wrapper);		
+		if(title.equals(getString(R.string.info_text_actionbar))) {
+			backToMap.setVisibility(View.VISIBLE);
+			menuPic.setVisibility(View.GONE);
+		} else {
+			backToMap.setVisibility(View.GONE);
+			menuPic.setVisibility(View.VISIBLE);
+				
+		}
 		showActionBarLogo(false);
 	}
 
@@ -271,4 +297,6 @@ public class LKFragment extends Fragment {
 	public enum MessangerMessage {
 		SET_TITLE, SET_INBOX_COUNT, SHOW_ACTION_BAR_LOGO;
 	}
+
+	
 }

@@ -1644,7 +1644,7 @@
 		</LinearLayout>
 		<!-- Personuppgifter - Slut -->
 		
-	    <se.lundakarnevalen.widget.LKButton
+	    <se.lundakarnevalen.widget.LKButtonGreen
 	        android:layout_marginTop="@dimen/vertical_margin"
 	        android:id="@+id/append_button"
 	        android:layout_width="match_parent"
@@ -1652,7 +1652,7 @@
 	        android:textColor="#FFFFFF"
 	        android:text="@string/registration_append"
 	        android:visibility="gone" />
-	    <se.lundakarnevalen.widget.LKButton
+	    <se.lundakarnevalen.widget.LKButtonGreen
 	        android:layout_marginTop="@dimen/vertical_margin"
 	        android:id="@+id/confirm_button"
 	        android:layout_width="match_parent"

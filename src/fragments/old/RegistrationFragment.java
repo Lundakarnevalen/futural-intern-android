@@ -1,3 +1,4 @@
+//
 //package fragments.old;
 //import se.lundakarnevalen.widget.LKRadioGroup;
 //
@@ -13,14 +14,13 @@
 //import se.lundakarnevalen.android.R.string;
 //import se.lundakarnevalen.remote.LKRemote;
 //import se.lundakarnevalen.remote.LKUser;
-//import se.lundakarnevalen.widget.LKButton;
+//import se.lundakarnevalen.widget.LKButtonGreen;
 //import se.lundakarnevalen.widget.LKEditText;
 //import se.lundakarnevalen.widget.LKProgressBar;
 //import se.lundakarnevalen.widget.LKSpinner;
 //import se.lundakarnevalen.widget.LKSpinnerArrayAdapter;
 //import se.lundakarnevalen.widget.LKSpinnerArrayAdapter.LKSpinnerArrayItem;
 //import se.lundakarnevalen.widget.LKTextView;
-//import util.HelperEmail;
 //import android.app.AlertDialog;
 //import android.content.Context;
 //import android.content.SharedPreferences;
@@ -51,7 +51,7 @@
 //	private LKEditText code, name, lastname, email, validemail, mobilnbr, adress, zipcode, city, personnumber, foodpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt, terms;
 //	private LKProgressBar progressbar;
 //	private LKTextView progressvalue;
-//	private LKButton confirmButton, appendButton;
+//	private LKButtonGreen confirmButton, appendButton;
 //	private LKSpinner nationsSpinner, shirtSpinner, driverLicensSpinner, sexSpinner;
 //	private boolean[] sektionerchecked = new boolean[501];
 //	private boolean[] intressenchecked = new boolean[17];
@@ -81,7 +81,7 @@
 //		personnumber = (LKEditText) root.findViewById(R.id.pers_nr);
 //		name = (LKEditText) root.findViewById(R.id.name);
 //		lastname = (LKEditText) root.findViewById(R.id.lastname);
-//		email = (LKEditText) root.findViewById(R.id.email_field);
+//		email = (LKEditText) root.findViewById(R.id.email);
 //		validemail = (LKEditText) root.findViewById(R.id.email_valid);
 //		mobilnbr = (LKEditText) root.findViewById(R.id.phone_nr);
 //		adress = (LKEditText) root.findViewById(R.id.postal_address);
@@ -96,7 +96,7 @@
 //		terms = (LKEditText) root.findViewById(R.id.terms);
 //		progressbar = (LKProgressBar) root.findViewById(R.id.lKProgressBar1);
 //		progressvalue = (LKTextView) root.findViewById(R.id.progress_value);
-//		confirmButton = (LKButton) root.findViewById(R.id.confirm_button);
+//		confirmButton = (LKButtonGreen) root.findViewById(R.id.confirm_button);
 //		pulcheckbox = (CheckBox) root.findViewById(R.id.checkbox_PUL);
 //		work_fulltimecb = (CheckBox) root.findViewById(R.id.checkbox_work_fulltime);
 //		work_styrelsecb = (CheckBox) root.findViewById(R.id.checkbox_work_styrelse);
@@ -237,7 +237,7 @@
 //		shirtSpinner.setOnItemSelectedListener(shirtSpinnerListeners);
 //		driverLicensSpinner = (LKSpinner) root.findViewById(R.id.driver_licens);
 //		driverLicensSpinner.setOnItemSelectedListener(driverLicensSpinnerListeners);
-//		appendButton = (LKButton) root.findViewById(R.id.append_button);
+//		appendButton = (LKButtonGreen) root.findViewById(R.id.append_button);
 //		appendButton.setOnClickListener(append);
 //		wrapperPers = (LinearLayout) root.findViewById(R.id.wrapper_pers);
 //		wrapperCode = (LinearLayout) root.findViewById(R.id.wrapper_code);
@@ -517,7 +517,7 @@
 //			progresslevel += 5;
 //		if(isEditTextLongerThanThisLength(mobilnbr,4))
 //			progresslevel += 5;
-//		if(HelperEmail.validEmail(email.getText().toString()) && equalEmail(email.getText().toString(), validemail.getText().toString()))
+//		if(validEmail(email.getText().toString()) && equalEmail(email.getText().toString(), validemail.getText().toString()))
 //			progresslevel += 5;
 //		if(isEditTextFilled(adress))
 //			progresslevel += 5;
@@ -558,7 +558,7 @@
 //				Wrongs.add(getString(R.string.registration_valid_personnr));
 //			if(!isEditTextLongerThanThisLength(mobilnbr,4))
 //				Wrongs.add(getString(R.string.registration_valid_mobilenr));
-//			if(!HelperEmail.validEmail(email.getText().toString()))
+//			if(!validEmail(email.getText().toString()))
 //				Wrongs.add(getString(R.string.registration_valid_email));
 //			if(!equalEmail(email.getText().toString(), validemail.getText().toString()))
 //				Wrongs.add(getString(R.string.registration_valid_email_match));
@@ -586,7 +586,7 @@
 //				Wrongs.add(getString(R.string.registration_valid_personnr));
 //			if(!isEditTextLongerThanThisLength(mobilnbr,4))
 //				Wrongs.add(getString(R.string.registration_valid_mobilenr));
-//			if(!HelperEmail.validEmail(email.getText().toString()))
+//			if(!validEmail(email.getText().toString()))
 //				Wrongs.add(getString(R.string.registration_valid_email));
 //			if(!equalEmail(email.getText().toString(), validemail.getText().toString()))
 //				Wrongs.add(getString(R.string.registration_valid_email_match));
@@ -899,6 +899,17 @@
 //		}
 //	}
 //	
+//	/**
+//	 * Validates email address
+//	 * @param email The address to validate
+//	 * @return True if it is valid. 
+//	 */
+//	private boolean validEmail(String email){
+//		String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+//		Pattern pattern = Pattern.compile(regex);
+//		Matcher matcher = pattern.matcher(email);
+//		return matcher.matches();
+//	}
 //	private boolean equalEmail(String email1, String email2) {
 //		return email1.equals(email2);
 //	}
@@ -1251,3 +1262,4 @@
 //	};
 //
 //}
+//>>>>>>> develop

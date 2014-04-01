@@ -12,6 +12,7 @@
             android:layout_width="wrap_content"
             android:id="@+id/menu_drawer_toggle_wrapper"
             android:layout_alignParentLeft="true"
+            android:visibility="visible"
             android:clickable="true">
             <ImageView
                 android:layout_width="wrap_content"
@@ -64,51 +65,41 @@
     </RelativeLayout>
     
     <RelativeLayout 
-            android:layout_height="fill_parent"
+            android:layout_height="44dp"
             android:layout_width="32dp"
-            android:id="@+id/gps_checkbox"
+            android:id="@+id/info_pic"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:visibility="gone"
             android:layout_marginRight="@dimen/horizontal_margin"
-            android:clickable="true">
+            android:clickable="true"
+            >
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/gps_box"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/info"
                 android:layout_centerVertical="true"
-                android:id="@+id/gps_box"
+                android:layout_centerHorizontal="true"
+                
                 />
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/gps_box_shadow"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="-8dp"
-
-                android:layout_below="@id/gps_box"
-                />
-   			<ImageView
-                android:layout_width="25dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/gps_checkmark"
-                android:layout_centerVertical="true"
-                android:id="@+id/gps_checkmark"
-                />
-                <se.lundakarnevalen.widget.LKTextView 
-                    android:layout_width="32dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/gps_text"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentTop="true"
-                    
-                    android:textColor="#FFFFFF"
-                    android:padding="0dp"
-                    android:textSize="10sp"
-                    android:text="GPS"
-                    />
+                
         
             
             </RelativeLayout>
-	    
+	    <RelativeLayout 
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/back_to_map"
+            android:layout_alignParentLeft="true"
+            android:clickable="true"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/info"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/horizontal_margin"
+                />
+        </RelativeLayout>
     
 </RelativeLayout>

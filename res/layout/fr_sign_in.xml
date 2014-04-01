@@ -71,7 +71,7 @@
                 android:maxLines="1"
                 android:singleLine="true" />
 
-            <se.lundakarnevalen.widget.LKButton
+            <se.lundakarnevalen.widget.LKButtonGreen
                 android:id="@+id/sign_in_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                 android:paddingRight="32dp"
                 android:text="@string/sign_in_button" />
             
-            <se.lundakarnevalen.widget.LKButton
+            <se.lundakarnevalen.widget.LKButtonGreen
                 android:id="@+id/password_reset"
                 android:text="@string/reset_password"
                 android:layout_width="wrap_content"
