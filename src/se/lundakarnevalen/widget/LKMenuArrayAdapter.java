@@ -4,6 +4,7 @@ import java.util.List;
 
 import se.lundakarnevalen.android.R;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -35,6 +36,10 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		super(context, android.R.layout.simple_list_item_1, items);
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
+	
+	public void deleteItem(LKMenuListItem item) {
+		remove(item);
+	}
 
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent){
@@ -59,16 +64,15 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 			inboxCounterWrapper.setVisibility(View.VISIBLE);
 			inboxCounter = (TextView) wrapper.findViewById(R.id.inbox_ctr);
 			item.inboxCounter = inboxCounter; // Do not move
-			inboxCounter.setText("1"); // TODO: Set to some serious value
-			
+			inboxCounter.setText("1"); // TODO: Set to some serious value	
 		}
-		
 		// For inbox row
 		if(item.isMapRow){
 			inboxCounterWrapper = (RelativeLayout) wrapper.findViewById(R.id.inbox_ctr_wrapper);
 			item.inboxCounterWrapper = inboxCounterWrapper; // Do not move
 			inboxCounter = (TextView) wrapper.findViewById(R.id.inbox_ctr);
 			item.inboxCounter = inboxCounter; // Do not move
+			item.rowLayout = (RelativeLayout) wrapper.findViewById(R.id.menu_element);
 		}
 
 		if(item.isActive)
@@ -80,6 +84,10 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		final LKMenuListItem item = getItem(pos);
+		if(item.isMapRow) {
+			SharedPreferences prefs = getContext().getSharedPreferences("MAP_FIRST", Context.MODE_PRIVATE);
+			prefs.edit().putInt("firstTime", 1).commit();	
+		}
 		Log.d(LOG_TAG, "clicked: "+pos);
 		OnClickListener listener = item.listener;
 		if(listener != null){
@@ -115,6 +123,10 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		boolean isInboxRow = false;
 		boolean isMapRow = false;
 		boolean isActive = false;
+		boolean pressedMap = false;
+		
+		public RelativeLayout rowLayout;
+		
 		public RelativeLayout inboxCounterWrapper;
 		public TextView inboxCounter;
 		
@@ -141,12 +153,6 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 			return this;
 		}
 		
-		public void set() {
-			// For inbox row
-				inboxCounterWrapper.setVisibility(View.VISIBLE);
-				inboxCounter.setText("!"); // TODO: Set to some serious value
-
-		}
 
 		/**
 		 * To be used with statics in listview.

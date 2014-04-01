@@ -9,7 +9,7 @@
                 android:width="4dp"
                 android:color="@color/base_pink" />
 
-            <solid android:color="@color/tanted_peach" />
+            <solid android:color="@color/tainted_peach" />
         </shape>
     </item>
     <item
@@ -20,9 +20,9 @@
 
             <stroke
                 android:width="2dp"
-                android:color="@color/tanted_peach" />
+                android:color="@color/tainted_peach" />
 
-            <solid android:color="@color/tanted_peach" />
+            <solid android:color="@color/tainted_peach" />
         </shape>
     </item>
 

@@ -17,6 +17,7 @@ public class LKTextViewFat extends TextView{
 		super(context);
 		this.context = context;
 		font();
+		
 	}
 	
 	public LKTextViewFat(Context context, AttributeSet attrs){
@@ -32,7 +33,7 @@ public class LKTextViewFat extends TextView{
 	}
 	
 	private void font(){
-		Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/ChangaOne.ttf");
+		Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/Robot!Head.ttf");
 		setTypeface(tf);
 	}
 }
