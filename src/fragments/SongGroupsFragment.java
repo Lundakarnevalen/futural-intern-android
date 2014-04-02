@@ -3,6 +3,7 @@ package fragments;
 import static util.ViewHelper.get;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,38 +27,17 @@ public class SongGroupsFragment extends LKFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		ViewGroup root = (ViewGroup) inflater.inflate(R.layout.sangbok_groups_layout, container, false);
-		
-		mLayout = get(R.id.sangbok_groups_layout, root, ViewGroup.class);
 		List<SongGroup> groups = new ArrayList<SongGroupsFragment.SongGroup>();
 		
-		SongGroup sg1 = new SongGroup();
-		sg1.name = "KAREVALSMELODIN";
-		sg1.imageBox = R.drawable.songs_karnmel_box;
-		sg1.imageShadow = R.drawable.songs_karnmel_shadow;
-		readGroup(sg1, R.array.sangbok_songs_group_karnmel);
-		
-		groups.add(sg1);
-		
-		SongGroup sg2 = new SongGroup();
-		sg2.name = "ALKOHOLFRIA VISOR";
-		sg2.imageBox = R.drawable.songs_noacl_box;
-		sg2.imageShadow = R.drawable.songs_noacl_shadow;
-		readGroup(sg2, R.array.sangbok_songs_group_noacl);
-		groups.add(sg2);
-		
-		SongGroup sg3 = new SongGroup();
-		sg3.name = "PUNSCHVISOR";
-		sg3.imageBox = R.drawable.songs_punch_box;
-		sg3.imageShadow = R.drawable.songs_punch_shadow;
-		readGroup(sg3, R.array.sangbok_songs_group_punsch);
-		groups.add(sg3);
-		
-		SongGroup sg4 = new SongGroup();
-		sg4.name = "SNAPSVISOR";
-		sg4.imageBox = R.drawable.songs_snaps_box;
-		sg4.imageShadow = R.drawable.songs_snaps_shadow;
-		readGroup(sg4, R.array.sangbok_songs_group_snaps);
-		groups.add(sg4);
+		mLayout = get(R.id.sangbok_groups_layout, root, ViewGroup.class);
+		final String prefix = getString(R.string.sangbok_title) + " - ";
+		makeGroup(groups, prefix + "KAREVALSMELODIN", R.drawable.songs_karnmel_box, R.drawable.songs_karnmel_shadow, R.array.sangbok_songs_group_karnmel);
+		makeGroup(groups, prefix + "ALKOHOLFRIA VISOR", R.drawable.songs_noacl_box, R.drawable.songs_noacl_shadow, R.array.sangbok_songs_group_noacl);
+		makeGroup(groups, prefix + "PUNSCHVISOR",R.drawable.songs_punch_box, R.drawable.songs_punch_shadow, R.array.sangbok_songs_group_punsch);
+		makeGroup(groups, prefix + "SNAPSVISOR", R.drawable.songs_snaps_box, R.drawable.songs_snaps_shadow, R.array.sangbok_songs_group_snaps);
+		makeGroup(groups, prefix + "VINVISOR", R.drawable.songs_wine_box, R.drawable.songs_wine_shadow, R.array.sangbok_songs_group_wine);
+		makeGroup(groups, prefix + "ÖLVISOR", R.drawable.songs_ol_box, R.drawable.songs_ol_shadow, R.array.sangbok_songs_group_ol);
+		makeGroup(groups, prefix + "ÖVRIGA VISOR", R.drawable.songs_other_box, R.drawable.songs_other_shadow, R.array.sangbok_songs_group_other);
 		
 		for(final SongGroup sg: groups){
 			createHeader(inflater, mLayout, sg);
@@ -75,6 +55,15 @@ public class SongGroupsFragment extends LKFragment {
 		return root;
 	}
 
+	private void  makeGroup(Collection<SongGroup> list, String name, int boxId, int boxShadowId, int songsArrayId) {
+		SongGroup sg = new SongGroup();
+		sg.name = name;
+		sg.imageBox = boxId;
+		sg.imageShadow = boxShadowId;
+		readGroup(sg, songsArrayId);
+		list.add(sg);
+	}
+
 	private void readGroup(SongGroup sg1, int arrayId) {
 		sg1.songArrayId = arrayId;
 		String[] karnmel = getResources().getStringArray(arrayId);
@@ -82,7 +71,7 @@ public class SongGroupsFragment extends LKFragment {
 		sg1.songs = new String[karnmel.length];
 		for (int i = 0; i < karnmel.length; i++) { 
 			String song = karnmel[i]; 
-			String[] split = song.split("\\|");
+			String[] split = song.split("\\|", 4);
 			sg1.songNumbers[i] = Integer.parseInt(split[0]);
 			sg1.songs[i] = split[1].toUpperCase(Locale.getDefault());
 		}

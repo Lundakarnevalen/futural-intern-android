@@ -88,7 +88,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 		populateMenu();
 		
-		loadFragment(new MapFragment(), false);
+		loadFragment(SongGroupsFragment.newInstance(), false);
 
 	}
 
