@@ -23,7 +23,7 @@
                 android:layout_margin="@dimen/horizontal_margin" >
 
                 <se.lundakarnevalen.widget.LKTextViewBold
-                    android:id="@+id/countDownKarnevalTitle"
+                    android:id="@+id/tvKarnevalTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
@@ -37,10 +37,10 @@
                     android:textSize="45sp" />
 
                 <se.lundakarnevalen.widget.LKTextViewFat
-                    android:id="@+id/tvCountDown"
+                    android:id="@+id/tvKarneval"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/countDownKarnevalTitle"
+                    android:layout_below="@id/tvKarnevalTitle"
                     android:layout_centerHorizontal="true"
                     android:shadowColor="#a7b7ce"
                     android:shadowDx="0"
@@ -161,6 +161,7 @@
                     android:background="@drawable/white_bg_bottom_shadow" >
 
                     <se.lundakarnevalen.widget.LKTextViewBold
+                        android:id="@+id/tvKarneLanTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -168,6 +169,20 @@
                         android:gravity="center"
                         android:text="KARNEVAD"
                         android:textColor="@color/dark_blue"
+                        android:textSize="20sp" />
+
+                    <se.lundakarnevalen.widget.LKTextViewFat
+                        android:id="@+id/tvKarneLan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/tvKarneLanTitle"
+                        android:layout_centerHorizontal="true"
+                        android:shadowColor="#a7b7ce"
+                        android:shadowDx="0"
+                        android:shadowDy="5"
+                        android:shadowRadius="0.1"
+                        android:text="TextView"
+                        android:textColor="#F5D408"
                         android:textSize="20sp" />
                 </RelativeLayout>
             </RelativeLayout>
