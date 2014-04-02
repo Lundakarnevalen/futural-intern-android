@@ -242,15 +242,21 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	 */
 	@Override
 	public void loadFragment(Fragment fragment, boolean addToBackstack){
-		
 		FragmentTransaction transaction = fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment);
 		
-		Log.d("Inside ContentActivity", "yeeah");
+		Log.d("ContentActivity", "loadFragment()");
 		
 		if(addToBackstack)
 			transaction.addToBackStack(null);
+		
 		transaction.commit();
 	}
+	
+	 @Override
+	 public void popFragmentStack() {
+		 Log.i("ContentActivity", "fragmentMgr.popBackStack()");
+		 fragmentMgr.popBackStack();
+	 }
 	
 	/**
 	 * Set title in actionbar

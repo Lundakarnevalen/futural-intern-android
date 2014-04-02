@@ -238,6 +238,17 @@ public class LKFragment extends Fragment{
 	
 		messanger.loadFragment(fragment, addToBackstack);
 	}
+	
+	
+	
+	/**
+	 * 
+	 * @see fragments.LKFragment.Messanger#popFragmentStack()
+	 */
+	public void popFragmentStack() {
+		messanger.popFragmentStack();
+	}
+
 	/**
 	 * Handles radiobuttons in the fragment
 	 * @param view radio button view
@@ -299,6 +310,7 @@ public class LKFragment extends Fragment{
 	public interface Messanger{
 		public void message(MessangerMessage message, Bundle data);
 		public void loadFragment(Fragment fragment, boolean addToBackstack);
+		public void popFragmentStack();
 	}
 	
 	/**

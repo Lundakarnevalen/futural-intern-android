@@ -7,10 +7,10 @@
     android:gravity="center_horizontal"
     android:paddingBottom="0dp" >
     
-    <android.support.v4.view.ViewPager
+    <se.lundakarnevalen.widget.LKSwipeableViewPager
         android:gravity="center"
         android:layout_alignParentTop="true"
-	  	android:paddingLeft="40dp"
+	  	android:paddingLeft="20dp"
 	  	android:paddingRight="20dp"
 	  	android:id="@+id/sangbok_layout_viewpager"
 	  	android:layout_above="@+id/sangbok_layout_backbtn"
@@ -18,12 +18,14 @@
         android:layout_width="match_parent" />
 
     <se.lundakarnevalen.widget.LKButtonYellow
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
         android:id="@+id/sangbok_layout_backbtn"
-        android:text="TILLBAKA" 
+        android:layout_width="80dp"
+        android:textSize="12sp"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="TILLBAKA"
+        android:textStyle="bold" />
+
 </RelativeLayout>
