@@ -12,5 +12,16 @@
     <dimen name="vertical_margin_half">8dp</dimen>
     <dimen name="progress_bar_height">16dp</dimen>
     <dimen name="inbox_message_sektion_title_text_size">16sp</dimen>
-    <dimen name="shadow">10dp</dimen>
+    
+    
+    <!-- Sign in dimensions -->
+    <dimen name="sign_in_shadow_height">5dp</dimen>
+    <dimen name="padding_sides">10dp</dimen>
+    <dimen name="padding_top">15dp</dimen>
+    <dimen name="padding_bottom">10dp</dimen>
+
+    <dimen name="sign_in_margin_sides">30dp</dimen>
+    
+    <!-- End Sign in -->
+    
 </resources>
