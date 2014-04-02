@@ -29,7 +29,7 @@
             android:gravity="center"
             android:text="@string/map_right_now"
             android:textColor="@color/red"
-            android:textSize="18sp" />
+             />
   
         <ImageView 
         android:layout_width="wrap_content"

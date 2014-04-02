@@ -61,10 +61,10 @@ public class InfoTextFragment extends LKFragment {
 		@Override
 		public void onClick(View v) {
 			if(mf == null) {
-				loadFragment(new MapFragment(), false);
+				loadFragment(new MapFragment(), true);
 					
 			} else {
-				loadFragment(mf, false);
+				loadFragment(mf, true);
 			}
 			//TODO start fragment
 		}
