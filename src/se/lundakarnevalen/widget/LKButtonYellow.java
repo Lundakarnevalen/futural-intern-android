@@ -7,7 +7,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.Button;
 
-public class LKButtonYellow extends Button {
+public class LKButtonYellow extends LKButton {
 	private Context context;
 
 	public LKButtonYellow(Context context) {
@@ -33,18 +33,5 @@ public class LKButtonYellow extends Button {
 		setPadding(pxPadding, pxPadding, pxPadding, pxPadding);
 		setBackgroundResource(R.drawable.button_selector_yellow);
 		setTextColor(Color.WHITE);
-	}
-
-	public void setTypeface(Typeface tf, int style) {
-		if (style == Typeface.BOLD) {
-			super.setTypeface(Typeface.createFromAsset(
-					getContext().getAssets(), "fonts/Roboto-Bold.ttf"));
-		} else if (style == Typeface.ITALIC) {
-			super.setTypeface(Typeface.createFromAsset(
-					getContext().getAssets(), "fonts/Roboto-Thin.ttf"));
-		} else {
-			super.setTypeface(Typeface.createFromAsset(
-					getContext().getAssets(), "fonts/Roboto-Light.ttf"));
-		}
 	}
 }
