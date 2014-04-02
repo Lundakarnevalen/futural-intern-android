@@ -236,11 +236,52 @@
     <string name="text6"><![CDATA[<I>Har du bara ett par sekunder på dig att förklara vad Lundakarnevalen är? Använd denna elevator pitch (övertyga någon på tiden det tar att åka upp i en hiss).</I>]]></string>
     <string name="text7"><![CDATA[Lundakarnevalen är ett av världens största ideella evenemang och äger rum vart fjärde år. Den 16-18 maj i år är det dags igen! På karnevalen finns det något för alla, oavsett om du gillar att dansa, roas av föreställningar, dricka öl med vännerna, spela tombola eller lyssna på kända artister så hittar du det på karnevalen. I Lunds centrum går det även ett karnevalståg – en rullande humorshow som definitivt får dig att skratta! 2010 besökte 400 000 personer Lundakarnevalen, som skapas av cirka 5500 ideellt engagerade studenter.<br /><br />OBS OBS VIKTIGT VIKTIGT ATT SÄGA: Biljetterna till Lundakarnevalen släpps <B>imorgon söndag den 13 april!</B> Kom till Universitetshuset i Lundagård från kl. 11.00 för att säkra dina biljetter till Lundakarnevalens sju stora nöjen och Dansen. Även entréband till karnevalsområdet kommer att säljas.<br /><br />Från och med måndagen den 14 april säljs biljetter på www.lundakarnevalen.se]]></string>
     <string name="text8"><![CDATA[ <B>Förstår de fortfarande inte? Här finns lite mer info som kanske kan hjälpa dig att förklara mer!</B> <br /><br />Lundakarnevalens kärna är i Lundagård i Lund, där finns karnevalsområdet. På karnevalsområdet finns en mängd olika upplevelser. Följande saker kan upplevas:<br /><br />- Sju stora nöjen (föreställningar) på 45 minuter (Barneval, Cirkus, Film, Kabaré, Revy, Show och Spex)<br /><br />- Tre stycken smånöjen i tält vars föreställningar varar i max en halvtimme<br /><br /> - Över 20 tältnöjen som innehåller en kort och karnevalistisk upplevelse<br /><br /> - Tombolabodar som erbjuder lotto och spel<br /><br /> - Mat- och dryckestält där man kan sitta ner<br /><br /> - ÅRETS NYHET är ett nytt mat – och dryckesområde precis norr om Lundagård. <br /><br />- Artister och uppträdanden på Stora Scenen<br /><br /> - Dansen – Sveriges största nattklubb – på kvällarna i AF-Borgen.<br /><br />- …och mycket mycket mer<br /><br />Utanför karnevalsområdet går som sagt karnevalståget. Det går genom Lunds centrum lördag och söndag 17-18 maj. Tåget avgår kl. 13.00. <br /><br /> Lundakarnevalen är alltså en stor och speciell händelse som går av stapeln blott vart fjärde år. Den första karnevalen firades 1849. Bland tidigare kända karnevalister kan nämnas Lena Ek, Johan Wester och Hasse Alfredsson. ]]></string>
-	<string name="info_text_actionbar">SELL MAGAZINE</string>
-	<string name="info_text_button">Still don\'t understand?</string>
-	<string name="info_text_button2">OK, I understand!</string>
+    <string name="info_text_actionbar">SÄLJA TIDNING</string>
+    <string name="info_text_button">Förstår du fortfarande inte?</string>
+    <string name="info_text_button2">OK, jag förstår!</string>
 
-	
+<!-- lyrics player -->
+    <string name="playPart1">JAG KAN INTE SITTA STILL</string>
+    <string name="playPart2">JAG FÅR INTE NÅGON RO</string>
+    <string name="playPart3">NU ÄR LÄNGTAN ÖVER</string>
+    <string name="playPart4">JAG SÄTTER ALLT PÅ PAUS</string>
+    <string name="playPart5">DET ÄR NÅT SOM ÄR PÅ GÅNG</string>
+    <string name="playPart6"> HAR ALDRIG KÄNT SÅ HÄR FÖRUT</string>
+    <string name="playPart7">GLÖMMER ALLT SOM VAR</string>
+    <string name="playPart8">DET E KARNEVAL</string>
+    <string name="playPart9">MED HJÄRTSLAGEN I TAKT TILL BASEN</string>
+    <string name="playPart10">LYFTER HÄNDERNA MOT TAKEN</string>
+    <string name="playPart11">INGEN SÖMN PÅ FLERA NÄTTER</string>
+    <string name="playPart12">ALDRIG KÄNT MIG MERA VAKEN</string>
+    <string name="playPart13">DET E NU I VÅR DET HÄNDER</string>  <!-- Go one more time-->
+    <string name="playPart14">DET E VART FJÄRDE ÅR</string>
+    <string name="playPart15">KOM MÖT UPP MED ALLA VÄNNER</string>
+    <string name="playPart16">KOM OCH SKRIK I LUNDAGÅRD</string>
+    <string name="playPart17">LJUSET BLÄNDAR, HJÄRTAT BULTAR</string>
+    <string name="playPart18">NU ÄR DET FEST I LUND</string>
+    <string name="playPart19">EXPLODERAR PÅ EN SEKUND</string>
+    <string name="playPartRef1">FUTU-FUTU</string>
+    <string name="playPartRef2">RAL</string>
+    <string name="playPartRef3">KARNEVAL</string>
+    <string name="playPartRef4">FUTU-FUTU-FUTU</string>
+    <string name="playPartRef5">RAL</string>
+    <string name="playPartRef6">KARNEVAL</string>
+    <string name="playPartRef7">FUTU-FUTU-FUTU</string>
+    <string name="playPart20">ETT UNIVERSUM FYLLT AV ALLT</string>
+    <string name="playPart21">HUNDRA FESTER PÅ EN DAG</string>
+    <string name="playPart22">NU BLIR GAMMALT NYTT</string>
+    <string name="playPart23">OCH GENERALEN HAR FÅTT BRÖST</string>
+    <string name="playPart24">KARNEVÖLEN FYLLER GLASEN</string>
+    <string name="playPart25">VEM VET NÅT OM MORGONDAGEN</string>
+    <string name="playPart26">ALLA DANSAR BORGEN SKAKAR</string>
+    <string name="playPart27">ALDRIG KÄNT MIG MERA VAKEN</string> <!-- stop here -->
+    <string name="playPart28">VI ÄR VÅREN NÄR DET HÄNDER</string>
+    <string name="playPart29">VI ÄR VART FJÄRDE ÅR</string>
+    <string name="playPart30">VI ÄR ALLESAMMANS VÄNNER</string>
+    <string name="playPart31">SKRIKER UT I LUNDAGÅRD</string>
+    <string name="playPart32">VI SKA ÖVERTYGA VÄRLDEN</string>
+    <string name="playPart33">ATT FIRA MAJ I LUND</string>
+    <string name="playPart34">EXPLODERAR PÅ EN SEKUND</string>
     
     
 </resources>
