@@ -30,14 +30,14 @@ public class SongGroupsFragment extends LKFragment {
 		List<SongGroup> groups = new ArrayList<SongGroupsFragment.SongGroup>();
 		
 		mLayout = get(R.id.sangbok_groups_layout, root, ViewGroup.class);
-		final String prefix = getString(R.string.sangbok_title) + " - ";
-		makeGroup(groups, prefix + "KAREVALSMELODIN", R.drawable.songs_karnmel_box, R.drawable.songs_karnmel_shadow, R.array.sangbok_songs_group_karnmel);
-		makeGroup(groups, prefix + "ALKOHOLFRIA VISOR", R.drawable.songs_noacl_box, R.drawable.songs_noacl_shadow, R.array.sangbok_songs_group_noacl);
-		makeGroup(groups, prefix + "PUNSCHVISOR",R.drawable.songs_punch_box, R.drawable.songs_punch_shadow, R.array.sangbok_songs_group_punsch);
-		makeGroup(groups, prefix + "SNAPSVISOR", R.drawable.songs_snaps_box, R.drawable.songs_snaps_shadow, R.array.sangbok_songs_group_snaps);
-		makeGroup(groups, prefix + "VINVISOR", R.drawable.songs_wine_box, R.drawable.songs_wine_shadow, R.array.sangbok_songs_group_wine);
-		makeGroup(groups, prefix + "ÖLVISOR", R.drawable.songs_ol_box, R.drawable.songs_ol_shadow, R.array.sangbok_songs_group_ol);
-		makeGroup(groups, prefix + "ÖVRIGA VISOR", R.drawable.songs_other_box, R.drawable.songs_other_shadow, R.array.sangbok_songs_group_other);
+		
+		makeGroup(groups, "KAREVALSMELODIN", R.drawable.songs_karnmel_box, R.drawable.songs_karnmel_shadow, R.array.sangbok_songs_group_karnmel);
+		makeGroup(groups, "ALKOHOLFRIA VISOR", R.drawable.songs_noacl_box, R.drawable.songs_noacl_shadow, R.array.sangbok_songs_group_noacl);
+		makeGroup(groups, "PUNSCHVISOR",R.drawable.songs_punch_box, R.drawable.songs_punch_shadow, R.array.sangbok_songs_group_punsch);
+		makeGroup(groups, "SNAPSVISOR", R.drawable.songs_snaps_box, R.drawable.songs_snaps_shadow, R.array.sangbok_songs_group_snaps);
+		makeGroup(groups, "VINVISOR", R.drawable.songs_wine_box, R.drawable.songs_wine_shadow, R.array.sangbok_songs_group_wine);
+		makeGroup(groups, "ÖLVISOR", R.drawable.songs_ol_box, R.drawable.songs_ol_shadow, R.array.sangbok_songs_group_ol);
+		makeGroup(groups, "ÖVRIGA VISOR", R.drawable.songs_other_box, R.drawable.songs_other_shadow, R.array.sangbok_songs_group_other);
 		
 		for(final SongGroup sg: groups){
 			createHeader(inflater, mLayout, sg);
@@ -79,6 +79,7 @@ public class SongGroupsFragment extends LKFragment {
 
 	private void openSongGroup(SongGroup sg, int selected) {
 		loadFragment(SongsPagerFragment.newInstance(sg.songArrayId, sg.imageBox, sg.name, selected), true);
+		
 	}
 	
 	@Override

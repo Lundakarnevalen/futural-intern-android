@@ -288,9 +288,11 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	 */
 	@Override
 	public void loadFragment(Fragment fragment, boolean addToBackstack){
-		FragmentTransaction transaction = fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment);
-		
 		Log.d("ContentActivity", "loadFragment()");
+		FragmentTransaction transaction = fragmentMgr
+				.beginTransaction()
+				//.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out) does this really work?
+				.replace(R.id.content_frame, fragment);
 
 		if(addToBackstack)
 			transaction.addToBackStack(null);
