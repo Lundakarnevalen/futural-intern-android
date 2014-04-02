@@ -1,9 +1,9 @@
-package fragments;
+package fragments.old;
 
+import fragments.LKFragment;
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.android.R.id;
-import se.lundakarnevalen.android.R.layout;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +37,8 @@ public class SignInFragment extends LKFragment{
 		
 		@Override
 		public void onClick(View v) {
-			LKFragment fragment = new ResetPasswordFragment();
-			loadFragment(fragment, true);//HAX
+//			Fragment fragment = new FrResetPassword();
+//			loadFragment(fragment, true);//HAX
 		}
 	};
 }

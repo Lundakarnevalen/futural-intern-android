@@ -1,26 +1,18 @@
 package fragments;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.android.R.color;
-import se.lundakarnevalen.android.R.dimen;
-import se.lundakarnevalen.android.R.id;
-import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKTextView;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,8 +72,9 @@ public class InboxFragment extends LKFragment{
 			rt.execute(context);
 		}
 		// Code to add dummy data into database.
-		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
-		//dbDummy.addItem(new LKMenuListItem("Title", "This is a short message.", "2015-15-34", true, null));
+//		LKSQLiteDB dbDummy = new LKSQLiteDB(context);
+//		int tmp = dbDummy.heighestMessageId();
+//		dbDummy.addItem(new LKMenuListItem("Title", "This is a short message.", "2015-15-34", tmp+1, true, null));
 
 		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
 		//dbDummy.addItem(new LKMenuListItem("Title", "Leet (or '1337'), also known as eleet or leetspeak, is an alternative alphabet for the English language that is used primarily on the Internet. It uses various combinations of ASCII characters to replace Latinate letters. For example, leet spellings of the word leet include 1337 and l33t; eleet may be spelled 31337 or 3l33t. The term leet is derived from the word elite. The leet alphabet is a specialized form of symbolic writing. Leet may also be considered a substitution cipher, although many dialects or linguistic varieties exist in different online communities. The term leet is also used as an adjective to describe formidable prowess or accomplishment, especially in the fields of online gaming and in its original usage – computer hacking.", "2015-15-34", true, null));

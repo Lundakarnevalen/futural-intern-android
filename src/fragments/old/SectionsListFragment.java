@@ -1,7 +1,9 @@
-package fragments;
+package fragments.old;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import fragments.LKFragment;
 
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.android.R.id;

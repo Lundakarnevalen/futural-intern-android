@@ -1,8 +1,10 @@
-package fragments;
+package fragments.old;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import fragments.LKFragment;
 
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.android.R.drawable;

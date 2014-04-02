@@ -29,8 +29,7 @@ public class LKButtonYellow extends Button {
 	}
 
 	private void init() {
-		final int pxPadding = context.getResources().getDimensionPixelSize(
-				R.dimen.horizontal_margin);
+		final int pxPadding = context.getResources().getDimensionPixelSize(R.dimen.horizontal_margin);
 		setPadding(pxPadding, pxPadding, pxPadding, pxPadding);
 		setBackgroundResource(R.drawable.button_selector_yellow);
 		setTextColor(Color.WHITE);

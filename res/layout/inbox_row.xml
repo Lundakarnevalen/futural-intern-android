@@ -5,61 +5,58 @@
     android:paddingLeft="12dp"
     android:paddingRight="12dp"
     android:paddingBottom="10dp">
-
-	<RelativeLayout android:layout_width="match_parent"
+    
+    <RelativeLayout android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:background="@drawable/inbox_message_row_bg"
-	    android:paddingBottom="12dp"
-	    android:paddingLeft="17dp">
+	    android:background="@drawable/white_bg_bottom_shadow"
+	    android:layout_marginTop="12dp">
+    
+	    <ImageView android:id="@+id/inbox_message_thumbnail"
+	        android:layout_height="60dp"
+	      	android:layout_width="60dp"
+	      	android:layout_alignParentLeft="true"
+	      	android:layout_centerVertical="true"/>
 	    
-	    <RelativeLayout android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:background="@drawable/inbox_message_row_bg"
-		    android:layout_marginTop="12dp">
-	    
-		    <ImageView android:id="@+id/inbox_message_thumbnail"
-		        android:layout_height="60dp"
-		      	android:layout_width="60dp"
-		      	android:layout_alignParentLeft="true"
-		      	android:layout_centerVertical="true"/>
-		    
-		    <RelativeLayout android:id="@+id/inbox_message_text_container"
-		        android:layout_height="wrap_content"
+	    <RelativeLayout android:id="@+id/inbox_message_text_container"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	  		android:layout_centerVertical="true"
+	  		android:layout_toRightOf="@id/inbox_message_thumbnail"
+	  		android:layout_marginLeft="25dp">
+	  		
+		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_title"
 		        android:layout_width="wrap_content"
-		  		android:layout_centerVertical="true"
-		  		android:layout_toRightOf="@id/inbox_message_thumbnail"
-		  		android:layout_marginLeft="25dp">
-		  		
-			    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_title"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:textSize="@dimen/title_text_size"
-			        android:layout_alignParentLeft="true"/>
-			    
-			    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_preview"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:textSize="@dimen/message_preview_text_size"
-			        android:layout_below="@id/inbox_message_title"
-			        android:layout_alignParentLeft="true"
-			        android:layout_marginTop="-4dp"/> 
-		    </RelativeLayout>
+		        android:layout_height="wrap_content"
+		        android:textSize="@dimen/title_text_size"
+		        android:layout_alignParentLeft="true"/>
+		    
+		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_sektion_title"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="@dimen/inbox_message_sektion_title_text_size"
+		        android:text="Kommunikation"
+		        android:layout_marginTop="3dp"
+		        android:layout_below="@id/inbox_message_title"/>
+		    
+		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_preview"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="@dimen/message_preview_text_size"
+		        android:layout_below="@id/inbox_message_sektion_title"
+		        android:layout_alignParentLeft="true"
+		        android:layout_marginTop="4dp"/> 
 	    </RelativeLayout>
 	    
 	    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_date"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		   	android:textSize="@dimen/small_date_text_size"
-		   	android:layout_alignParentRight="true"
-		   	android:layout_marginRight="@dimen/horizontal_margin_half"
-		   	android:layout_marginTop="2dp"/>
-	    
-		<ImageView android:id="@+id/inbox_message_arrow"
-		    android:layout_height="wrap_content"
-		    android:layout_width="wrap_content"
-		    android:layout_alignParentRight="true"
-		    android:layout_below="@id/inbox_message_date"/>
-		    
-	</RelativeLayout>
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	   	android:textSize="@dimen/small_date_text_size"
+	   	android:layout_below="@id/inbox_message_text_container"
+	   	android:layout_alignParentRight="true"
+	   	android:layout_marginRight="@dimen/horizontal_margin_half"
+	   	android:layout_marginTop="20dp"
+	    android:layout_marginBottom="5dp"/>
+    </RelativeLayout>
+
 	
 </RelativeLayout>
