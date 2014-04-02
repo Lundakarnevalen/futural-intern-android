@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:background="@color/light_peach"
+                android:background="#FFFFFF"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/padding_sides"
                 android:paddingRight="@dimen/padding_sides"
@@ -85,7 +85,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/sign_in_margin_sides"
                 android:layout_marginRight="@dimen/sign_in_margin_sides"
-                android:background="@color/light_peach"
+                android:background="#FFFFFF"
                 android:paddingBottom="@dimen/padding_bottom"
                 android:paddingLeft="@dimen/padding_sides"
                 android:paddingRight="@dimen/padding_sides"
@@ -165,7 +165,7 @@
                 android:layout_alignLeft="@id/layout_info_texts"
                 android:layout_alignRight="@id/layout_info_texts"
                 android:layout_below="@id/layout_info_texts"
-                android:background="#aaaaaa" >
+                android:background="@color/shadow_black" >
             </RelativeLayout>
 
             <!-- SHADOW for layout_data_fields -->
@@ -176,7 +176,7 @@
                 android:layout_alignLeft="@id/layout_data_fields"
                 android:layout_alignRight="@id/layout_data_fields"
                 android:layout_below="@id/layout_data_fields"
-                android:background="#aaaaaa" >
+                android:background="@color/shadow_black" >
             </RelativeLayout>
 
             <!-- SHADOW for sign_in_button -->
@@ -187,7 +187,7 @@
                 android:layout_alignLeft="@id/sign_in_button"
                 android:layout_alignRight="@id/sign_in_button"
                 android:layout_below="@id/sign_in_button"
-                android:background="#aaaaaa" >
+                android:background="@color/shadow_black" >
             </RelativeLayout>
 
             <!-- SHADOW for password_reset -->
@@ -198,7 +198,7 @@
                 android:layout_alignLeft="@id/password_reset"
                 android:layout_alignRight="@id/password_reset"
                 android:layout_below="@id/password_reset"
-                android:background="#aaaaaa" >
+                android:background="@color/shadow_black" >
             </RelativeLayout>
 
             <!-- END SHADOWS -->

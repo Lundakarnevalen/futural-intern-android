@@ -388,6 +388,10 @@
 	<string name="info_text_button">Förstår du fortfarande inte?</string>
 	<string name="info_text_button2">OK, jag förstår!</string>
     
+	<string name="return_to_sign_in">Tillbaka</string>
+	<string name="send_me">Skicka mig</string>
+    <string name="my_password">mitt lösenord!</string>
+    <string name="send">Skicka</string>
     
 </resources>
 
