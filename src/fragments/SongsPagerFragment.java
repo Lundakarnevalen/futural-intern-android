@@ -1,5 +1,6 @@
 package fragments;
 
+import static util.ViewHelper.get;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.widget.LKSwipeableViewPager;
 import android.content.Context;
@@ -7,9 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,24 +16,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import static util.ViewHelper.*;
 
 public class SongsPagerFragment extends LKFragment {
 	
 	private static final int PAGE_MARGIN_DP = 20;
 	
+	private static final String KEY_GROUP_NAME = "group";
 	private static final String KEY_ARRAY = "array";
 	private static final String KEY_ICON = "icon";
 	private static final String KEY_SELECTED = "selected";
 	
 	private LKSwipeableViewPager mViewPager;
 	
-	public static SongsPagerFragment newInstance(int songsArrayId, int icon, int selceted) {
+	public static SongsPagerFragment newInstance(int songsArrayId, int icon, String groupName ,int selceted) {
 		SongsPagerFragment f = new SongsPagerFragment();
 		Bundle b = new Bundle();
 		b.putInt(KEY_ARRAY, songsArrayId);
 		b.putInt(KEY_ICON, icon);
 		b.putInt(KEY_SELECTED, selceted);
+		b.putString(KEY_GROUP_NAME, groupName);
 		f.setArguments(b);
 		return f;
 	}
@@ -67,16 +67,13 @@ public class SongsPagerFragment extends LKFragment {
 				popFragmentStack();
 			}
 		});
-		
-		setTitle("SÅNGBOKEN - ÖLVISOR");
-		
 		return root;
 	}
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		setTitle(getString(R.string.sangbok_title));
+		setTitle(getArguments().getString(KEY_GROUP_NAME));
 	}
 	
 	private static class MyAdapter extends FragmentPagerAdapter {

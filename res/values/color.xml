@@ -28,4 +28,6 @@
 
     <color name="bg_sangbok">#f6ead4</color>
     <color name="button_white_press">#F7EAD4</color>
+    <color name="button_white">#FFFFFF</color>
+    <color name="button_white_shadow">#33000000</color>
 </resources>

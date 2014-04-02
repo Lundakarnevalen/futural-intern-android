@@ -1,29 +1,19 @@
 package fragments;
 
+import static util.ViewHelper.get;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Locale;
 
-import fragments.SongsPagerFragment.ShowSongFragment;
 import se.lundakarnevalen.android.R;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import static util.ViewHelper.*;
 
 public class SongGroupsFragment extends LKFragment {
 	
@@ -44,7 +34,7 @@ public class SongGroupsFragment extends LKFragment {
 		sg1.name = "KAREVALSMELODIN";
 		sg1.imageBox = R.drawable.songs_karnmel_box;
 		sg1.imageShadow = R.drawable.songs_karnmel_shadow;
-		readGroup(sg1,R.array.sangbok_songs_group_karnmel);
+		readGroup(sg1, R.array.sangbok_songs_group_karnmel);
 		
 		groups.add(sg1);
 		
@@ -52,15 +42,22 @@ public class SongGroupsFragment extends LKFragment {
 		sg2.name = "ALKOHOLFRIA VISOR";
 		sg2.imageBox = R.drawable.songs_noacl_box;
 		sg2.imageShadow = R.drawable.songs_noacl_shadow;
-		readGroup(sg2,R.array.sangbok_songs_group_noacl);
+		readGroup(sg2, R.array.sangbok_songs_group_noacl);
 		groups.add(sg2);
 		
 		SongGroup sg3 = new SongGroup();
-		sg3.name = "ÖL VISOR";
-		sg3.imageBox = R.drawable.songs_ol_box;
-		sg3.imageShadow = R.drawable.songs_ol_shadow;
-		readGroup(sg3,R.array.sangbok_songs_group_ol);
+		sg3.name = "PUNSCHVISOR";
+		sg3.imageBox = R.drawable.songs_punch_box;
+		sg3.imageShadow = R.drawable.songs_punch_shadow;
+		readGroup(sg3, R.array.sangbok_songs_group_punsch);
 		groups.add(sg3);
+		
+		SongGroup sg4 = new SongGroup();
+		sg4.name = "SNAPSVISOR";
+		sg4.imageBox = R.drawable.songs_snaps_box;
+		sg4.imageShadow = R.drawable.songs_snaps_shadow;
+		readGroup(sg4, R.array.sangbok_songs_group_snaps);
+		groups.add(sg4);
 		
 		for(final SongGroup sg: groups){
 			createHeader(inflater, mLayout, sg);
@@ -83,16 +80,16 @@ public class SongGroupsFragment extends LKFragment {
 		String[] karnmel = getResources().getStringArray(arrayId);
 		sg1.songNumbers = new int[karnmel.length];
 		sg1.songs = new String[karnmel.length];
-		for (int i = 0; i < karnmel.length; i++){ 
+		for (int i = 0; i < karnmel.length; i++) { 
 			String song = karnmel[i]; 
 			String[] split = song.split("\\|");
 			sg1.songNumbers[i] = Integer.parseInt(split[0]);
-			sg1.songs[i] = split[1];
+			sg1.songs[i] = split[1].toUpperCase(Locale.getDefault());
 		}
 	}
 
 	private void openSongGroup(SongGroup sg, int selected) {
-		loadFragment(SongsPagerFragment.newInstance(sg.songArrayId, sg.imageBox, selected), true);
+		loadFragment(SongsPagerFragment.newInstance(sg.songArrayId, sg.imageBox, sg.name, selected), true);
 	}
 	
 	@Override
@@ -115,7 +112,7 @@ public class SongGroupsFragment extends LKFragment {
 	private void createSong(LayoutInflater inflater, ViewGroup layout, SongGroup sg, int i, OnClickListener l) {
 		View t = inflater.inflate(R.layout.sangbok_groups_inflated_groupitem, layout, false);
 		get(R.id.sangbok_groups_inflated_groupitem_text, t, TextView.class).setOnClickListener(l);
-		get(R.id.sangbok_groups_inflated_groupitem_text, t, TextView.class).setText(sg.songs[i]);
+		get(R.id.sangbok_groups_inflated_groupitem_text, t, TextView.class).setText(Html.fromHtml(sg.songs[i]));
 		get(R.id.sangbok_groups_inflated_groupitem_nbr, t, TextView.class).setText(String.valueOf(sg.songNumbers[i]));
 		layout.addView(t);
 	}
