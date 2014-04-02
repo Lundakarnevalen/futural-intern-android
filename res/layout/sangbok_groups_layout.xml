@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sangbok_groups_scroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="20dp"
-    android:gravity="center_horizontal"
-    android:paddingBottom="0dp"
-    android:orientation="vertical" >
-    
-    <ListView
-        android:gravity="center"
-        android:divider="@null"
-		android:dividerHeight="0dp"
-	  	android:id="@+id/sangbok_groups_list"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+    android:layout_height="match_parent" >
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/sangbok_groups_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="0dp"
+        android:paddingTop="20dp" >
+        
+        
+    </LinearLayout>
+
+</ScrollView>
