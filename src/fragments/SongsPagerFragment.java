@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -132,7 +133,7 @@ public class SongsPagerFragment extends LKFragment {
 			Bundle b = getArguments();
 			get(R.id.sangbok_layout_song_layout_title, root, TextView.class).setText(b.getString(KEY_TITLE));
 			get(R.id.sangbok_layout_song_layout_subtitle, root, TextView.class).setText(b.getString(KEY_SUBTITLE));
-			get(R.id.sangbok_layout_song_layout_text, root, TextView.class).setText(b.getString(KEY_TEXT));
+			get(R.id.sangbok_layout_song_layout_text, root, TextView.class).setText(Html.fromHtml(b.getString(KEY_TEXT)));
 			get(R.id.sangbok_layout_song_layout_icon, root, ImageView.class).setImageResource(b.getInt(KEY_ICON));
 			
 			return root;
