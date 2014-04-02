@@ -89,20 +89,4 @@
             android:src="@drawable/info" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/back_to_map"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:clickable="true"
-        android:visibility="gone" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/horizontal_margin"
-            android:src="@drawable/info" />
-    </RelativeLayout>
-
 </RelativeLayout>

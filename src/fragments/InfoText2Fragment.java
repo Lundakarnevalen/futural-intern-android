@@ -35,11 +35,6 @@ public class InfoText2Fragment extends LKFragment {
 		text8.setText(Html.fromHtml(getString(R.string.text8)));
 		
 
-		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
-		View v = actionBar.getCustomView();
-		
-		RelativeLayout backToMap = (RelativeLayout) v.findViewById(R.id.back_to_map);	
-		backToMap.setOnClickListener(backListener);
 		
 		return root;
 	}

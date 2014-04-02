@@ -48,27 +48,9 @@ public class InfoTextFragment extends LKFragment {
 		text6.setText(Html.fromHtml(getString(R.string.text6)));
 		text7.setText(Html.fromHtml(getString(R.string.text7)));
 
-		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
-		View v = actionBar.getCustomView();
-
-		RelativeLayout backToMap = (RelativeLayout) v.findViewById(R.id.back_to_map);
-		backToMap.setOnClickListener(backListener);
 
 		return root;
 	}
-
-	private View.OnClickListener backListener = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			if(mf == null) {
-				loadFragment(new MapFragment(), true);
-					
-			} else {
-				loadFragment(mf, true);
-			}
-			//TODO start fragment
-		}
-	};
 
 	public void setMapFragment(MapFragment mapFragment) {
 		// TODO Auto-generated method stub

@@ -25,7 +25,7 @@ import com.google.gson.Gson;
 public class FrResetPassword extends Fragment {
 
 	private static final String LOG_TAG = FrResetPassword.class.getSimpleName();
-
+ 
 	private EditText mEmailView;
 	private LKRemote remote;
 	private Gson gson;

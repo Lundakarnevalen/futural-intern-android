@@ -90,14 +90,11 @@ public class LKFragment extends Fragment {
 			infoPic.setVisibility(View.INVISIBLE);
 			
 		}
-		
-		RelativeLayout backToMap = (RelativeLayout) root.findViewById(R.id.back_to_map);		
+			
 		RelativeLayout menuPic = (RelativeLayout) root.findViewById(R.id.menu_drawer_toggle_wrapper);		
 		if(title.equals(getString(R.string.info_text_actionbar))) {
-			backToMap.setVisibility(View.VISIBLE);
 			menuPic.setVisibility(View.GONE);
 		} else {
-			backToMap.setVisibility(View.GONE);
 			menuPic.setVisibility(View.VISIBLE);
 				
 		}
