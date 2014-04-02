@@ -1,19 +1,16 @@
-package activities;
+package se.lundakarnevalen.android;
 
 import java.io.IOException;
 
 import json.Notification;
 import json.Response;
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.android.R.drawable;
-import se.lundakarnevalen.android.R.id;
-import se.lundakarnevalen.android.R.layout;
-import se.lundakarnevalen.android.R.string;
 import se.lundakarnevalen.remote.GCMReceiver;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.RequestType;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import se.lundakarnevalen.remote.LKSQLiteDB;
+import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
@@ -34,16 +31,18 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
-//github.com/Lundakarnevalen/futural-intern-android.git
 
 import fragments.LKFragment;
+//github.com/Lundakarnevalen/futural-intern-android.git
 
 public class SplashscreenActivity extends Activity{
 
 	private boolean stop;
 	RelativeLayout wrapper;
 	Context context;
-	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds 
+
+//	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds
+	private final int THREAD_DELAY = 200; //Splashscreen shown in milliseconds
 
 	private static final String LOG_TAG = "splash";
 	GoogleCloudMessaging gcm;
@@ -178,7 +177,8 @@ public class SplashscreenActivity extends Activity{
 		editor.putString(LKFragment.SP_GCM_REG_APP, LKFragment.getAppVersion(context));
 		editor.commit();	
 	}
-
+	
+	/*
 	private void storeSekData(){
 		// Information about the sections
 		SectionSQLiteDB db = new SectionSQLiteDB(this);
@@ -345,7 +345,7 @@ public class SplashscreenActivity extends Activity{
 				q1("Vieriet") + getString(R.string.vieriet_b1) + q2() + getString(R.string.vieriet_b2) + q3() + getString(R.string.vieriet_b3) + q4("Vieriet") + getString(R.string.vieriet_b1),
 				true));
 	}
-
+*/
 	/* The questions*/
 	public String q1(String sName) {
 		return "<b><i>Vad ska " + sName + " göra? Var är den övergripande \"uppgiften?\"</i></b><br>";
@@ -361,11 +361,11 @@ public class SplashscreenActivity extends Activity{
 	}
 
 	public void addDataSekBg(){
-		AsyncTask<?, String, String> regInBackground = new AsyncTask<Object, String, String>(){
+		new AsyncTask<Object, String, String>(){
 
 			@Override
 			protected String doInBackground(Object... params) {
-				storeSekData();
+//				storeSekData();
 				Log.d(LOG_TAG, "added sek data!");
 				return null;
 			}
@@ -378,8 +378,19 @@ public class SplashscreenActivity extends Activity{
 		new Handler().postDelayed( new Thread() {
 			@Override
 			public void run() {
-				Intent intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
-				SplashscreenActivity.this.startActivity(intent);					
+				
+				Intent intent;
+				
+				if(LKUser.localUserStored(context)) {
+					Log.d(SplashscreenActivity.class.getSimpleName(), "User stored locally");
+					
+					intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
+				} else {
+					intent = new Intent(SplashscreenActivity.this, AcLogin.class);					
+				}
+				
+				SplashscreenActivity.this.startActivity(intent);
+
 				SplashscreenActivity.this.finish();
 				overridePendingTransition(R.layout.fade_in, R.layout.fade_out);
 			}
@@ -387,7 +398,7 @@ public class SplashscreenActivity extends Activity{
 	}
 
 	public static void regInBackground(final Context context, final GoogleCloudMessaging gcm){
-		AsyncTask<?, String, String> regInBackground = new AsyncTask<Object, String, String>(){
+		new AsyncTask<Object, String, String>(){
 
 			@Override
 			protected String doInBackground(Object... params) {
@@ -427,11 +438,11 @@ public class SplashscreenActivity extends Activity{
 		int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 		if(result != ConnectionResult.SUCCESS){
 			if (GooglePlayServicesUtil.isUserRecoverableError(result)) {
-				GooglePlayServicesUtil.getErrorDialog(result, this, GCMReceiver.PLAY_SERVICES_RESOLUTION_REQUEST).show();
-			} else {
-				Log.e(LOG_TAG, "This device is not supported.");
-				// TODO: What to do?? 
-			}
+
+	            GooglePlayServicesUtil.getErrorDialog(result, this, GCMReceiver.PLAY_SERVICES_RESOLUTION_REQUEST).show();
+	        } else {
+	            Log.e(LOG_TAG, "This device is not supported."); 
+	        }
 		}
 		return true;
 	}
@@ -466,6 +477,7 @@ public class SplashscreenActivity extends Activity{
 
 		editor.commit();
 
+
 		//		LKSQLiteDB db = new LKSQLiteDB(context);
 		//		int heigestLocalId = db.heighestMessageId();
 		//		db.close();
@@ -486,5 +498,4 @@ public class SplashscreenActivity extends Activity{
 		//			}
 		//		});
 	}
-
 }

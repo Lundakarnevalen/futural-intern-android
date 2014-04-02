@@ -1,7 +1,7 @@
 package se.lundakarnevalen.remote;
 
+import se.lundakarnevalen.android.ContentActivity;
 import se.lundakarnevalen.android.R;
-import activities.ContentActivity;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;

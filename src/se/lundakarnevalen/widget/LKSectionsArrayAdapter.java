@@ -2,10 +2,10 @@ package se.lundakarnevalen.widget;
 
 import java.util.ArrayList;
 
-import fragments.SectionsInformationFragment;
+import fragments.old.SectionsInformationFragment;
 
+import se.lundakarnevalen.android.ContentActivity;
 import se.lundakarnevalen.android.R;
-import activities.ContentActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
