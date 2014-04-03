@@ -29,7 +29,7 @@ public class InfoText2Fragment extends LKFragment {
 		View root = inflater.inflate(R.layout.info_text2, null);
 
 		LKTextView text8 = (LKTextView) root.findViewById(R.id.text_8);
-
+		text8.setLineSpacing(19, 1);
 		text8.setText(Html.fromHtml(getString(R.string.text8)));
 
 		LKButtonGreen next = (LKButtonGreen) root.findViewById(R.id.next);

@@ -42,13 +42,21 @@ public class InfoTextFragment extends LKFragment {
 		LKTextView text6 = (LKTextView) root.findViewById(R.id.text_6);
 		LKTextView text7 = (LKTextView) root.findViewById(R.id.text_7);
 
+		text1.setLineSpacing(19, 1);
 		text1.setText(Html.fromHtml(getString(R.string.text1)));
+		text2.setLineSpacing(19, 1);
 		text2.setText(Html.fromHtml(getString(R.string.text2)));
+		text3.setLineSpacing(19, 1);
 		text3.setText(Html.fromHtml(getString(R.string.text3)));
+		text4.setLineSpacing(19, 1);
 		text4.setText(Html.fromHtml(getString(R.string.text4)));
+		text4.setLineSpacing(19, 1);
 		text5.setText(Html.fromHtml(getString(R.string.text5)));
+		text5.setLineSpacing(19, 1);
 		text6.setText(Html.fromHtml(getString(R.string.text6)));
+		text6.setLineSpacing(19, 1);
 		text7.setText(Html.fromHtml(getString(R.string.text7)));
+		text7.setLineSpacing(19, 1);
 
 
 		LKButtonYellow next = (LKButtonYellow) root.findViewById(R.id.next);
