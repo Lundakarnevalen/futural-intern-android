@@ -221,11 +221,19 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		if(mapItem != null) {
 			if(nbr == 1) {
 				mapItem.inboxCounter.setText("!");
+				mapItem.text.setTextColor(getResources().getColor(R.color.menu_item_enabled_text));
+				mapItem.buttonLayout.setBackgroundResource(R.color.menu_item_enabled);
+			
 				mapItem.inboxCounterWrapper.setVisibility(View.VISIBLE);
 			} else if(nbr == 0) {
+				mapItem.text.setTextColor(getResources().getColor(R.color.menu_item_enabled_text));
+				mapItem.buttonLayout.setBackgroundResource(R.color.menu_item_enabled);
+			
 				mapItem.inboxCounterWrapper.setVisibility(View.GONE);
 			} else if(nbr==-1) {
-				//TODO DO DARKER!!
+				//TODO DO DARKER!! 
+				mapItem.text.setTextColor(getResources().getColor(R.color.menu_item_disabled_text));
+				mapItem.buttonLayout.setBackgroundResource(R.color.menu_item_disabled);
 			} else if(nbr==2) {
 				// TODO 
 				// Nu blir det tomt. �ndra s� blir m�rk igen..
@@ -324,38 +332,43 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
 
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill)); 
-		inboxListItem = new LKMenuListItem(getString(R.string.Inkorg), 0, new InboxFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
+		inboxListItem = new LKMenuListItem(getString(R.string.Inkorg), 0, new InboxFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
 
 		//listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		//listItems.add(new LKMenuListItem("Map", 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 //		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		
-		listItems.add(new LKMenuListItem("Music", 0, new MusicFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+		//TODO Map only available on tidningsdagen
+		listItems.add(new LKMenuListItem(getString(R.string.countdown_title), 0, new CountdownFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout));
+		// TODO delete later
+		listItems.add(new LKMenuListItem("Music", 0, new MusicFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout));
+
+
 		// TODO fix block
-
-
-		startTimeMap.set(2014,Calendar.APRIL,1,15,15,00);
 		
-		endTimeMap.set(2014,Calendar.APRIL,10,16,23,00);
+		startTimeMap.set(2014,Calendar.APRIL,3,17,11,00);		
+		endTimeMap.set(2014,Calendar.APRIL,13,05,30,00);
+		
 		Calendar c = Calendar.getInstance();
 
 		//only add map if before..
-		if(!(c.compareTo(endTimeMap)==1)) {
-			mapItem = new LKMenuListItem(getString(R.string.karta), 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isMapRow(true);
+		if(c.after(endTimeMap)) {
+			// Nothing happen
+		} else if(c.after(startTimeMap)) {
+			mapItem = new LKMenuListItem(getString(R.string.karta), 0, new MapFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout).isMapRow(true);
+			listItems.add(mapItem);
+		} else {
+			
+			mapItem = new LKMenuListItem(getString(R.string.karta), 0, new MapFragment(), fragmentMgr, this, false).closeDrawerOnClick(true, drawerLayout).isMapRow(true);
 			listItems.add(mapItem);
 		}
 
 
-		//TODO Map only available on tidningsdagen
-		//listItems.add(new LKMenuListItem("Map", 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
-		//listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
-		listItems.add(new LKMenuListItem("info", 0, new InfoTextFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
-		listItems.add(new LKMenuListItem("Nedräkning", 0, new CountdownFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
 		listItems.add(inboxListItem);
 		//listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		
-		LKMenuListItem sangbok = new LKMenuListItem(getString(R.string.sangbok_title), 0, new SongGroupsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout);  
+		LKMenuListItem sangbok = new LKMenuListItem(getString(R.string.sangbok_title), 0, new SongGroupsFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);  
 		listItems.add(sangbok);
 		
 		adapter = new LKMenuArrayAdapter(this, listItems);
@@ -420,15 +433,19 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 							SharedPreferences prefs = getSharedPreferences("MAP_FIRST", Context.MODE_PRIVATE);
 							int first = prefs.getInt("firstTime", -1); 
 							if(first == 1) {
+								mapItem.enable = true;
 								setMapMark(0);								
 							} else {
-								setMapMark(1);								
-							}
+								mapItem.enable = true;							
+								setMapMark(1);	
+							}	
 						} else {
 							setMapMark(2);
 							mapItem = null;
 						}
 					} else {
+						
+						mapItem.enable = false;
 						setMapMark(-1);
 					}
 				}

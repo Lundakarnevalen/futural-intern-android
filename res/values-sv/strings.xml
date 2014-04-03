@@ -366,6 +366,9 @@
     <string name="error_invalid_password">Too short password</string>
     <string name="error_field_required">Fältet är nödvändigt</string>
     
+    <string name="countdown_title">NEDRÄKNING</string>
+    
+    
     <!--End  FrSignIn -->
     
     <!-- Map -->

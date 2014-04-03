@@ -3,8 +3,18 @@
 
     <color name="menu_bg">#2B2B28</color>
     <color name="bullet_grey">#85857E</color>
+    
     <color name="menu_inbox_ctr_box">#4c4c4c</color>
+    
     <color name="menu_item_selected">#22231E</color>
+    
+    <color name="menu_item_disabled">#4c4c4c</color>
+    <color name="menu_item_enabled">#787878</color>
+    
+    <color name="menu_item_disabled_text">#AAAAAA</color>
+    <color name="menu_item_enabled_text">#F5F5F5</color>
+    
+    <color name="menu_item">#939393</color>
     <color name="menu_divider">#22231E</color>
     <color name="tainted_peach">#F7897E</color>
     <color name="base_pink">#EF6860</color>

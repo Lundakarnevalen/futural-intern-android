@@ -38,6 +38,6 @@ public class LKTextViewBold extends TextView{
 		
 		Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/Futura-Bold.ttf");
 		setTypeface(tf);
-		setLineSpacing(19,1);
+		setLineSpacing(19,1);  
 	}
 }

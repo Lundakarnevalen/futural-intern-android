@@ -283,10 +283,12 @@
     <string name="playPart32">VI SKA ÖVERTYGA VÄRLDEN</string>
     <string name="playPart33">ATT FIRA MAJ I LUND</string>
     <string name="playPart34">EXPLODERAR PÅ EN SEKUND</string>
+    <string name="countdown_title">COUNTDOWN</string>
+    
     
     
 	<!-- Songboken -->
-	<string name="sangbok_title">SÅNGBOKEN</string>
+	<string name="sangbok_title">SONGBOOK</string>
 	<!-- Songs -->
 	<string-array name="sangbok_songs_group_karnmel">
 	    <item><![CDATA[6|Karnevalsmelodin|Melodi: Karnevalsmelodin 2014|Jag kan inte sitta still<br/>Jag får inte någon ro<br/>Nu är längtan över, sätter allt på paus<br/><br/>Det är nåt som är på gång<br/>Har aldrig känt så här förut<br/>Glömmer allt som var, det e karneval<br/><br/>Med hjärtslagen i takt till basen<br/>lyfter händerna mot taken<br/>ingen sömn på flera nätter<br/>aldrig känt mig mera vaken<br/><br/><b>BRYGGA</b><br/>Det e nu i vår det händer<br/>Det e vart fjärde år<br/>Kom möt upp med alla vänner<br/>Kom och skrik i Lundagård<br/><br/>Ljuset bländar, hjärtat bultar<br/>Nu är det fest i Lund<br/>Exploderar på en sekund<br/><br/><b>REFR</b><br/>Futu-futu<br/>-ral<br/>-karneval<br/>Futu-futu-futu<br/>-ral<br/>-karneval<br/>-futu-futu-futu<br/><br/>Ett universum fyllt av allt<br/>hundra fester på en dag<br/>Nu blir gammalt nytt<br/>och generalen har fått bröst<br/><br/>Karnevölen fyller glasen<br/>vem vet nåt om morgondagen<br/>Alla dansar Borgen skakar<br/>Aldrig känt mig mera vaken<br/><br/><b>(BRYGGA)</b><br/><br/><b>(REFR)</b><br/><br/>Vi är våren när det händer<br/>Vi är vart fjärde år<br/>Vi är allesammans vänner<br/>skriker ut i Lundagård<br/><br/>Vi ska övertyga världen<br/>att fira maj i Lund<br/>Exploderar på en sekund<br/><br/><b>||: REFR :||</b>]]></item>
