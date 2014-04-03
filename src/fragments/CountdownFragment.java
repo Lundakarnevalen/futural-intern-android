@@ -74,7 +74,7 @@ public class CountdownFragment extends LKFragment {
 	}
 	
 	/*public class DrawingTheCloud extends View{
-		
+		 
 		int x ,y;
 		Bitmap cloud;
 		int color = R.color.light_blue;

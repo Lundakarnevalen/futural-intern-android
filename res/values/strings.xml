@@ -216,7 +216,8 @@
     <string name="registration_valid_nr_of_sektions">You have to choose at least five (5) sections</string>
     <string name="registration_valid_nr_of_intrests">You have to choose at least three (3) interests</string>
     <string name="reset_password">Forgot Password</string>
-    <string name="map_right_now">Where are people \nright now?</string>
+    <string name="map_karnevalister">KARNEVALISTER</string>
+    <string name="map_right_now">WHERE ARE PEOPLE \nRIGHT NOW?</string>
     <string name="reset_password_successful">Successfully reset password, check your mail</string>
     
     <string name="action_sign_in_short">SHORT OF DOOM</string>

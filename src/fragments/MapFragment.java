@@ -136,7 +136,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			SharedPreferences prefs = getContext().getSharedPreferences(SHARED_ID, Context.MODE_PRIVATE);
 			clusterId = prefs.getInt(key_cluster, -1);
 		}
-
+ 
 		if (handler == null) {
 			handler = new Handler();
 
