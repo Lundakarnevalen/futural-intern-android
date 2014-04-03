@@ -393,5 +393,7 @@
     <string name="my_password">mitt lösenord!</string>
     <string name="send">Skicka</string>
     
+    <string name="cloud">Ett moln</string>
+    
 </resources>
 
