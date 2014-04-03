@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+   	android:background="@color/dark_blue" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,13 +15,10 @@
             android:id="@+id/upper_countdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal" >
+            android:paddingBottom="50dp"
+            android:gravity="center_horizontal"
+            android:background="@color/light_blue" >
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="@dimen/horizontal_margin" >
 
                 <se.lundakarnevalen.widget.LKTextViewBold
                     android:id="@+id/tvKarnevalTitle"
@@ -49,7 +47,6 @@
                     android:text="TextView"
                     android:textColor="#F5D408"
                     android:textSize="50sp" />
-            </RelativeLayout>
         </RelativeLayout>
 
         <ImageView
@@ -129,17 +126,72 @@
                     android:src="@drawable/timeline" />
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/countdown_lower_countdown"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:weightSum="2"
                 android:layout_below="@id/countdown_song_layout"
                 android:layout_margin="@dimen/horizontal_margin" >
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/countDownKarnevalOne"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/horizontal_margin_half"
+                    android:background="@drawable/white_bg_bottom_shadow" >
+
+                    <se.lundakarnevalen.widget.LKTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:adjustViewBounds="true"
+                        android:text="KARNELAN"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/countDownKarnevalTwo"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/horizontal_margin_half"
+                    android:background="@drawable/white_bg_bottom_shadow" >
+
+                    <se.lundakarnevalen.widget.LKTextViewBold
+                        android:id="@+id/tvKarneLanTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="KARNEVAD"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="20sp" />
+
+                    <se.lundakarnevalen.widget.LKTextViewBold
+                        android:id="@+id/tvKarneLan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/yellow"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+            
+            <RelativeLayout
+                android:id="@+id/countdown_lowest_countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/countdown_lower_countdown"
+                android:layout_margin="@dimen/horizontal_margin" >
+
+                <RelativeLayout
+                    android:id="@+id/countDownKarnevalThree"
                     android:layout_width="150dp"
-                    android:layout_height="50dp"
+                    android:layout_height="75dp"
                     android:background="@drawable/white_bg_bottom_shadow" >
 
                     <se.lundakarnevalen.widget.LKTextViewBold
@@ -153,11 +205,10 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/countDownKarnevalTwo"
+                    android:id="@+id/countDownKarnevalFour"
                     android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_toRightOf="@id/countDownKarnevalOne"
+                    android:layout_height="75dp"
+                    android:layout_alignParentRight="true"
                     android:background="@drawable/white_bg_bottom_shadow" >
 
                     <se.lundakarnevalen.widget.LKTextViewBold
@@ -171,18 +222,15 @@
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 
-                    <se.lundakarnevalen.widget.LKTextViewFat
+                    <se.lundakarnevalen.widget.LKTextViewBold
                         android:id="@+id/tvKarneLan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/tvKarneLanTitle"
+                        android:layout_below="@id/tvKarneLanTitle"
+        
                         android:layout_centerHorizontal="true"
-                        android:shadowColor="#a7b7ce"
-                        android:shadowDx="0"
-                        android:shadowDy="5"
-                        android:shadowRadius="0.1"
                         android:text="TextView"
-                        android:textColor="#F5D408"
+                        android:textColor="@color/yellow"
                         android:textSize="20sp" />
                 </RelativeLayout>
             </RelativeLayout>
