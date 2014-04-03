@@ -1,8 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:orientation="vertical"
     tools:context="se.lundakarnevalen.android.LoginActivity" >
 
     <!-- Login progress -->
@@ -12,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" >
+        
+        <include layout="@layout/layout_clouds"/>
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -211,4 +214,4 @@
         </ScrollView>
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>
