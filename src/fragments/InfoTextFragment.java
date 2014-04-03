@@ -1,9 +1,11 @@
 package fragments;
 
+
 import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.widget.LKButtonGreen;
+import se.lundakarnevalen.widget.LKButtonYellow;
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
-import se.lundakarnevalen.widget.LKTextViewFat;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -11,14 +13,14 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 
 public class InfoTextFragment extends LKFragment {
 	MapFragment mf;
-	
+
 	public InfoTextFragment() {
-		
-		
+
 	}
 
 	@Override
@@ -49,13 +51,29 @@ public class InfoTextFragment extends LKFragment {
 		text7.setText(Html.fromHtml(getString(R.string.text7)));
 
 
+		LKButtonYellow next = (LKButtonYellow) root.findViewById(R.id.next);
+		next.setOnClickListener(new ClickListener());
+
 		return root;
 	}
+
+
+
+
+	public class ClickListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			LKFragment fragment = new InfoText2Fragment();
+			loadFragment(fragment, true);
+		}
+	}
+
+
 
 	public void setMapFragment(MapFragment mapFragment) {
 		// TODO Auto-generated method stub
 		mf = mapFragment;
 	}
 
-	
 }
