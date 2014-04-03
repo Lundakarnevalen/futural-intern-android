@@ -53,12 +53,12 @@ public class SongsPagerFragment extends LKFragment {
 		
 		final Context c = inflater.getContext();
 		final FragmentManager fm = getChildFragmentManager();
-		
+		 
 		mViewPager = get(R.id.sangbok_layout_viewpager, root, LKSwipeableViewPager.class);
 		mViewPager.setAdapter(new MyAdapter(fm, c, songs, iconId));
 		mViewPager.setPageMargin(Math.round(LKFragment.dpToPx(PAGE_MARGIN_DP, c)));
 		mViewPager.setClipToPadding(false);
-		mViewPager.setCurrentItem(selected);
+		mViewPager.setCurrentItem(selected); 
 		mViewPager.setPagingEnabled(hasMultiple);
 		
 		get(R.id.sangbok_layout_backbtn, root, Button.class).setOnClickListener(new OnClickListener() {
