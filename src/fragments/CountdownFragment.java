@@ -39,7 +39,7 @@ public class CountdownFragment extends LKFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		setTitle("Countdown");
+		setTitle(getString(R.string.countdown_title));
 		
 		
 		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Bold.ttf");

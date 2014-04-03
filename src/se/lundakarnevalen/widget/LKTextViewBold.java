@@ -24,8 +24,6 @@ public class LKTextViewBold extends TextView{
 		super(context, attrs);
 		this.context = context;
 		font();
-
-		
 	}
 	
 	public LKTextViewBold(Context context, AttributeSet attrs, int defStyle){

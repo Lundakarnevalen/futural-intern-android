@@ -367,6 +367,7 @@
     <string name="error_field_required">Fältet är nödvändigt</string>
     
     <string name="countdown_title">NEDRÄKNING</string>
+    <string name="inbox_title">INKORG</string>
     
     
     <!--End  FrSignIn -->
@@ -391,6 +392,8 @@
 	<string name="info_text_button">Förstår du fortfarande inte?</string>
 	<string name="info_text_button2">OK, jag förstår!</string>
     
+    <string name="sign_in">LOGGA IN</string>
     
+	
 </resources>
 
