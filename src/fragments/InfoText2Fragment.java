@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 public class InfoText2Fragment extends LKFragment {
 
-	public InfoText2Fragment() {
+	public InfoText2Fragment() { 
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class InfoText2Fragment extends LKFragment {
 		setTitle(getString(R.string.info_text_actionbar));
 		// TODO
 		// Fix both eng and swe.
-	}
+	} 
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View root = inflater.inflate(R.layout.info_text2, null);

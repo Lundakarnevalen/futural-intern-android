@@ -17,15 +17,13 @@ public class LKTextViewBold extends TextView{
 		super(context);
 		this.context = context;
 		font();
-		setLineSpacing(19,1);
-
+		
 	}
 	
 	public LKTextViewBold(Context context, AttributeSet attrs){
 		super(context, attrs);
 		this.context = context;
 		font();
-		setLineSpacing(19,1);
 
 		
 	}
@@ -34,12 +32,12 @@ public class LKTextViewBold extends TextView{
 		super(context, attrs, defStyle);
 		this.context = context;
 		font();
-		setLineSpacing(19,1);
-
 	}
 	
 	private void font(){
+		
 		Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/Futura-Bold.ttf");
 		setTypeface(tf);
+		setLineSpacing(19,1);
 	}
 }
