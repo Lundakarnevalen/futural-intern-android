@@ -73,7 +73,7 @@ public class SongsPagerFragment extends LKFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		setTitle(getString(R.string.sangbok_title) + " - " + getArguments().getString(KEY_GROUP_NAME));
+		setTitle(getArguments().getString(KEY_GROUP_NAME));
 	}
 	
 	private static class MyAdapter extends FragmentPagerAdapter {
