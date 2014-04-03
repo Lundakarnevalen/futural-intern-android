@@ -133,7 +133,6 @@ public class SongsPagerFragment extends LKFragment {
 			get(R.id.sangbok_layout_song_layout_subtitle, root, TextView.class).setText(Html.fromHtml(b.getString(KEY_SUBTITLE)));
 			get(R.id.sangbok_layout_song_layout_subtitle, root, TextView.class).setSelected(b.getString(KEY_SUBTITLE).length() > 20); //make it scroll if too long
 			get(R.id.sangbok_layout_song_layout_text, root, TextView.class).setText(Html.fromHtml(b.getString(KEY_TEXT)));
-			get(R.id.sangbok_layout_song_layout_icon, root, ImageView.class).setImageResource(b.getInt(KEY_ICON));
 			
 			return root;
 		}

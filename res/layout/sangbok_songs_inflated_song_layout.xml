@@ -16,8 +16,8 @@
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
     	    android:layout_alignParentLeft="true"
+    	    android:layout_alignParentRight="true"
     	    android:layout_alignParentTop="true"
-    	    android:layout_toLeftOf="@+id/sangbok_layout_song_layout_icon"
     	    android:maxLines="3"
     	    android:minLines="1"
     	    android:text="Utbildning utan framtid eller “Konsten att strula till ett liv”"
@@ -29,25 +29,15 @@
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
     	    android:layout_alignParentLeft="true"
-    	    android:layout_alignRight="@+id/sangbok_layout_song_layout_title"
+    	    android:layout_alignParentRight="true"
     	    android:layout_below="@+id/sangbok_layout_song_layout_title"
     	    android:ellipsize="marquee"
     	    android:maxHeight="20dp"
     	    android:maxLines="2"
-    	    android:text="Melodi: Nu har vi ljus här i vårt hus"
+    	    android:text="Melodi: Skånska slott och herresäten"
     	    android:textSize="16sp"
     	    android:textStyle="bold" />
     	
-    	<ImageView
-    	    android:id="@+id/sangbok_layout_song_layout_icon"
-    	    android:layout_width="60dp"
-    	    android:layout_height="60dp"
-    	    android:layout_alignParentBottom="false"
-    	    android:layout_alignParentRight="true"
-    	    android:layout_alignParentTop="false"
-    	    android:layout_centerVertical="true"
-    	    android:contentDescription="Icon for song"
-    	    android:src="@drawable/kommunikation" />
 
     </RelativeLayout>
 
