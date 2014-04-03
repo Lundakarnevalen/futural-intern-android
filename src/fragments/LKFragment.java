@@ -275,7 +275,7 @@ public class LKFragment extends Fragment {
 			protected void onPostExecute(Boolean result) {
 				messageExists = result;
 			}
-
+ 
 		}.execute();
 
 		return messageExists;

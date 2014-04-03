@@ -9,6 +9,7 @@ import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -26,6 +27,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +52,9 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	// Save current dots
 	private Bitmap bmOverlay;
 	private ImageView img;
-
+	private int imageWidth;
+	private int imageHeight;
+	
 	// Handler for post/get position(s)
 	private static final int HANDLER_DELAY = 1800000; // 30 min
 	// private static final int HANDLER_DELAY = 10000; //10 sec
@@ -98,9 +102,15 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			infoTextFragment = new InfoTextFragment();
 			infoTextFragment.setMapFragment(this);
 		}
+		
 
 		background = (ImageView) rootView.findViewById(R.id.map_move);
 		context = getContext();
+		if(imageWidth == 0) {
+			DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+			imageWidth = metrics.widthPixels;
+			imageHeight = metrics.heightPixels;
+		}
 
 		sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 		if(sm == null) {
@@ -205,7 +215,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, TIME_INTERVAL, GPS_DISTANCE, PositionListener);
 			Log.d("Updateing GPS!", "Update");
 		} else {
-			Log.d("GPS off", "Avstängd GPS");
+			Log.d("GPS off", "Avstï¿½ngd GPS");
 			if (locMan.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
 				locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, TIME_INTERVAL, GPS_DISTANCE, PositionListener);
 				Log.d("Updateing Position with network!", "Update");
@@ -240,8 +250,15 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			float smallestDot = Float.MAX_VALUE;
 
 			// create bitmap of the map
-			Bitmap mapBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.map_skane);
-
+			//BitmapFactory.Options options 
+			//Bitmap mapBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.map_skane, BitmapFactory.Options);
+			Bitmap mapBitmap = decodeSampledBitmapFromResource(getResources(), R.drawable.map_skane, imageWidth , imageHeight);
+			
+			
+			//mImageView.setImageBitmap(
+			//	    decodeSampledBitmapFromResource(getResources(), R.id.myimage, 100, 100));
+			
+			//BitmapFactory.de
 			// Create an overlay bitmap
 			bmOverlay = Bitmap.createBitmap(mapBitmap.getWidth(), mapBitmap.getHeight(), mapBitmap.getConfig());
 			Canvas canvas = new Canvas();
@@ -454,5 +471,43 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 				break;
 			}
 		}
+	}
+	public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+    // Raw height and width of image
+    final int height = options.outHeight;
+    final int width = options.outWidth;
+    int inSampleSize = 1;
+
+    if (height > reqHeight || width > reqWidth) {
+
+        final int halfHeight = height / 2;
+        final int halfWidth = width / 2;
+
+        // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+        // height and width larger than the requested height and width.
+        while ((halfHeight / inSampleSize) > reqHeight
+                && (halfWidth / inSampleSize) > reqWidth) {
+            inSampleSize *= 2;
+        }
+    }
+
+    return inSampleSize;
+}
+	
+	public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+	        int reqWidth, int reqHeight) {
+
+	    // First decode with inJustDecodeBounds=true to check dimensions
+	    final BitmapFactory.Options options = new BitmapFactory.Options();
+	    options.inJustDecodeBounds = true;
+	    BitmapFactory.decodeResource(res, resId, options);
+
+	    // Calculate inSampleSize
+	    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+	    // Decode bitmap with inSampleSize set
+	    options.inJustDecodeBounds = false;
+	    return BitmapFactory.decodeResource(res, resId, options);
 	}
 }
