@@ -104,11 +104,6 @@ public class FrSignIn extends Fragment {
 		
 		Button buttonReset = (Button) rootView.findViewById(R.id.password_reset);
 		buttonReset.setOnClickListener(new ButtonResetPassword());
-
-		
-//		TODO Only for debugging purpose! Remove before release!
-		mEmailView.setText("karnevalstestaren@gmail.com");
-		mPasswordView.setText("12345678"); 
 		
 		hideVirtualKeyboard();
 		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);

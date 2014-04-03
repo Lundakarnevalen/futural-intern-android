@@ -79,7 +79,7 @@ public class FrResetPassword extends Fragment {
 			Log.d(LOG_TAG, "Got result from server");
 			
 			if (result == null) {
-				Log.d(LOG_TAG, "Result was null");
+				Toast.makeText(getActivity(), "Could not find that email", Toast.LENGTH_LONG).show();
 				return;
 			}
 

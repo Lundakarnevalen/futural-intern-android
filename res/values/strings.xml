@@ -289,4 +289,7 @@
     <string name="send">Send</string>
     
     <string name="cloud">A cloud</string>
+    <string name="welcome_text">Welcome!</string>
+    <string name="prompt_email">Enter Email</string>
+    <string name="prompt_password">Enter Password</string>
 </resources>

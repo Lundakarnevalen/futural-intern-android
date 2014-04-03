@@ -42,8 +42,7 @@ public class LKUser {
 	public static boolean localUserStored(Context context) {
 		SharedPreferences sp = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
 		String json = sp.getString(SHARED_PREFS_JSON, null);
-		return false;
-//		return json != null;
+		return json != null;
 	}
 	
 	/**
