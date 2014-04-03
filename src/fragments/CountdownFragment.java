@@ -14,8 +14,11 @@ import android.widget.TextView;
 
 public class CountdownFragment extends LKFragment {
 
-	TextView tvKarneval;
-	TextView tvKarnelan;
+	private TextView tvKarneval;
+	private TextView tvPreKarneval;
+	private TextView tvPostKarneval;
+	private TextView tvKarnevalBeer;
+	private TextView tvKarneLan;
 	long diffKarneVad;
 	private String antonsTestHAHAHAAHA;
 
@@ -25,7 +28,36 @@ public class CountdownFragment extends LKFragment {
 		// TODO Change the layout
 		View rootView = inflater.inflate(R.layout.fr_layout_countdown, null);
 		tvKarneval = (TextView) rootView.findViewById(R.id.tvKarneval);
-		tvKarnelan = (TextView) rootView.findViewById(R.id.tvKarneLan);
+		tvPreKarneval = (TextView) rootView.findViewById(R.id.tvPreKarneval);
+		tvPostKarneval = (TextView) rootView.findViewById(R.id.tvPostKarneval);
+		tvKarnevalBeer = (TextView) rootView.findViewById(R.id.tvKarnevalBeer);
+		tvKarneLan = (TextView) rootView.findViewById(R.id.tvKarneLan);
+		
+		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+				"fonts/Roboto-Bold.ttf");
+		tvKarneval.setTypeface(tf);
+
+		Date karneVal = new GregorianCalendar(2014, 4, 16, 0, 0, 0).getTime();
+		Date karneLan = new GregorianCalendar(2014, 3, 16, 18, 0, 0).getTime();
+		Date preKarneval = new GregorianCalendar(2014, 4, 11, 0, 0, 0)
+				.getTime();
+		Date karneBeer = new GregorianCalendar(2014, 3, 25, 11, 0, 0).getTime();
+		Date postKarneval = new GregorianCalendar(2014, 3, 15, 11, 0, 0)
+				.getTime();
+
+		Date today = new Date();
+		long timeOfToday = today.getTime();
+
+		long diffKarneval = karneVal.getTime() - timeOfToday;
+		long diffKarnelan = karneLan.getTime() - timeOfToday;
+		long diffPreKarneval = preKarneval.getTime() - timeOfToday;
+		long diffKarnebeer = karneBeer.getTime() - timeOfToday;
+		long diffPostKarneval = postKarneval.getTime() - timeOfToday;
+
+		CountDownTask countDownTask = new CountDownTask();
+		countDownTask.execute(diffKarneval, diffKarnelan, diffPreKarneval,
+				diffKarnebeer, diffPostKarneval);
+		
 		return rootView;
 	}
 
@@ -33,29 +65,6 @@ public class CountdownFragment extends LKFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setTitle(getString(R.string.countdown_title));
-		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-				"fonts/Roboto-Bold.ttf");
-		tvKarneval.setTypeface(tf);
-
-		Date karneVal = new GregorianCalendar(2014, 4, 16, 14, 0, 0).getTime();
-		Date karneLan = new GregorianCalendar(2014, 4, 16, 14, 0, 0).getTime();
-		Date preKarneval = new GregorianCalendar(2014, 3, 15, 11, 0, 0)
-				.getTime();
-		Date karneBeer = new GregorianCalendar(2014, 3, 15, 11, 0, 0).getTime();
-		Date postKarneval = new GregorianCalendar(2014, 3, 15, 11, 0, 0)
-				.getTime();
-
-		Date today = new Date();
-
-		long diffKarneval = karneVal.getTime() - today.getTime();
-		long diffKarnelan = karneLan.getTime() - today.getTime();
-		long diffPreKarneval = preKarneval.getTime() - today.getTime();
-		long diffKarnebeer = karneBeer.getTime() - today.getTime();
-		long diffPostKarneval = postKarneval.getTime() - today.getTime();
-
-		CountDownTask countDownTask = new CountDownTask();
-		countDownTask.execute(diffKarneval, diffKarnelan, diffPreKarneval,
-				diffKarnebeer, diffPostKarneval);
 	}
 
 	private class CountDownTask extends AsyncTask<Long, Long, Long> {
@@ -104,7 +113,7 @@ public class CountdownFragment extends LKFragment {
 
 				@Override
 				public void onTick(long millisUntilFinished) {
-					tvKarnelan
+					tvKarneLan
 							.setText(getCountdownMessage(millisUntilFinished));
 				}
 			}.start();
@@ -117,7 +126,8 @@ public class CountdownFragment extends LKFragment {
 
 				@Override
 				public void onTick(long millisUntilFinished) {
-					// tvKarnelan.setText(getCountdownMessage(millisUntilFinished));
+					tvPreKarneval
+							.setText(getCountdownMessage(millisUntilFinished));
 				}
 			}.start();
 
@@ -129,7 +139,8 @@ public class CountdownFragment extends LKFragment {
 
 				@Override
 				public void onTick(long millisUntilFinished) {
-					// tvKarnelan.setText(getCountdownMessage(millisUntilFinished));
+					tvKarnevalBeer
+							.setText(getCountdownMessage(millisUntilFinished));
 				}
 			}.start();
 
@@ -141,7 +152,8 @@ public class CountdownFragment extends LKFragment {
 
 				@Override
 				public void onTick(long millisUntilFinished) {
-					// tvKarnelan.setText(getCountdownMessage(millisUntilFinished));
+					tvPostKarneval
+							.setText(getCountdownMessage(millisUntilFinished));
 				}
 			}.start();
 		}
