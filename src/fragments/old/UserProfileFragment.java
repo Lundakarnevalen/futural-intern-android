@@ -1,9 +1,6 @@
-package fragments;
+package fragments.old;
 
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.android.R.drawable;
-import se.lundakarnevalen.android.R.id;
-import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.BitmapResultListener;
 import se.lundakarnevalen.remote.LKUser;
@@ -16,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import fragments.LKFragment;
 
 public class UserProfileFragment extends LKFragment {
 

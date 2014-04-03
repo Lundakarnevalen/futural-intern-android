@@ -163,6 +163,9 @@ public class FrSignIn extends Fragment {
 			
 			user.storeUserLocaly();
 			
+			
+			LKUser a = new LKUser(getActivity());
+
 			Intent intent = new Intent(context, ContentActivity.class);		
 		
 			context.startActivity(intent);

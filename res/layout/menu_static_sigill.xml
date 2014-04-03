@@ -29,8 +29,6 @@
             android:textSize="20sp" >
         </se.lundakarnevalen.widget.LKTextViewBold>
         
-        
-        
     </RelativeLayout>
     
    <View 

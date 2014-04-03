@@ -18,7 +18,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import fragments.LKFragment;
 
 /**
  * Class used for the navigation drawers list view.
@@ -219,11 +218,11 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 				@Override
 				public void onClick(View v) {
 
-					hej(fragmentMgr);
+					clearBackStack(fragmentMgr);
 					fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment).commit();
 				}
 
-				private void hej(FragmentManager fragmentMgr) {
+				private void clearBackStack(FragmentManager fragmentMgr) {
 
 					for(int i = 0; i < fragmentMgr.getBackStackEntryCount(); i++) {
 						Log.d("ContentActivity", "Removed from backstack");
