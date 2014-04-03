@@ -1442,7 +1442,7 @@
 			<se.lundakarnevalen.widget.LKEditText
 		        android:singleLine="true"
 		        android:layout_marginTop="@dimen/vertical_margin_half"
-		        android:id="@+id/email"
+		        android:id="@+id/email_field"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:textColor="#FFFFFF"

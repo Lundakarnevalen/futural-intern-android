@@ -1,0 +1,212 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context="se.lundakarnevalen.android.LoginActivity" >
+
+    <!-- Login progress -->
+
+    <RelativeLayout
+        android:id="@+id/login_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="100dp" />
+
+        <TextView
+            android:id="@+id/login_status_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progress_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="@string/login_progress_signing_in"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </RelativeLayout>
+
+    <!-- Login form -->
+
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_blue" >
+
+        <RelativeLayout
+            android:id="@+id/layout_outer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/layout_info_texts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:background="#EEEEEE"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp" >
+
+                <se.lundakarnevalen.widget.LKTextViewBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:text="VÄLKOMMEN!" />
+
+                <se.lundakarnevalen.widget.LKTextViewBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:text="ÄR DU KARNEVALIST?!" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_data_fields"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_info_texts"
+                android:layout_centerHorizontal="true"
+                android:background="#EEEEEE"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp" >
+
+                <se.lundakarnevalen.widget.LKEditText
+                    android:id="@+id/email_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <se.lundakarnevalen.widget.LKEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/email_field"
+                    android:hint="@string/prompt_password"
+                    android:layout_marginTop="10dp"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <!-- SHADOW for email_field -->
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="5dp"
+                    android:layout_alignLeft="@id/email_field"
+                    android:layout_alignRight="@id/email_field"
+                    android:layout_below="@id/email_field"
+                    android:background="#aaaaaa" >
+                </RelativeLayout>
+
+                <!-- SHADOW for password_field -->
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="5dp"
+                    android:layout_alignLeft="@id/password"
+                    android:layout_alignRight="@id/password"
+                    android:layout_below="@id/password"
+                    android:background="#aaaaaa" >
+                </RelativeLayout>
+                
+                <!-- End shadow -->
+            </RelativeLayout>
+
+            <se.lundakarnevalen.widget.LKButtonGreen
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_data_fields"
+                android:layout_centerHorizontal="true"
+                android:text="@string/sign_in_button" />
+
+            <se.lundakarnevalen.widget.LKButtonYellow
+                android:id="@+id/password_reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_below="@id/sign_in_button"
+                android:layout_centerHorizontal="true"
+                android:background="#00FF00"
+                android:text="@string/reset_password" />
+            
+            <!-- SHADOW for layout_info_text -->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:layout_alignLeft="@id/layout_info_texts"
+                android:layout_alignRight="@id/layout_info_texts"
+                android:layout_below="@id/layout_info_texts"
+                android:background="#aaaaaa" >
+            </RelativeLayout>
+
+            <!-- SHADOW for layout_data_fields -->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:layout_alignLeft="@id/layout_data_fields"
+                android:layout_alignRight="@id/layout_data_fields"
+                android:layout_below="@id/layout_data_fields"
+                android:background="#aaaaaa" >
+            </RelativeLayout>
+
+            <!-- SHADOW for sign_in_button -->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:layout_alignLeft="@id/sign_in_button"
+                android:layout_alignRight="@id/sign_in_button"
+                android:layout_below="@id/sign_in_button"
+                android:background="#aaaaaa" >
+            </RelativeLayout>
+
+            <!-- SHADOW for password_reset -->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:layout_alignLeft="@id/password_reset"
+                android:layout_alignRight="@id/password_reset"
+                android:layout_below="@id/password_reset"
+                android:background="#aaaaaa" >
+            </RelativeLayout>
+
+            <!-- END SHADOWS -->
+
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

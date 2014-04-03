@@ -32,7 +32,7 @@ public class CountdownFragment extends LKFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		setTitle("Countdown");
+		setTitle(getString(R.string.countdown_title));
 		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
 				"fonts/Roboto-Bold.ttf");
 		tvKarneval.setTypeface(tf);
@@ -44,6 +44,7 @@ public class CountdownFragment extends LKFragment {
 		Date karneBeer = new GregorianCalendar(2014, 3, 15, 11, 0, 0).getTime();
 		Date postKarneval = new GregorianCalendar(2014, 3, 15, 11, 0, 0)
 				.getTime();
+
 		Date today = new Date();
 
 		long diffKarneval = karneVal.getTime() - today.getTime();
@@ -53,7 +54,8 @@ public class CountdownFragment extends LKFragment {
 		long diffPostKarneval = postKarneval.getTime() - today.getTime();
 
 		CountDownTask countDownTask = new CountDownTask();
-		countDownTask.execute(diffKarneval, diffKarnelan, diffPreKarneval, diffKarnebeer, diffPostKarneval);
+		countDownTask.execute(diffKarneval, diffKarnelan, diffPreKarneval,
+				diffKarnebeer, diffPostKarneval);
 	}
 
 	private class CountDownTask extends AsyncTask<Long, Long, Long> {
@@ -66,8 +68,9 @@ public class CountdownFragment extends LKFragment {
 			final long diffPreKarneval = params[2];
 			final long diffKarnebeer = params[3];
 			final long diffPostKarneval = params[4];
-			
-			publishProgress(diffKarneval, diffKarneLan, diffPreKarneval, diffKarnebeer, diffPostKarneval);
+
+			publishProgress(diffKarneval, diffKarneLan, diffPreKarneval,
+					diffKarnebeer, diffPostKarneval);
 			return (long) 0;
 		}
 
@@ -81,58 +84,64 @@ public class CountdownFragment extends LKFragment {
 			long diffKarnebeer = values[3];
 			long diffPostKarneval = values[4];
 
-			new CountDownTimer(diffKarneval, 1000){
+			new CountDownTimer(diffKarneval, 1000) {
 				@Override
 				public void onFinish() {
 				}
 
 				@Override
 				public void onTick(long millisUntilFinished) {
-					tvKarneval.setText(getCountdownMessage(millisUntilFinished));
+					tvKarneval
+							.setText(getCountdownMessage(millisUntilFinished));
 				}
 			}.start();
-			
-			new CountDownTimer(diffKarneLan, 1000){
+
+			new CountDownTimer(diffKarneLan, 1000) {
 				@Override
 				public void onFinish() {
-					//Change into checked
+					// Change into checked
 				}
+
 				@Override
 				public void onTick(long millisUntilFinished) {
-					tvKarnelan.setText(getCountdownMessage(millisUntilFinished));
+					tvKarnelan
+							.setText(getCountdownMessage(millisUntilFinished));
 				}
 			}.start();
-			
-			new CountDownTimer(diffPreKarneval, 1000){
+
+			new CountDownTimer(diffPreKarneval, 1000) {
 				@Override
 				public void onFinish() {
-					//Change into checked
+					// Change into checked
 				}
+
 				@Override
 				public void onTick(long millisUntilFinished) {
-//					tvKarnelan.setText(getCountdownMessage(millisUntilFinished));
+					// tvKarnelan.setText(getCountdownMessage(millisUntilFinished));
 				}
 			}.start();
-			
-			new CountDownTimer(diffKarnebeer, 1000){
+
+			new CountDownTimer(diffKarnebeer, 1000) {
 				@Override
 				public void onFinish() {
-					//Change into checked
+					// Change into checked
 				}
+
 				@Override
 				public void onTick(long millisUntilFinished) {
-//					tvKarnelan.setText(getCountdownMessage(millisUntilFinished));
+					// tvKarnelan.setText(getCountdownMessage(millisUntilFinished));
 				}
 			}.start();
-			
-			new CountDownTimer(diffPostKarneval, 1000){
+
+			new CountDownTimer(diffPostKarneval, 1000) {
 				@Override
 				public void onFinish() {
-					//Change into checked
+					// Change into checked
 				}
+
 				@Override
 				public void onTick(long millisUntilFinished) {
-//					tvKarnelan.setText(getCountdownMessage(millisUntilFinished));
+					// tvKarnelan.setText(getCountdownMessage(millisUntilFinished));
 				}
 			}.start();
 		}
@@ -143,7 +152,8 @@ public class CountdownFragment extends LKFragment {
 			super.onPostExecute(result);
 		}
 	}
-	private String getCountdownMessage(long diffKarneval){
+
+	private String getCountdownMessage(long diffKarneval) {
 		long seconds = diffKarneval / 1000;
 		long minutes = seconds / 60;
 		long hours = minutes / 60;
@@ -151,8 +161,8 @@ public class CountdownFragment extends LKFragment {
 		seconds = seconds % 60;
 		minutes = minutes % 60;
 		hours = hours % 24;
-		String countDownMessage = String.format("%02d:%02d:%02d:%02d",
-				days, hours, minutes, seconds);
+		String countDownMessage = String.format("%02d:%02d:%02d:%02d", days,
+				hours, minutes, seconds);
 		return countDownMessage;
 	}
 }

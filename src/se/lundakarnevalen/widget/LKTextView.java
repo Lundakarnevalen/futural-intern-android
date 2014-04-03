@@ -17,21 +17,18 @@ public class LKTextView extends TextView{
 		super(context);
 		this.context = context;
 		font();
-		setLineSpacing(19,1);
 	}
 	
 	public LKTextView(Context context, AttributeSet attrs){
 		super(context, attrs);
 		this.context = context;
 		font();
-		setLineSpacing(19,1);
 	}
 	
 	public LKTextView(Context context, AttributeSet attrs, int defStyle){
 		super(context, attrs, defStyle);
 		this.context = context;
 		font();
-		setLineSpacing(10,1);
 	}
 	
 	private void font(){

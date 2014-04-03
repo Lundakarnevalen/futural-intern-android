@@ -3,8 +3,18 @@
 
     <color name="menu_bg">#2B2B28</color>
     <color name="bullet_grey">#85857E</color>
+    
     <color name="menu_inbox_ctr_box">#4c4c4c</color>
+    
     <color name="menu_item_selected">#22231E</color>
+    
+    <color name="menu_item_disabled">#4c4c4c</color>
+    <color name="menu_item_enabled">#787878</color>
+    
+    <color name="menu_item_disabled_text">#AAAAAA</color>
+    <color name="menu_item_enabled_text">#F5F5F5</color>
+    
+    <color name="menu_item">#939393</color>
     <color name="menu_divider">#22231E</color>
     <color name="tainted_peach">#F7897E</color>
     <color name="base_pink">#EF6860</color>
@@ -13,17 +23,25 @@
     <color name="bg_peach">#C1D3EE</color>
     <color name="purple">#BEBDE1</color>
     <color name="hint_peach">#FAD2CB</color>
-    <color name="light_peach">#FFDFD3</color>
+    <!-- <color name="light_peach">#FFDFD3</color> CONFLICT!? -->
     <color name="tainted_white">#FFFBFB</color>
     <color name="dark_peach">#F66557</color>
     <color name="light_blue">#C1D3EE</color>
     <color name="dark_blue">#5D617F</color>
     <color name="yellow">#f5d408</color>
+
+    <!-- <color name="red">#ff2b33</color> CONFLICT!? -->
     <color name="green">#6ecaae</color>
     <color name="dark_green">#58a18b</color>
     <color name="dark_yellow">#dcbe07</color>
+    <!--  <color name="red">#F0533E</color> CONFLICT!? -->
+
     <color name="red">#F0533E</color>
     <color name="beige_bg">#F7EAD4</color>
     <color name="shadow_black">#66000000</color>
 
+    <color name="bg_sangbok">#f6ead4</color>
+    <color name="button_white_press">#F7EAD4</color>
+    <color name="button_white">#FFFFFF</color>
+    <color name="button_white_shadow">#33000000</color>
 </resources>
