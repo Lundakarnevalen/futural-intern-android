@@ -347,7 +347,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 		// TODO fix block
 		
-		startTimeMap.set(2014,Calendar.APRIL,5,17,11,00);		
+		startTimeMap.set(2014,Calendar.APRIL,3,17,11,00);		
 		endTimeMap.set(2014,Calendar.APRIL,13,05,30,00);
 		
 		Calendar c = Calendar.getInstance();

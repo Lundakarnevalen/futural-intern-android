@@ -22,8 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textColor="@color/menu_item_enabled_text"
-            
-            
+                      
             android:textSize="22sp"
             android:padding="@dimen/horizontal_margin" />
 
