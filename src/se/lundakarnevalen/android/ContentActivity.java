@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import se.lundakarnevalen.remote.LKRemote;
+import se.lundakarnevalen.remote.LKRemote.BitmapResultListener;
+
 import se.lundakarnevalen.remote.LKSQLiteDB;
+import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -118,9 +123,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			Log.d(LOG_TAG, "Update of user information required");
 			//If this happens the current user information is old, so we need to update it.
 			
-//			TODO check how to update the users information without signing in to the application.
-			
-			//Update current version number
+			new LKUser(this).updateFromRemote();
 			
 			Log.d(LOG_TAG, "Updating the version number");
 			
@@ -329,11 +332,16 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		// Create logo and sigill objects. 
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);
+		
+		buildMenuProfile(menuSigill);
+		
 		List<LKMenuListItem> listItems = new ArrayList<LKMenuListItem>();
 
 		listItems.add(new LKMenuListItem().isStatic(true).showView(menuSigill)); 
 		inboxListItem = new LKMenuListItem(getString(R.string.Inkorg), 0, new InboxFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout).isInboxRow(true);
 
+//		listItems.add(new LKMenuListItem("Music", 0, new MusicFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
+		// TODO fix block
 		//listItems.add(new LKMenuListItem("Start", 0, null, fragmentMgr, this).closeDrawerOnClick(true, drawerLayout).isActive(true));
 		//listItems.add(new LKMenuListItem("Map", 0, new MapFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 //		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
@@ -341,6 +349,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		//TODO Map only available on tidningsdagen
 		countDown = new CountdownFragment();
 		listItems.add(new LKMenuListItem(getString(R.string.countdown_title), 0, countDown, fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout));
+
 
 
 		// TODO fix block
@@ -365,6 +374,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 
 		listItems.add(inboxListItem);
+
 		//listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		
 		LKMenuListItem sangbok = new LKMenuListItem(getString(R.string.sangbok_title), 0, new SongGroupsFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);  
@@ -375,6 +385,39 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 		menuList.setOnItemClickListener(adapter);
 	}
+
+	private void buildMenuProfile(View menuSigill) {
+		final ImageView image = (ImageView) menuSigill.findViewById(R.id.user_picture);
+		TextView name = (TextView) menuSigill.findViewById(R.id.user_name);
+
+		LKUser user = new LKUser(this);
+		user.getUserLocaly();
+		
+		image.setImageResource(R.drawable.sections_image);
+		
+		if(user.fornamn == null || user.efternamn == null) {
+			name.setText("John Doe"); 
+		} else {
+			name.setText(user.fornamn+" "+ user.efternamn); 			
+		}
+		
+		LKRemote remote = new LKRemote(this);
+		remote.setBitmapResultListener(new BitmapResultListener(){
+			@Override
+			public void onResult(Bitmap result) {
+				Log.d(LOG_TAG, "Got bitmap!");
+				if(result == null) {
+					Log.e(LOG_TAG, "bitmap was null"); // Maybe set some standard image?
+				}
+
+				image.setVisibility(View.VISIBLE);
+				image.setImageBitmap(result);
+			}
+		});
+		remote.requestServerForBitmap(user.imgUrl);
+
+	}
+
 
 	/**
 	 * Called to init actionbar. 

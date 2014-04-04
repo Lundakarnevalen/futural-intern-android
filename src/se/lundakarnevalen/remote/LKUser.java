@@ -1,6 +1,7 @@
 package se.lundakarnevalen.remote;
 
 import json.KarnevalistWrite;
+import json.LoginResponse;
 import json.Response;
 import json.User;
 import json.UserWrite;
@@ -28,6 +29,8 @@ public class LKUser {
 	public int[] intresse, sektioner;
 	public boolean jobbatHeltid, jobbatStyrelse, jobbatForman, jobbatAktiv, karnevalist2010, villAnsvara, medlemAf, medlemKar, medlemNation, karneveljsbiljett;
 	SharedPreferences sp;
+
+	private static final String log = LKUser.class.getSimpleName();
 	
 	public LKUser(Context context){
 		this.context = context;
@@ -42,8 +45,7 @@ public class LKUser {
 	public static boolean localUserStored(Context context) {
 		SharedPreferences sp = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
 		String json = sp.getString(SHARED_PREFS_JSON, null);
-		return false;
-//		return json != null;
+		return json != null;
 	}
 	
 	/**
@@ -76,7 +78,7 @@ public class LKUser {
 				@Override
 				public void onResult(String result) {
 					Log.d(LOG_TAG, "result from get request");
-					Log.d(LOG_TAG, "server: "+result);
+					Log.d(LOG_TAG, "server: " + result);
 					if(result == null){
 						Log.e(LOG_TAG, "error - null response");
 						return;
@@ -203,6 +205,10 @@ public class LKUser {
 		Log.d(LOG_TAG, "Will now parse: "+json);
 		Gson gson = new Gson();
 		User user = gson.fromJson(json, User.class);
+		
+		Log.d(log, user.email);
+		Log.d(log, user.gatuadress);
+		
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
 		this.step = user.avklarat_steg;
@@ -290,5 +296,14 @@ public class LKUser {
 		this.token = user.token;
 		
 		this.tilldelad_sektion = user.tilldelad_sektion;
+	}
+
+	public void parseJsonLogin(String result) {
+		
+		Gson gson = new Gson();
+		
+		LoginResponse response = gson.fromJson(result, LoginResponse.class);
+		
+		getDataFromUser(response.karnevalist);
 	}
 }
