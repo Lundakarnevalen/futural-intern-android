@@ -398,7 +398,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 		if(user.fornamn == null || user.efternamn == null) {
 			name.setText("John Doe"); 
 		} else {
-			name.setText(user.fornamn+" "+ user.efternamn); 			
+			name.setText((user.fornamn+" "+ user.efternamn).toUpperCase()); 			
 		}
 		
 		LKRemote remote = new LKRemote(this);

@@ -17,7 +17,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:layout_margin="@dimen/horizontal_margin_half" />
 
         <se.lundakarnevalen.widget.LKTextViewBold
             android:id="@+id/user_name"
@@ -26,7 +27,7 @@
             android:layout_below="@id/user_picture"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="20sp" >
+            android:textSize="18sp" >
         </se.lundakarnevalen.widget.LKTextViewBold>
         
     </RelativeLayout>
