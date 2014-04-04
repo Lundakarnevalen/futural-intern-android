@@ -32,6 +32,7 @@
             android:textSize="16sp"
             android:text="@string/map_right_now"
             android:textColor="@color/red"
+
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="5dp"
@@ -64,6 +65,7 @@
             android:paddingRight="3dp"
             android:paddingTop="3dp"
             android:paddingBottom="1dp" />
+
 
         <se.lundakarnevalen.widget.LKTextViewBold
             android:layout_width="wrap_content"

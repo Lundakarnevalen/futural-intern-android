@@ -3,14 +3,15 @@ package fragments;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 import se.lundakarnevalen.android.R;
+
 import sound.MySoundFactory;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -58,6 +59,14 @@ public class CountdownFragment extends LKFragment {
 
 	TextView tv;
 	long diff;
+
+	private TextView tvKarneval;
+	private TextView tvPreKarneval;
+	private TextView tvPostKarneval;
+	private TextView tvKarnevalBeer;
+	private TextView tvKarneLan;
+	long diffKarneVad;
+
 	private String antonsTestHAHAHAAHA;
 
 	@Override
@@ -65,7 +74,41 @@ public class CountdownFragment extends LKFragment {
 			Bundle savedInstanceState) {
 		// TODO Change the layout
 		View rootView = inflater.inflate(R.layout.fr_layout_countdown,null);
-		tv = (TextView) rootView.findViewById(R.id.tvCountDown);
+
+
+		tvKarneval = (TextView) rootView.findViewById(R.id.tvKarneval);
+		tvPreKarneval = (TextView) rootView.findViewById(R.id.tvPreKarneval);
+		tvPostKarneval = (TextView) rootView.findViewById(R.id.tvPostKarneval);
+		tvKarnevalBeer = (TextView) rootView.findViewById(R.id.tvKarnevalBeer);
+		tvKarneLan = (TextView) rootView.findViewById(R.id.tvKarneLan);
+
+		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+				"fonts/Roboto-Bold.ttf");
+		tvKarneval.setTypeface(tf);
+
+		Date karneVal = new GregorianCalendar(2014, 4, 16, 0, 0, 0).getTime();
+		Date karneLan = new GregorianCalendar(2014, 3, 16, 18, 0, 0).getTime();
+		Date preKarneval = new GregorianCalendar(2014, 4, 11, 0, 0, 0)
+		.getTime();
+		Date karneBeer = new GregorianCalendar(2014, 3, 25, 11, 0, 0).getTime();
+		Date postKarneval = new GregorianCalendar(2014, 3, 15, 11, 0, 0)
+		.getTime();
+
+		Date today = new Date();
+		long timeOfToday = today.getTime();
+
+		long diffKarneval = karneVal.getTime() - timeOfToday;
+		long diffKarnelan = karneLan.getTime() - timeOfToday;
+		long diffPreKarneval = preKarneval.getTime() - timeOfToday;
+		long diffKarnebeer = karneBeer.getTime() - timeOfToday;
+		long diffPostKarneval = postKarneval.getTime() - timeOfToday;
+
+		CountDownTask countDownTask = new CountDownTask();
+		countDownTask.execute(diffKarneval, diffKarnelan, diffPreKarneval,
+				diffKarnebeer, diffPostKarneval);
+
+
+
 		//new DrawingTheCloud(this.getContext());
 		mover = (ImageView) rootView.findViewById(R.id.music_handle1);
 
@@ -76,7 +119,7 @@ public class CountdownFragment extends LKFragment {
 			matrix.set(mover.getImageMatrix());
 			float part = ((float)(System.currentTimeMillis()-startTime))/217000;
 			float move = tot*part;
-			
+
 			matrix.postTranslate(move,0);
 
 
@@ -165,81 +208,106 @@ public class CountdownFragment extends LKFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setTitle(getString(R.string.countdown_title));
-
-
-		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Bold.ttf");
-		tv.setTypeface(tf);
-		Date karneval = new GregorianCalendar(2014, 4, 16, 14, 0, 0).getTime();
-		Date today = new Date();
-
-		diff = karneval.getTime() - today.getTime();
-
-		new CountDownTimer(diff, 1000) {
-
-			public void onTick(long diff) {
-				long seconds = diff / 1000;
-				long minutes = seconds / 60;
-				long hours = minutes / 60;
-				long days = hours / 24;
-
-				seconds = seconds % 60;
-				minutes = minutes % 60;
-				hours = hours % 24;
-
-				tv.setText(String.format("%02d:%02d:%02d:%02d", days, hours,
-						minutes, seconds));
-			}
-
-			public void onFinish() {
-				tv.setText("done!");
-			}
-		}.start();
-
-
 	}
 
-	/*public class DrawingTheCloud extends View{
+	private class CountDownTask extends AsyncTask<Long, Long, Long> {
 
-		int x ,y;
-		Bitmap cloud;
-		int color = R.color.light_blue;
+		@Override
+		protected Long doInBackground(Long... params) {
 
-		public DrawingTheCloud(Context context) {
-			super(context);
-			// TODO Auto-generated constructor stub
-			tv.setText("asdas");
-			cloud = BitmapFactory.decodeResource(getResources(),R.drawable.moln1);
-			x = 0;
-			y = 0;
-			invalidate();
+			final long diffKarneval = params[0];
+			final long diffKarneLan = params[1];
+			final long diffPreKarneval = params[2];
+			final long diffKarnebeer = params[3];
+			final long diffPostKarneval = params[4];
 
+			publishProgress(diffKarneval, diffKarneLan, diffPreKarneval,
+					diffKarnebeer, diffPostKarneval);
+			return (long) 0;
 		}
 
 		@Override
-		protected void onDraw(Canvas canvas) {
+		protected void onProgressUpdate(Long... values) {
 			// TODO Auto-generated method stub
-			super.onDraw(canvas);
-			tv.setText("grsd");
-			Rect ourRect = new Rect();
-			ourRect.set(0, 0, canvas.getWidth(), canvas.getHeight()/2);
-			Paint background = new Paint();
-			background.setColor(color);
-			background.setStyle(Paint.Style.FILL);
-			canvas.drawRect(ourRect, background);
-			if(x < canvas.getWidth()){
-				x +=10;
-			}else{
-				x = 0;
-			}
-			if(y<canvas.getHeight()){
-				y +=10;
-			}else{
-				y = 0;
-			}
-			canvas.drawBitmap(cloud, x, y, new Paint());
-			invalidate();
-		}	
-	}*/
+			super.onProgressUpdate(values);
+			long diffKarneval = values[0];
+			long diffKarneLan = values[1];
+			long diffPreKarneval = values[2];
+			long diffKarnebeer = values[3];
+			long diffPostKarneval = values[4];
+
+			new CountDownTimer(diffKarneval, 1000) {
+				@Override
+				public void onFinish() {
+				}
+
+				@Override
+				public void onTick(long millisUntilFinished) {
+					tvKarneval
+					.setText(getCountdownMessage(millisUntilFinished));
+				}
+			}.start();
+
+			new CountDownTimer(diffKarneLan, 1000) {
+				@Override
+				public void onFinish() {
+					// Change into checked
+				}
+
+				@Override
+				public void onTick(long millisUntilFinished) {
+					tvKarneLan
+					.setText(getCountdownMessage(millisUntilFinished));
+				}
+			}.start();
+
+			new CountDownTimer(diffPreKarneval, 1000) {
+				@Override
+				public void onFinish() {
+					// Change into checked
+				}
+
+				@Override
+				public void onTick(long millisUntilFinished) {
+					tvPreKarneval
+					.setText(getCountdownMessage(millisUntilFinished));
+				}
+			}.start();
+
+			new CountDownTimer(diffKarnebeer, 1000) {
+				@Override
+				public void onFinish() {
+					// Change into checked
+				}
+
+				@Override
+				public void onTick(long millisUntilFinished) {
+					tvKarnevalBeer
+					.setText(getCountdownMessage(millisUntilFinished));
+				}
+			}.start();
+
+			new CountDownTimer(diffPostKarneval, 1000) {
+				@Override
+				public void onFinish() {
+					// Change into checked
+				}
+
+				@Override
+				public void onTick(long millisUntilFinished) {
+					tvPostKarneval
+					.setText(getCountdownMessage(millisUntilFinished));
+				}
+			}.start();
+		}
+
+		@Override
+		protected void onPostExecute(Long result) {
+
+			super.onPostExecute(result);
+		}
+
+	}
 	public void startLyrics() {
 
 
@@ -337,10 +405,10 @@ public class CountdownFragment extends LKFragment {
 		int[] img_coordinates = new int[2];
 		mover.getLocationOnScreen(img_coordinates);
 		/*
-		Display display = getActivity().getWindowManager().getDefaultDisplay();
-	    DisplayMetrics outMetrics = new DisplayMetrics ();
-	    display.getMetrics(outMetrics);
-		float density  = getResources().getDisplayMetrics().density;
+	Display display = getActivity().getWindowManager().getDefaultDisplay();
+    DisplayMetrics outMetrics = new DisplayMetrics ();
+    display.getMetrics(outMetrics);
+	float density  = getResources().getDisplayMetrics().density;
 		 */
 		WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 		Display display = wm.getDefaultDisplay();
@@ -381,6 +449,18 @@ public class CountdownFragment extends LKFragment {
 
 
 
+	private String getCountdownMessage(long diffKarneval) {
+		long seconds = diffKarneval / 1000;
+		long minutes = seconds / 60;
+		long hours = minutes / 60;
+		long days = hours / 24;
+		seconds = seconds % 60;
+		minutes = minutes % 60;
+		hours = hours % 24;
+		String countDownMessage = String.format("%02d:%02d:%02d:%02d", days,
+				hours, minutes, seconds);
+		return countDownMessage;
+	}
 
 }
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
@@ -230,6 +231,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			} else if(nbr == 0) {
 				mapItem.text.setTextColor(getResources().getColor(R.color.menu_item_enabled_text));
 				mapItem.buttonLayout.setBackgroundResource(R.drawable.menu_row_selector);
+
 			
 				mapItem.inboxCounterWrapper.setVisibility(View.GONE);
 			} else if(nbr==-1) {
@@ -505,4 +507,5 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 	    }
 	    return super.onKeyDown(keyCode, event);
 	}
+	
 }
