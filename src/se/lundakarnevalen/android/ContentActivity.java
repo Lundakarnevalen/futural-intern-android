@@ -224,12 +224,12 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			if(nbr == 1) {
 				mapItem.inboxCounter.setText("!");
 				mapItem.text.setTextColor(getResources().getColor(R.color.menu_item_enabled_text));
-				mapItem.buttonLayout.setBackgroundResource(R.color.menu_item_enabled);
+				mapItem.buttonLayout.setBackgroundResource(R.drawable.menu_row_selector);
 			
 				mapItem.inboxCounterWrapper.setVisibility(View.VISIBLE);
 			} else if(nbr == 0) {
 				mapItem.text.setTextColor(getResources().getColor(R.color.menu_item_enabled_text));
-				mapItem.buttonLayout.setBackgroundResource(R.color.menu_item_enabled);
+				mapItem.buttonLayout.setBackgroundResource(R.drawable.menu_row_selector);
 			
 				mapItem.inboxCounterWrapper.setVisibility(View.GONE);
 			} else if(nbr==-1) {
@@ -347,7 +347,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 		// TODO fix block
 		
-		startTimeMap.set(2014,Calendar.APRIL,3,17,11,00);		
+		startTimeMap.set(2014,Calendar.APRIL,5,17,11,00);		
 		endTimeMap.set(2014,Calendar.APRIL,13,05,30,00);
 		
 		Calendar c = Calendar.getInstance();
