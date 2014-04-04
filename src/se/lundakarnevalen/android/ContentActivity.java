@@ -121,9 +121,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 			Log.d(LOG_TAG, "Update of user information required");
 			//If this happens the current user information is old, so we need to update it.
 			
-//			TODO check how to update the users information without signing in to the application.
-			
-			//Update current version number
+			new LKUser(this).updateFromRemote();
 			
 			Log.d(LOG_TAG, "Updating the version number");
 			

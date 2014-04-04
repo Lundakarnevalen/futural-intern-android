@@ -42,8 +42,7 @@ public class LKUser {
 	public static boolean localUserStored(Context context) {
 		SharedPreferences sp = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
 		String json = sp.getString(SHARED_PREFS_JSON, null);
-		return false;
-//		return json != null;
+		return json != null;
 	}
 	
 	/**
@@ -145,7 +144,7 @@ public class LKUser {
 		karnevalist.google_token = this.gcmRegId;
 		karnevalist.token = this.token;
 		
-		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
+//		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
 		
 		return gson.toJson(karnevalist);
 	}
@@ -190,7 +189,7 @@ public class LKUser {
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
 		
-		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
+//		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
 		
 		if(asKarnevalist){
 			KarnevalistWrite wrapper = new KarnevalistWrite(karnevalist, token);
@@ -241,7 +240,7 @@ public class LKUser {
 		this.karneveljsbiljett = user.karneveljsbiljett;
 		this.token = user.token;
 		
-		this.tilldelad_sektion = user.tilldelad_sektion;
+//		this.tilldelad_sektion = user.tilldelad_sektion;
 		
 	}
 	
@@ -289,6 +288,6 @@ public class LKUser {
 		this.karneveljsbiljett = user.karneveljsbiljett;
 		this.token = user.token;
 		
-		this.tilldelad_sektion = user.tilldelad_sektion;
+//		this.tilldelad_sektion = user.tilldelad_sektion;
 	}
 }
