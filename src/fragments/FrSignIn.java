@@ -108,9 +108,6 @@ public class FrSignIn extends Fragment {
 		hideVirtualKeyboard();
 		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
-		mEmailView.setText("Henrik.Gyllensvard@Gmail.com");
-		mPasswordView.setText("nasjeheh");
-		
 		return rootView;
 	}
 
