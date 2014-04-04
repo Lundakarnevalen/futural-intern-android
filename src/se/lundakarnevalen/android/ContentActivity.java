@@ -91,7 +91,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 		populateMenu();
 		
-		loadFragment(SongGroupsFragment.newInstance(), false);
+		loadFragment(new CountdownFragment(), false);
 
 	}
 

@@ -32,7 +32,7 @@
                 android:text="@string/karneval"
                 android:textColor="#F0533E"
                 android:textSize="40sp"
-                android:visibility="gone" />
+                 />
 
             <se.lundakarnevalen.widget.LKTextViewFat
                 android:id="@+id/tvKarneval"
@@ -44,10 +44,10 @@
                 android:shadowDx="0"
                 android:shadowDy="5"
                 android:shadowRadius="0.1"
-                android:text="TextView"
+                android:text=""
                 android:textColor="#F5D408"
                 android:textSize="50sp"
-                android:visibility="gone" />
+                 />
             
         <RelativeLayout
             android:id="@+id/lyrics"
@@ -94,7 +94,7 @@
                 android:shadowDy="5"
             	android:lineSpacingMultiplier="1.2"
                 android:shadowRadius="0.1"
-                android:text="@string/press_play_button"
+                android:text=""
                 android:textColor="@color/red"
                 android:textSize="22sp" />
 
@@ -232,13 +232,25 @@
                     android:background="@drawable/white_bg_bottom_shadow"
                     android:gravity="center"
                     android:orientation="vertical" >
-
+	
+                    	<ImageView 
+					android:id="@+id/checkMark1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/countdown_checkmark"
+                    android:gravity="center"
+                    android:visibility="gone"
+                     />
                     <se.lundakarnevalen.widget.LKTextViewBold
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                        
-                	android:text="@string/efterkarneval"
+                		android:text="@string/efterkarneval"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 
@@ -261,6 +273,19 @@
                     android:gravity="center"
                     android:orientation="vertical" >
 
+                    	<ImageView 
+					android:id="@+id/checkMark2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/countdown_checkmark"
+                    android:gravity="center"
+                    android:visibility="gone"
+                     />
+                    
                     <se.lundakarnevalen.widget.LKTextViewBold
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -287,7 +312,8 @@
                 android:layout_below="@id/countdown_lower_countdown"
                 android:layout_margin="@dimen/horizontal_margin"
                 android:weightSum="2" >
-
+			
+                
                 <LinearLayout
                     android:id="@+id/countDownKarnevalThree"
                     android:layout_width="0dip"
@@ -297,12 +323,25 @@
                     android:background="@drawable/white_bg_bottom_shadow"
                     android:gravity="center"
                     android:orientation="vertical" >
-
-                    <se.lundakarnevalen.widget.LKTextViewBold
+					<ImageView 
+					android:id="@+id/checkMark3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/countdown_checkmark"
+                    android:gravity="center"
+                    android:visibility="gone"
+                     />
+				    
+				    
+				    <se.lundakarnevalen.widget.LKTextViewBold
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="KARNEÖL"
+                        android:text="@string/karneol"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 
@@ -324,12 +363,23 @@
                     android:background="@drawable/white_bg_bottom_shadow"
                     android:gravity="center"
                     android:orientation="vertical" >
-
+					<ImageView 
+					android:id="@+id/checkMark4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/countdown_checkmark"
+                    android:gravity="center"
+                    android:visibility="gone"
+                     />
                     <se.lundakarnevalen.widget.LKTextViewBold
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="KARNELAN"
+                        android:text="@string/karnelan"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 
