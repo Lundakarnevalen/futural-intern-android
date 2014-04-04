@@ -168,7 +168,7 @@
                     android:id="@+id/countdown_playbutton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="20dp"
                     android:scaleType="fitXY"
                     android:clickable="true"
                     android:src="@drawable/playerbutton" />
@@ -178,11 +178,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_toRightOf="@id/countdown_playbutton"
                     android:scaleType="fitXY"
                     android:src="@drawable/song" />
 
+                <ImageView
+                    android:id="@+id/music_handle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/countdown_playbutton"
+                	android:scaleType="fitStart"
+                    android:src="@drawable/music_handle1" />
+                
+                
                 <ImageView
                     android:id="@+id/countdown_waves_line"
                     android:layout_width="wrap_content"
@@ -190,7 +200,7 @@
                     android:layout_alignBottom="@id/countdown_waves"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_toRightOf="@id/countdown_playbutton"
                     android:scaleType="fitXY"
                     android:src="@drawable/timeline" />

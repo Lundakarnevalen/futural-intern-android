@@ -1,23 +1,30 @@
 package fragments;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import se.lundakarnevalen.android.R;
 import sound.MySoundFactory;
+import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Matrix;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,8 +33,9 @@ public class CountdownFragment extends LKFragment {
 	private ImageView play;
 	private boolean playing;
 	private boolean started;
+	private float taken;
 	private int songID = R.raw.lundakarneval; 
-
+	private float tot;
 	// Lyrics
 	int text = 0;
 	private long startTime;
@@ -36,7 +44,9 @@ public class CountdownFragment extends LKFragment {
 	private TextView lyric2;
 	private TextView lyric3;
 	private final Handler handler = new Handler();   
+	private final Handler moveHandler = new Handler();   
 	private Runnable r;
+	private Runnable r2;
 	private long pauseTime = -1;
 	private	int[] delays ={11260,3456,2578,4451,4002,3671,3849,2518,5784,3684,3656,3707,2263,1786,1929,1735,1976,1770,4701,1344,1922,3856,1060,2269,3289,2462,2481,3802,2486,3166,6320,3723,3775,3809,2234,1858,1920,1828
 			,1980,2055,4088,1824,1908,4479,1094,1782,3146,14278,4617,1638,1898,1851,1985,1554,3977,1863,1855,5567,1994,3678,1970,1859,3603,1810,2296,3347,1940,2047,3259,2317};
@@ -44,7 +54,7 @@ public class CountdownFragment extends LKFragment {
 	private String[] lyrics;
 	private int delay;
 	//
-
+	private ImageView mover;
 
 	TextView tv;
 	long diff;
@@ -57,7 +67,22 @@ public class CountdownFragment extends LKFragment {
 		View rootView = inflater.inflate(R.layout.fr_layout_countdown,null);
 		tv = (TextView) rootView.findViewById(R.id.tvCountDown);
 		//new DrawingTheCloud(this.getContext());
+		mover = (ImageView) rootView.findViewById(R.id.music_handle1);
 
+		if(started) {
+
+			Matrix matrix = new Matrix();
+			mover.setScaleType(ImageView.ScaleType.MATRIX);
+			matrix.set(mover.getImageMatrix());
+			float part = ((float)(System.currentTimeMillis()-startTime))/217000;
+			float move = tot*part;
+			
+			matrix.postTranslate(move,0);
+
+
+			mover.setImageMatrix(matrix);
+
+		}
 		lyric1 = (TextView) rootView.findViewById(R.id.lyric1);
 		lyric2 = (TextView) rootView.findViewById(R.id.lyric2);
 		lyric3 = (TextView) rootView.findViewById(R.id.lyric3);
@@ -216,9 +241,16 @@ public class CountdownFragment extends LKFragment {
 		}	
 	}*/
 	public void startLyrics() {
+
+
+
 		text = 0;
 		totTime = 0;
 		startTime = System.currentTimeMillis();
+
+
+		startMover();
+
 		lyric3.setText("");
 		lyric1.setText(lyrics[1]);
 		lyric2.setText(lyrics[0]);
@@ -255,6 +287,7 @@ public class CountdownFragment extends LKFragment {
 
 	public void resumeLyrics(int delay) {
 		handler.postDelayed(r, delay); 
+		moveHandler.post(r2);
 	}
 
 	private class PlayButton implements OnClickListener {
@@ -263,6 +296,7 @@ public class CountdownFragment extends LKFragment {
 
 			if(playing) {
 				handler.removeCallbacks(r);
+				moveHandler.removeCallbacks(r2);
 				pauseTime = System.currentTimeMillis();
 				delay = (totTime + delays[text])-(int)(pauseTime-startTime);
 				factory.pause(songID);
@@ -291,6 +325,61 @@ public class CountdownFragment extends LKFragment {
 			factory.pause(songID);
 		}
 	}
+
+
+	private void startMover() {
+		// TODO Auto-generated method stub
+
+
+		//WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+		//	Display display = wm.getDefaultDisplay();
+
+		int[] img_coordinates = new int[2];
+		mover.getLocationOnScreen(img_coordinates);
+		/*
+		Display display = getActivity().getWindowManager().getDefaultDisplay();
+	    DisplayMetrics outMetrics = new DisplayMetrics ();
+	    display.getMetrics(outMetrics);
+		float density  = getResources().getDisplayMetrics().density;
+		 */
+		WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		//Display display = getWindowManager().getDefaultDisplay(); 
+		@SuppressWarnings("deprecation")
+		int width = display.getWidth();  // deprecated
+
+
+		tot  = width - img_coordinates[0] - Math.round((20.0/65.0)*img_coordinates[0]);
+
+		r2 = new Runnable() {
+			float taken = 0;
+			public void run() {
+				Matrix matrix = new Matrix();
+				mover.setScaleType(ImageView.ScaleType.MATRIX);
+				matrix.set(mover.getImageMatrix());
+
+				float part = ((float)(System.currentTimeMillis()-startTime))/217000;
+				float move = tot*part;
+				if(part >= 1) {
+					Log.d("Breaking!","Breaking!");
+
+					matrix.postTranslate(-taken,0);
+					mover.setImageMatrix(matrix);
+					return;
+				}
+				matrix.postTranslate(move-taken,0);
+				taken = move;
+
+				mover.setImageMatrix(matrix);
+				moveHandler.postDelayed(this, 500);
+			}
+		};
+
+		moveHandler.post(r2); 
+		//217 sek
+	}
+
+
 
 
 }
