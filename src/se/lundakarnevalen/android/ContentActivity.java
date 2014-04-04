@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
@@ -34,15 +33,12 @@ import android.widget.TextView;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-
 import fragments.CountdownFragment;
 import fragments.InboxFragment;
-import fragments.InfoTextFragment;
 import fragments.LKFragment;
-import fragments.SongGroupsFragment;
 import fragments.LKFragment.MessangerMessage;
 import fragments.MapFragment;
-import fragments.MusicFragment;
+import fragments.SongGroupsFragment;
 
 
 public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger{
@@ -91,7 +87,7 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 		populateMenu();
 		
-		loadFragment(SongGroupsFragment.newInstance(), false);
+		loadFragment(new CountdownFragment(), false);
 
 	}
 
