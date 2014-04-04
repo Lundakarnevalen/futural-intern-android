@@ -21,6 +21,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +46,7 @@ import fragments.MusicFragment;
 
 public class ContentActivity extends ActionBarActivity implements LKFragment.Messanger{
 
+	private CountdownFragment countDown;
 	private final String LOG_TAG = ContentActivity.class.getSimpleName();
 	
 	final Calendar startTimeMap = Calendar.getInstance();
@@ -339,9 +341,8 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 //		listItems.add(new LKMenuListItem("Sektioner", 0, new SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 		
 		//TODO Map only available on tidningsdagen
-		listItems.add(new LKMenuListItem(getString(R.string.countdown_title), 0, new CountdownFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout));
-		// TODO delete later
-		listItems.add(new LKMenuListItem("Music", 0, new MusicFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout));
+		countDown = new CountdownFragment();
+		listItems.add(new LKMenuListItem(getString(R.string.countdown_title), 0, countDown, fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout));
 
 
 		// TODO fix block
@@ -492,5 +493,16 @@ public class ContentActivity extends ActionBarActivity implements LKFragment.Mes
 
 	private void trackingStop() {
 		EasyTracker.getInstance().activityStop(this);
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	    if (keyCode == KeyEvent.KEYCODE_BACK) {
+	    	if(countDown != null) {
+	    		countDown.stopMusic();
+	    	}
+	        //and so on...
+	    }
+	    return super.onKeyDown(keyCode, event);
 	}
 }

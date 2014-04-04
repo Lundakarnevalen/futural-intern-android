@@ -10,7 +10,10 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -224,16 +227,14 @@ public class CountdownFragment extends LKFragment {
 				totTime += delays[text];
 				text++;
 				if(text>=delays.length ) {
-					
 					factory = new MySoundFactory(getActivity());
 					factory.createLongMedia(songID, false);
 					started = false;
 					playing = false;
-					play.setImageResource(R.drawable.playerbutton);
-						
+					play.setImageResource(R.drawable.playerbutton);						
 					return;
 				}
-				if(text == delays.length-2) { 
+				if(text == delays.length-1) { 
 					lyric1.setText("");
 				} else {
 					lyric1.setText(lyrics[text+1]);
@@ -267,6 +268,7 @@ public class CountdownFragment extends LKFragment {
 				factory.pause(songID);
 				play.setImageResource(R.drawable.playerbutton);
 				playing = false;
+
 			} else {
 				playing = true;
 				if(started) {
@@ -282,6 +284,12 @@ public class CountdownFragment extends LKFragment {
 
 			}
 		}	
+	}
+
+	public void stopMusic() {
+		if(playing) {
+			factory.pause(songID);
+		}
 	}
 
 
