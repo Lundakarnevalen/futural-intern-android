@@ -33,7 +33,6 @@
                 android:textColor="#F0533E"
                 android:textSize="45sp" />
 
-
             <se.lundakarnevalen.widget.LKTextViewFat
                 android:id="@+id/tvKarneval"
                 android:layout_width="wrap_content"
