@@ -4,16 +4,13 @@ import java.io.IOException;
 
 import json.Notification;
 import json.Response;
-import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.GCMReceiver;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.RequestType;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.remote.LKUser;
-import se.lundakarnevalen.remote.SectionSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
-import se.lundakarnevalen.widget.LKSectionsArrayAdapter.LKSectionsItem;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +21,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.Time;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -41,8 +37,8 @@ public class SplashscreenActivity extends Activity{
 	RelativeLayout wrapper;
 	Context context;
 
-//	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds
-	private final int THREAD_DELAY = 200; //Splashscreen shown in milliseconds
+	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds
+//	private final int THREAD_DELAY = 200; //Splashscreen shown in milliseconds
 
 	private static final String LOG_TAG = "splash";
 	GoogleCloudMessaging gcm;
@@ -394,7 +390,7 @@ public class SplashscreenActivity extends Activity{
 				SplashscreenActivity.this.finish();
 				overridePendingTransition(R.layout.fade_in, R.layout.fade_out);
 			}
-		} , THREAD_DELAY);
+		}, THREAD_DELAY);
 	}
 
 	public static void regInBackground(final Context context, final GoogleCloudMessaging gcm){

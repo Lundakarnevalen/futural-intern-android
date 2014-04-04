@@ -16,8 +16,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -39,6 +37,8 @@ public class FrSignIn extends Fragment {
 
 	private Context context;
 
+	private static final String log = FrSignIn.class.getSimpleName();
+	
 	/**
 	 * The default email to populate the email field with.
 	 */
@@ -104,27 +104,11 @@ public class FrSignIn extends Fragment {
 		
 		Button buttonReset = (Button) rootView.findViewById(R.id.password_reset);
 		buttonReset.setOnClickListener(new ButtonResetPassword());
-
-		
-//		TODO Only for debugging purpose! Remove before release!
-		mEmailView.setText("karnevalstestaren@gmail.com");
-		mPasswordView.setText("12345678"); 
 		
 		hideVirtualKeyboard();
 		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
-		initializeActionBar();
-		
 		return rootView;
-	}
-
-
-	private void initializeActionBar() {
-		ActionBarActivity AcBar = (ActionBarActivity) getActivity();
-		ActionBar bar = AcBar.getSupportActionBar();
-
-		bar.setDisplayHomeAsUpEnabled(false);
-		bar.setDisplayShowHomeEnabled(false);
 	}
 
 
@@ -150,7 +134,7 @@ public class FrSignIn extends Fragment {
 
 		@Override
 		public void onResult(String result) {
-			Log.d("Success", "Yay, some result!");
+			Log.d(log, "Yay, some result!");
 			
 			showProgress(false);
 			
@@ -160,14 +144,16 @@ public class FrSignIn extends Fragment {
 				return;
 			}
 			
-			Log.d("Success", result);
+			if(LKUser.localUserStored(getActivity())) {
+				Log.d(log, "user stored");
+			}
 			
 			LKUser user = new LKUser(context);
 			
-			user.parseJson(result);
+			user.parseJsonLogin(result);
 			
 			user.storeUserLocaly();
-			
+
 			Intent intent = new Intent(context, ContentActivity.class);		
 		
 			context.startActivity(intent);

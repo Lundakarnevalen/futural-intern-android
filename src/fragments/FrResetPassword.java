@@ -8,8 +8,6 @@ import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import util.HelperEmail;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -29,7 +27,6 @@ public class FrResetPassword extends Fragment {
 	private EditText mEmailView;
 	private LKRemote remote;
 	private Gson gson;
-	private ActionBar bar;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,11 +36,12 @@ public class FrResetPassword extends Fragment {
 
 		mEmailView = (EditText) rootView.findViewById(R.id.email_field);
 
-		Button reset = (Button) rootView.findViewById(R.id.reset_password);
-		reset.setOnClickListener(new ButtonReset());
+		Button buttonReset = (Button) rootView.findViewById(R.id.reset_password);
+		buttonReset.setOnClickListener(new ButtonReset());
 
-		initializeActionBar();
-
+		Button buttonReturn = (Button) rootView.findViewById(R.id.back);
+		buttonReturn.setOnClickListener(new ReturnButtonListener());
+		
 		gson = new Gson();
 		
 		setHasOptionsMenu(true);
@@ -51,14 +49,13 @@ public class FrResetPassword extends Fragment {
 		return rootView;
 
 	}
-
-	private void initializeActionBar() {
-		ActionBarActivity AcBar = (ActionBarActivity) getActivity();
-		bar = AcBar.getSupportActionBar();
-
-//		Shows and enables the upper left icon and up navigation
-		bar.setDisplayHomeAsUpEnabled(true);
-		bar.setDisplayShowHomeEnabled(true);
+	
+	private class ReturnButtonListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {	
+			//Return to Sign in
+			getFragmentManager().popBackStack();
+		}
 	}
 
 	@Override
@@ -82,7 +79,7 @@ public class FrResetPassword extends Fragment {
 			Log.d(LOG_TAG, "Got result from server");
 			
 			if (result == null) {
-				Log.d(LOG_TAG, "Result was null");
+				Toast.makeText(getActivity(), "Could not find that email", Toast.LENGTH_LONG).show();
 				return;
 			}
 

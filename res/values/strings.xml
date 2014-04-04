@@ -278,6 +278,17 @@
     <string name="playPart32">VI SKA ÖVERTYGA VÄRLDEN</string>
     <string name="playPart33">ATT FIRA MAJ I LUND</string>
     <string name="playPart34">EXPLODERAR PÅ EN SEKUND</string>
+    
+    <string name="return_to_sign_in">Return</string>
+    <string name="send_me">Send me</string>
+    <string name="my_password">my password!</string>
+    <string name="send">Send</string>
+    
+    <string name="cloud">A cloud</string>
+    <string name="welcome_text">Welcome!</string>
+    <string name="prompt_email">Enter Email</string>
+    <string name="prompt_password">Enter Password</string>
+
     <string name="countdown_title">COUNTDOWN</string>
     <string name="inbox_title">INBOX</string>
     <string name="sign_in">SIGN IN</string>

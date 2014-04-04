@@ -69,7 +69,7 @@ public class CountdownFragment extends LKFragment {
 	private TextView tvKarneLan;
 	long diffKarneVad;
 
-
+ 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
