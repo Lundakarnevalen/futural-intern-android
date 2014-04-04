@@ -350,6 +350,7 @@
    	<string name="reset_password">Glömt lösenord</string>
    	
 
+    <string name="press_play_button">TRYCK PÅ PLAY</string>
     <!-- General -->
     
     <!-- End General -->
@@ -366,13 +367,19 @@
     <string name="error_invalid_password">Too short password</string>
     <string name="error_field_required">Fältet är nödvändigt</string>
     
+    <string name="countdown_title">NEDRÄKNING</string>
+    <string name="inbox_title">INKORG</string>
+    <string name="sangbok_title">SÅNGBOK</string>
+
+    
+    
     <!--End  FrSignIn -->
     
     <!-- Map -->
     <string name="karta">KARTA</string>
     <string name="Inkorg">INKORG</string>
-    <string name="map_right_now">VAR ÄR KARNEVALISTERNA\nJUST NU?</string>
-    <string name="map_karnevalister">KARNEVALISTER</string>
+    <string name="map_right_now">VAR ÄR KARNEVALISTERNA JUST NU?</string>
+<string name="map_karnevalister">KARNEVALISTER</string>
     <string name="map_nbr_of_people">0</string>
     <string name="desc_map">map</string>
     <!-- Info -->
@@ -394,6 +401,16 @@
     <string name="send">Skicka</string>
     
     <string name="cloud">Ett moln</string>
+
+    <string name="sign_in">LOGGA IN</string>
     
+    <string name="karneol">KARNEÖL</string>
+    <string name="karneval">KARNEVAL</string>
+    <string name="efterkarneval">EFTERKARNEVAL</string>
+    <string name="forkarneval">FÖRKARNEVAL</string>
+    <string name="karnelan">KARNELAN</string>
+    <string name="karnevalsmelodin">KARNEVALSMELODIN</string>
+    
+	
 </resources>
 

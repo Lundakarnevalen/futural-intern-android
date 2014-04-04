@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,43 +15,114 @@
             android:id="@+id/upper_countdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal" >
+            android:background="@color/light_blue"
+            android:gravity="center_horizontal"
+             >
 
-            <RelativeLayout
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:id="@+id/tvKarnevalTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:gravity="center"
+                android:shadowColor="#a7b7ce"
+                android:shadowDx="0"
+                android:shadowDy="5"
+                android:shadowRadius="0.1"
+                android:text="@string/karneval"
+                android:textColor="#F0533E"
+                android:textSize="40sp"
+                android:visibility="gone" />
+
+            <se.lundakarnevalen.widget.LKTextViewFat
+                android:id="@+id/tvKarneval"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="@dimen/horizontal_margin" >
+                android:layout_below="@id/tvKarnevalTitle"
+                android:layout_centerHorizontal="true"
+                android:shadowColor="#a7b7ce"
+                android:shadowDx="0"
+                android:shadowDy="5"
+                android:shadowRadius="0.1"
+                android:text="TextView"
+                android:textColor="#F5D408"
+                android:textSize="50sp"
+                android:visibility="gone" />
+            
+        <RelativeLayout
+            android:id="@+id/lyrics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp" >
 
-                <se.lundakarnevalen.widget.LKTextViewBold
-                    android:id="@+id/countDownKarnevalTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:gravity="center"
-                    android:shadowColor="#a7b7ce"
-                    android:shadowDx="0"
-                    android:shadowDy="5"
-                    android:shadowRadius="0.1"
-                    android:text="KARNEVALEN"
-                    android:textColor="#F0533E"
-                    android:textSize="45sp" />
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:id="@+id/lyric1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:shadowColor="#a7b7ce"
+                android:shadowDx="0"
+                android:shadowDy="5"
+                android:shadowRadius="0.1"
+           		android:lineSpacingMultiplier="1.2"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:text=""
+                android:textColor="@color/yellow"
+                android:textSize="20sp" />
 
-                <se.lundakarnevalen.widget.LKTextViewFat
-                    android:id="@+id/tvCountDown"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/countDownKarnevalTitle"
-                    android:layout_centerHorizontal="true"
-                    android:shadowColor="#a7b7ce"
-                    android:shadowDx="0"
-                    android:shadowDy="5"
-                    android:shadowRadius="0.1"
-                    android:text="TextView"
-                    android:textColor="#F5D408"
-                    android:textSize="50sp" />
-            </RelativeLayout>
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:id="@+id/lyric2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lyric1"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:shadowColor="#a7b7ce"
+                android:shadowDx="0"
+                android:shadowDy="5"
+            	android:lineSpacingMultiplier="1.2"
+                android:shadowRadius="0.1"
+                android:text="@string/press_play_button"
+                android:textColor="@color/red"
+                android:textSize="22sp" />
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:id="@+id/lyric4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lyric2"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:shadowColor="#a7b7ce"
+                android:shadowDx="0"
+                android:shadowDy="5"
+                android:shadowRadius="0.1"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text=""
+            	android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/yellow"
+                android:textSize="20sp" />
         </RelativeLayout>
+            
+            
+            </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -75,26 +147,24 @@
 
             <FrameLayout
                 android:id="@+id/countdown_yellow_rectangle_frame"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="25dp" >
-
-                <View
-                    android:id="@+id/countdown_yellow_rectangle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_bg_yellow" >
-                </View>
 
                 <se.lundakarnevalen.widget.LKTextViewBold
                     android:id="@+id/countdown_yellow_rectangle_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:text="KARNEVALSMELODIN"
+                    android:background="@drawable/yellow_bg_bottom_shadow"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="3dp"
+                android:text="@string/karnevalsmelodin"
                     android:textColor="#ffffff"
-                    android:textSize="12sp" />
+                    android:textSize="20sp" />
             </FrameLayout>
 
             <RelativeLayout
@@ -106,8 +176,10 @@
 
                 <ImageView
                     android:id="@+id/countdown_playbutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:clickable="true"
                     android:scaleType="fitXY"
                     android:src="@drawable/playerbutton" />
 
@@ -115,71 +187,161 @@
                     android:id="@+id/countdown_waves"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="20dp"
                     android:layout_toRightOf="@id/countdown_playbutton"
                     android:scaleType="fitXY"
                     android:src="@drawable/song" />
+
+                <ImageView
+                    android:id="@+id/music_handle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/countdown_playbutton"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/music_handle1" />
 
                 <ImageView
                     android:id="@+id/countdown_waves_line"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/countdown_waves"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@id/countdown_playbutton"
                     android:scaleType="fitXY"
                     android:src="@drawable/timeline" />
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/countdown_lower_countdown"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/countdown_song_layout"
-                android:layout_margin="@dimen/horizontal_margin" >
+                android:layout_margin="@dimen/horizontal_margin"
+                android:weightSum="2" >
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/countDownKarnevalOne"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/white_bg_bottom_shadow" >
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/horizontal_margin_half"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_bg_bottom_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical" >
 
                     <se.lundakarnevalen.widget.LKTextViewBold
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:adjustViewBounds="true"
+                       
+                	android:text="@string/efterkarneval"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="20sp" />
+
+                    <se.lundakarnevalen.widget.LKTextViewBold
+                        android:id="@+id/tvPostKarneval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/yellow"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/countDownKarnevalTwo"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/horizontal_margin_half"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_bg_bottom_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <se.lundakarnevalen.widget.LKTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        
+                android:text="@string/forkarneval"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="20sp" />
+
+                    <se.lundakarnevalen.widget.LKTextViewBold
+                        android:id="@+id/tvPreKarneval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/yellow"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/countdown_lowest_countdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/countdown_lower_countdown"
+                android:layout_margin="@dimen/horizontal_margin"
+                android:weightSum="2" >
+
+                <LinearLayout
+                    android:id="@+id/countDownKarnevalThree"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/horizontal_margin_half"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_bg_bottom_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <se.lundakarnevalen.widget.LKTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="KARNEÖL"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="20sp" />
+
+                    <se.lundakarnevalen.widget.LKTextViewBold
+                        android:id="@+id/tvKarnevalBeer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/yellow"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/countDownKarnevalFour"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/horizontal_margin_half"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_bg_bottom_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <se.lundakarnevalen.widget.LKTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="KARNELAN"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/countDownKarnevalTwo"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_toRightOf="@id/countDownKarnevalOne"
-                    android:background="@drawable/white_bg_bottom_shadow" >
 
                     <se.lundakarnevalen.widget.LKTextViewBold
+                        android:id="@+id/tvKarneLan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:adjustViewBounds="true"
-                        android:gravity="center"
-                        android:text="KARNEVAD"
-                        android:textColor="@color/dark_blue"
+                        android:layout_gravity="center"
+                        android:textColor="@color/yellow"
                         android:textSize="20sp" />
-                </RelativeLayout>
-            </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/countdown_yellow_bottomShadow"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/countdown_yellow_rectangle_frame"
-                android:layout_centerHorizontal="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/shadow" />
+                </LinearLayout>
+            </LinearLayout>
         </RelativeLayout>
 
         <ImageView

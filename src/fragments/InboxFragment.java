@@ -63,7 +63,7 @@ public class InboxFragment extends LKFragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
 		Log.d("InboxFragment", "Running on activity craeted");
 		super.onActivityCreated(savedInstanceState);
-		setTitle("Inbox");
+		setTitle(getString(R.string.inbox_title));
 		
 		Log.d("InboxFragment", "got fragmentManager");
 		if(!inboxEmpty) {

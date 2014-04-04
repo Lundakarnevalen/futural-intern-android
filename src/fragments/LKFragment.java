@@ -90,14 +90,11 @@ public class LKFragment extends Fragment {
 			infoPic.setVisibility(View.INVISIBLE);
 			
 		}
-		
-		RelativeLayout backToMap = (RelativeLayout) root.findViewById(R.id.back_to_map);		
+			
 		RelativeLayout menuPic = (RelativeLayout) root.findViewById(R.id.menu_drawer_toggle_wrapper);		
 		if(title.equals(getString(R.string.info_text_actionbar))) {
-			backToMap.setVisibility(View.VISIBLE);
 			menuPic.setVisibility(View.GONE);
 		} else {
-			backToMap.setVisibility(View.GONE);
 			menuPic.setVisibility(View.VISIBLE);
 				
 		}
@@ -214,6 +211,14 @@ public class LKFragment extends Fragment {
 	}
 
 	/**
+	 * 
+	 * @see fragments.LKFragment.Messanger#popFragmentStack()
+	 */
+	public void popFragmentStack() {
+		messanger.popFragmentStack();
+	}
+
+	/**
 	 * Handles radiobuttons in the fragment
 	 * 
 	 * @param view
@@ -270,7 +275,7 @@ public class LKFragment extends Fragment {
 			protected void onPostExecute(Boolean result) {
 				messageExists = result;
 			}
-
+ 
 		}.execute();
 
 		return messageExists;
@@ -286,6 +291,7 @@ public class LKFragment extends Fragment {
 		public void message(MessangerMessage message, Bundle data);
 
 		public void loadFragment(Fragment fragment, boolean addToBackstack);
+		public void popFragmentStack();
 	}
 
 	/**
@@ -297,6 +303,8 @@ public class LKFragment extends Fragment {
 	public enum MessangerMessage {
 		SET_TITLE, SET_INBOX_COUNT, SHOW_ACTION_BAR_LOGO;
 	}
+
+	
 
 	
 }

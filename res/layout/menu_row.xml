@@ -12,15 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
    		android:layout_margin="@dimen/horizontal_margin_half"
-        android:background="@color/menu_inbox_ctr_box"
-         >
+		 android:background="@drawable/menu_row_selector"
+       >
 
         <se.lundakarnevalen.widget.LKTextViewBold
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/menu_item_enabled_text"
             android:textSize="22sp"
             android:padding="@dimen/horizontal_margin" />
 
@@ -38,9 +38,10 @@
                 android:id="@+id/inbox_ctr"          
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_centerVertical="true"
             	android:background="@drawable/menu_inbox_counter_bg"
             	android:gravity="center"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/menu_item_enabled_text" />
         </RelativeLayout>
     </RelativeLayout>
 

@@ -29,6 +29,8 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 	private final String LOG_TAG = "ArrayAdapter";
 	private LayoutInflater inflater;
 	public RelativeLayout inboxCounterWrapper;
+	
+	
 	public TextView inboxCounter;
 
 	public LKMenuArrayAdapter(Context context, List<LKMenuListItem> items){
@@ -53,8 +55,8 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 			Log.d(LOG_TAG, "was selecete");
 		}
 
-		TextView text = (TextView) wrapper.findViewById(R.id.text);
-		text.setText(item.title);
+		item.text = (TextView) wrapper.findViewById(R.id.text);
+		item.text.setText(item.title);
 
 		// For inbox row
 		if(item.isInboxRow){
@@ -72,17 +74,24 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 			inboxCounter = (TextView) wrapper.findViewById(R.id.inbox_ctr);
 			item.inboxCounter = inboxCounter; // Do not move
 			item.rowLayout = (RelativeLayout) wrapper.findViewById(R.id.menu_element);
+			item.buttonLayout = (RelativeLayout) wrapper.findViewById(R.id.wrapper);
+			
 		}
 
-		if(item.isActive)
+		if(item.isActive) {
 			wrapper.setSelected(true);
+		}
 
+		
 		return wrapper;
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		final LKMenuListItem item = getItem(pos);
+		if(!item.enable) {
+			return;
+		}
 		if(item.isMapRow) {
 			SharedPreferences prefs = getContext().getSharedPreferences("MAP_FIRST", Context.MODE_PRIVATE);
 			prefs.edit().putInt("firstTime", 1).commit();	
@@ -112,6 +121,7 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 	 *
 	 */
 	public static class LKMenuListItem{
+		public RelativeLayout buttonLayout;
 		public int icon;
 		public String title;
 		OnClickListener listener;
@@ -124,10 +134,13 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		boolean isActive = false;
 		boolean pressedMap = false;
 		
+		
 		public RelativeLayout rowLayout;
 		
 		public RelativeLayout inboxCounterWrapper;
 		public TextView inboxCounter;
+		public TextView text;
+		public boolean enable;
 		
 		/**
 		 * std. constr.
@@ -197,10 +210,11 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		 * @param icon Icon next to text
 		 * @param listener Listener to use to handle click events. 
 		 */
-		public LKMenuListItem(String title, int icon, OnClickListener listener){
+		public LKMenuListItem(String title, int icon, OnClickListener listener, boolean enabled){
 			this.title = title;
 			this.icon = icon;
 			this.listener = listener;
+			this.enable = enabled;
 		}
 
 		/**
@@ -209,16 +223,19 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		 * @param icon Icon next to text
 		 * @param fragment Fragment to show
 		 */
-		public LKMenuListItem(final String title, int icon, final Fragment fragment, final FragmentManager fragmentMgr, final Context context){
+		public LKMenuListItem(final String title, int icon, final Fragment fragment, final FragmentManager fragmentMgr, final Context context, boolean enabled){
 			this.title = title;
 			this.icon = icon;
+			this.enable = enabled;
 
+			
 			this.listener = new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 
 					clearBackStack(fragmentMgr);
+
 					fragmentMgr.beginTransaction().replace(R.id.content_frame, fragment).commit();
 				}
 

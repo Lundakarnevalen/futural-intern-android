@@ -9,6 +9,7 @@ import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -26,6 +27,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,43 +38,47 @@ import android.widget.RelativeLayout;
 import com.google.gson.Gson;
 
 public class MapFragment extends LKFragment implements SensorEventListener {
+
+	// for parallax effect
 	private SensorManager sm;
 	private InfoTextFragment infoTextFragment;
 	private float lastX = -1000;
 	private float lastY = -1000;
-
 	private ImageView background;	
 
+	// spam controll
 	private long lastUpdate;
 
-
+	// Save current dots
 	private Bitmap bmOverlay;
-
-	private static final int HANDLER_DELAY = 1800000; // 30min
-	// private static final int HANDLER_DELAY = 10000; //10sec
-	private static final int GET_HANDLER_DELAY = 1800000; // 30min
-	// private static final int GET_HANDLER_DELAY = 10000; //30min
-
-	private Context context;
-
+	private ImageView img;
+	private int imageWidth;
+	private int imageHeight;
+	
+	// Handler for post/get position(s)
+	private static final int HANDLER_DELAY = 1800000; // 30 min
+	// private static final int HANDLER_DELAY = 10000; //10 sec
+	private static final int GET_HANDLER_DELAY = 1800000; // 30 min
+	// private static final int GET_HANDLER_DELAY = 10000; //10 sec	
 	private Handler getHandler;
-
 	private Handler handler;
 
+	// Context
+	private Context context;
+
+	// For gps and network
 	private LocationManager locMan;
+	private static final int TIME_INTERVAL = 1800000; // get gps location every 30 min
+	// private static final int TIME_INTERVAL = 10000; // get gps location every 10 sec
+	private static final int GPS_DISTANCE = 0; // set the distance value in meter
 
-	private static final int TIME_INTERVAL = 1800000; // get gps location every
-													// 30 min
-	// private static final int TIME_INTERVAL = 10000; // get gps location every
-	// 30 min
-
-	private static final int GPS_DISTANCE = 0; // set the distance value in
-												// meter
-
+	// For cluster
 	private final String token = "P6VmxzvTypzP3qb3TEW7";
-
 	private final String SHARED_ID = "SHAREDID";
+	private final String key_cluster = "key_cluster_id";
+	private int clusterId = -1;
 
+	// Information about the map
 	private float maxDotSize = 45;
 	private float minDotSize = 15;
 	private float diffDotSize = maxDotSize - minDotSize;
@@ -82,15 +88,10 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	private float endLatMap = (float) 56.52300194685981;
 	private float diffLon = endLonMap - startLonMap;
 	private float diffLat = endLatMap - startLatMap;
-
-	private int clusterId = -1;
 	private int nbrOfPersons;
 
-	private final String key_cluster = "key_cluster_id";
-
+	// All positions
 	private List<Position> positions;
-
-	private ImageView img;
 
 	// Every time you switch to this fragment.
 	@Override
@@ -101,17 +102,24 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			infoTextFragment = new InfoTextFragment();
 			infoTextFragment.setMapFragment(this);
 		}
-		background = (ImageView) rootView.findViewById(R.id.map_move);
+		
 
+		background = (ImageView) rootView.findViewById(R.id.map_move);
 		context = getContext();
+		if(imageWidth == 0) {
+			DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+			imageWidth = metrics.widthPixels;
+			imageHeight = metrics.heightPixels;
+		}
 
 		sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 		if(sm == null) {
-			Log.d("sm NUll","error");
+			// try do get sensor
 		} else {
 			sm.registerListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_GAME);
 		}
 
+		// add info button
 		ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
 		View root = actionBar.getCustomView();
 		RelativeLayout infoMark = (RelativeLayout) root.findViewById(R.id.info_pic);	
@@ -128,8 +136,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			SharedPreferences prefs = getContext().getSharedPreferences(SHARED_ID, Context.MODE_PRIVATE);
 			clusterId = prefs.getInt(key_cluster, -1);
 		}
-		Log.d("CLUSTER_ID", "" + clusterId);
-
+ 
 		if (handler == null) {
 			handler = new Handler();
 
@@ -145,7 +152,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 					sendPosition();
 					handler.postDelayed(this, HANDLER_DELAY);
 				}
-			}, HANDLER_DELAY); // START_HANDLER_DELAY
+			}, 0); 
 		}
 
 		if (getHandler == null) {
@@ -164,18 +171,13 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 					}
 					getHandler.postDelayed(this, GET_HANDLER_DELAY);
 				}
-			}, GET_HANDLER_DELAY); // START_HANDLER_DELAY
+			}, GET_HANDLER_DELAY); 
 		}
 		if (positions == null || positions.size() == 0) {
 			getPositions();
-		} else if (System.currentTimeMillis() - lastUpdate > 10000) { // 10 sec
-																		// spam
-																		// control.
-			Log.d("Spam control", "no spam");
+		} else if (System.currentTimeMillis() - lastUpdate > 10000) { 
 			getPositions();
-		} else {
-			Log.d("Spam control", "SPAM");
-		}
+		} 
 		lastUpdate = System.currentTimeMillis();
 		return rootView;
 	}
@@ -188,18 +190,20 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 
 	@Override
 	public void onPause() {
-		sm.unregisterListener(this);
+		if(sm != null) 
+			sm.unregisterListener(this);
 		super.onPause();
 	}
 
 	@Override
 	public void onResume() {
-		sm.registerListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_GAME);// TODO Auto-generated method stub
+		if(sm != null) 	
+			sm.registerListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_GAME);// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	/**
-	 * Send current lat/lng, id and section to the database.
+	 * Send current lat/lng, cluster_id and token to the database.
 	 * 
 	 */
 	private boolean sendPosition() {
@@ -208,12 +212,10 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 		}
 		// Only turn off get position with GPS. Ok with network...
 		if(locMan.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-			//if(isLocationListener){
 			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, TIME_INTERVAL, GPS_DISTANCE, PositionListener);
 			Log.d("Updateing GPS!", "Update");
-			// }
 		} else {
-			Log.d("GPS off", "Avstängd GPS");
+			Log.d("GPS off", "Avstï¿½ngd GPS");
 			if (locMan.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
 				locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, TIME_INTERVAL, GPS_DISTANCE, PositionListener);
 				Log.d("Updateing Position with network!", "Update");
@@ -221,8 +223,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 		}
 		float lng;
 		float lat;
-		Location location = null;
-		location = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		Location location = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if (location != null) {
 			lng = (float) location.getLongitude();
 			lat = (float) location.getLatitude();
@@ -249,8 +250,15 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			float smallestDot = Float.MAX_VALUE;
 
 			// create bitmap of the map
-			Bitmap mapBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.map_skane);
-
+			//BitmapFactory.Options options 
+			//Bitmap mapBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.map_skane, BitmapFactory.Options);
+			Bitmap mapBitmap = decodeSampledBitmapFromResource(getResources(), R.drawable.map_skane, imageWidth , imageHeight);
+			
+			
+			//mImageView.setImageBitmap(
+			//	    decodeSampledBitmapFromResource(getResources(), R.id.myimage, 100, 100));
+			
+			//BitmapFactory.de
 			// Create an overlay bitmap
 			bmOverlay = Bitmap.createBitmap(mapBitmap.getWidth(), mapBitmap.getHeight(), mapBitmap.getConfig());
 			Canvas canvas = new Canvas();
@@ -276,11 +284,9 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 				float x = lon * mapBitmap.getWidth();
 				float y = mapBitmap.getHeight() - lat * mapBitmap.getHeight();
 				canvas.drawCircle(x, y + 6, cur, paintGray);
-				// TODO Delete gray ?
 				canvas.drawCircle(x, y, cur, paintRed);
 			}
 			se.lundakarnevalen.widget.LKTextViewBold text = (se.lundakarnevalen.widget.LKTextViewBold) getView().findViewById(R.id.nbr_of);
-			// TODO change to english!
 			text.setText("" + nbrOfPersons);
 			img.setImageBitmap(bmOverlay);
 		}
@@ -290,7 +296,8 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 		// TODO
 		// TOKEN ???
 		LKRemote remote = new LKRemote(context, new GetListener());
-		remote.requestServerForText("api/clusters?token=" + token, "", LKRemote.RequestType.GET, false);
+		if(remote != null)
+			remote.requestServerForText("api/clusters?token=" + token, "", LKRemote.RequestType.GET, false);
 	}
 
 	private void postPosition(float lat, float lng) {
@@ -304,18 +311,20 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 		// TOKEN ???
 		Log.d("Cluster id before post: ", "" + clusterId);
 		LKRemote remote = new LKRemote(context, new PostListener());
-		if(clusterId == -1) {
-			remote.requestServerForText("api/clusters", js, LKRemote.RequestType.POST, false);			
-		}else {	
-			// Error in mail, put instead of post....
-			remote.requestServerForText("api/clusters"+"/"+clusterId, js, LKRemote.RequestType.PUT, false);			
+		if(remote != null) {
+			if(clusterId == -1 ) {
+				remote.requestServerForText("api/clusters", js, LKRemote.RequestType.POST, false);			
+			}else {	
+				// Error in mail, put instead of post....
+				remote.requestServerForText("api/clusters"+"/"+clusterId, js, LKRemote.RequestType.PUT, false);			
+			}
 		}
 	}
 
 	private View.OnClickListener infoMarkListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			loadFragment(infoTextFragment, false);
+			loadFragment(infoTextFragment, true);
 		}
 	};
 
@@ -386,21 +395,13 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			// update location
 			locMan.removeUpdates(PositionListener); // remove this listener
 		}
-
-		public void onProviderDisabled(String provider) {
-		}
-
-		public void onProviderEnabled(String provider) {
-		}
-
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-		}
+		public void onProviderDisabled(String provider) {}
+		public void onProviderEnabled(String provider) {}
+		public void onStatusChanged(String provider, int status, Bundle extras) {}
 	};
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-	
-	}
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
@@ -410,7 +411,6 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 				float x = (float)event.values[0];
 				float y = (float)event.values[1];
 				float z = (float)event.values[2];
-				//Log.d("y:",""+y);
 				Matrix matrix = new Matrix();
 				background.setScaleType(ImageView.ScaleType.MATRIX);
 				matrix.set(background.getImageMatrix());
@@ -426,7 +426,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 					y = 10;
 				}
 				if(lastX == -1000) {
-					// 7 mitten
+					// 7 middle
 					matrix.postTranslate(x*multFactor, -(y-7)*multFactor);
 					lastX = x;
 					lastY = y;
@@ -471,5 +471,43 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 				break;
 			}
 		}
+	}
+	public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+    // Raw height and width of image
+    final int height = options.outHeight;
+    final int width = options.outWidth;
+    int inSampleSize = 1;
+
+    if (height > reqHeight || width > reqWidth) {
+
+        final int halfHeight = height / 2;
+        final int halfWidth = width / 2;
+
+        // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+        // height and width larger than the requested height and width.
+        while ((halfHeight / inSampleSize) > reqHeight
+                && (halfWidth / inSampleSize) > reqWidth) {
+            inSampleSize *= 2;
+        }
+    }
+
+    return inSampleSize;
+}
+	
+	public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+	        int reqWidth, int reqHeight) {
+
+	    // First decode with inJustDecodeBounds=true to check dimensions
+	    final BitmapFactory.Options options = new BitmapFactory.Options();
+	    options.inJustDecodeBounds = true;
+	    BitmapFactory.decodeResource(res, resId, options);
+
+	    // Calculate inSampleSize
+	    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+	    // Decode bitmap with inSampleSize set
+	    options.inJustDecodeBounds = false;
+	    return BitmapFactory.decodeResource(res, resId, options);
 	}
 }
