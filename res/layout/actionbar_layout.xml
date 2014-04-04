@@ -80,6 +80,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="20dp"
 
+        android:lineSpacingMultiplier="1.2"
         android:clickable="true"
         android:visibility="gone" >
 

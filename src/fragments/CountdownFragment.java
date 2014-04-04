@@ -128,7 +128,7 @@ public class CountdownFragment extends LKFragment {
 		}
 		lyric1 = (TextView) rootView.findViewById(R.id.lyric1);
 		lyric2 = (TextView) rootView.findViewById(R.id.lyric2);
-		lyric3 = (TextView) rootView.findViewById(R.id.lyric3);
+		lyric3 = (TextView) rootView.findViewById(R.id.lyric4);
 
 
 

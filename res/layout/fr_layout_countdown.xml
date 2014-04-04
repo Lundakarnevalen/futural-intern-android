@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:background="@color/light_blue"
             android:gravity="center_horizontal"
-            android:paddingBottom="50dp" >
+             >
 
             <se.lundakarnevalen.widget.LKTextViewBold
                 android:id="@+id/tvKarnevalTitle"
@@ -31,7 +31,9 @@
                 android:shadowRadius="0.1"
                 android:text="KARNEVALEN"
                 android:textColor="#F0533E"
-                android:textSize="45sp" />
+                
+                android:textSize="40sp"
+                android:visibility="gone" />
 
             <se.lundakarnevalen.widget.LKTextViewFat
                 android:id="@+id/tvKarneval"
@@ -45,8 +47,84 @@
                 android:shadowRadius="0.1"
                 android:text="TextView"
                 android:textColor="#F5D408"
-                android:textSize="50sp" />
+                android:textSize="50sp"
+                android:visibility="gone" />
+
+            
+        <RelativeLayout
+            android:id="@+id/lyrics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp" >
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:id="@+id/lyric1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:shadowColor="#a7b7ce"
+                android:shadowDx="0"
+                android:shadowDy="5"
+                android:shadowRadius="0.1"
+           		android:lineSpacingMultiplier="1.2"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:text=""
+                android:textColor="@color/yellow"
+                android:textSize="20sp" />
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:id="@+id/lyric2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lyric1"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:shadowColor="#a7b7ce"
+                android:shadowDx="0"
+                android:shadowDy="5"
+            	android:lineSpacingMultiplier="1.2"
+                android:shadowRadius="0.1"
+                android:text="@string/press_play_button"
+                android:textColor="@color/red"
+                android:textSize="22sp" />
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:id="@+id/lyric4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lyric2"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:shadowColor="#a7b7ce"
+                android:shadowDx="0"
+                android:shadowDy="5"
+                android:shadowRadius="0.1"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text=""
+            	android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/yellow"
+                android:textSize="20sp" />
         </RelativeLayout>
+            
+            
+            </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -76,88 +154,26 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="25dp" >
 
-                
-
                 <se.lundakarnevalen.widget.LKTextViewBold
-                    android:background="@drawable/yellow_bg_bottom_shadow"
                     android:id="@+id/countdown_yellow_rectangle_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:text="KARNEVALSMELODIN"
-                    android:textColor="#ffffff"
-                    android:textSize="24sp"
+                    android:background="@drawable/yellow_bg_bottom_shadow"
+                    android:paddingBottom="3dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:paddingTop="3dp"
-                    android:paddingBottom="3dp" />
+                    android:text="KARNEVALSMELODIN"
+                    android:textColor="#ffffff"
+                    android:textSize="24sp" />
             </FrameLayout>
 
-            <RelativeLayout
-                android:id="@+id/lyrics"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/countdown_yellow_rectangle_frame"
-                android:layout_marginTop="10dp" >
-                
-                <se.lundakarnevalen.widget.LKTextViewBold
-                    android:id="@+id/lyric1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:text=""
-                    android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:background="@drawable/yellow_bg_bottom_shadow"
-                    android:textSize="12sp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
-                <se.lundakarnevalen.widget.LKTextViewBold
-                    android:id="@+id/lyric2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    
-                    android:gravity="center"
-                    android:layout_below="@id/lyric1"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:text="@string/press_play_button"
-                    android:textColor="#ffffff"
-                    android:background="@drawable/red_bg_bottom_shadow"
-                    android:textSize="14sp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp" />
-                <se.lundakarnevalen.widget.LKTextViewBold
-                    android:id="@+id/lyric3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/lyric2"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:text=""
-                    android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:background="@drawable/yellow_bg_bottom_shadow"
-                    android:textSize="12sp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
-                
-                
-                </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/countdown_song_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/lyrics"
+                android:layout_below="@id/countdown_yellow_rectangle_frame"
                 android:layout_marginTop="20dp" >
 
                 <ImageView
@@ -165,8 +181,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
-                    android:scaleType="fitXY"
                     android:clickable="true"
+                    android:scaleType="fitXY"
                     android:src="@drawable/playerbutton" />
 
                 <ImageView
@@ -185,18 +201,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/countdown_playbutton"
-                	android:scaleType="fitStart"
+                    android:scaleType="fitStart"
                     android:src="@drawable/music_handle1" />
-                
-                
+
                 <ImageView
                     android:id="@+id/countdown_waves_line"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/countdown_waves"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
                     android:layout_toRightOf="@id/countdown_playbutton"
                     android:scaleType="fitXY"
                     android:src="@drawable/timeline" />
@@ -327,8 +342,6 @@
                         android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
-
-            
         </RelativeLayout>
 
         <ImageView
