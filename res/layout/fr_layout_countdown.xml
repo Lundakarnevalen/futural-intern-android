@@ -29,9 +29,8 @@
                 android:shadowDx="0"
                 android:shadowDy="5"
                 android:shadowRadius="0.1"
-                android:text="KARNEVALEN"
+                android:text="@string/karneval"
                 android:textColor="#F0533E"
-                
                 android:textSize="40sp"
                 android:visibility="gone" />
 
@@ -49,7 +48,6 @@
                 android:textColor="#F5D408"
                 android:textSize="50sp"
                 android:visibility="gone" />
-
             
         <RelativeLayout
             android:id="@+id/lyrics"
@@ -164,9 +162,9 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:paddingTop="3dp"
-                    android:text="KARNEVALSMELODIN"
+                android:text="@string/karnevalsmelodin"
                     android:textColor="#ffffff"
-                    android:textSize="24sp" />
+                    android:textSize="20sp" />
             </FrameLayout>
 
             <RelativeLayout
@@ -239,7 +237,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
-                        android:text="Efterkarneval"
+                       
+                	android:text="@string/efterkarneval"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 
@@ -266,7 +265,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Förkarneval"
+                        
+                android:text="@string/forkarneval"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 

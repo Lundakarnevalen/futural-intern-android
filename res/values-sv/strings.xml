@@ -397,6 +397,13 @@
     
     <string name="sign_in">LOGGA IN</string>
     
+    <string name="karneol">KARNEÖL</string>
+    <string name="karneval">KARNEVAL</string>
+    <string name="efterkarneval">EFTERKARNEVAL</string>
+    <string name="forkarneval">FÖRKARNEVAL</string>
+    <string name="karnelan">KARNELAN</string>
+    <string name="karnevalsmelodin">KARNEVALSMELODIN</string>
+    
 	
 </resources>
 
