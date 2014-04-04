@@ -78,7 +78,7 @@ public class LKUser {
 				@Override
 				public void onResult(String result) {
 					Log.d(LOG_TAG, "result from get request");
-					Log.d(LOG_TAG, "server: "+result);
+					Log.d(LOG_TAG, "server: " + result);
 					if(result == null){
 						Log.e(LOG_TAG, "error - null response");
 						return;

@@ -17,6 +17,8 @@
             android:layout_height="wrap_content"
             android:background="@color/light_blue"
             android:gravity="center_horizontal" >
+            
+            <include layout="@layout/layout_clouds_small"/>
 
             <se.lundakarnevalen.widget.LKTextViewBold
                 android:id="@+id/tvKarnevalTitle"
