@@ -41,8 +41,8 @@ public class SplashscreenActivity extends Activity{
 	RelativeLayout wrapper;
 	Context context;
 
-//	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds
-	private final int THREAD_DELAY = 200; //Splashscreen shown in milliseconds
+	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds
+//	private final int THREAD_DELAY = 200; //Splashscreen shown in milliseconds
 
 	private static final String LOG_TAG = "splash";
 	GoogleCloudMessaging gcm;
@@ -381,13 +381,13 @@ public class SplashscreenActivity extends Activity{
 				
 				Intent intent;
 				
-//				if(LKUser.localUserStored(context)) {
+				if(LKUser.localUserStored(context)) {
 					Log.d(SplashscreenActivity.class.getSimpleName(), "User stored locally");
 					
-//					intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
-//				} else {
+					intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
+				} else {
 					intent = new Intent(SplashscreenActivity.this, AcLogin.class);					
-//				}
+				}
 				
 				SplashscreenActivity.this.startActivity(intent);
 

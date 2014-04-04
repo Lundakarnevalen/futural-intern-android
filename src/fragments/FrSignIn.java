@@ -147,28 +147,15 @@ public class FrSignIn extends Fragment {
 				return;
 			}
 			
-			Log.d(log, result);
-			
 			if(LKUser.localUserStored(getActivity())) {
 				Log.d(log, "user stored");
 			}
 			
 			LKUser user = new LKUser(context);
 			
-			user.parseJson(result);
+			user.parseJsonLogin(result);
 			
 			user.storeUserLocaly();
-			
-			LKUser a = new LKUser(getActivity());
-			
-			if(LKUser.localUserStored(getActivity())) {
-				Log.d(log, "user stored");
-			}
-			
-			Log.d(log, "JSON with id: " + a.getJsonWithId());
-			a.getUserLocaly();
-			Log.d(log, "JSON with id: " + a.getJsonWithId());
-			
 
 			Intent intent = new Intent(context, ContentActivity.class);		
 		
