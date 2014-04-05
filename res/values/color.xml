@@ -44,5 +44,5 @@
     <color name="button_white">#FFFFFF</color>
     <color name="button_white_shadow">#33000000</color>
     
-    <color name="box_shadow_grey">#C9C9C9</color>
+    <color name="box_shadow_grey">#B3B3B3</color>
 </resources>
