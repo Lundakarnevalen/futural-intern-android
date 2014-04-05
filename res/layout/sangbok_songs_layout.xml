@@ -3,9 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="20dp"
-    android:background="#f6ead4"
+    android:paddingBottom="20dp"
+    android:background="@color/bg_sangbok"
     android:gravity="center_horizontal"
-    android:paddingBottom="0dp" >
+     >
     
     <se.lundakarnevalen.widget.LKSwipeableViewPager
         android:gravity="center"
@@ -14,7 +15,7 @@
 	  	android:paddingRight="10dp"
 	  	android:id="@+id/sangbok_layout_viewpager"
 	  	android:layout_above="@+id/sangbok_layout_backbtn"
-        android:layout_height="match_parent"
+	  	android:layout_height="match_parent"
         android:layout_width="match_parent" />
 
     <se.lundakarnevalen.widget.LKButtonYellow
