@@ -94,7 +94,8 @@ public class CountdownFragment extends LKFragment {
 		//karneLan = new GregorianCalendar(2014, 3, 16, 18, 0, 0).getTime();
 		preKarneval = new GregorianCalendar(2014, 4, 11, 0, 0, 0)
 		.getTime();
-		karneBeer = new GregorianCalendar(2014, 5, 25, 11, 0, 0).getTime();
+		//karneBeer = new GregorianCalendar(2014, 5, 25, 11, 0, 0).getTime();
+		karneBeer = new GregorianCalendar(2014, 1, 25, 11, 0, 0).getTime();
 		postKarneval = new GregorianCalendar(2014, 8, 20, 0, 0, 0)
 		.getTime();
 
