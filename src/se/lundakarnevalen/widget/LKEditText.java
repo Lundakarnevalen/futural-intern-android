@@ -34,6 +34,7 @@ public class LKEditText extends EditText{
 		setTextColor(Color.WHITE);
 		int pxPadding = context.getResources().getDimensionPixelSize(R.dimen.horizontal_margin);
 		setPadding(pxPadding, pxPadding, pxPadding, pxPadding);
-		setHintTextColor(context.getResources().getColor(R.color.hint_peach));
+//		setHintTextColor(context.getResources().getColor(R.color.hint_peach));
+		setHintTextColor(Color.WHITE);
 	}
 }

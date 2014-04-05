@@ -439,8 +439,6 @@ public class ContentActivity extends ActionBarActivity implements
 		LKUser user = new LKUser(this);
 		user.getUserLocaly();
 
-		image.setImageResource(R.drawable.sections_image);
-
 		if (user.fornamn == null || user.efternamn == null) {
 			name.setText("John Doe");
 		} else {
