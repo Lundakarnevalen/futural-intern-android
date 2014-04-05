@@ -23,9 +23,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:orientation="vertical"
-                android:layout_centerInParent="true" >
+                android:orientation="vertical" >
 
                 <se.lundakarnevalen.widget.LKTextViewBold
                     android:id="@+id/tvKarnevalTitle"
@@ -132,11 +132,6 @@
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
             android:src="@drawable/shadow" />
-
-        <!-- End of upper part layout -->
-
-
-        <!-- Start of lower part layout -->
 
         <RelativeLayout
             android:id="@+id/lower_countdown"
@@ -247,8 +242,8 @@
                             <se.lundakarnevalen.widget.LKTextViewBold
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginBottom="4dp"
-                                 android:layout_gravity="center"
                                 android:adjustViewBounds="true"
                                 android:text="@string/efterkarneval"
                                 android:textColor="@color/dark_blue"
@@ -331,8 +326,7 @@
                 android:id="@+id/countdown_lowest_countdown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/countdown_lower_countdown"
-                android:weightSum="2" >
+                android:layout_below="@id/countdown_lower_countdown" >
 
                 <LinearLayout
                     android:id="@+id/countDownKarnevalThree"
@@ -360,7 +354,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginBottom="4dp"
-								android:text="@string/karneol"
+                                android:text="@string/karneol"
                                 android:textColor="@color/dark_blue"
                                 android:textSize="16sp" />
 

@@ -65,7 +65,7 @@ public class FrSignIn extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fr_sign_in, null);
+		View rootView = inflater.inflate(R.layout.fr_layout_sign_in, null);
 
 		context = getActivity();
 		

@@ -434,6 +434,7 @@ public class CountdownFragment extends LKFragment {
 				totTime += delays[text];
 				text++;
 				if (text >= delays.length) {
+
 					factory = new MySoundFactory(getActivity());
 					factory.createLongMedia(songID, false);
 					started = false;

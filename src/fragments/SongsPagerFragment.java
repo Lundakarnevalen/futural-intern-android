@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -53,12 +54,21 @@ public class SongsPagerFragment extends LKFragment {
 		
 		final Context c = inflater.getContext();
 		final FragmentManager fm = getChildFragmentManager();
-mViewPager = get(R.id.sangbok_layout_viewpager, root, LKSwipeableViewPager.class);
+		int pageMargin = Math.round(LKFragment.dpToPx(PAGE_MARGIN_DP, c));
+		
+		mViewPager = get(R.id.sangbok_layout_viewpager, root, LKSwipeableViewPager.class);
 		mViewPager.setAdapter(new MyAdapter(fm, c, songs, iconId));
-		mViewPager.setPageMargin(Math.round(LKFragment.dpToPx(PAGE_MARGIN_DP, c)));
+		mViewPager.setPageMargin(pageMargin);
 		mViewPager.setClipToPadding(false);
 		mViewPager.setCurrentItem(selected); 
 		mViewPager.setPagingEnabled(hasMultiple);
+		
+		if(!hasMultiple){
+			int w = container.getWidth();
+			int padding = (int) (w * (1.0 - 0.93));
+			Log.d("Songpager", "Padding: "+ padding + " Widht: "+ w + " PageMargin: " + pageMargin);
+			mViewPager.setPadding( padding, mViewPager.getPaddingTop(), padding - pageMargin, mViewPager.getPaddingBottom()); // Fix equal margins/paddings if only one element
+		}
 		
 		get(R.id.sangbok_layout_backbtn, root, Button.class).setOnClickListener(new OnClickListener() {
 			@Override

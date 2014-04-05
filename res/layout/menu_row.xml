@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_element"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/menu_selector_bg"
-    android:id="@+id/menu_element"
-     
-     >
+    android:background="@drawable/menu_selector_bg" >
 
     <RelativeLayout
         android:id="@+id/wrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-   		android:layout_margin="@dimen/horizontal_margin_half"
-		 android:background="@drawable/menu_row_selector"
-       >
+        android:layout_marginBottom="@dimen/horizontal_margin_half"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginRight="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/horizontal_margin_half"
+        android:background="@drawable/menu_row_selector" >
 
         <se.lundakarnevalen.widget.LKTextViewBold
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:padding="@dimen/horizontal_margin"
             android:textColor="@color/menu_item_enabled_text"
-            android:textSize="22sp"
-            android:padding="@dimen/horizontal_margin" />
+            android:textSize="19sp" />
 
         <RelativeLayout
             android:id="@+id/inbox_ctr_wrapper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/text" 
+            android:layout_above="@id/text"
             android:layout_marginBottom="-32dp"
             android:layout_marginLeft="-22dp"
             android:layout_toRightOf="@id/text"
             android:visibility="gone" >
 
             <TextView
-                android:id="@+id/inbox_ctr"          
+                android:id="@+id/inbox_ctr"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
-            	android:background="@drawable/menu_inbox_counter_bg"
-            	android:gravity="center"
+                android:background="@drawable/menu_inbox_counter_bg"
+                android:gravity="center"
                 android:textColor="@color/menu_item_enabled_text" />
         </RelativeLayout>
     </RelativeLayout>
