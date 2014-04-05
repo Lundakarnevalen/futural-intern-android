@@ -1,10 +1,13 @@
 package fragments;
 
+import java.util.Calendar;
+
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.android.R.id;
 import se.lundakarnevalen.android.R.layout;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +17,16 @@ import android.widget.TextView;
 public class AboutFragment extends LKFragment{
 	TextView tv;
 	int counter = 0;
+
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View root = inflater.inflate(R.layout.about_fragment, null);
 		tv = (TextView) root.findViewById(R.id.easter);
 		tv.setOnClickListener(click);
+		
+
+		
 		return root;
 	}
 	

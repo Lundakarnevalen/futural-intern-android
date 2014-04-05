@@ -1,6 +1,7 @@
 package se.lundakarnevalen.remote;
 
 import json.KarnevalistWrite;
+import json.LoginResponse;
 import json.Response;
 import json.User;
 import json.UserWrite;
@@ -24,10 +25,12 @@ public class LKUser {
 	Context context;
 	public int id = Integer.MIN_VALUE;
 	public String imgUrl, token, gcmRegId, personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
-	public int step, kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion;
+	public int step, kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion, tilldelad_sektion;
 	public int[] intresse, sektioner;
 	public boolean jobbatHeltid, jobbatStyrelse, jobbatForman, jobbatAktiv, karnevalist2010, villAnsvara, medlemAf, medlemKar, medlemNation, karneveljsbiljett;
 	SharedPreferences sp;
+
+	private static final String log = LKUser.class.getSimpleName();
 	
 	public LKUser(Context context){
 		this.context = context;
@@ -39,7 +42,7 @@ public class LKUser {
 	 * @param context The application context
 	 * @return True if there is a user, false if there is not. 
 	 */
-	public static boolean localUserStored(Context context){
+	public static boolean localUserStored(Context context) {
 		SharedPreferences sp = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
 		String json = sp.getString(SHARED_PREFS_JSON, null);
 		return json != null;
@@ -75,7 +78,7 @@ public class LKUser {
 				@Override
 				public void onResult(String result) {
 					Log.d(LOG_TAG, "result from get request");
-					Log.d(LOG_TAG, "server: "+result);
+					Log.d(LOG_TAG, "server: " + result);
 					if(result == null){
 						Log.e(LOG_TAG, "error - null response");
 						return;
@@ -143,6 +146,9 @@ public class LKUser {
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
 		karnevalist.token = this.token;
+		
+		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
+		
 		return gson.toJson(karnevalist);
 	}
 	
@@ -185,6 +191,9 @@ public class LKUser {
 		karnevalist.medlem_nation = this.medlemNation;
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
+		
+		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
+		
 		if(asKarnevalist){
 			KarnevalistWrite wrapper = new KarnevalistWrite(karnevalist, token);
 			return gson.toJson(wrapper);
@@ -196,6 +205,10 @@ public class LKUser {
 		Log.d(LOG_TAG, "Will now parse: "+json);
 		Gson gson = new Gson();
 		User user = gson.fromJson(json, User.class);
+		
+		Log.d(log,""+ user.email);
+		Log.d(log,""+ user.gatuadress);
+		
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
 		this.step = user.avklarat_steg;
@@ -233,6 +246,9 @@ public class LKUser {
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
 		this.token = user.token;
+		
+		this.tilldelad_sektion = user.tilldelad_sektion;
+		
 	}
 	
 	public void getDataFromUser(User user){
@@ -278,5 +294,16 @@ public class LKUser {
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
 		this.token = user.token;
+		
+		this.tilldelad_sektion = user.tilldelad_sektion;
+	}
+
+	public void parseJsonLogin(String result) {
+		
+		Gson gson = new Gson();
+		
+		LoginResponse response = gson.fromJson(result, LoginResponse.class);
+		
+		getDataFromUser(response.karnevalist);
 	}
 }
