@@ -2,7 +2,7 @@
     <!-- The great registration password -->
     <string name="registrationpassword">FUTURAL</string>
     <string name="app_name">Karnevalisten</string>
-    <string name="sign_in_button">Logga in</string>
+    <string name="sign_in_button">LOGGA IN</string>
     <string name="registration_hurra">HURRA!</string>
     <string name="registration_status">Du vill bli karnevalist.</string>
     <string name="registration_informationb4progessbar">Du är för tillfället</string>
@@ -13,6 +13,7 @@
     <string name="progress_notdone_2">formuläret!</string>
     <string name="reg_code_fail_title">Något gick fel!</string>
     <string name="reg_code_fail_msg">Du fyllde i fel lösenord, försök igen!</string>
+    <string name="login_progress_signing_in">LOGGAR IN..</string>
     <string name="registration_informationbild1">Den tar du längst fram i</string>
     <string name="registration_informationbild2">disken inuti AF-Borgen.</string>
     <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
@@ -76,6 +77,7 @@
     <string name="error">Error</string>
     <string name="fail">Något gick fel, lite oklart vad dock.</string>
     <string name="welcome">Klicka för att komma vidare!</string>
+    <string name="welcome_text">VÄLKOMMEN!</string>
     <string name="about">Denna sida lämnades tom med meningen.</string>
     <string name="loading">Laddar…</string>
     <string name="sektion_barnevalen">Barnevalen</string>
@@ -136,7 +138,7 @@
     <string name="nationDed">Studentnation, vilken och hur?</string>
     <string name="otherStud">Annan studentikos förening?</string>
     <string name="otherDed">Annan förening?</string>
-    <string name="email">E-post</string>
+    <string name="email">E-POSTADRESS</string>
     <string name="email_valid">E-post igen tack!</string>
     <string name="nationTopic">Studentnation</string>
     <string name="driverLicensTopic">Körkort</string>
@@ -149,8 +151,8 @@
     <string name="reset_password_desc_l">Ange din mailadress.</string>
     <string name="register_me">Registrera mig</string>
     <string name="register_desc">Det verkar som om du inte är karnevalist än.\nJag tycker att du ska bli det.\nOmedelbums.</string>
-    <string name="register_desc_login_f">Är du redan karnevalist?&#160;</string>
-    <string name="register_desc_login_l">Logga in här.</string>
+    <string name="register_desc_login_f">ÄR DU KARNEVALIST?&#160;</string>
+    <string name="register_desc_login_l">LOGGA IN HÄR.</string>
     <string name="pers_nr">Personnummer ååmmddxxxx</string>
     <string name="pers_nr2">Personnummer</string>
     <string name="id">Id</string>
@@ -347,7 +349,7 @@
    	
    	<string name="title_activity_login">Login</string>
    	<string name="sound_service">Sound</string>
-   	<string name="reset_password">Glömt lösenord</string>
+   	<string name="reset_password">GLÖMT LÖSENORD</string>
    	
 
     <string name="press_play_button">TRYCK PÅ PLAY</string>
@@ -361,8 +363,8 @@
     
     <!-- FrSignIn -->
     <string name="no_internet_msg">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
-	<string name="prompt_email">E-post</string>
-    <string name="prompt_password">Lösenord</string>
+	<string name="prompt_email">E-POSTADRESS</string>
+    <string name="prompt_password">LÖSENORD</string>
     <string name="error_invalid_email">Invalid email</string>
     <string name="error_invalid_password">Too short password</string>
     <string name="error_field_required">Fältet är nödvändigt</string>
@@ -395,10 +397,10 @@
 	<string name="info_text_button">Förstår du fortfarande inte?</string>
 	<string name="info_text_button2">OK, jag förstår!</string>
     
-	<string name="return_to_sign_in">Tillbaka</string>
-	<string name="send_me">Skicka mig</string>
-    <string name="my_password">mitt lösenord!</string>
-    <string name="send">Skicka</string>
+	<string name="return_to_sign_in">TILLBAKA</string>
+	<string name="send_me">SKICKA MIG</string>
+    <string name="my_password">MITT LÖSENORD!</string>
+    <string name="send">SKICKA</string>
     
     <string name="cloud">Ett moln</string>
 

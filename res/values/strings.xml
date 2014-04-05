@@ -219,9 +219,9 @@
     <string name="reset_password_successful">Successfully reset password, check your mail</string>
     <string name="action_sign_in_short">SHORT OF DOOM</string>
     <string name="login_progress_signing_in">Signing in..</string>
-    <string name="error_invalid_email">E-post adressen är ogiltlig</string>
-    <string name="error_invalid_password">Lösenordet är för kort</string>
-    <string name="error_field_required">The field is necessary</string>
+    <string name="error_invalid_email">E-POSTADRESSEN ÄR OGILTIG</string>
+    <string name="error_invalid_password">LÖSENORDER ÄR FÖR KORT</string>
+    <string name="error_field_required">THE FIELD IS NECESSERY</string>
     <string name="Inkorg">MESSAGES</string>
     <string name="karta">MAP</string>
     <string name="text1"><![CDATA[HOW DO I SELL KARNEVALSTIDNINGEN?]]></string>
@@ -279,15 +279,15 @@
     <string name="playPart33">ATT FIRA MAJ I LUND</string>
     <string name="playPart34">EXPLODERAR PÅ EN SEKUND</string>
     
-    <string name="return_to_sign_in">Return</string>
-    <string name="send_me">Send me</string>
-    <string name="my_password">my password!</string>
-    <string name="send">Send</string>
+    <string name="return_to_sign_in">RETURN</string>
+    <string name="send_me">SEND ME</string>
+    <string name="my_password">MY PASSWORD!</string>
+    <string name="send">SEND</string>
     
     <string name="cloud">A cloud</string>
-    <string name="welcome_text">Welcome!</string>
-    <string name="prompt_email">Enter Email</string>
-    <string name="prompt_password">Enter Password</string>
+    <string name="welcome_text">WELCOME!</string>
+    <string name="prompt_email">ENTER EMAIL</string>
+    <string name="prompt_password">ENTER PASSWORD</string>
 
     <string name="countdown_title">COUNTDOWN</string>
     <string name="inbox_title">INBOX</string>
