@@ -289,7 +289,7 @@
     <string name="prompt_email">ENTER EMAIL</string>
     <string name="prompt_password">ENTER PASSWORD</string>
 
-    <string name="countdown_title">COUNTDOWN</string>
+    <string name="countdown_title">HOME</string>
     <string name="inbox_title">INBOX</string>
     <string name="sign_in">SIGN IN</string>
     <string name="action_bar_reset_password">RESET PASSWORD</string>

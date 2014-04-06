@@ -369,7 +369,7 @@
     <string name="error_invalid_password">Too short password</string>
     <string name="error_field_required">Fältet är nödvändigt</string>
     
-    <string name="countdown_title">NEDRÄKNING</string>
+    <string name="countdown_title">HEM</string>
     <string name="inbox_title">INKORG</string>
     <string name="sangbok_title">SÅNGBOK</string>
 
