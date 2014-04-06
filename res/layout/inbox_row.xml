@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingBottom="10dp"
@@ -7,6 +8,7 @@
     android:paddingRight="12dp" >
 
     <RelativeLayout
+        android:id="@+id/inbox_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -14,10 +16,13 @@
 
         <ImageView
             android:id="@+id/inbox_message_thumbnail"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/horizontal_margin"
+            android:background="@drawable/kommunikation"
+            android:scaleType="centerInside" />
 
         <RelativeLayout
             android:id="@+id/inbox_message_text_container"
@@ -32,6 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/red"
                 android:textSize="@dimen/title_text_size" />
 
@@ -40,10 +48,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/inbox_message_title"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
+                android:gravity="center_horizontal"
                 android:text="KOMMUNIKATION"
                 android:textColor="@color/red"
-                android:textSize="@dimen/inbox_message_sektion_title_text_size" />
+                android:textSize="12sp" />
 
             <se.lundakarnevalen.widget.LKTextView
                 android:id="@+id/inbox_message_preview"
@@ -52,6 +62,9 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/inbox_message_sektion_title"
                 android:layout_marginTop="4dp"
+                android:lineSpacingMultiplier="1.2"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
                 android:textColor="@color/red"
                 android:textSize="@dimen/message_preview_text_size" />
         </RelativeLayout>
@@ -66,6 +79,16 @@
             android:layout_marginRight="@dimen/horizontal_margin_half"
             android:layout_marginTop="20dp"
             android:textSize="@dimen/small_date_text_size" />
+
+        <ImageView
+            android:id="@+id/red"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/red_marker"
+            android:visibility="gone" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -8,6 +8,7 @@
         android:id="@+id/scroll_message_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/horizontal_margin"
         android:paddingLeft="@dimen/horizontal_margin"
         android:paddingRight="@dimen/horizontal_margin"
         android:paddingTop="@dimen/horizontal_margin" >
@@ -63,9 +64,9 @@
                 android:id="@+id/message_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/message_title"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
+                android:layout_below="@id/message_title"
                 android:textColor="@color/red"
                 android:textSize="14sp" />
         </RelativeLayout>
