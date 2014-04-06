@@ -2,9 +2,6 @@ package se.lundakarnevalen.widget;
 
 import java.util.List;
 
-import fragments.LKFragment;
-import fragments.MessageFragment;
-
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import android.content.Context;
@@ -18,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
+import fragments.LKFragment;
+import fragments.MessageFragment;
 
 public class LKInboxArrayAdapter extends ArrayAdapter<LKInboxArrayAdapter.LKMenuListItem> implements OnItemClickListener{
 	private final String LOG_TAG = "InboxArrayAdapter";
@@ -66,19 +65,21 @@ public class LKInboxArrayAdapter extends ArrayAdapter<LKInboxArrayAdapter.LKMenu
 		public String message;
 		public String title;
 		public String date;
+		public int recipients;
+		public String sectionName;
 		public int id;
 		public Bitmap image;
 		public boolean unread;
 		public RelativeLayout layout;
 		public boolean isStatic = false;
 		
-		public LKMenuListItem(String title, String message, String date, int id, boolean unread, Bitmap image) {
+		public LKMenuListItem(String title, String message, String date, int recipients, int id, boolean unread) {
 			this.message = message;
 			this.title = title;
 			this.date = date;
-			this.image = image;
 			this.unread = unread;
 			this.id = id;
+			this.recipients = recipients;
 		}
 		
 		public String toString(){

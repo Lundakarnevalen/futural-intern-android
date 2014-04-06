@@ -38,7 +38,7 @@ public class GCMIntentService extends IntentService{
 			switch(type){ 
 			case TYPE_MESSAGE:
 				Log.d("GCMIntentService", "adding message with id = "+Integer.parseInt(extras.getString("id")));
-				addMessage(extras.getString("title"), extras.getString("message"), extras.getString("created_at"), Integer.parseInt(extras.getString("id")));
+				addMessage(extras.getString("title"), extras.getString("message"), extras.getString("created_at"), Integer.parseInt(extras.getString("recipient_id")), Integer.parseInt(extras.getString("id")));
 				break;
 			case TYPE_UPDATEUSER:
 				updateUser(extras);
@@ -48,10 +48,10 @@ public class GCMIntentService extends IntentService{
 		}
 	}
 	
-	private void addMessage(String title, String message, String date, int id){
+	private void addMessage(String title, String message, String date, int recipientId, int id){
 		// Add message to db.
 		Log.d("GCMIntentService", "GCMIntentService.id = "+id);
-		float res = InboxFragment.addMessage(this, title, message, date, id);
+		float res = InboxFragment.addMessage(this, title, message, date, recipientId, id);
 		
 		if(res == -1){
 			Log.e(LOG_TAG, "error inserting message, maybe already in db? with id: "+id);
