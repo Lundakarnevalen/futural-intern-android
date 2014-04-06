@@ -44,7 +44,7 @@ public class LKRemote {
 	 */
 	public LKRemote(Context context){
 		this.context = context;
-	}
+	} 
 
 	/**
 	 * Creates remote object and sets a listener for the result
