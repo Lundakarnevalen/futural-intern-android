@@ -145,7 +145,12 @@ public class LKUser {
 		karnevalist.medlem_nation = this.medlemNation;
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
+		
+		Log.d("HEJHEJ", this.token);
 		karnevalist.token = this.token;
+		
+		
+		Log.d("HEJHEJ", karnevalist.token);
 		
 		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
 		
@@ -253,6 +258,8 @@ public class LKUser {
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
 		this.id = user.id;
+		
+		Log.d("HEJHEJ", token);
 		this.token = token;
 		try{
 		this.imgUrl = user.foto.url;
@@ -291,7 +298,6 @@ public class LKUser {
 		this.medlemKar = user.medlem_kar;
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
-		this.token = user.token;
 		
 		this.tilldelad_sektion = user.tilldelad_sektion;
 	}
@@ -301,6 +307,8 @@ public class LKUser {
 		Gson gson = new Gson();
 		
 		LoginResponse response = gson.fromJson(result, LoginResponse.class);
+		
+		Log.d("HEJHEJ", response.token);
 		
 		getDataFromUser(response.karnevalist, response.token);
 	}

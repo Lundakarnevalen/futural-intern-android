@@ -121,7 +121,7 @@ public class ContentActivity extends ActionBarActivity implements
 				LKFragment.SP_JSON_VERSION, MODE_PRIVATE);
 		int version = sp.getInt("Version", -1);
 
-		if (version < R.integer.json_version) {
+//		if (version < R.integer.json_version) {
 			Log.d(LOG_TAG, "Update of user information required");
 			// If this happens the current user information is old, so we need
 			// to update it.
@@ -133,7 +133,7 @@ public class ContentActivity extends ActionBarActivity implements
 			Editor edit = sharedVersion.edit();
 			edit.putFloat("Version", R.integer.json_version);
 			edit.commit();
-		}
+//		}
 
 		this.setInboxCount();
 
