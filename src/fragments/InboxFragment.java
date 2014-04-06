@@ -165,10 +165,10 @@ public class InboxFragment extends LKFragment {
 				titleTextView.setTextColor(context[0].getResources().getColor((R.color.base_pink)));
 				
 				//TODO: Set bold text if item.unread == true
-				if(item.unread) {
-					Typeface tf = Typeface.createFromAsset(context[0].getAssets(), "fonts/Roboto-Bold.ttf");
-					titleTextView.setTypeface(tf);
-				}
+//				if(item.unread) {
+//					Typeface tf = Typeface.createFromAsset(context[0].getAssets(), "fonts/Roboto-Bold.ttf");
+//					titleTextView.setTypeface(tf);
+//				}
 
 				titleTextView.setText(item.title.toUpperCase());
 
