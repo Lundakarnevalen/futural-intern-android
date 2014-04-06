@@ -85,15 +85,20 @@ public class LKUser {
 					}
 					// Update user with data
 					Gson gson = new Gson();
-					Response.GetKarnevalistSpecial data = gson.fromJson(result, Response.GetKarnevalistSpecial.class);
+//					Response.GetKarnevalistSpecial data = gson.fromJson(result, Response.GetKarnevalistSpecial.class);
 					
-					if(data.status.equals("success")){
+					LoginResponse data = gson.fromJson(result, LoginResponse.class);
+					
+					Log.d("WAO", "------");
+					Log.d("WAO", data.karnevalist.token);
+					
+					if(data.success){
 						getDataFromUser(data.karnevalist, data.token);
 						token = data.token;
 						Log.d(LOG_TAG, "url: "+imgUrl);
 						storeUserLocaly();
 					}else{
-						Log.e(LOG_TAG, "Non successfull request for id="+id+", status="+data.status);
+						Log.e(LOG_TAG, "Non successfull request for id="+id+", status=" + data.success);
 					}
 				}
 			});

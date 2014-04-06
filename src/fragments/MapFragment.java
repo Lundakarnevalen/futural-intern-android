@@ -107,10 +107,13 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 
 		background = (ImageView) rootView.findViewById(R.id.map_move);
 		context = getContext();
-		if(token != null) {
+		
 			if(LKUser.localUserStored(context)) {
 				LKUser user = new LKUser(context);
 				user.getUserLocaly();
+				Log.d("TOKEN MapFragment","Get token: "+user.email);
+				
+				Log.d("TOKEN MapFragment","Get token: "+user.token);
 				if(user.token!=null) {
 					token = user.token;
 					Log.d("MapFragment","Get token: "+user.token);
@@ -118,8 +121,8 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 					Log.d("MapFragment","Get token: "+user.token);
 					token = "";
 				}
+			
 			}
-		}
 
 
 		if(imageWidth == 0) {
