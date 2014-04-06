@@ -24,8 +24,7 @@
             <ImageView
                 android:id="@+id/message_thumbnail"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/sender_image" />
+                android:layout_height="wrap_content" />
 
             <se.lundakarnevalen.widget.LKTextViewBold
                 android:id="@+id/message_image_text"
@@ -33,7 +32,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/message_thumbnail"
                 android:layout_centerHorizontal="true"
-                android:text="KOMMUNIKATION"
                 android:textColor="@color/red" />
         </RelativeLayout>
 
@@ -64,9 +62,9 @@
                 android:id="@+id/message_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/message_title"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
-                android:layout_below="@id/message_title"
                 android:textColor="@color/red"
                 android:textSize="14sp" />
         </RelativeLayout>
