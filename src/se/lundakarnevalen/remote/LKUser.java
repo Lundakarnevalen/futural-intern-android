@@ -294,11 +294,11 @@ public class LKUser {
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
 		this.token = user.token;
-		
 		this.tilldelad_sektion = user.tilldelad_sektion;
 	}
 
 	public void parseJsonLogin(String result) {
+		
 		
 		Gson gson = new Gson();
 		
@@ -306,4 +306,5 @@ public class LKUser {
 		
 		getDataFromUser(response.karnevalist);
 	}
+	
 }

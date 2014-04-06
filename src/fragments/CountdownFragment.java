@@ -80,6 +80,7 @@ public class CountdownFragment extends LKFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Change the layout
+		
 		View rootView = inflater.inflate(R.layout.fr_layout_countdown, null);
 
 		tvKarnevalTitle = (TextView) rootView
