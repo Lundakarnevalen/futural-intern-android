@@ -389,7 +389,7 @@ public class ContentActivity extends ActionBarActivity implements
 		// listItems.add(new LKMenuListItem("Sektioner", 0, new
 		// SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true,
 		// drawerLayout));
-
+ 
 		// TODO Map only available on tidningsdagen
 		countDown = new CountdownFragment();
 		listItems.add(new LKMenuListItem(getString(R.string.countdown_title),

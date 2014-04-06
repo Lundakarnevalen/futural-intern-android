@@ -292,6 +292,10 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 				nbrOfPersons += p.quantity;
 			}
 			float difference = biggestDot - smallestDot;
+			if(difference == 0) {
+				difference = biggestDot;
+				smallestDot = 0;
+			}
 			for (Position p : positions) {
 				float lat = (p.lat - startLatMap) / diffLat;
 				float lon = (p.lng - startLonMap) / diffLon;
