@@ -31,7 +31,7 @@ public class SongGroupsFragment extends LKFragment {
 		
 		mLayout = get(R.id.sangbok_groups_layout, root, ViewGroup.class);
 		
-		makeGroup(groups, "KAREVALSMELODIN", R.drawable.songs_karnmel_box, R.drawable.songs_karnmel_shadow, R.array.sangbok_songs_group_karnmel);
+		makeGroup(groups, "KARNEVALSMELODIN", R.drawable.songs_karnmel_box, R.drawable.songs_karnmel_shadow, R.array.sangbok_songs_group_karnmel);
 		makeGroup(groups, "ALKOHOLFRIA VISOR", R.drawable.songs_noacl_box, R.drawable.songs_noacl_shadow, R.array.sangbok_songs_group_noacl);
 		makeGroup(groups, "PUNSCHVISOR",R.drawable.songs_punch_box, R.drawable.songs_punch_shadow, R.array.sangbok_songs_group_punsch);
 		makeGroup(groups, "SNAPSVISOR", R.drawable.songs_snaps_box, R.drawable.songs_snaps_shadow, R.array.sangbok_songs_group_snaps);
