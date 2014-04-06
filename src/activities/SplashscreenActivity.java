@@ -119,10 +119,7 @@ public class SplashscreenActivity extends Activity{
 					Log.d("SplashScreen", "loop counter i = "+i);
 					if(!db.messageExistsInDb(messages[i].id)) {
 						Log.d("SplashScreen", "Message not in db");
-						Time time = new Time();
-						time.parse3339(messages[i].created_at);
-						String date = time.format("%Y-%m-%d %H:%M");
-						addMessage(messages[i].title, messages[i].message, date, messages[i].id, db);
+						addMessage(messages[i].title, messages[i].message, messages[i].created_at, messages[i].id, db);
 					}
 					Log.d(LOG_TAG, "done");
 				}
