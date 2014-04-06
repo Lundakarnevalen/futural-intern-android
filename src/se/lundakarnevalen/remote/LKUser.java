@@ -297,7 +297,7 @@ public class LKUser {
 		this.medlemAf = user.medlem_af;
 		this.medlemKar = user.medlem_kar;
 		this.medlemNation = user.medlem_nation;
-		this.karneveljsbiljett = user.karneveljsbiljett;
+		this.karneveljsbiljett = user.karneveljsbiljett; 
 		
 		this.tilldelad_sektion = user.tilldelad_sektion;
 	}
