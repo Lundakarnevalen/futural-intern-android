@@ -285,10 +285,10 @@ public class CountdownFragment extends LKFragment {
 			tvKarnevalTitle.setVisibility(View.INVISIBLE);
 			tvKarneval.setVisibility(View.INVISIBLE);
 			if (text != delays.length - 1) {
-				lyric1.setText(lyrics[text + 1]);
+				lyric3.setText(lyrics[text + 1]);
 			}
 			if (text != 0) {
-				lyric3.setText(lyrics[text - 1]);
+				lyric1.setText(lyrics[text - 1]);
 			}
 			lyric2.setText(lyrics[text]);
 			if (playing) {
@@ -432,8 +432,8 @@ public class CountdownFragment extends LKFragment {
 
 		startMover();
 
-		lyric3.setText("");
-		lyric1.setText(lyrics[1]);
+		lyric1.setText("");
+		lyric3.setText(lyrics[1]);
 		lyric2.setText(lyrics[0]);
 		r = new Runnable() {
 			public void run() {
@@ -448,12 +448,12 @@ public class CountdownFragment extends LKFragment {
 					return;
 				}
 				if (text == delays.length - 1) {
-					lyric1.setText("");
+					lyric3.setText("");
 				} else {
-					lyric1.setText(lyrics[text + 1]);
+					lyric3.setText(lyrics[text + 1]);
 				}
 				lyric2.setText(lyrics[text]);
-				lyric3.setText(lyrics[text - 1]);
+				lyric1.setText(lyrics[text - 1]);
 
 				long diff = delays[text]
 						- (System.currentTimeMillis() - startTime - totTime);
@@ -470,11 +470,11 @@ public class CountdownFragment extends LKFragment {
 	public void resumeLyrics(int delay) {
 		if (text != delays.length - 1) {
 
-			lyric1.setText(lyrics[text + 1]);
+			lyric3.setText(lyrics[text + 1]);
 
 		}
 		if (text != 0) {
-			lyric3.setText(lyrics[text - 1]);
+			lyric1.setText(lyrics[text - 1]);
 		}
 		lyric2.setText(lyrics[text]);
 
