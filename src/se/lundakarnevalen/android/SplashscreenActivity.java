@@ -376,13 +376,13 @@ public class SplashscreenActivity extends Activity{
 				
 				Intent intent;
 				
-//				if(LKUser.localUserStored(context)) {
-//					Log.d(SplashscreenActivity.class.getSimpleName(), "User stored locally");
-//					
-//					intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
-//				} else {
+				if(LKUser.localUserStored(context)) {
+					Log.d(SplashscreenActivity.class.getSimpleName(), "User stored locally");
+					
+					intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
+				} else {
 					intent = new Intent(SplashscreenActivity.this, AcLogin.class);					
-//				}
+				}
 				
 				SplashscreenActivity.this.startActivity(intent);
 
