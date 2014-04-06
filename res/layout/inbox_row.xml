@@ -2,61 +2,70 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
     android:paddingLeft="12dp"
-    android:paddingRight="12dp"
-    android:paddingBottom="10dp">
-    
-    <RelativeLayout android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:background="@drawable/white_bg_bottom_shadow"
-	    android:layout_marginTop="12dp">
-    
-	    <ImageView android:id="@+id/inbox_message_thumbnail"
-	        android:layout_height="60dp"
-	      	android:layout_width="60dp"
-	      	android:layout_alignParentLeft="true"
-	      	android:layout_centerVertical="true"/>
-	    
-	    <RelativeLayout android:id="@+id/inbox_message_text_container"
-	        android:layout_height="wrap_content"
-	        android:layout_width="wrap_content"
-	  		android:layout_centerVertical="true"
-	  		android:layout_toRightOf="@id/inbox_message_thumbnail"
-	  		android:layout_marginLeft="25dp">
-	  		
-		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_title"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:textSize="@dimen/title_text_size"
-		        android:layout_alignParentLeft="true"/>
-		    
-		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_sektion_title"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:textSize="@dimen/inbox_message_sektion_title_text_size"
-		        android:text="Kommunikation"
-		        android:layout_marginTop="3dp"
-		        android:layout_below="@id/inbox_message_title"/>
-		    
-		    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_preview"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:textSize="@dimen/message_preview_text_size"
-		        android:layout_below="@id/inbox_message_sektion_title"
-		        android:layout_alignParentLeft="true"
-		        android:layout_marginTop="4dp"/> 
-	    </RelativeLayout>
-	    
-	    <se.lundakarnevalen.widget.LKTextView android:id="@+id/inbox_message_date"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	   	android:textSize="@dimen/small_date_text_size"
-	   	android:layout_below="@id/inbox_message_text_container"
-	   	android:layout_alignParentRight="true"
-	   	android:layout_marginRight="@dimen/horizontal_margin_half"
-	   	android:layout_marginTop="20dp"
-	    android:layout_marginBottom="5dp"/>
+    android:paddingRight="12dp" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/white_bg_bottom_shadow" >
+
+        <ImageView
+            android:id="@+id/inbox_message_thumbnail"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" />
+
+        <RelativeLayout
+            android:id="@+id/inbox_message_text_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/inbox_message_thumbnail" >
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:id="@+id/inbox_message_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/red"
+                android:textSize="@dimen/title_text_size" />
+
+            <se.lundakarnevalen.widget.LKTextViewBold
+                android:id="@+id/inbox_message_sektion_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inbox_message_title"
+                android:layout_marginTop="3dp"
+                android:text="KOMMUNIKATION"
+                android:textColor="@color/red"
+                android:textSize="@dimen/inbox_message_sektion_title_text_size" />
+
+            <se.lundakarnevalen.widget.LKTextView
+                android:id="@+id/inbox_message_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/inbox_message_sektion_title"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/red"
+                android:textSize="@dimen/message_preview_text_size" />
+        </RelativeLayout>
+
+        <se.lundakarnevalen.widget.LKTextView
+            android:id="@+id/inbox_message_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/inbox_message_text_container"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="@dimen/horizontal_margin_half"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/small_date_text_size" />
     </RelativeLayout>
 
-	
 </RelativeLayout>

@@ -8,6 +8,7 @@ import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKTextView;
+import se.lundakarnevalen.widget.LKTextViewBold;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -130,13 +131,13 @@ public class InboxFragment extends LKFragment{
 					continue;
 				RelativeLayout root = (RelativeLayout) inflater.inflate(R.layout.inbox_row, null);
 				// Find child views of row
-				LKTextView titleTextView = (LKTextView) root.findViewById(R.id.inbox_message_title);
+				LKTextViewBold titleTextView = (LKTextViewBold) root.findViewById(R.id.inbox_message_title);
 				LKTextView messagePreviewTextView = (LKTextView) root.findViewById(R.id.inbox_message_preview);
 				LKTextView dateTextView = (LKTextView) root.findViewById(R.id.inbox_message_date);
 				ImageView thumbnailImageView = (ImageView) root.findViewById(R.id.inbox_message_thumbnail);
 				
 				titleTextView.setText(item.title);
-				titleTextView.setTextColor(context[0].getResources().getColor((R.color.base_pink)));
+				titleTextView.setTextColor(context[0].getResources().getColor((R.color.red)));
 				
 				//TODO: Set bold text if item.unread == true
 				if(item.unread) {
@@ -166,10 +167,10 @@ public class InboxFragment extends LKFragment{
 				}
 				String previewMessage = message.substring(0, counter)+((dots) ? "..." : "");
 				messagePreviewTextView.setText(previewMessage);
-				messagePreviewTextView.setTextColor(context[0].getResources().getColor((R.color.peach)));
+				messagePreviewTextView.setTextColor(context[0].getResources().getColor((R.color.red)));
 				
 				dateTextView.setText(item.date);
-				dateTextView.setTextColor(context[0].getResources().getColor((R.color.peach)));
+				dateTextView.setTextColor(context[0].getResources().getColor((R.color.red)));
 				thumbnailImageView.setImageBitmap(item.image);
 				
 				item.layout = root;
