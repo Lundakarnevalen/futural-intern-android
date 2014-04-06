@@ -19,6 +19,7 @@ import fragments.FrSignIn;
 public class AcLogin extends ActionBarActivity {
 	
 	private ActionBar actionBar;
+	TextView titleView;
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +49,15 @@ public class AcLogin extends ActionBarActivity {
 		View root = inflater.inflate(R.layout.ac_login_action_bar, null);
 		// Get references for actionbar setup
 		
-		TextView title = (TextView) root.findViewById(R.id.title);
+		titleView = (TextView) root.findViewById(R.id.action_bar_text);
 		
 		actionBar.setCustomView(root);
-		
 	}
 
+	public void setActionBarTitle(String title) {
+		titleView.setText(title);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);

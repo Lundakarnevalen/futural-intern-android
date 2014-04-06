@@ -88,7 +88,7 @@ public class LKUser {
 					Response.GetKarnevalistSpecial data = gson.fromJson(result, Response.GetKarnevalistSpecial.class);
 					
 					if(data.status.equals("success")){
-						getDataFromUser(data.karnevalist);
+						getDataFromUser(data.karnevalist, data.token);
 						token = data.token;
 						Log.d(LOG_TAG, "url: "+imgUrl);
 						storeUserLocaly();
@@ -206,9 +206,6 @@ public class LKUser {
 		Gson gson = new Gson();
 		User user = gson.fromJson(json, User.class);
 		
-		Log.d(log,""+ user.email);
-		Log.d(log,""+ user.gatuadress);
-		
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
 		this.step = user.avklarat_steg;
@@ -251,11 +248,12 @@ public class LKUser {
 		
 	}
 	
-	public void getDataFromUser(User user){
+	public void getDataFromUser(User user, String token){
 		Log.d(LOG_TAG, "Will use data from user");
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
 		this.id = user.id;
+		this.token = token;
 		try{
 		this.imgUrl = user.foto.url;
 		}catch(NullPointerException e){
@@ -304,7 +302,7 @@ public class LKUser {
 		
 		LoginResponse response = gson.fromJson(result, LoginResponse.class);
 		
-		getDataFromUser(response.karnevalist);
+		getDataFromUser(response.karnevalist, response.token);
 	}
 	
 }
