@@ -218,6 +218,7 @@ public class InboxFragment extends LKFragment {
 				// Set image and section text depending on item.recipients
 				switch (item.recipients) {
 				case 0:
+					thumbnailImageView.setImageResource(R.drawable.icon);
 					sectionTextView.setText("Karnevalen");
 					break;
 				case 1:
@@ -369,9 +370,6 @@ public class InboxFragment extends LKFragment {
 					sectionTextView.setText(R.string.sektion_499);
 					break;
 				}
-				
-				
-				thumbnailImageView.setImageBitmap(item.image);
 
 				item.layout = root;
 			}
