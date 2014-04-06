@@ -126,10 +126,10 @@ public class ContentActivity extends ActionBarActivity implements
 			// If this happens the current user information is old, so we need
 			// to update it.
 
-			LKUser user = new LKUser(this);
-			user.updateFromRemote();
+//			LKUser user = new LKUser(this);
+//			user.updateFromRemote();
 			
-			Log.d("WAO", user.getJsonWithId());
+//			Log.d("WAO", user.getJsonWithId());
 
 			Log.d(LOG_TAG, "Updating the version number");
 
