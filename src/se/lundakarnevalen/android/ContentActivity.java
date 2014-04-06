@@ -93,7 +93,7 @@ public class ContentActivity extends ActionBarActivity implements
 		populateMenu();
 
 		loadFragment(new CountdownFragment(), false);
-
+		
 	}
 
 	@Override
@@ -121,19 +121,22 @@ public class ContentActivity extends ActionBarActivity implements
 				LKFragment.SP_JSON_VERSION, MODE_PRIVATE);
 		int version = sp.getInt("Version", -1);
 
-		if (version < R.integer.json_version) {
+//		if (version < R.integer.json_version) {
 			Log.d(LOG_TAG, "Update of user information required");
 			// If this happens the current user information is old, so we need
 			// to update it.
 
-			new LKUser(this).updateFromRemote();
+			LKUser user = new LKUser(this);
+			user.updateFromRemote();
+			
+			Log.d("WAO", user.getJsonWithId());
 
 			Log.d(LOG_TAG, "Updating the version number");
 
-			Editor edit = sharedVersion.edit();
-			edit.putFloat("Version", R.integer.json_version);
-			edit.commit();
-		}
+//			Editor edit = sharedVersion.edit();
+//			edit.putFloat("Version", R.integer.json_version);
+//			edit.commit();
+//		} 
 
 		this.setInboxCount();
 

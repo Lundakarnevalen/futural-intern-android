@@ -55,7 +55,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	private ImageView img;
 	private int imageWidth;
 	private int imageHeight;
-	
+
 	// Handler for post/get position(s)
 	private static final int HANDLER_DELAY = 1800000; // 30 min
 	// private static final int HANDLER_DELAY = 10000; //10 sec
@@ -74,7 +74,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	private static final int GPS_DISTANCE = 0; // set the distance value in meter
 
 	// For cluster
-	private final String token = "P6VmxzvTypzP3qb3TEW7";
+	private String token = null;
 	private final String SHARED_ID = "SHAREDID";
 	private final String key_cluster = "key_cluster_id";
 	private int clusterId = -1;
@@ -107,10 +107,24 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 
 		background = (ImageView) rootView.findViewById(R.id.map_move);
 		context = getContext();
-		if(LKUser.localUserStored(context)) {
+		
+			if(LKUser.localUserStored(context)) {
+				LKUser user = new LKUser(context);
+				user.getUserLocaly();
+				Log.d("TOKEN MapFragment","Get token: "+user.email);
+				
+				Log.d("TOKEN MapFragment","Get token: "+user.token);
+				if(user.token!=null) {
+					token = user.token;
+					Log.d("MapFragment","Get token: "+user.token);
+				} else {
+					Log.d("MapFragment","Get token: "+user.token);
+					token = "";
+				}
 			
-			//Log.d("get token:",LKUser.class.+"");
-		}
+			}
+
+
 		if(imageWidth == 0) {
 			DisplayMetrics metrics = context.getResources().getDisplayMetrics();
 			imageWidth = metrics.widthPixels;
@@ -141,7 +155,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			SharedPreferences prefs = getContext().getSharedPreferences(SHARED_ID, Context.MODE_PRIVATE);
 			clusterId = prefs.getInt(key_cluster, -1);
 		}
- 
+
 		if (handler == null) {
 			handler = new Handler();
 
@@ -258,11 +272,11 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			//BitmapFactory.Options options 
 			//Bitmap mapBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.map_skane, BitmapFactory.Options);
 			Bitmap mapBitmap = decodeSampledBitmapFromResource(getResources(), R.drawable.map_skane, imageWidth , imageHeight);
-			
-			
+
+
 			//mImageView.setImageBitmap(
 			//	    decodeSampledBitmapFromResource(getResources(), R.id.myimage, 100, 100));
-			
+
 			//BitmapFactory.de
 			// Create an overlay bitmap
 			bmOverlay = Bitmap.createBitmap(mapBitmap.getWidth(), mapBitmap.getHeight(), mapBitmap.getConfig());
@@ -478,41 +492,41 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 		}
 	}
 	public static int calculateInSampleSize(
-            BitmapFactory.Options options, int reqWidth, int reqHeight) {
-    // Raw height and width of image
-    final int height = options.outHeight;
-    final int width = options.outWidth;
-    int inSampleSize = 1;
+			BitmapFactory.Options options, int reqWidth, int reqHeight) {
+		// Raw height and width of image
+		final int height = options.outHeight;
+		final int width = options.outWidth;
+		int inSampleSize = 1;
 
-    if (height > reqHeight || width > reqWidth) {
+		if (height > reqHeight || width > reqWidth) {
 
-        final int halfHeight = height / 2;
-        final int halfWidth = width / 2;
+			final int halfHeight = height / 2;
+			final int halfWidth = width / 2;
 
-        // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-        // height and width larger than the requested height and width.
-        while ((halfHeight / inSampleSize) > reqHeight
-                && (halfWidth / inSampleSize) > reqWidth) {
-            inSampleSize *= 2;
-        }
-    }
+			// Calculate the largest inSampleSize value that is a power of 2 and keeps both
+			// height and width larger than the requested height and width.
+			while ((halfHeight / inSampleSize) > reqHeight
+					&& (halfWidth / inSampleSize) > reqWidth) {
+				inSampleSize *= 2;
+			}
+		}
 
-    return inSampleSize;
-}
-	
+		return inSampleSize;
+	}
+
 	public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
-	        int reqWidth, int reqHeight) {
+			int reqWidth, int reqHeight) {
 
-	    // First decode with inJustDecodeBounds=true to check dimensions
-	    final BitmapFactory.Options options = new BitmapFactory.Options();
-	    options.inJustDecodeBounds = true;
-	    BitmapFactory.decodeResource(res, resId, options);
+		// First decode with inJustDecodeBounds=true to check dimensions
+		final BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeResource(res, resId, options);
 
-	    // Calculate inSampleSize
-	    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+		// Calculate inSampleSize
+		options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
 
-	    // Decode bitmap with inSampleSize set
-	    options.inJustDecodeBounds = false;
-	    return BitmapFactory.decodeResource(res, resId, options);
+		// Decode bitmap with inSampleSize set
+		options.inJustDecodeBounds = false;
+		return BitmapFactory.decodeResource(res, resId, options);
 	}
 }

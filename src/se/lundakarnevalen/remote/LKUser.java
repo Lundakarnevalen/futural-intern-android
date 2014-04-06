@@ -85,15 +85,20 @@ public class LKUser {
 					}
 					// Update user with data
 					Gson gson = new Gson();
-					Response.GetKarnevalistSpecial data = gson.fromJson(result, Response.GetKarnevalistSpecial.class);
+//					Response.GetKarnevalistSpecial data = gson.fromJson(result, Response.GetKarnevalistSpecial.class);
 					
-					if(data.status.equals("success")){
-						getDataFromUser(data.karnevalist);
+					LoginResponse data = gson.fromJson(result, LoginResponse.class);
+					
+					Log.d("WAO", "------");
+					Log.d("WAO", data.karnevalist.token);
+					
+					if(data.success){
+						getDataFromUser(data.karnevalist, data.token);
 						token = data.token;
 						Log.d(LOG_TAG, "url: "+imgUrl);
 						storeUserLocaly();
 					}else{
-						Log.e(LOG_TAG, "Non successfull request for id="+id+", status="+data.status);
+						Log.e(LOG_TAG, "Non successfull request for id="+id+", status=" + data.success);
 					}
 				}
 			});
@@ -145,7 +150,12 @@ public class LKUser {
 		karnevalist.medlem_nation = this.medlemNation;
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
+		
+		Log.d("HEJHEJ", this.token);
 		karnevalist.token = this.token;
+		
+		
+		Log.d("HEJHEJ", karnevalist.token);
 		
 		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
 		
@@ -206,9 +216,6 @@ public class LKUser {
 		Gson gson = new Gson();
 		User user = gson.fromJson(json, User.class);
 		
-		Log.d(log,""+ user.email);
-		Log.d(log,""+ user.gatuadress);
-		
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
 		this.step = user.avklarat_steg;
@@ -245,17 +252,19 @@ public class LKUser {
 		this.medlemKar = user.medlem_kar;
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
-		this.token = user.token;
 		
 		this.tilldelad_sektion = user.tilldelad_sektion;
 		
 	}
 	
-	public void getDataFromUser(User user){
+	public void getDataFromUser(User user, String token){
 		Log.d(LOG_TAG, "Will use data from user");
 		this.personnummer = user.personnummer;
 		this.fornamn = user.fornamn;
 		this.id = user.id;
+		
+		Log.d("HEJHEJ", token);
+		this.token = token;
 		try{
 		this.imgUrl = user.foto.url;
 		}catch(NullPointerException e){
@@ -292,18 +301,21 @@ public class LKUser {
 		this.medlemAf = user.medlem_af;
 		this.medlemKar = user.medlem_kar;
 		this.medlemNation = user.medlem_nation;
-		this.karneveljsbiljett = user.karneveljsbiljett;
-		this.token = user.token;
+		this.karneveljsbiljett = user.karneveljsbiljett; 
 		
 		this.tilldelad_sektion = user.tilldelad_sektion;
 	}
 
 	public void parseJsonLogin(String result) {
 		
+		
 		Gson gson = new Gson();
 		
 		LoginResponse response = gson.fromJson(result, LoginResponse.class);
 		
-		getDataFromUser(response.karnevalist);
+		Log.d("HEJHEJ", response.token);
+		
+		getDataFromUser(response.karnevalist, response.token);
 	}
+	
 }

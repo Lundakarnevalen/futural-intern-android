@@ -5,7 +5,7 @@
    	android:background="@color/dark_blue"
    >
     
-    <se.lundakarnevalen.widget.LKTextView
+    <se.lundakarnevalen.widget.LKTextViewBold
         android:id="@+id/action_bar_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

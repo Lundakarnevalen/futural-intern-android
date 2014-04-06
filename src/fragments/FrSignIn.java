@@ -1,6 +1,7 @@
 package fragments;
 
 import json.LoginCredentialsWrite;
+import se.lundakarnevalen.android.AcLogin;
 import se.lundakarnevalen.android.ContentActivity;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
@@ -62,12 +63,17 @@ public class FrSignIn extends Fragment {
 
 	private LKRemote remote;
 
+	private AcLogin activity;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fr_layout_sign_in, null);
 
 		context = getActivity();
+		activity = (AcLogin) context;
+		
+		activity.setActionBarTitle(getString(R.string.action_bar_sign_in));
 		
 		// Set up the login form.
 		mEmail = getActivity().getIntent().getStringExtra(EXTRA_EMAIL);
@@ -153,6 +159,8 @@ public class FrSignIn extends Fragment {
 			user.parseJsonLogin(result);
 			
 			user.storeUserLocaly();
+			
+			Log.d("HEJ", "Stuff: " + user.getJsonWithId());
 
 			Intent intent = new Intent(context, ContentActivity.class);		
 		

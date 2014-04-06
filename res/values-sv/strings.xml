@@ -413,6 +413,9 @@
     <string name="karnelan">KARNELAN</string>
     <string name="karnevalsmelodin">KARNEVALSMELODIN</string>
     
+    <string name="action_bar_reset_password">ÅTERSTÄLL LÖSENORD</string>
+    <string name="action_bar_sign_in">LOGGA IN</string>
+    
 	
 </resources>
 
