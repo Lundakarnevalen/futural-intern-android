@@ -99,7 +99,7 @@ public class CountdownFragment extends LKFragment {
 		karneLan = new GregorianCalendar(2014, 3, 16, 18, 0, 0).getTime();
 		preKarneval = new GregorianCalendar(2014, 4, 11, 0, 0, 0)
 		.getTime();
-		karneBeer = new GregorianCalendar(2014, 5, 25, 11, 0, 0).getTime();
+		karneBeer = new GregorianCalendar(2014, 4, 1, 11, 0, 0).getTime();
 		postKarneval = new GregorianCalendar(2014, 8, 20, 0, 0, 0)
 		.getTime();
 
@@ -112,56 +112,61 @@ public class CountdownFragment extends LKFragment {
 			karneVal = null;
 			tvKarneval.setText(getCountdownMessage(0));
 		} else {
+			tvKarneval.setText(getCountdownMessage(karneVal.getTime()-timeOfToday));
 			list.add(new Countdown(rootView.findViewById(R.id.tvKarneval),
 					tvKarneval, karneVal));
 		}
 		if (karneLan.before(today)) {
 			karneLan = null;
-			tvKarneLan.setText(getCountdownMessage(0));
-			setFinish(rootView.findViewById(R.id.countDownKarnevalFour),
+			tvKarneLan.setText(getCountdownMessage(0)); 
+			setFinish(rootView.findViewById(R.id.countDownKarnevalOne),
 					tvKarneLan,
-					((ImageView) rootView.findViewById(R.id.checkMark4)));
+					((ImageView) rootView.findViewById(R.id.checkMark1)));
 		} else {
+			tvKarneLan.setText(getCountdownMessage(karneLan.getTime()-timeOfToday));
 			list.add(new Countdown(rootView
-					.findViewById(R.id.countDownKarnevalFour), tvKarneLan,
+					.findViewById(R.id.countDownKarnevalOne), tvKarneLan,
 					karneLan, ((ImageView) rootView
-							.findViewById(R.id.checkMark4))));
+							.findViewById(R.id.checkMark1))));
 		}
 		if (preKarneval.before(today)) {
 			preKarneval = null;
 			tvPreKarneval.setText(getCountdownMessage(0));
-			setFinish(rootView.findViewById(R.id.countDownKarnevalTwo),
+			setFinish(rootView.findViewById(R.id.countDownKarnevalThree),
 					tvPreKarneval,
-					((ImageView) rootView.findViewById(R.id.checkMark2)));
+					((ImageView) rootView.findViewById(R.id.checkMark3)));
 		} else {
+			tvPreKarneval.setText(getCountdownMessage(preKarneval.getTime()-timeOfToday));
 			list.add(new Countdown(rootView
-					.findViewById(R.id.countDownKarnevalTwo), tvPreKarneval,
+					.findViewById(R.id.countDownKarnevalThree), tvPreKarneval,
 					preKarneval, ((ImageView) rootView
-							.findViewById(R.id.checkMark2))));
+							.findViewById(R.id.checkMark3))));
 		}
 		if (karneBeer.before(today)) {
 			karneBeer = null;
 			tvKarnevalBeer.setText(getCountdownMessage(0));
-			setFinish(rootView.findViewById(R.id.countDownKarnevalThree),
+			setFinish(rootView.findViewById(R.id.countDownKarnevalTwo),
 					tvKarnevalBeer,
-					((ImageView) rootView.findViewById(R.id.checkMark3)));
+					((ImageView) rootView.findViewById(R.id.checkMark2)));
 		} else {
+			tvKarnevalBeer.setText(getCountdownMessage(karneBeer.getTime()-timeOfToday));
 			list.add(new Countdown(rootView
-					.findViewById(R.id.countDownKarnevalThree), tvKarnevalBeer,
+					.findViewById(R.id.countDownKarnevalTwo), tvKarnevalBeer,
 					karneBeer, ((ImageView) rootView
-							.findViewById(R.id.checkMark3))));
+							.findViewById(R.id.checkMark2))));
 		}
 		if (postKarneval.before(today)) {
 			postKarneval = null;
 			tvPostKarneval.setText(getCountdownMessage(0));
-			setFinish(rootView.findViewById(R.id.countDownKarnevalOne),
+			setFinish(rootView.findViewById(R.id.countDownKarnevalFour),
 					tvPostKarneval,
-					((ImageView) rootView.findViewById(R.id.checkMark1)));
+					((ImageView) rootView.findViewById(R.id.checkMark4)));
 		} else {
+			tvPostKarneval.setText(getCountdownMessage(postKarneval.getTime()-timeOfToday));
 			list.add(new Countdown(rootView
-					.findViewById(R.id.countDownKarnevalOne), tvPostKarneval,
+					.findViewById(R.id.countDownKarnevalFour), tvPostKarneval,
 					postKarneval, ((ImageView) rootView
-							.findViewById(R.id.checkMark1))));
+							.findViewById(R.id.checkMark4))));
 		}
 
 		CountDownTask countDownTask = new CountDownTask();
@@ -434,8 +439,7 @@ public class CountdownFragment extends LKFragment {
 				totTime += delays[text];
 				text++;
 				if (text >= delays.length) {
-
-					factory = new MySoundFactory(getActivity());
+					factory = new MySoundFactory(getContext());
 					factory.createLongMedia(songID, false);
 					started = false;
 					playing = false;

@@ -152,7 +152,7 @@
     <string name="reset_password_desc_l">Specify your e-mail address.</string>
     <string name="register_me">Register me</string>
     <string name="register_desc">It seems you\'re not a karnevalist.\nI think you should become one.\nImmediately.</string>
-    <string name="register_desc_login_f">Are you already a karnevalist?</string>
+    <string name="register_desc_login_f">ARE YOU A KARNEVALIST?</string>
     <string name="register_desc_login_l">Log in here.</string>
     <string name="pers_nr">Social security number ååmmddxxxx</string>
     <string name="pers_nr2">Social security number</string>

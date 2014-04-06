@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="100dp"
                     android:background="#FFFFFF"
                     android:orientation="vertical"
                     android:paddingLeft="@dimen/padding_sides"
@@ -151,9 +151,11 @@
 
                 <se.lundakarnevalen.widget.LKButtonGreen
                     android:id="@+id/sign_in_button"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/layout_data_fields"
+                    android:layout_marginLeft="@dimen/horizontal_margin_tripple"
+                    android:layout_marginRight="@dimen/horizontal_margin_tripple"
                     android:layout_centerHorizontal="true"
                     android:text="@string/sign_in_button" />
 
@@ -162,8 +164,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/sign_in_button"
+                    android:textSize="15sp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="40dp"
                     android:background="#00FF00"
                     android:text="@string/reset_password" />
 

@@ -7,6 +7,7 @@ import json.MapGet;
 import json.MapPost;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
+import se.lundakarnevalen.remote.LKUser;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -102,10 +103,14 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			infoTextFragment = new InfoTextFragment();
 			infoTextFragment.setMapFragment(this);
 		}
-		
+
 
 		background = (ImageView) rootView.findViewById(R.id.map_move);
 		context = getContext();
+		if(LKUser.localUserStored(context)) {
+			
+			//Log.d("get token:",LKUser.class.+"");
+		}
 		if(imageWidth == 0) {
 			DisplayMetrics metrics = context.getResources().getDisplayMetrics();
 			imageWidth = metrics.widthPixels;
