@@ -91,6 +91,8 @@ public class LKUser {
 					
 					Log.d("WAO", "------");
 					Log.d("WAO", data.karnevalist.token);
+					Log.d("WAO", " " + data.success);
+				
 					
 					if(data.success){
 						getDataFromUser(data.karnevalist, data.token);
