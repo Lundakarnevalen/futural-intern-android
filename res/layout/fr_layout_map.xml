@@ -15,74 +15,75 @@
     	
     <RelativeLayout
         android:id="@+id/map_upper_box"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" 
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentTop="true"
+         >
 
         <se.lundakarnevalen.widget.LKTextViewBold
             android:layout_width="wrap_content"
-            android:layout_height="51dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/map_upper_textbox"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_bg_bottom_shadow"
             android:gravity="center"
+            android:textSize="16sp"
             android:text="@string/map_right_now"
             android:textColor="@color/red"
-            android:textSize="18sp" />
+
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:lineSpacingMultiplier="1.2"
+             />
   
-        <ImageView 
-        android:layout_width="wrap_content"
-     	android:layout_marginBottom="-4dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/map_upper_textbox_shadow" />
-      
         
         </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/map_lower_box"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp" >
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/white_bg_bottom_shadow" >
 
         <se.lundakarnevalen.widget.LKTextViewBold
             android:id="@+id/nbr_of"
             android:layout_width="wrap_content"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:gravity="center"
+            android:textSize="20sp"
             android:text="@string/map_nbr_of_people"
             android:textColor="@color/red"
-            android:textSize="24sp"
-            android:background="@drawable/map_lower_textbox" />
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="1dp" />
+
 
         <se.lundakarnevalen.widget.LKTextViewBold
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/nbr_of"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="@string/map_karnevalister"
+            android:text="@string/map_karnevalister" 
             android:textColor="@color/red"
-            android:textSize="12sp"
-            android:background="@drawable/map_lower_textbox" />
-  <ImageView 
-        android:layout_width="wrap_content"
-     	android:layout_marginBottom="-4dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/map_lower_textbox_shadow" />
-      
-        </RelativeLayout>
+			android:textSize="12sp"
+			android:paddingLeft="3dp"
+            android:paddingRight="3dp"    
+            android:paddingBottom="3dp" />
+			
+             />
 
     
-    
+    </RelativeLayout>
     
     <RelativeLayout
         android:layout_width="match_parent"
@@ -95,7 +96,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp" >
-
         <ImageView
             android:id="@+id/map_id"
             android:layout_width="wrap_content"

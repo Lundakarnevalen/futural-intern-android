@@ -1,9 +1,6 @@
 package fragments;
 
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.android.R.id;
-import se.lundakarnevalen.android.R.layout;
-import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
@@ -12,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 public class MessageFragment extends LKFragment{
 	
@@ -30,7 +26,7 @@ public class MessageFragment extends LKFragment{
 		LKTextView messageTextView = (LKTextView) root.findViewById(R.id.message_message_text);
 		ImageView thumbnailImageView = (ImageView) root.findViewById(R.id.message_thumbnail);
 		
-		titleTextView.setText(listItem.title);
+		titleTextView.setText(listItem.title.toUpperCase());
 		dateTextView.setText(listItem.date);
 		messageTextView.setText(listItem.message);
 		thumbnailImageView.setImageBitmap(listItem.image);

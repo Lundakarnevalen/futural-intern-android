@@ -32,6 +32,7 @@ public class LKRemote {
 	private final String LOG_TAG = "API call";
 
 	Context context;
+
 	private String remoteAdrOld = "https://karnevalist-stage.herokuapp.com/";
 	private String remoteAdr = "http://www.karnevalist.se/";
 	//private String remoteAdr = "http://httpbin.org/put";
