@@ -342,8 +342,9 @@
         <item><![CDATA[42|Tempus futurum|Melodi: Temperaturen är hög uti kroppen|Tempus futurum är det som ska hända <br/>Presens är något som händer just nu <br/><br/>Perfekt är något som redan har varit <br/>Här i vårt presens vi sjunger just nu: <br/><br/>Tempus futurum <br/>Presens och perfekt <br/><br/>Tempus futurum <br/>Presens perfekt <br/><br/>Tempus futurum drack dricka druckit <br/>Det kan va’ roligt att kröka ett verb!]]></item>
     </string-array>
 
-    <string name="karnevol">KARNEVÖL</string>
+
     <string name="karneval">KARNEVAL</string>
+    <string name="karneol">KARNEVÖL</string>
     <string name="efterkarneval">EFTERKARNEVAL</string>
     <string name="forkarneval">FÖRKARNEVAL</string>
     <string name="karnelan">KARNELAN</string>
