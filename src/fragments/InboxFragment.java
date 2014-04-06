@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class InboxFragment extends LKFragment {
 
@@ -154,13 +155,21 @@ public class InboxFragment extends LKFragment {
 						.findViewById(R.id.inbox_message_thumbnail);
 
 				titleTextView.setText(item.title.toUpperCase());
-				
+
 				titleTextView.setTextColor(context[0].getResources().getColor(
 						(R.color.red)));
 
 				// TODO: Set bold text if item.unread == false
 				if (item.unread == false) {
 					setFinish(root.findViewById(R.id.inbox_background),
+							((LKTextViewBold) root
+									.findViewById(R.id.inbox_message_title)),
+							((LKTextViewBold) root
+									.findViewById(R.id.inbox_message_sektion_title)),
+							((LKTextView) root
+									.findViewById(R.id.inbox_message_preview)),
+							((LKTextView) root
+									.findViewById(R.id.inbox_message_date)),
 							((ImageView) root.findViewById(R.id.red)));
 				}
 
@@ -185,12 +194,10 @@ public class InboxFragment extends LKFragment {
 				String previewMessage = message.substring(0, counter)
 						+ ((dots) ? "..." : "");
 				messagePreviewTextView.setText(previewMessage);
-				messagePreviewTextView.setTextColor(context[0].getResources()
-						.getColor((R.color.red)));
+			
 
 				dateTextView.setText(item.date);
-				dateTextView.setTextColor(context[0].getResources().getColor(
-						(R.color.red)));
+				
 				thumbnailImageView.setImageBitmap(item.image);
 
 				item.layout = root;
@@ -235,8 +242,13 @@ public class InboxFragment extends LKFragment {
 			Log.d("InboxFragment", "Completed RenderingTask");
 		}
 
-		private void setFinish(View v, ImageView red) {
+		private void setFinish(View v, LKTextViewBold tv1, LKTextViewBold tv2,
+				LKTextView tv3, LKTextView tv4, ImageView red) {
 			// TODO Auto-generated method stub
+			tv1.setTextColor(getResources().getColor(R.color.shadow_red));
+			tv2.setTextColor(getResources().getColor(R.color.shadow_red));
+			tv3.setTextColor(getResources().getColor(R.color.shadow_red));
+			tv4.setTextColor(getResources().getColor(R.color.shadow_red));
 
 			v.setBackgroundResource(R.drawable.beige_bg_bottom_shadow);
 			red.setVisibility(View.VISIBLE);

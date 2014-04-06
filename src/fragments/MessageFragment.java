@@ -26,7 +26,7 @@ public class MessageFragment extends LKFragment{
 		LKTextView messageTextView = (LKTextView) root.findViewById(R.id.message_message_text);
 		ImageView thumbnailImageView = (ImageView) root.findViewById(R.id.message_thumbnail);
 		
-		titleTextView.setText(listItem.title);
+		titleTextView.setText(listItem.title.toUpperCase());
 		dateTextView.setText(listItem.date);
 		messageTextView.setText(listItem.message);
 		thumbnailImageView.setImageBitmap(listItem.image);

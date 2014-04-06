@@ -38,6 +38,7 @@
     <color name="red">#F0533E</color>
     <color name="beige_bg">#F7EAD4</color>
     <color name="shadow_black">#66000000</color>
+    <color name="shadow_red">#f89179</color>
 
     <color name="bg_sangbok">#f6ead4</color>
     <color name="button_white_press">#F7EAD4</color>
