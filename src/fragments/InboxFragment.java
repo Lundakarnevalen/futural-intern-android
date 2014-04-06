@@ -1,26 +1,19 @@
 package fragments;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.android.R.color;
-import se.lundakarnevalen.android.R.dimen;
-import se.lundakarnevalen.android.R.id;
-import se.lundakarnevalen.android.R.layout;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import se.lundakarnevalen.widget.LKTextView;
+import se.lundakarnevalen.widget.LKTextViewBold;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,7 +75,9 @@ public class InboxFragment extends LKFragment{
 		// Code to add dummy data into database.
 //		LKSQLiteDB dbDummy = new LKSQLiteDB(context);
 //		int tmp = dbDummy.heighestMessageId();
-//		dbDummy.addItem(new LKMenuListItem("Title", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.", "2015-15-34", tmp+1, true, null));
+//		dbDummy.addItem(new LKMenuListItem("Title", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.", "2015-15-34",1, tmp+1, true));
+//		dbDummy.addItem(new LKMenuListItem("Fiskar",  "Dansa kan man göra om man vill!", "2015-15-34", 5, tmp+1, true));
+//		dbDummy.addItem(new LKMenuListItem("Flapp",  "Kommunicera bör man annars dör man...", "2321-19-74", 10 , tmp+1, true));
 
 		//LKSQLiteDB dbDummy = new LKSQLiteDB(context);
 		//dbDummy.addItem(new LKMenuListItem("Title", "Leet (or '1337'), also known as eleet or leetspeak, is an alternative alphabet for the English language that is used primarily on the Internet. It uses various combinations of ASCII characters to replace Latinate letters. For example, leet spellings of the word leet include 1337 and l33t; eleet may be spelled 31337 or 3l33t. The term leet is derived from the word elite. The leet alphabet is a specialized form of symbolic writing. Leet may also be considered a substitution cipher, although many dialects or linguistic varieties exist in different online communities. The term leet is also used as an adjective to describe formidable prowess or accomplishment, especially in the fields of online gaming and in its original usage – computer hacking.", "2015-15-34", true, null));
@@ -96,10 +91,10 @@ public class InboxFragment extends LKFragment{
 	 * @param message
 	 * @param date
 	 */
-	public static float addMessage(Context context, String title, String message, String date, int id){
+	public static float addMessage(Context context, String title, String message, String date, int recipients, int id){
 		LKSQLiteDB db = new LKSQLiteDB(context);
 		Log.d("InboxFragment", "InboxFragment.addMessage.id = "+id);
-		float data = db.addItem(new LKMenuListItem(title, message, date, id, true, null)); // Null är bitmappen.
+		float data = db.addItem(new LKMenuListItem(title, message, date, recipients, id, true)); // Null är bitmappen.
 		db.close();
 		return data;
 	}
@@ -122,7 +117,7 @@ public class InboxFragment extends LKFragment{
 			ListView.LayoutParams lp = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, context[0].getResources().getDimensionPixelSize(R.dimen.horizontal_margin));
 			RelativeLayout r = new RelativeLayout(context[0]);
 			r.setLayoutParams(lp);
-			LKMenuListItem l = new LKMenuListItem("","","", 0, false,null);
+			LKMenuListItem l = new LKMenuListItem("","","",Integer.MIN_VALUE, 0, false);
 			l.layout = r;
 			l.isStatic = true;
 			items.add(l);
@@ -141,6 +136,7 @@ public class InboxFragment extends LKFragment{
 				LKTextView titleTextView = (LKTextView) root.findViewById(R.id.inbox_message_title);
 				LKTextView messagePreviewTextView = (LKTextView) root.findViewById(R.id.inbox_message_preview);
 				LKTextView dateTextView = (LKTextView) root.findViewById(R.id.inbox_message_date);
+				LKTextViewBold sectionTextView = (LKTextViewBold) root.findViewById(R.id.inbox_message_sektion_title);
 				ImageView thumbnailImageView = (ImageView) root.findViewById(R.id.inbox_message_thumbnail);
 				
 				titleTextView.setText(item.title);
@@ -178,7 +174,162 @@ public class InboxFragment extends LKFragment{
 				
 				dateTextView.setText(item.date);
 				dateTextView.setTextColor(context[0].getResources().getColor((R.color.peach)));
-				thumbnailImageView.setImageBitmap(item.image);
+				
+				// Set image and section text depending on item.recipients
+				switch (item.recipients) {
+				case 0:
+					sectionTextView.setText("Karnevalen");
+					break;
+				case 1:
+					thumbnailImageView.setImageResource(R.drawable.barnevalen);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 2:
+					thumbnailImageView.setImageResource(R.drawable.biljetteriet);
+					sectionTextView.setText(R.string.sektion_2);
+					break;
+				case 3:
+					thumbnailImageView.setImageResource(R.drawable.bladderiet);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 4:
+					thumbnailImageView.setImageResource(R.drawable.cirkusen);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 5:
+					thumbnailImageView.setImageResource(R.drawable.dansen);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 6:
+					thumbnailImageView.setImageResource(R.drawable.ekonomi);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 7:
+					thumbnailImageView.setImageResource(R.drawable.kabaren);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 8:
+					thumbnailImageView.setImageResource(R.drawable.fabriken);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 9:
+					thumbnailImageView.setImageResource(R.drawable.klipperiet);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 10:
+					thumbnailImageView.setImageResource(R.drawable.kommunikation);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 11:
+					thumbnailImageView.setImageResource(R.drawable.krog);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 12:
+					thumbnailImageView.setImageResource(R.drawable.krog);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 13:
+					thumbnailImageView.setImageResource(R.drawable.krog);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 14:
+					thumbnailImageView.setImageResource(R.drawable.krog);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 15:
+					thumbnailImageView.setImageResource(R.drawable.krog);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 16:
+					thumbnailImageView.setImageResource(R.drawable.omrade);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 17:
+					thumbnailImageView.setImageResource(R.drawable.musiken);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 18:
+					thumbnailImageView.setImageResource(R.drawable.radio);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 19:
+					thumbnailImageView.setImageResource(R.drawable.revyn);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 20:
+					thumbnailImageView.setImageResource(R.drawable.shoppen);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 21:
+					thumbnailImageView.setImageResource(R.drawable.show);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 22:
+					thumbnailImageView.setImageResource(R.drawable.snaxeriet);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 23:
+					thumbnailImageView.setImageResource(R.drawable.spexet);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 24:
+					thumbnailImageView.setImageResource(R.drawable.sakerhet);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 25:
+					thumbnailImageView.setImageResource(R.drawable.tombolan);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 26:
+					thumbnailImageView.setImageResource(R.drawable.vieriet);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 100:
+					thumbnailImageView.setImageResource(R.drawable.festmasteriet);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 101:
+					thumbnailImageView.setImageResource(R.drawable.festmasteriet);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 102:
+					thumbnailImageView.setImageResource(R.drawable.festmasteriet);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 199:
+					thumbnailImageView.setImageResource(R.drawable.festmasteriet);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 202:
+					thumbnailImageView.setImageResource(R.drawable.smanojen);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 203:
+					thumbnailImageView.setImageResource(R.drawable.smanojen);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 204:
+					thumbnailImageView.setImageResource(R.drawable.smanojen);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 300:
+					thumbnailImageView.setImageResource(R.drawable.tag);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 399:
+					thumbnailImageView.setImageResource(R.drawable.tag);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 400:
+					thumbnailImageView.setImageResource(R.drawable.nojen);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				case 499:
+					thumbnailImageView.setImageResource(R.drawable.nojen);
+					sectionTextView.setText(R.string.sektion_1);
+					break;
+				}
+				
 				
 				item.layout = root;
 			}
@@ -187,7 +338,7 @@ public class InboxFragment extends LKFragment{
 			lp = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, context[0].getResources().getDimensionPixelSize(R.dimen.horizontal_margin_half));
 			r = new RelativeLayout(context[0]);
 			r.setLayoutParams(lp);
-			l = new LKMenuListItem("","","", 0, false,null);
+			l = new LKMenuListItem("","","",Integer.MIN_VALUE, 0, false);
 			l.layout = r;
 			items.add(l);
 			

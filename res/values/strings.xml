@@ -363,5 +363,44 @@
 	<string name="info_text_actionbar">SÄLJA TIDNING</string>
 	<string name="info_text_button">Förstår du fortfarande inte?</string>
 	<string name="info_text_button2">OK, jag förstår!</string>
+	
+	<string-array name="sections">
+	   	<item>1|Barnevalen</item>
+	    <item>2|Biljetteriet</item>
+	    <item>3|Blädderiet</item>
+	    <item>4|Cirkusen</item>
+	    <item>5|Dansen</item>
+	    <item>6|Ekonomi</item>
+	    <item>7|Kabarén</item>
+	    <item>8|Fabriken</item>
+	    <item>9|Klipperiet</item>
+	    <item>10|Kommunikation</item>
+	    <item>11|Pub Fine Dine</item>
+	    <item>12|Pub l[a]unchingpad</item>
+	    <item>13|Pub Molnet</item>
+	    <item>14|Pub Nangilima</item>
+	    <item>15|Pub Undervatten</item>
+	    <item>16|Området</item>
+	    <item>17|Musiken</item>
+	    <item>18|Radion</item>
+	    <item>19|Revyn</item>
+	    <item>20|Shoppen</item>
+	    <item>21|Showen</item>
+	    <item>22|Snaxeriet</item>
+	    <item>23|Spexet</item>
+	    <item>24|Säkerhet</item>
+	    <item>25|Tombola</item>
+	    <item>26|Vieriet</item>
+	    <item>100|Festmästeriet - Bamba</item>
+	    <item>101|Festmästeriet - VIP</item>
+	    <item>102|Festmästeriet - Lager</item>
+	    <item>202|Smånöjena - Undergången</item>
+	    <item>203|Smånöjena - Sketcetera</item>
+	    <item>204|Smånöjena - FuturalFuneral</item>
+	    <item>300|Tåget - Vagn</item>
+	    <item>399|Tåget - Centralt</item>
+	    <item>400|Tältnöjen - Tält</item>
+	    <item>499|Tältnöjen - Centralt</item>
+	</string-array>
     
 </resources>
