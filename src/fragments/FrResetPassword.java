@@ -2,10 +2,12 @@ package fragments;
 
 import json.CredentialEmailWrite;
 import json.ResetResponse;
+import se.lundakarnevalen.android.AcLogin;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import util.HelperEmail;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -32,6 +34,11 @@ public class FrResetPassword extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fr_layout_reset_password, null);
 
+		Context context = getActivity();
+		AcLogin activity = (AcLogin) context;
+		
+		activity.setActionBarTitle(getString(R.string.action_bar_reset_password));
+		
 		remote = new LKRemote(rootView.getContext(), new ResetRemoteListener());
 
 		mEmailView = (EditText) rootView.findViewById(R.id.email_field);

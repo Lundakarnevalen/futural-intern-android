@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:orientation="vertical"
-    tools:context="se.lundakarnevalen.android.LoginActivity" >
+    android:orientation="vertical" >
 
     <!-- Login progress -->
 
@@ -13,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" >
-        
-        <include layout="@layout/layout_clouds"/>
+
+        <include layout="@layout/layout_clouds" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -44,13 +43,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-        
-        <include layout="@layout/layout_clouds"/>
+
+        <include layout="@layout/layout_clouds" />
 
         <ScrollView
             android:id="@+id/login_form"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="match_parent" >
 
             <RelativeLayout
                 android:id="@+id/layout_outer"
@@ -58,40 +57,42 @@
                 android:layout_height="wrap_content" >
 
                 <LinearLayout
-                    android:id="@+id/layout_info_texts"
+                    android:id="@+id/layout_info_texts_sign_in"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="100dp"
                     android:background="#FFFFFF"
                     android:orientation="vertical"
+                    android:paddingBottom="@dimen/padding_bottom"
                     android:paddingLeft="@dimen/padding_sides"
                     android:paddingRight="@dimen/padding_sides"
-                    android:paddingTop="@dimen/padding_top"
-                    android:paddingBottom="@dimen/padding_bottom" >
+                    android:paddingTop="@dimen/padding_top" >
 
                     <se.lundakarnevalen.widget.LKTextViewBold
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center_horizontal"
-                        android:textColor="@color/red"
-                        android:text="@string/welcome_text" />
+                        android:textSize="18sp"
+                        android:text="@string/welcome_text"
+                        android:textColor="@color/red" />
 
                     <se.lundakarnevalen.widget.LKTextViewBold
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="18sp"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/red"
                         android:gravity="center_horizontal"
-                        android:text="@string/register_desc_login_f" />
+                        android:text="@string/register_desc_login_f"
+                        android:textColor="@color/red" />
                 </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/layout_data_fields"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/layout_info_texts"
+                    android:layout_below="@id/layout_info_texts_sign_in"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="@dimen/sign_in_margin_sides"
                     android:layout_marginRight="@dimen/sign_in_margin_sides"
@@ -154,9 +155,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/layout_data_fields"
-                    android:layout_marginLeft="@dimen/horizontal_margin_tripple"
-                    android:layout_marginRight="@dimen/horizontal_margin_tripple"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/horizontal_margin_login"
+                    android:layout_marginRight="@dimen/horizontal_margin_login"
                     android:text="@string/sign_in_button" />
 
                 <se.lundakarnevalen.widget.LKButtonYellow
@@ -164,20 +165,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/sign_in_button"
-                    android:textSize="15sp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="40dp"
                     android:background="#00FF00"
-                    android:text="@string/reset_password" />
+                    android:text="@string/reset_password"
+                    android:textSize="15sp" />
 
                 <!-- SHADOW for layout_info_text -->
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="5dp"
-                    android:layout_alignLeft="@id/layout_info_texts"
-                    android:layout_alignRight="@id/layout_info_texts"
-                    android:layout_below="@id/layout_info_texts"
+                    android:layout_alignLeft="@id/layout_info_texts_sign_in"
+                    android:layout_alignRight="@id/layout_info_texts_sign_in"
+                    android:layout_below="@id/layout_info_texts_sign_in"
                     android:background="@drawable/shadow" >
                 </RelativeLayout>
 

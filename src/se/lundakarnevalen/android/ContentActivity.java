@@ -93,7 +93,7 @@ public class ContentActivity extends ActionBarActivity implements
 		populateMenu();
 
 		loadFragment(new CountdownFragment(), false);
-
+		
 	}
 
 	@Override
