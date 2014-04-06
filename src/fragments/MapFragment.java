@@ -111,9 +111,6 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			if(LKUser.localUserStored(context)) {
 				LKUser user = new LKUser(context);
 				user.getUserLocaly();
-				Log.d("TOKEN MapFragment","Get token: "+user.email);
-				
-				Log.d("TOKEN MapFragment","Get token: "+user.token);
 				if(user.token!=null) {
 					token = user.token;
 					Log.d("MapFragment","Get token: "+user.token);
