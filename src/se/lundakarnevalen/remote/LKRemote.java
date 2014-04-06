@@ -27,7 +27,7 @@ import android.util.Log;
  *
  */
 
-public class LKRemote {
+public class LKRemote { 
 
 	private final String LOG_TAG = "API call";
 
@@ -45,7 +45,7 @@ public class LKRemote {
 	 */
 	public LKRemote(Context context){
 		this.context = context;
-	}
+	} 
 
 	/**
 	 * Creates remote object and sets a listener for the result
