@@ -38,7 +38,6 @@ public class SplashscreenActivity extends Activity{
 	Context context;
 
 	private final int THREAD_DELAY = 2000; //Splashscreen shown in milliseconds
-//	private final int THREAD_DELAY = 200; //Splashscreen shown in milliseconds
 
 	private static final String LOG_TAG = "splash";
 	GoogleCloudMessaging gcm;

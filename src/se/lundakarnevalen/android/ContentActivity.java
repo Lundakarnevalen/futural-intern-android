@@ -136,7 +136,7 @@ public class ContentActivity extends ActionBarActivity implements
 //			Editor edit = sharedVersion.edit();
 //			edit.putFloat("Version", R.integer.json_version);
 //			edit.commit();
-//		}
+//		} 
 
 		this.setInboxCount();
 
