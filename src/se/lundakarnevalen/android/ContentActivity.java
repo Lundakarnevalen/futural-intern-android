@@ -155,6 +155,7 @@ public class ContentActivity extends ActionBarActivity implements
 				Log.d(LOG_TAG, "loop done");
 				db.close(); 
 				Log.d("ContentAct", "Completed getMessages");
+				setInboxCount();
 			} 
 		});
 		remote.showProgressDialog(false);
@@ -163,8 +164,6 @@ public class ContentActivity extends ActionBarActivity implements
 		tmpUser.getUserLocaly();
 		remote.requestServerForText("api/notifications.json?token="+tmpUser.token, "", RequestType.GET, false);
 		
-		this.setInboxCount();
-
 	}
 
 	private void updateUserFromServer() {
@@ -307,7 +306,7 @@ public class ContentActivity extends ActionBarActivity implements
 		}
 	}
 
-	private void setInboxCount() {
+	public void setInboxCount() {
 		final Context context = this;
 		new AsyncTask<Void, Void, Integer>() {
 

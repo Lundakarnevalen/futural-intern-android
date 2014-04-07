@@ -37,7 +37,7 @@ public class LKRemote {
 	private String remoteAdr = "http://www.karnevalist.se/";
 	//private String remoteAdr = "http://httpbin.org/put";
 	private boolean showProgressDialog = false;
-	TextResultListener textResultListener;
+	TextResultListener textResultListener; 
 	BitmapResultListener bitmapListener = null;
 	/**
 	 * Creates remote object and sets a listener for the result
