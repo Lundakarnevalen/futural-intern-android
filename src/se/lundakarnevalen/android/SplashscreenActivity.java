@@ -118,13 +118,15 @@ public class SplashscreenActivity extends Activity{
 					Log.d(LOG_TAG, "done");
 				}
 				Log.d(LOG_TAG, "loop done");
-				db.close();
+				db.close(); 
 				Log.d("SplashScreen", "Completed getMessages");
-			}
+			} 
 		});
 		remote.showProgressDialog(false);
 		Log.d("SplashScreen", "Starting server request");
-		remote.requestServerForText("notifications.json", "", RequestType.GET, false);
+		LKUser user = new LKUser(this);
+		user.getUserLocaly();
+		remote.requestServerForText("api/notifications.json?token="+user.token, "", RequestType.GET, false);
 	}
 
 	public void addMessage(String title, String message, String date, int recipients, int id, LKSQLiteDB db) {
