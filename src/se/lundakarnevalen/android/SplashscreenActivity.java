@@ -106,7 +106,8 @@ public class SplashscreenActivity extends Activity{
 				}
 				Gson gson = new Gson();
 				Response.Notifications notifications = gson.fromJson(result, Response.Notifications.class);
-				Notification[] messages = notifications.notifications;
+				notifications.parseMessages();
+				Notification[] messages = notifications.messages;   
 				LKSQLiteDB db = new LKSQLiteDB(context);
 				Log.d("SplashScreen", "Created db object. Starting loop. messages.length = "+messages.length);
 				for(int i=0;i<messages.length;i++) {

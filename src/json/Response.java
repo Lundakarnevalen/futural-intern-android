@@ -1,5 +1,9 @@
 package json;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+
 public class Response {
 	/**
 	 * Json when form is submited. 
@@ -47,7 +51,14 @@ public class Response {
 		public String status;
 		public int records;
 		public boolean remaining;
-		public Notification[] notifications;
+		public String notifications;
+		public Notification[] messages;
+		
+		public void parseMessages() {
+			Log.d("Notification", notifications);
+			Gson gson = new Gson();
+			this.messages = gson.fromJson(notifications, Notification[].class);
+		}
 	}
 	
 	
