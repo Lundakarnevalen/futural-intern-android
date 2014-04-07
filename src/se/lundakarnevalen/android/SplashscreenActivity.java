@@ -402,14 +402,22 @@ public class SplashscreenActivity extends Activity{
 			@Override
 			protected String doInBackground(Object... params) {
 				String regId = null;
-				try{
-					
-					regId = gcm.register(GCMReceiver.SENDER_ID);
-					Log.d(LOG_TAG, "Got regId: "+regId);
-					storeAsRegId(regId, context);					
-				}catch(IOException e){
-					Log.e(LOG_TAG, "Exception thrown when trying to register" + e);
-					return null;
+				boolean trying = true;
+				int tries = 0;
+				while (tries < 5 || trying) {
+					try {
+
+						tries++;
+						regId = gcm.register(GCMReceiver.SENDER_ID);
+						Log.d(LOG_TAG, "Got regId: " + regId);
+						storeAsRegId(regId, context);
+
+						trying = false;
+					} catch (IOException e) {
+						Log.e(LOG_TAG,
+								"Exception thrown when trying to register" + e);
+						return null;
+					}
 				}
 
 				LKUser user = new LKUser(context);
