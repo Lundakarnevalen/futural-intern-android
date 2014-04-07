@@ -96,7 +96,7 @@ public class ContentActivity extends ActionBarActivity implements
 		populateMenu();
 
 		loadFragment(new CountdownFragment(), false);
-		
+
 	}
 
 	@Override
@@ -109,41 +109,32 @@ public class ContentActivity extends ActionBarActivity implements
 	public void onResume() {
 		super.onResume();
 		Log.d(LOG_TAG, "onResume");
+		
+		updateUserFromServer();
+		
 		// Check if need to register for new gcm.
-		SharedPreferences sp = getSharedPreferences(LKFragment.SP_GCM_NAME,
-				MODE_PRIVATE);
-		String gcmId = sp.getString(LKFragment.SP_GCM_REGID, null);
-		if (gcmId == null) {
-
+//		SharedPreferences sp = getSharedPreferences(LKFragment.SP_GCM_NAME, MODE_PRIVATE);
+//		String gcmId = sp.getString(LKFragment.SP_GCM_REGID, null);
+		String gcmId = SplashscreenActivity.getRegId(this);
+		Log.d(LOG_TAG, "gcmId: " + gcmId);
+		if (gcmId == null || gcmId.equals("")) {
+			
+			Log.d(LOG_TAG, "gcmId was either null or empty, register again");
 			// Try to get new gcm.
 			GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 			SplashscreenActivity.regInBackground(this, gcm);
+		} else {
+			
 		}
 
-		SharedPreferences sharedVersion = getSharedPreferences(
-				LKFragment.SP_JSON_VERSION, MODE_PRIVATE);
-		int version = sp.getInt("Version", -1);
-
-//		if (version < R.integer.json_version) {
-			Log.d(LOG_TAG, "Update of user information required");
-			// If this happens the current user information is old, so we need
-			// to update it.
-
-			LKUser user = new LKUser(this);
-			user.getUserLocaly();
-			user.updateFromRemote();
-			
-			Log.d("WAO", user.getJsonWithId());
-
-			Log.d(LOG_TAG, "Updating the version number");
-
-//			Editor edit = sharedVersion.edit();
-//			edit.putFloat("Version", R.integer.json_version);
-//			edit.commit();
-//		} 
-
 		this.setInboxCount();
+	}
 
+	private void updateUserFromServer() {
+		//		update JSon form server
+				LKUser user = new LKUser(this);
+				user.getUserLocaly();
+				user.updateFromRemote();
 	}
 
 	/**

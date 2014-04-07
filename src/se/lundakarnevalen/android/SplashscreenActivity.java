@@ -2,8 +2,10 @@ package se.lundakarnevalen.android;
 
 import java.io.IOException;
 
+import json.Karnevalist;
 import json.Notification;
 import json.Response;
+import se.lundakarnevalen.remote.GCMHelper;
 import se.lundakarnevalen.remote.GCMReceiver;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.RequestType;
@@ -42,7 +44,7 @@ public class SplashscreenActivity extends Activity{
 	private static final String LOG_TAG = "splash";
 	GoogleCloudMessaging gcm;
 	String regId;
-	SharedPreferences sp;
+	
 	boolean shown = false;
 
 	@Override
@@ -59,12 +61,12 @@ public class SplashscreenActivity extends Activity{
 		//wrapper.setOnClickListener(cont);
 		createMenuThread();
 
-		sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, Context.MODE_PRIVATE);
+		
 		addDataSekBg(); 
 		if(checkForGooglePlay()){
 			// GCM registration
 			Log.d("SplashScreen", "starting gcmRegistration()");
-			gcmRegistration();
+//			gcmRegistration();
 		}else{
 			// What to do???
 		}
@@ -137,33 +139,35 @@ public class SplashscreenActivity extends Activity{
 		Log.d("SplashScreen", "Added message with id = "+id);
 	}
 
-	private String getRegId(){
+	public static String getRegId(Context context){
+		SharedPreferences sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, Context.MODE_PRIVATE);
 		Log.d("SplashScreen", "Starting getRegId()");
 		String regId = sp.getString(LKFragment.SP_GCM_REGID, "");
 		if(regId.length() <= 0)
 			return "";
 		String regAppV = sp.getString(LKFragment.SP_GCM_REG_APP, "-1");
-		String currentVersion = LKFragment.getAppVersion(this);
+		String currentVersion = LKFragment.getAppVersion(context);
 		if(!regAppV.equals(currentVersion)){
 			Log.d(LOG_TAG, "New app version installed");
 			return "";
 		}
 		Log.d("SplashScreen", "Finished getRegId()");
-		return regId;
+		return regId; 
 	}
 
-	private void gcmRegistration(){
-		gcm = GoogleCloudMessaging.getInstance(context);
-		Log.d("SplashScreen", "Got gcm instance");
-		regId = getRegId();
-		if(regId.length() <= 0){
-			Log.d(LOG_TAG, "Will try to register");
-			// Register for gcm.
-			regInBackground(context, gcm);
-		}else{
-			Log.d(LOG_TAG, "found regId");
-		}
-	}
+//	private void gcmRegistration(){
+//		gcm = GoogleCloudMessaging.getInstance(context);
+//		Log.d("SplashScreen", "Got gcm instance");
+//		regId = getRegId(context);
+//		if(regId.length() <= 0){
+//			Log.d(LOG_TAG, "Will try to register");
+//			// Register for gcm.
+//			regInBackground(context, gcm);
+//		}else{
+//			
+//			Log.d(LOG_TAG, "Check if the log needs to be updated");
+//		}
+//	}
 
 	public static void storeAsRegId(String regId, Context context){
 		SharedPreferences sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, MODE_PRIVATE);
@@ -399,31 +403,41 @@ public class SplashscreenActivity extends Activity{
 			protected String doInBackground(Object... params) {
 				String regId = null;
 				try{
-					/*if(gcm == null){
-						gcm = GoogleCloudMessaging.getInstance(context);
-					}*/
+					
 					regId = gcm.register(GCMReceiver.SENDER_ID);
 					Log.d(LOG_TAG, "Got regId: "+regId);
 					storeAsRegId(regId, context);					
 				}catch(IOException e){
-					Log.e(LOG_TAG, "Exception thrown when trying to register"+e);
+					Log.e(LOG_TAG, "Exception thrown when trying to register" + e);
+					return null;
 				}
 
+				LKUser user = new LKUser(context);
+				user.getUserLocaly();
+				
 				// POST reg id to server
 				LKRemote remote = new LKRemote(context, new TextResultListener(){
 					@Override
 					public void onResult(String result) {
-						Log.d(LOG_TAG, "regId result: "+result);
+						Log.d(LOG_TAG, "regId result: " + result);
 					}
 				});
-				remote.requestServerForText("phones.json", "{\"google_token\":\""+regId+"\"}", LKRemote.RequestType.POST, false);
+				
+				user.gcmRegId = getRegId(context); 
+				
+				remote.requestServerForText("api/karnevalister/" + user.id, user.getJson(true), LKRemote.RequestType.PUT, false);
 
+				Log.d(LOG_TAG, "AASDKANSDPOASDJPAOS");
+				Log.d(LOG_TAG, "Stuff: " + user.getJson(true));
+				
+				Log.d(LOG_TAG, "sent to server");
+				 
 				return regId;
 			}
 
 			@Override
 			protected void onPostExecute(String message){
-
+ 
 			}
 
 		}.execute();
