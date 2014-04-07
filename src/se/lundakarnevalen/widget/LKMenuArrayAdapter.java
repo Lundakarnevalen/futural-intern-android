@@ -89,6 +89,8 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 		final LKMenuListItem item = getItem(pos);
+		Log.d("FUUCK!!", pos+"");
+		Log.d("FUUCK!!", view.toString());
 		if(!item.enable) {
 			return;
 		}
@@ -99,6 +101,7 @@ public class LKMenuArrayAdapter extends ArrayAdapter<LKMenuArrayAdapter.LKMenuLi
 		Log.d(LOG_TAG, "clicked: "+pos);
 		OnClickListener listener = item.listener;
 		if(listener != null){
+			Log.d("FUUCK!!", "Running code...");
 			listener.onClick(view);
 			view.setSelected(true);
 			if(item.navDrawer != null && item.closeDrawerOnClick)

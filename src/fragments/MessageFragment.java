@@ -34,7 +34,7 @@ public class MessageFragment extends LKFragment{
 		
 		switch (listItem.recipients) {
 		case 0:
-			thumbnailImageView.setImageResource(R.drawable.icon);
+			thumbnailImageView.setImageResource(R.drawable.alla);
 			sectionTextView.setText("Karnevalen");
 			break;
 		case 1:

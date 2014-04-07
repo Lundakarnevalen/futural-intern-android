@@ -123,6 +123,7 @@ public class InboxFragment extends LKFragment {
 
 		@Override
 		protected Void doInBackground(Context... context) {
+			Log.d("Inbox", "Rendering task started");
 
 			// Get inflater
 			LayoutInflater inflater = (LayoutInflater) context[0]
@@ -176,7 +177,9 @@ public class InboxFragment extends LKFragment {
 						(R.color.red)));
 
 				// TODO: Set bold text if item.unread == false
-				if (item.unread == false) {
+				if (!item.unread) {
+					Log.d("Inbox", item.unread+"");
+					Log.d("Inbox", item.title);
 					setFinish(root.findViewById(R.id.inbox_background),
 							((LKTextViewBold) root
 									.findViewById(R.id.inbox_message_title)),
@@ -218,7 +221,7 @@ public class InboxFragment extends LKFragment {
 				// Set image and section text depending on item.recipients
 				switch (item.recipients) {
 				case 0:
-					thumbnailImageView.setImageResource(R.drawable.icon);
+					thumbnailImageView.setImageResource(R.drawable.alla);
 					sectionTextView.setText("Karnevalen");
 					break;
 				case 1:
@@ -416,6 +419,8 @@ public class InboxFragment extends LKFragment {
 		private void setFinish(View v, LKTextViewBold tv1, LKTextViewBold tv2,
 				LKTextView tv3, LKTextView tv4, ImageView red) {
 			// TODO Auto-generated method stub
+			if(isAdded()) {
+			
 			tv1.setTextColor(getResources().getColor(R.color.shadow_red));
 			tv2.setTextColor(getResources().getColor(R.color.shadow_red));
 			tv3.setTextColor(getResources().getColor(R.color.shadow_red));
@@ -423,7 +428,7 @@ public class InboxFragment extends LKFragment {
 
 			v.setBackgroundResource(R.drawable.beige_bg_bottom_shadow);
 			red.setVisibility(View.VISIBLE);
-
+			}
 		}
 
 	}
