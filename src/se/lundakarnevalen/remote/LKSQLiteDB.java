@@ -71,7 +71,7 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		Cursor cursor = dbRead.query(LKSQLiteDBContract.TABLE_NAME, dataProjection, null, null, null, null, sort);
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()){
-			boolean unread = cursor.getInt(5) == 1;
+			boolean unread = cursor.getInt(4) == 1;
 			LKMenuListItem item = new LKMenuListItem(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(5), cursor.getInt(0), unread);
 			data.add(item);
 			cursor.moveToNext();
@@ -92,7 +92,7 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 		cursor.moveToFirst();
 		int count = 0;
 		while(!cursor.isAfterLast()) {
-			if(Integer.parseInt(cursor.getString(0)) == 1) {
+			if(cursor.getInt(0) == 1) {
 				count++;
 			}
 			cursor.moveToNext();
