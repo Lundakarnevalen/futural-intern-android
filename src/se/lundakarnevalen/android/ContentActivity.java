@@ -380,7 +380,7 @@ public class ContentActivity extends ActionBarActivity implements
 		// listItems.add(new LKMenuListItem("Sektioner", 0, new
 		// SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true,
 		// drawerLayout));
-
+ 
 		// TODO Map only available on tidningsdagen
 		countDown = new CountdownFragment();
 		listItems.add(new LKMenuListItem(getString(R.string.countdown_title),
@@ -389,7 +389,7 @@ public class ContentActivity extends ActionBarActivity implements
 
 		// TODO fix block
 
-		startTimeMap.set(2014, Calendar.APRIL, 3, 17, 11, 00);
+		startTimeMap.set(2014, Calendar.APRIL, 11, 59, 00, 00);
 		endTimeMap.set(2014, Calendar.APRIL, 13, 05, 30, 00);
 
 		Calendar c = Calendar.getInstance();

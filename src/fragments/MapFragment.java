@@ -111,9 +111,6 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 			if(LKUser.localUserStored(context)) {
 				LKUser user = new LKUser(context);
 				user.getUserLocaly();
-				Log.d("TOKEN MapFragment","Get token: "+user.email);
-				
-				Log.d("TOKEN MapFragment","Get token: "+user.token);
 				if(user.token!=null) {
 					token = user.token;
 					Log.d("MapFragment","Get token: "+user.token);
@@ -295,6 +292,10 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 				nbrOfPersons += p.quantity;
 			}
 			float difference = biggestDot - smallestDot;
+			if(difference == 0) {
+				difference = biggestDot;
+				smallestDot = 0;
+			}
 			for (Position p : positions) {
 				float lat = (p.lat - startLatMap) / diffLat;
 				float lon = (p.lng - startLonMap) / diffLon;

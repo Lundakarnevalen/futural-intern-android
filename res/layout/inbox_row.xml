@@ -37,6 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:gravity="center_horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/red"
                 android:textSize="@dimen/title_text_size" />
@@ -48,6 +50,8 @@
                 android:layout_below="@id/inbox_message_title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:gravity="center_horizontal"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
@@ -60,6 +64,8 @@
                 android:layout_below="@id/inbox_message_sektion_title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:gravity="center_horizontal"
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/red"
@@ -72,8 +78,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@id/inbox_message_text_container"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="@dimen/horizontal_margin_half"
+            android:paddingBottom="4dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/red"
             android:textSize="@dimen/small_date_text_size" />
