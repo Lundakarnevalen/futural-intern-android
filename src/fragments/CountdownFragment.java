@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,24 +28,24 @@ import android.widget.TextView;
 
 @SuppressLint("DefaultLocale")
 public class CountdownFragment extends LKFragment {
-	private MySoundFactory factory;
-	private ImageView play;
-	private boolean playing;
-	private boolean started;
+	private static MySoundFactory factory;
+	private static ImageView play;
+	private static boolean playing;
+	private static boolean started;
 	private int songID = R.raw.lundakarneval;
-	private float tot;
+	private static float tot;
 	// Lyrics
-	int text = 0;
-	private long startTime;
-	private int totTime;
-	private TextView lyric1;
-	private TextView lyric2;
-	private TextView lyric3;
-	private final Handler handler = new Handler();
-	private final Handler moveHandler = new Handler();
-	private Runnable r;
-	private Runnable r2;
-	private long pauseTime = -1;
+	private static int text = 0;
+	private static long startTime;
+	private static int totTime;
+	private static TextView lyric1;
+	private static TextView lyric2;
+	private static TextView lyric3;
+	private static final Handler handler = new Handler();
+	private static final Handler moveHandler = new Handler();
+	private static myRunnable r;
+	private static moveRunnable r2;
+	private static long pauseTime = -1;
 	private int[] delays = { 11260, 3456, 2578, 4451, 4002, 3671, 3849, 2518,
 			5784, 3684, 3656, 3707, 2263, 1786, 1929, 1735, 1976, 1770, 4701,
 			1344, 1922, 3856, 1060, 2269, 3289, 2462, 2481, 3802, 2486, 3166,
@@ -61,15 +62,13 @@ public class CountdownFragment extends LKFragment {
 	private Date karneBeer;
 	private Date postKarneval;
 	private String[] lyrics;
-	private int delay;
+	private static int delay;
 	//
-	private ImageView mover;
+	private static ImageView mover;
 
-	TextView tv;
-	long diff;
 
-	private TextView tvKarnevalTitle;
-	private TextView tvKarneval;
+	private static TextView tvKarnevalTitle;
+	private static TextView tvKarneval;
 	private TextView tvPreKarneval;
 	private TextView tvPostKarneval;
 	private TextView tvKarnevalBeer;
@@ -80,7 +79,7 @@ public class CountdownFragment extends LKFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Change the layout
-		
+
 		View rootView = inflater.inflate(R.layout.fr_layout_countdown, null);
 
 		tvKarnevalTitle = (TextView) rootView
@@ -96,7 +95,7 @@ public class CountdownFragment extends LKFragment {
 		tvKarneval.setTypeface(tf);
 
 		karneVal = new GregorianCalendar(2014, 4, 16, 0, 0, 0).getTime();
-	
+
 		karneLan = new GregorianCalendar(2014, 3, 16, 18, 0, 0).getTime();
 		preKarneval = new GregorianCalendar(2014, 4, 11, 0, 0, 0)
 		.getTime();
@@ -170,6 +169,9 @@ public class CountdownFragment extends LKFragment {
 							.findViewById(R.id.checkMark4))));
 		}
 
+		lyric1 = (TextView) rootView.findViewById(R.id.lyric1);
+		lyric2 = (TextView) rootView.findViewById(R.id.lyric2);
+		lyric3 = (TextView) rootView.findViewById(R.id.lyric4);
 		CountDownTask countDownTask = new CountDownTask();
 		// countDownTask.execute(diffKarneval, diffKarnelan, diffPreKarneval,
 		// diffKarnebeer, diffPostKarneval);
@@ -177,7 +179,7 @@ public class CountdownFragment extends LKFragment {
 
 		// new DrawingTheCloud(this.getContext());
 		mover = (ImageView) rootView.findViewById(R.id.music_handle1);
-
+		Log.d("Started:","yes"+started);
 		if (started) {
 			Matrix matrix = new Matrix();
 			mover.setScaleType(ImageView.ScaleType.MATRIX);
@@ -189,10 +191,9 @@ public class CountdownFragment extends LKFragment {
 
 			mover.setImageMatrix(matrix);
 
+
+
 		}
-		lyric1 = (TextView) rootView.findViewById(R.id.lyric1);
-		lyric2 = (TextView) rootView.findViewById(R.id.lyric2);
-		lyric3 = (TextView) rootView.findViewById(R.id.lyric4);
 
 		if (lyrics == null) {
 			Resources r = getResources();
@@ -275,23 +276,23 @@ public class CountdownFragment extends LKFragment {
 			lyric1.setText("");
 			lyric2.setText("");
 			lyric3.setText("");
-			factory = new MySoundFactory(getActivity());
-			factory.createLongMedia(songID, false);
-
+			
 			playing = false;
 			started = false;
 
 		} else {
-			tvKarnevalTitle.setVisibility(View.INVISIBLE);
-			tvKarneval.setVisibility(View.INVISIBLE);
-			if (text != delays.length - 1) {
-				lyric3.setText(lyrics[text + 1]);
-			}
-			if (text != 0) {
-				lyric1.setText(lyrics[text - 1]);
-			}
-			lyric2.setText(lyrics[text]);
 			if (playing) {
+
+				tvKarnevalTitle.setVisibility(View.INVISIBLE);
+				tvKarneval.setVisibility(View.INVISIBLE);
+				if (text != delays.length - 1) {
+					lyric3.setText(lyrics[text + 1]);
+				}
+				if (text != 0) {
+					lyric1.setText(lyrics[text - 1]);
+				}
+				lyric2.setText(lyrics[text]);
+				
 				play.setImageResource(R.drawable.pause);
 			} else {
 				play.setImageResource(R.drawable.playerbutton);
@@ -426,6 +427,9 @@ public class CountdownFragment extends LKFragment {
 
 	public void startLyrics() {
 
+		factory = new MySoundFactory(getContext());
+		factory.createLongMedia(songID, false);
+		
 		text = 0;
 		totTime = 0;
 		startTime = System.currentTimeMillis();
@@ -435,39 +439,12 @@ public class CountdownFragment extends LKFragment {
 		lyric1.setText("");
 		lyric3.setText(lyrics[1]);
 		lyric2.setText(lyrics[0]);
-		r = new Runnable() {
-			public void run() {
-				totTime += delays[text];
-				text++;
-				if (text >= delays.length) {
-					factory = new MySoundFactory(getContext());
-					factory.createLongMedia(songID, false);
-					started = false;
-					playing = false;
-					play.setImageResource(R.drawable.playerbutton);
-					return;
-				}
-				if (text == delays.length - 1) {
-					lyric3.setText("");
-				} else {
-					lyric3.setText(lyrics[text + 1]);
-				}
-				lyric2.setText(lyrics[text]);
-				lyric1.setText(lyrics[text - 1]);
-
-				long diff = delays[text]
-						- (System.currentTimeMillis() - startTime - totTime);
-				if (diff > 0) {
-					handler.postDelayed(this, diff);
-				} else {
-					handler.postDelayed(this, 0);
-				}
-			}
-		};
+		r = new myRunnable();
 		handler.postDelayed(r, delays[0]);
 	}
 
 	public void resumeLyrics(int delay) {
+		Log.d("get here","DELAy"+delay);
 		if (text != delays.length - 1) {
 
 			lyric3.setText(lyrics[text + 1]);
@@ -487,7 +464,6 @@ public class CountdownFragment extends LKFragment {
 		public void onClick(View v) {
 
 			if (playing) {
-
 				lyric1.setText("");
 				lyric2.setText("");
 				lyric3.setText("");
@@ -554,35 +530,13 @@ public class CountdownFragment extends LKFragment {
 		tot = width - img_coordinates[0]
 				- Math.round((20.0 / 65.0) * img_coordinates[0]);
 
-		r2 = new Runnable() {
-			float taken = 0;
-
-			public void run() {
-				Matrix matrix = new Matrix();
-				mover.setScaleType(ImageView.ScaleType.MATRIX);
-				matrix.set(mover.getImageMatrix());
-
-				float part = ((float) (System.currentTimeMillis() - startTime)) / 217000;
-				float move = tot * part;
-				if (part >= 1) {
-
-					matrix.postTranslate(-taken, 0);
-					mover.setImageMatrix(matrix);
-					return;
-				}
-				matrix.postTranslate(move - taken, 0);
-				taken = move;
-
-				mover.setImageMatrix(matrix);
-				moveHandler.postDelayed(this, 500);
-			}
-		};
+		r2 = new moveRunnable();
 
 		moveHandler.post(r2);
 		// 217 sek
 	}
 
-	
+
 	private String getCountdownMessage(long diffKarneval) {
 		long seconds = diffKarneval / 1000;
 		long minutes = seconds / 60;
@@ -617,4 +571,72 @@ public class CountdownFragment extends LKFragment {
 		}
 	}
 
+
+	private class myRunnable implements Runnable {
+
+
+		@Override
+		public void run() {
+			totTime += delays[text];
+			text++;
+			if (text >= delays.length) {
+				//factory = new MySoundFactory(getContext());
+				//factory.createLongMedia(songID, false);
+				tvKarnevalTitle.setVisibility(View.VISIBLE);
+				tvKarneval.setVisibility(View.VISIBLE);
+				lyric3.setText("");
+				lyric2.setText("");
+				lyric1.setText("");
+					
+				started = false;
+				playing = false;
+				play.setImageResource(R.drawable.playerbutton);
+				return;
+			}
+			if (text == delays.length - 1) {
+				lyric3.setText("");
+			} else {
+				lyric3.setText(lyrics[text + 1]);
+			}
+			lyric2.setText(lyrics[text]);
+			lyric1.setText(lyrics[text - 1]);
+			long diff = delays[text]
+					- (System.currentTimeMillis() - startTime - totTime);
+			if (diff > 0) {
+				handler.postDelayed(this, diff);
+			} else {
+				handler.postDelayed(this, 0);
+			}
+		}
+	};
+	
+	private class moveRunnable implements Runnable {
+		
+		float taken = 0;
+		
+		public void run() {
+			Matrix matrix = new Matrix();
+			mover.setScaleType(ImageView.ScaleType.MATRIX);
+			matrix.set(mover.getImageMatrix());
+
+			float part = ((float) (System.currentTimeMillis() - startTime)) / 217000;
+			float move = tot * part;
+			if (part >= 1) {
+
+				matrix.postTranslate(-taken, 0);
+				mover.setImageMatrix(matrix);
+				return;
+			}
+			matrix.postTranslate(move - taken, 0);
+			taken = move;
+
+			mover.setImageMatrix(matrix);
+			moveHandler.postDelayed(this, 500);
+		}
+	};
+
+
+
 }
+
+

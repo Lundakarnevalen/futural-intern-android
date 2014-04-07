@@ -11,6 +11,7 @@ import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -18,6 +19,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Messenger;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -41,6 +43,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import fragments.CountdownFragment;
 import fragments.InboxFragment;
 import fragments.LKFragment;
+import fragments.LKFragment.Messanger;
 import fragments.LKFragment.MessangerMessage;
 import fragments.MapFragment;
 import fragments.SongGroupsFragment;
@@ -591,9 +594,13 @@ public class ContentActivity extends ActionBarActivity implements
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (countDown != null) {
-				countDown.stopMusic();
-			}
+			int backCount = getSupportFragmentManager().getBackStackEntryCount();
+            
+			if (backCount == 0){
+				if (countDown != null) {
+					countDown.stopMusic();
+				}	
+            } 
 			// and so on...
 		}
 		return super.onKeyDown(keyCode, event);
