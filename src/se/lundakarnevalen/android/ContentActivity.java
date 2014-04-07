@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import json.Notification;
+import json.Response;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.BitmapResultListener;
-
+import se.lundakarnevalen.remote.LKRemote.RequestType;
 import se.lundakarnevalen.remote.LKSQLiteDB;
 import se.lundakarnevalen.remote.LKUser;
+import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter;
 import se.lundakarnevalen.widget.LKMenuArrayAdapter.LKMenuListItem;
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Messenger;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -39,11 +39,11 @@ import android.widget.TextView;
 
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.gson.Gson;
 
 import fragments.CountdownFragment;
 import fragments.InboxFragment;
 import fragments.LKFragment;
-import fragments.LKFragment.Messanger;
 import fragments.LKFragment.MessangerMessage;
 import fragments.MapFragment;
 import fragments.SongGroupsFragment;
@@ -75,6 +75,7 @@ public class ContentActivity extends ActionBarActivity implements
 
 	private ImageView actionBarLogo;
 	private TextView title;
+	private Context context = this;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -141,9 +142,43 @@ public class ContentActivity extends ActionBarActivity implements
 //			edit.putFloat("Version", R.integer.json_version);
 //			edit.commit();
 //		} 
+		
+		Log.d("SplashScreen", "Starting getMessages()");
+		LKRemote remote = new LKRemote(context, new LKRemote.TextResultListener() {
 
+			@Override
+			public void onResult(String result) {
+				Log.d("SplashScreen", "onResult(): "+result);
+				if(result == null) {
+					Log.d("SplashScreen", "Result from server was null");
+					return;
+				}
+				Gson gson = new Gson();
+				Response.Notifications notifications = gson.fromJson(result, Response.Notifications.class);
+				notifications.parseMessages();
+				Notification[] messages = notifications.messages;   
+				LKSQLiteDB db = new LKSQLiteDB(context);
+				Log.d("ContentAct", "Created db object. Starting loop. messages.length = "+messages.length);
+				for(int i=0;i<messages.length;i++) {
+					Log.d("ContentAct", "loop counter i = "+i);
+					if(!db.messageExistsInDb(messages[i].id)) {
+						Log.d("SplashScreen", "Message not in db");
+						db.addItem(new LKInboxArrayAdapter.LKMenuListItem(messages[i].title, messages[i].message, messages[i].created_at, messages[i].recipient_id, messages[i].id, true));
+					}
+					Log.d(LOG_TAG, "done");
+				}
+				Log.d(LOG_TAG, "loop done");
+				db.close(); 
+				Log.d("ContentAct", "Completed getMessages");
+			} 
+		});
+		remote.showProgressDialog(false);
+		Log.d("SplashScreen", "Starting server request");
+		LKUser tmpUser = new LKUser(this);
+		tmpUser.getUserLocaly();
+		remote.requestServerForText("api/notifications.json?token="+tmpUser.token, "", RequestType.GET, false);
+		
 		this.setInboxCount();
-
 	}
 
 	/**
@@ -291,6 +326,7 @@ public class ContentActivity extends ActionBarActivity implements
 				int n = db.numberOfUnreadMessages();
 				db.close();
 				Log.d("AsyncTask", "Finnished background process.");
+				Log.d("FUUUCKCKCKC!", n+"");
 				return n;
 			}
 
