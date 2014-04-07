@@ -419,6 +419,8 @@ public class InboxFragment extends LKFragment {
 		private void setFinish(View v, LKTextViewBold tv1, LKTextViewBold tv2,
 				LKTextView tv3, LKTextView tv4, ImageView red) {
 			// TODO Auto-generated method stub
+			if(isAdded()) {
+			
 			tv1.setTextColor(getResources().getColor(R.color.shadow_red));
 			tv2.setTextColor(getResources().getColor(R.color.shadow_red));
 			tv3.setTextColor(getResources().getColor(R.color.shadow_red));
@@ -426,7 +428,7 @@ public class InboxFragment extends LKFragment {
 
 			v.setBackgroundResource(R.drawable.beige_bg_bottom_shadow);
 			red.setVisibility(View.VISIBLE);
-
+			}
 		}
 
 	}
