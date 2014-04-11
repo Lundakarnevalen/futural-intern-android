@@ -434,7 +434,7 @@ public class ContentActivity extends ActionBarActivity implements
 
 		// TODO fix block
 
-		startTimeMap.set(2014, Calendar.APRIL, 11, 59, 00, 00);
+		startTimeMap.set(2014, Calendar.APRIL, 11, 22, 59, 00);
 		endTimeMap.set(2014, Calendar.APRIL, 13, 05, 30, 00);
 
 		Calendar c = Calendar.getInstance();
