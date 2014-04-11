@@ -141,17 +141,23 @@ public class ContentActivity extends ActionBarActivity implements
 				Gson gson = new Gson();
 				Response.Notifications notifications = gson.fromJson(result, Response.Notifications.class);
 				notifications.parseMessages();
-				Notification[] messages = notifications.messages;   
+				Notification[] messages = notifications.messages;
 				LKSQLiteDB db = new LKSQLiteDB(context);
 				Log.d("ContentAct", "Created db object. Starting loop. messages.length = "+messages.length);
+				boolean fail = false;
 				for(int i=0;i<messages.length;i++) {
 					Log.d("ContentAct", "loop counter i = "+i);
 					if(!db.messageExistsInDb(messages[i].id)) {
 						Log.d("SplashScreen", "Message not in db");
-						db.addItem(new LKInboxArrayAdapter.LKMenuListItem(messages[i].title, messages[i].message, messages[i].created_at, messages[i].recipient_id, messages[i].id, true));
+						float f = db.addItem(new LKInboxArrayAdapter.LKMenuListItem(messages[i].title, messages[i].message, messages[i].created_at, messages[i].recipient_id, messages[i].id, true));
 					}
 					Log.d(LOG_TAG, "done");
 				}
+				
+				if(fail){
+					Log.d(LOG_TAG, "failed! will try to create new db and ad items!");
+				}
+				
 				Log.d(LOG_TAG, "loop done");
 				db.close(); 
 				Log.d("ContentAct", "Completed getMessages");
@@ -163,7 +169,6 @@ public class ContentActivity extends ActionBarActivity implements
 		LKUser tmpUser = new LKUser(this);
 		tmpUser.getUserLocaly();
 		remote.requestServerForText("api/notifications.json?token="+tmpUser.token, "", RequestType.GET, false);
-		
 	}
 
 	private void updateUserFromServer() {

@@ -159,7 +159,7 @@ public class LKSQLiteDB extends SQLiteOpenHelper{
 	
 	public static final class LKSQLiteDBContract{
 		public final static String DATABASE_NAME = "LK2014";
-		public final static int DATABASE_VERSION = 1;
+		public final static int DATABASE_VERSION = 2;
 		
 		public final static String TABLE_NAME = "LKMessageTable";
 		public final static String SECTION_TABLE_NAME = "LKSectionTable";
