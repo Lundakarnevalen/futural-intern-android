@@ -55,7 +55,7 @@ public class SplashscreenActivity extends Activity{
 		stop = false;
 		// init some stuff
 		populateSp();
-
+		
 		wrapper = (RelativeLayout) findViewById(R.id.splash);
 		Log.d(LOG_TAG, (wrapper == null) ? "wrapper was null" : "wrapper was NOT null");
 		//wrapper.setOnClickListener(cont);
@@ -70,7 +70,7 @@ public class SplashscreenActivity extends Activity{
 		}else{
 			// What to do???
 		}
-
+		
 		getMessages();
 		//EasyTracker.getInstance().activityStart(this);
 	}

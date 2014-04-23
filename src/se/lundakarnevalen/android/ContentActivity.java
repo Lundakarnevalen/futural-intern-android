@@ -167,17 +167,21 @@ public class ContentActivity extends ActionBarActivity implements
 						Log.d("ContentAct", "Completed getMessages");
 					}
 				});
+
 		remote.showProgressDialog(false);
 		Log.d("SplashScreen", "Starting server request");
 		LKUser tmpUser = new LKUser(this);
 		tmpUser.getUserLocaly();
+
+		
+		
 		remote.requestServerForText("api/notifications.json?token="
 				+ tmpUser.token, "", RequestType.GET, false);
 
 		this.setInboxCount();
 
 	}
-
+	
 	private void updateUserFromServer() {
 		// update JSon form server
 		LKUser user = new LKUser(this);
@@ -318,7 +322,7 @@ public class ContentActivity extends ActionBarActivity implements
 		}
 	}
 
-	private void setInboxCount() {
+	public void setInboxCount() {
 		final Context context = this;
 		new AsyncTask<Void, Void, Integer>() {
 
@@ -441,7 +445,7 @@ public class ContentActivity extends ActionBarActivity implements
 
 		// TODO fix block
 
-		startTimeMap.set(2014, Calendar.APRIL, 11, 59, 00, 00);
+		startTimeMap.set(2014, Calendar.APRIL, 11, 22, 59, 00);
 		endTimeMap.set(2014, Calendar.APRIL, 13, 05, 30, 00);
 
 		Calendar c = Calendar.getInstance();

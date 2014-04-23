@@ -51,7 +51,11 @@ public class FrKarnegram extends LKFragment {
 	    if (requestCode == CAMERA_PIC_REQUEST) {
 	        System.out.println("I CAME BACK!!!");
 	        
-	        thumbImage = (Bitmap) data.getExtras().get("data");
+	        try {
+	        	thumbImage = (Bitmap) data.getExtras().get("data");
+	        } catch(NullPointerException e) {
+//	        	Don't do anything
+	        }
 	    }
 	}
 	
