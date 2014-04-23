@@ -42,6 +42,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
 
 import fragments.CountdownFragment;
+import fragments.FrKarnegram;
 import fragments.InboxFragment;
 import fragments.LKFragment;
 import fragments.LKFragment.MessangerMessage;
@@ -110,68 +111,78 @@ public class ContentActivity extends ActionBarActivity implements
 	public void onResume() {
 		super.onResume();
 		Log.d(LOG_TAG, "onResume");
-		
+
 		updateUserFromServer();
-		
+
 		// Check if need to register for new gcm.
-//		SharedPreferences sp = getSharedPreferences(LKFragment.SP_GCM_NAME, MODE_PRIVATE);
-//		String gcmId = sp.getString(LKFragment.SP_GCM_REGID, null);
+		// SharedPreferences sp = getSharedPreferences(LKFragment.SP_GCM_NAME,
+		// MODE_PRIVATE);
+		// String gcmId = sp.getString(LKFragment.SP_GCM_REGID, null);
 		String gcmId = SplashscreenActivity.getRegId(this);
 		Log.d(LOG_TAG, "gcmId: " + gcmId);
 		if (gcmId == null || gcmId.equals("")) {
-			
+
 			Log.d(LOG_TAG, "gcmId was either null or empty, register again");
 			// Try to get new gcm.
 			GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 			SplashscreenActivity.regInBackground(this, gcm);
 		} else {
-			
-		}
-		
-		Log.d("SplashScreen", "Starting getMessages()");
-		LKRemote remote = new LKRemote(context, new LKRemote.TextResultListener() {
 
-			@Override
-			public void onResult(String result) {
-				Log.d("SplashScreen", "onResult(): "+result);
-				if(result == null) {
-					Log.d("SplashScreen", "Result from server was null");
-					return;
-				}
-				Gson gson = new Gson();
-				Response.Notifications notifications = gson.fromJson(result, Response.Notifications.class);
-				notifications.parseMessages();
-				Notification[] messages = notifications.messages;   
-				LKSQLiteDB db = new LKSQLiteDB(context);
-				Log.d("ContentAct", "Created db object. Starting loop. messages.length = "+messages.length);
-				for(int i=0;i<messages.length;i++) {
-					Log.d("ContentAct", "loop counter i = "+i);
-					if(!db.messageExistsInDb(messages[i].id)) {
-						Log.d("SplashScreen", "Message not in db");
-						db.addItem(new LKInboxArrayAdapter.LKMenuListItem(messages[i].title, messages[i].message, messages[i].created_at, messages[i].recipient_id, messages[i].id, true));
+		}
+
+		Log.d("SplashScreen", "Starting getMessages()");
+		LKRemote remote = new LKRemote(context,
+				new LKRemote.TextResultListener() {
+
+					@Override
+					public void onResult(String result) {
+						Log.d("SplashScreen", "onResult(): " + result);
+						if (result == null) {
+							Log.d("SplashScreen", "Result from server was null");
+							return;
+						}
+						Gson gson = new Gson();
+						Response.Notifications notifications = gson.fromJson(
+								result, Response.Notifications.class);
+						notifications.parseMessages();
+						Notification[] messages = notifications.messages;
+						LKSQLiteDB db = new LKSQLiteDB(context);
+						Log.d("ContentAct",
+								"Created db object. Starting loop. messages.length = "
+										+ messages.length);
+						for (int i = 0; i < messages.length; i++) {
+							Log.d("ContentAct", "loop counter i = " + i);
+							if (!db.messageExistsInDb(messages[i].id)) {
+								Log.d("SplashScreen", "Message not in db");
+								db.addItem(new LKInboxArrayAdapter.LKMenuListItem(
+										messages[i].title, messages[i].message,
+										messages[i].created_at,
+										messages[i].recipient_id,
+										messages[i].id, true));
+							}
+							Log.d(LOG_TAG, "done");
+						}
+						Log.d(LOG_TAG, "loop done");
+						db.close();
+						Log.d("ContentAct", "Completed getMessages");
 					}
-					Log.d(LOG_TAG, "done");
-				}
-				Log.d(LOG_TAG, "loop done");
-				db.close(); 
-				Log.d("ContentAct", "Completed getMessages");
-			} 
-		});
+				});
 		remote.showProgressDialog(false);
 		Log.d("SplashScreen", "Starting server request");
 		LKUser tmpUser = new LKUser(this);
 		tmpUser.getUserLocaly();
-		remote.requestServerForText("api/notifications.json?token="+tmpUser.token, "", RequestType.GET, false);
-		
+		remote.requestServerForText("api/notifications.json?token="
+				+ tmpUser.token, "", RequestType.GET, false);
+
 		this.setInboxCount();
 
 	}
 
 	private void updateUserFromServer() {
-		//		update JSon form server
-				LKUser user = new LKUser(this);
-				user.getUserLocaly();
-				user.updateFromRemote();
+		// update JSon form server
+		LKUser user = new LKUser(this);
+		user.getUserLocaly();
+		user.updateFromRemote();
 	}
 
 	/**
@@ -319,7 +330,7 @@ public class ContentActivity extends ActionBarActivity implements
 				int n = db.numberOfUnreadMessages();
 				db.close();
 				Log.d("AsyncTask", "Finnished background process.");
-				Log.d("FUUUCKCKCKC!", n+"");
+				Log.d("FUUUCKCKCKC!", n + "");
 				return n;
 			}
 
@@ -421,7 +432,7 @@ public class ContentActivity extends ActionBarActivity implements
 		// listItems.add(new LKMenuListItem("Sektioner", 0, new
 		// SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true,
 		// drawerLayout));
- 
+
 		// TODO Map only available on tidningsdagen
 		countDown = new CountdownFragment();
 		listItems.add(new LKMenuListItem(getString(R.string.countdown_title),
@@ -436,29 +447,30 @@ public class ContentActivity extends ActionBarActivity implements
 		Calendar c = Calendar.getInstance();
 
 		// only add map if before..
-		if (c.after(endTimeMap)) {
-			// Nothing happen
-		} else if (c.after(startTimeMap)) {
-			mapItem = new LKMenuListItem(getString(R.string.karta), 0,
-					new MapFragment(), fragmentMgr, this, true)
-					.closeDrawerOnClick(true, drawerLayout).isMapRow(true);
-			listItems.add(mapItem);
-		} else {
-
-			mapItem = new LKMenuListItem(getString(R.string.karta), 0,
-					new MapFragment(), fragmentMgr, this, false)
-					.closeDrawerOnClick(true, drawerLayout).isMapRow(true);
-			listItems.add(mapItem);
-		}
+//		if (c.after(endTimeMap)) {
+//			// Nothing happen
+//		} else if (c.after(startTimeMap)) {
+//			mapItem = new LKMenuListItem(getString(R.string.karta), 0,
+//					new MapFragment(), fragmentMgr, this, true)
+//					.closeDrawerOnClick(true, drawerLayout).isMapRow(true);
+//			listItems.add(mapItem);
+//		} else {
+//
+//			mapItem = new LKMenuListItem(getString(R.string.karta), 0,
+//					new MapFragment(), fragmentMgr, this, false)
+//					.closeDrawerOnClick(true, drawerLayout).isMapRow(true);
+//			listItems.add(mapItem);
+//		}
 
 		listItems.add(inboxListItem);
 
 		// listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(),
 		// fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
-		LKMenuListItem sangbok = new LKMenuListItem(
-				getString(R.string.sangbok_title), 0, new SongGroupsFragment(),
-				fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);
+		LKMenuListItem sangbok = new LKMenuListItem(getString(R.string.sangbok_title), 0, new SongGroupsFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);
+		
+		listItems.add(new LKMenuListItem(getString(R.string.karnegram), 0, new FrKarnegram(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout));
+		
 		listItems.add(sangbok);
 
 		adapter = new LKMenuArrayAdapter(this, listItems);
@@ -623,13 +635,14 @@ public class ContentActivity extends ActionBarActivity implements
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			int backCount = getSupportFragmentManager().getBackStackEntryCount();
-            
-			if (backCount == 0){
+			int backCount = getSupportFragmentManager()
+					.getBackStackEntryCount();
+
+			if (backCount == 0) {
 				if (countDown != null) {
 					countDown.stopMusic();
-				}	
-            } 
+				}
+			}
 			// and so on...
 		}
 		return super.onKeyDown(keyCode, event);
