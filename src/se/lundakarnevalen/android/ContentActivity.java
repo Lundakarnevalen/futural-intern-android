@@ -42,6 +42,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
 
 import fragments.CountdownFragment;
+import fragments.IdentificationFragment;
 import fragments.InboxFragment;
 import fragments.LKFragment;
 import fragments.LKFragment.MessangerMessage;
@@ -460,6 +461,12 @@ public class ContentActivity extends ActionBarActivity implements
 				fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);
 		listItems.add(sangbok);
 
+		LKMenuListItem identification = new LKMenuListItem(
+				getString(R.string.identification_title), 0, new IdentificationFragment(),
+				fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);
+		listItems.add(identification);
+
+		
 		adapter = new LKMenuArrayAdapter(this, listItems);
 		menuList.setAdapter(adapter);
 
