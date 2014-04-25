@@ -123,6 +123,7 @@ public class InboxFragment extends LKFragment {
 
 		@Override
 		protected Void doInBackground(Context... context) {
+			Log.d("Inbox", "Rendering task started");
 
 			// Get inflater
 			LayoutInflater inflater = (LayoutInflater) context[0]
@@ -176,7 +177,9 @@ public class InboxFragment extends LKFragment {
 						(R.color.red)));
 
 				// TODO: Set bold text if item.unread == false
-				if (item.unread == false) {
+				if (!item.unread) {
+					Log.d("Inbox", item.unread+"");
+					Log.d("Inbox", item.title);
 					setFinish(root.findViewById(R.id.inbox_background),
 							((LKTextViewBold) root
 									.findViewById(R.id.inbox_message_title)),
@@ -218,7 +221,7 @@ public class InboxFragment extends LKFragment {
 				// Set image and section text depending on item.recipients
 				switch (item.recipients) {
 				case 0:
-					thumbnailImageView.setImageResource(R.drawable.icon);
+					thumbnailImageView.setImageResource(R.drawable.alla);
 					sectionTextView.setText("Karnevalen");
 					break;
 				case 1:

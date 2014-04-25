@@ -152,12 +152,7 @@ public class LKUser {
 		karnevalist.medlem_nation = this.medlemNation;
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
-		
-		Log.d("HEJHEJ", this.token);
 		karnevalist.token = this.token;
-		
-		
-		Log.d("HEJHEJ", karnevalist.token);
 		
 		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
 		

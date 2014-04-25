@@ -1,83 +1,6 @@
 <resources>
 
-    <!-- The great registration password -->
-    <string name="registrationpassword">FUTURAL</string>
-    <string name="app_name">Karnevalisten</string>
-    <string name="sign_in_button">Logga in</string>
-    <string name="registration_hurra">HURRA!</string>
-    <string name="registration_status">Du vill bli karnevalist.</string>
-    <string name="registration_informationb4progessbar">Du är för tillfället</string>
-    <string name="registration_informationafterorigressbar1">karnevalist. Vi behöver bara veta vem du är.</string>
-    <string name="registration_informationafterorigressbar2">karnevalist. Vi behöver bara en bild på dig.</string>
-    <string name="code_explained">Inne i AF-borgen kommer du få en kod. Den behöver du för att kunna fortsätta registreringen som karnevalist.</string>
-    <string name="progress_notdone_1">karnevalist. Du måste bara fylla i hela</string>
-    <string name="progress_notdone_2">formuläret!</string>
-    <string name="reg_code_fail_title">Något gick fel!</string>
-    <string name="reg_code_fail_msg">Du fyllde i fel lösenord, försök igen!</string>
-    <string name="registration_informationbild1">Den tar du längst fram i</string>
-    <string name="registration_informationbild2">disken inuti AF-Borgen.</string>
-    <string name="registration_yourcreedentials">DINA UPPGIFTER!</string>
-    <string name="registration_mobilenbr">Mobilnummer</string>
-    <string name="no_internet_title">Ojsan</string>
-    <string name="no_internet_msg">Det verkar som att du inte är ansluten till internet. Försök igen senare!</string>
-    <string name="registration_choosesection_information1">Jag skulle vilja vara med i dessa sektioner:</string>
-    <string name="registration_choosesection_information2">Bocka för de sektioner du är intresserad av (minst 5). \n Stjärnmarkera den sektion du är mest intresserad av.</string>
-    <string name="registration_chooseintrests_information1">Detta är jag bra på/detta tycker jag är roligt:</string>
-    <string name="registration_chooseintrests_information2">Bocka för det du är intresserad av (minst 3). \n Stjärnmarkera det du är mest intresserad av.</string>
-    <string name="registration_submit">Skicka in</string>
-    <string name="registration_submitinfo">Genom att klicka på knappen, förbinder\ndu dig att ha kul under karnevalstiden.</string>
-    <string name="registration_mysections">Jag vill engagera mig i</string>
-    <string name="registration_myshirtsize">Jag har tröjstorlek</string>
-    <string name="registration_append">Redigera mina personuppgifter</string>
-    <string name="continue_code">Lösenord</string>
-    <string name="notification_title">Meddelande från Lundakarnevalen!</string>
-    <string name="edit_uppg">Redigera mina uppgifter</string>
-    <string name="registration_dd15_important">Superviktigt!</string>
-    <string name="registration_dd15_agreement">För dessa funktioner så måste du komma på audition! Auditionstid bokas hos Nöjessektionen.</string>
-    <string name="registration_dd15_ok">Ok</string>
-    <string name="registration_PUL">Genom detta formulär ger du Lundakarnevalen tillåtelse att använda fotot på dig samt behandla dina personuppgifter i datorsystemet och för egna utskick i enlighet med Personuppgiftslagen (1998:204)</string>
-    <string name="registration_comfirmPUL">Jag godkänner dessa villkor</string>
-    <string name="registration_iwant">Jag vill vara:</string>
-    <string name="sektion_500">Jag vill bara vara med! Vilken sektion spelar ingen roll.</string>
-    <string name="sektion_1">Barnevalen</string>
-    <string name="sektion_2">Biljetteriet</string>
-    <string name="sektion_3">Blädderiet</string>
-    <string name="sektion_4">Cirkusen</string>
-    <string name="sektion_5">Dansen</string>
-    <string name="sektion_6">Ekonomi</string>
-    <string name="sektion_7">Kabarén</string>
-    <string name="sektion_8">Fabriken</string>
-    <string name="sektion_9">Klipperiet</string>
-    <string name="sektion_10">Kommunikation</string>
-    <string name="sektion_11">Krog Fine dine</string>
-    <string name="sektion_12">Krog l[a]unchingpad</string>
-    <string name="sektion_13">Krog Molnet</string>
-    <string name="sektion_14">Krog Nangilima</string>
-    <string name="sektion_15">Krog Undervatten</string>
-    <string name="sektion_16">Området</string>
-    <string name="sektion_17">Musiken</string>
-    <string name="sektion_18">Radion</string>
-    <string name="sektion_19">Revyn</string>
-    <string name="sektion_20">Shoppen</string>
-    <string name="sektion_21">Showen</string>
-    <string name="sektion_22">Snaxeriet</string>
-    <string name="sektion_23">Spexet</string>
-    <string name="sektion_24">Säkerhet</string>
-    <string name="sektion_25">Tombola</string>
-    <string name="sektion_26">Vieriet</string>
-    <string name="sektion_100">Festmästeriet - Bamba</string>
-    <string name="sektion_101">Festmästeriet - VIP</string>
-    <string name="sektion_102">Festmästeriet - Lager</string>
-    <string name="sektion_199">"Festmästeriet - Centralt"</string>
-    <string name="sektion_202">Smånöjena - Undergången</string>
-    <string name="sektion_203">Smånöjena - Sketcetera</string>
-    <string name="sektion_204">Smånöjena - FuturalFuneral</string>
-    <string name="sektion_300">Tåget - Vagn</string>
-    <string name="sektion_399">Tåget - Centralt</string>
-    <string name="sektion_400">Tältnöjen - Tält</string>
-    <string name="sektion_499">Tältnöjen - Centralt</string>
-    <string name="success_msg">Vad kul att du vill vara med!\nVi återkommer.</string>
-
+   
     <string name="sign_in_button">Log in</string>
     <string name="registration_hurra">HURRAY!</string>
     <string name="registration_status">You want to be karnevalist.</string>
@@ -152,6 +75,12 @@
     <string name="sektion_499">TÄLTNÖJEN - CENTRALT</string>
     <string name="success_msg">Great you want to join!\nWe will get back to you.</string>
 
+    
+     <!-- The great registration password -->
+    <string name="registrationpassword">FUTURAL</string>
+    <string name="app_name">Karnevalisten</string>
+    
+    
     <string name="error">Error</string>
     <string name="fail">Something went wrong, unclear what.</string>
     <string name="welcome">Click to continue!!</string>
@@ -312,19 +241,7 @@
     <string name="info_text_button">You still don’t understand?</string>
     <string name="info_text_button2">OK, I understand!</string>
 
-    <!-- Info -->
-    <string name="text1"><![CDATA[HUR SÄLJER JAG IN KARNEVALSTIDNINGEN?]]></string>
-    <string name="text2"><![CDATA[<I>Har du bara ett par sekunder på dig att sälja in Karnevalstidningen? Här finns en elevator pitch till din undsättning (övertyga någon på tiden det tar att åka upp i en hiss).</I>]]></string>
-    <string name="text3"><![CDATA[Lundakarnevalens tidning är en bit av Lundakarnevalen i din hand! Årets karnevalstidning kommer från framtiden, därav namnet Framtidningen. Tidningen är fullproppad med allt från roliga artiklar, knasiga annonser och skämt, till snygga och fula bilder, dikter och horoskop. Framtidningen är skapad i sann karnevalsanda och är därför det perfekta minnet att ta med hem från Lundakarnevalen 2014! Oavsett om du är gammal eller ung, lundabo eller uppsalabo så kommer det att finnas någonting för dig!<br />]]></string>
-    <string name="text4"><![CDATA[SALES PITCH FÖR LUNDAKARNEVALEN]]></string>
-    <string name="text5"><![CDATA[<I>Vad är egentligen Lundakarnevalen? Är det svårt att förmedla till alla glada tidningsköpare som undrar? Här finns hjälp!</I>]]></string>
-    <string name="text6"><![CDATA[<I>Har du bara ett par sekunder på dig att förklara vad Lundakarnevalen är? Använd denna elevator pitch (övertyga någon på tiden det tar att åka upp i en hiss).</I>]]></string>
-    <string name="text7"><![CDATA[Lundakarnevalen är ett av världens största ideella evenemang och äger rum vart fjärde år. Den 16-18 maj i år är det dags igen! På karnevalen finns det något för alla, oavsett om du gillar att dansa, roas av föreställningar, dricka öl med vännerna, spela tombola eller lyssna på kända artister så hittar du det på karnevalen. I Lunds centrum går det även ett karnevalståg – en rullande humorshow som definitivt får dig att skratta! 2010 besökte 400 000 personer Lundakarnevalen, som skapas av cirka 5500 ideellt engagerade studenter.<br /><br />OBS OBS VIKTIGT VIKTIGT ATT SÄGA: Biljetterna till Lundakarnevalen släpps <B>imorgon söndag den 13 april!</B> Kom till Universitetshuset i Lundagård från kl. 11.00 för att säkra dina biljetter till Lundakarnevalens sju stora nöjen och Dansen. Även entréband till karnevalsområdet kommer att säljas.<br /><br />Från och med måndagen den 14 april säljs biljetter på www.lundakarnevalen.se]]></string>
-    <string name="text8"><![CDATA[ <B>Förstår de fortfarande inte? Här finns lite mer info som kanske kan hjälpa dig att förklara mer!</B> <br /><br />Lundakarnevalens kärna är i Lundagård i Lund, där finns karnevalsområdet. På karnevalsområdet finns en mängd olika upplevelser. Följande saker kan upplevas:<br /><br />- Sju stora nöjen (föreställningar) på 45 minuter (Barneval, Cirkus, Film, Kabaré, Revy, Show och Spex)<br /><br />- Tre stycken smånöjen i tält vars föreställningar varar i max en halvtimme<br /><br /> - Över 20 tältnöjen som innehåller en kort och karnevalistisk upplevelse<br /><br /> - Tombolabodar som erbjuder lotto och spel<br /><br /> - Mat- och dryckestält där man kan sitta ner<br /><br /> - ÅRETS NYHET är ett nytt mat – och dryckesområde precis norr om Lundagård. <br /><br />- Artister och uppträdanden på Stora Scenen<br /><br /> - Dansen – Sveriges största nattklubb – på kvällarna i AF-Borgen.<br /><br />- …och mycket mycket mer<br /><br />Utanför karnevalsområdet går som sagt karnevalståget. Det går genom Lunds centrum lördag och söndag 17-18 maj. Tåget avgår kl. 13.00. <br /><br /> Lundakarnevalen är alltså en stor och speciell händelse som går av stapeln blott vart fjärde år. Den första karnevalen firades 1849. Bland tidigare kända karnevalister kan nämnas Lena Ek, Johan Wester och Hasse Alfredsson. ]]></string>
-	<string name="info_text_actionbar">SÄLJA TIDNING</string>
-	<string name="info_text_button">Förstår du fortfarande inte?</string>
-	<string name="info_text_button2">OK, jag förstår!</string>
-	
+    
 	<string-array name="sections">
 	   	<item>1|Barnevalen</item>
 	    <item>2|Biljetteriet</item>
@@ -479,5 +396,9 @@
     <string name="forkarneval">FÖRKARNEVAL</string>
     <string name="karnelan">KARNELAN</string>
     <string name="karnevalsmelodin">KARNEVALSMELODIN</string>
+    <string name="identification_title">IDCARD</string>
+    
+
+    <string name="sektion_199">"Festmästeriet - Centralt"</string>
 
 </resources>

@@ -2,8 +2,10 @@ package se.lundakarnevalen.android;
 
 import java.io.IOException;
 
+import json.Karnevalist;
 import json.Notification;
 import json.Response;
+import se.lundakarnevalen.remote.GCMHelper;
 import se.lundakarnevalen.remote.GCMReceiver;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.RequestType;
@@ -42,7 +44,7 @@ public class SplashscreenActivity extends Activity{
 	private static final String LOG_TAG = "splash";
 	GoogleCloudMessaging gcm;
 	String regId;
-	SharedPreferences sp;
+	
 	boolean shown = false;
 
 	@Override
@@ -59,12 +61,12 @@ public class SplashscreenActivity extends Activity{
 		//wrapper.setOnClickListener(cont);
 		createMenuThread();
 
-		sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, Context.MODE_PRIVATE);
+		
 		addDataSekBg(); 
 		if(checkForGooglePlay()){
 			// GCM registration
 			Log.d("SplashScreen", "starting gcmRegistration()");
-			gcmRegistration();
+//			gcmRegistration();
 		}else{
 			// What to do???
 		}
@@ -95,36 +97,39 @@ public class SplashscreenActivity extends Activity{
 
 	public void getMessages() {
 		Log.d("SplashScreen", "Starting getMessages()");
-		LKRemote remote = new LKRemote(context, new LKRemote.TextResultListener() {
-
-			@Override
-			public void onResult(String result) {
-				Log.d("SplashScreen", "onResult(): "+result);
-				if(result == null) {
-					Log.d("SplashScreen", "Result from server was null");
-					return;
-				}
-				Gson gson = new Gson();
-				Response.Notifications notifications = gson.fromJson(result, Response.Notifications.class);
-				Notification[] messages = notifications.notifications;
-				LKSQLiteDB db = new LKSQLiteDB(context);
-				Log.d("SplashScreen", "Created db object. Starting loop. messages.length = "+messages.length);
-				for(int i=0;i<messages.length;i++) {
-					Log.d("SplashScreen", "loop counter i = "+i);
-					if(!db.messageExistsInDb(messages[i].id)) {
-						Log.d("SplashScreen", "Message not in db");
-						addMessage(messages[i].title, messages[i].message, messages[i].created_at, messages[i].recipient_id, messages[i].id, db);
-					}
-					Log.d(LOG_TAG, "done");
-				}
-				Log.d(LOG_TAG, "loop done");
-				db.close();
-				Log.d("SplashScreen", "Completed getMessages");
-			}
-		});
-		remote.showProgressDialog(false);
-		Log.d("SplashScreen", "Starting server request");
-		remote.requestServerForText("notifications.json", "", RequestType.GET, false);
+//		LKRemote remote = new LKRemote(context, new LKRemote.TextResultListener() {
+//
+//			@Override
+//			public void onResult(String result) {
+//				Log.d("SplashScreen", "onResult(): "+result);
+//				if(result == null) {
+//					Log.d("SplashScreen", "Result from server was null");
+//					return;
+//				}
+//				Gson gson = new Gson();
+//				Response.Notifications notifications = gson.fromJson(result, Response.Notifications.class);
+//				notifications.parseMessages();
+//				Notification[] messages = notifications.messages;   
+//				LKSQLiteDB db = new LKSQLiteDB(context);
+//				Log.d("SplashScreen", "Created db object. Starting loop. messages.length = "+messages.length);
+//				for(int i=0;i<messages.length;i++) {
+//					Log.d("SplashScreen", "loop counter i = "+i);
+//					if(!db.messageExistsInDb(messages[i].id)) {
+//						Log.d("SplashScreen", "Message not in db");
+//						addMessage(messages[i].title, messages[i].message, messages[i].created_at, messages[i].recipient_id, messages[i].id, db);
+//					}
+//					Log.d(LOG_TAG, "done");
+//				}
+//				Log.d(LOG_TAG, "loop done");
+//				db.close(); 
+//				Log.d("SplashScreen", "Completed getMessages");
+//			} 
+//		});
+//		remote.showProgressDialog(false);
+//		Log.d("SplashScreen", "Starting server request");
+//		LKUser user = new LKUser(this);
+//		user.getUserLocaly();
+//		remote.requestServerForText("api/notifications.json?token="+user.token, "", RequestType.GET, false);
 	}
 
 	public void addMessage(String title, String message, String date, int recipients, int id, LKSQLiteDB db) {
@@ -134,33 +139,35 @@ public class SplashscreenActivity extends Activity{
 		Log.d("SplashScreen", "Added message with id = "+id);
 	}
 
-	private String getRegId(){
+	public static String getRegId(Context context){
+		SharedPreferences sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, Context.MODE_PRIVATE);
 		Log.d("SplashScreen", "Starting getRegId()");
 		String regId = sp.getString(LKFragment.SP_GCM_REGID, "");
 		if(regId.length() <= 0)
 			return "";
 		String regAppV = sp.getString(LKFragment.SP_GCM_REG_APP, "-1");
-		String currentVersion = LKFragment.getAppVersion(this);
+		String currentVersion = LKFragment.getAppVersion(context);
 		if(!regAppV.equals(currentVersion)){
 			Log.d(LOG_TAG, "New app version installed");
 			return "";
 		}
 		Log.d("SplashScreen", "Finished getRegId()");
-		return regId;
+		return regId; 
 	}
 
-	private void gcmRegistration(){
-		gcm = GoogleCloudMessaging.getInstance(context);
-		Log.d("SplashScreen", "Got gcm instance");
-		regId = getRegId();
-		if(regId.length() <= 0){
-			Log.d(LOG_TAG, "Will try to register");
-			// Register for gcm.
-			regInBackground(context, gcm);
-		}else{
-			Log.d(LOG_TAG, "found regId");
-		}
-	}
+//	private void gcmRegistration(){
+//		gcm = GoogleCloudMessaging.getInstance(context);
+//		Log.d("SplashScreen", "Got gcm instance");
+//		regId = getRegId(context);
+//		if(regId.length() <= 0){
+//			Log.d(LOG_TAG, "Will try to register");
+//			// Register for gcm.
+//			regInBackground(context, gcm);
+//		}else{
+//			
+//			Log.d(LOG_TAG, "Check if the log needs to be updated");
+//		}
+//	}
 
 	public static void storeAsRegId(String regId, Context context){
 		SharedPreferences sp = context.getSharedPreferences(LKFragment.SP_GCM_NAME, MODE_PRIVATE);
@@ -395,32 +402,50 @@ public class SplashscreenActivity extends Activity{
 			@Override
 			protected String doInBackground(Object... params) {
 				String regId = null;
-				try{
-					/*if(gcm == null){
-						gcm = GoogleCloudMessaging.getInstance(context);
-					}*/
-					regId = gcm.register(GCMReceiver.SENDER_ID);
-					Log.d(LOG_TAG, "Got regId: "+regId);
-					storeAsRegId(regId, context);					
-				}catch(IOException e){
-					Log.e(LOG_TAG, "Exception thrown when trying to register"+e);
+				boolean trying = true;
+				int tries = 0;
+				while (tries < 5 || trying) {
+					try {
+
+						tries++;
+						regId = gcm.register(GCMReceiver.SENDER_ID);
+						Log.d(LOG_TAG, "Got regId: " + regId);
+						storeAsRegId(regId, context);
+
+						trying = false;
+					} catch (IOException e) {
+						Log.e(LOG_TAG,
+								"Exception thrown when trying to register" + e);
+						return null;
+					}
 				}
 
+				LKUser user = new LKUser(context);
+				user.getUserLocaly();
+				
 				// POST reg id to server
 				LKRemote remote = new LKRemote(context, new TextResultListener(){
 					@Override
 					public void onResult(String result) {
-						Log.d(LOG_TAG, "regId result: "+result);
+						Log.d(LOG_TAG, "regId result: " + result);
 					}
 				});
-				remote.requestServerForText("phones.json", "{\"google_token\":\""+regId+"\"}", LKRemote.RequestType.POST, false);
+				
+				user.gcmRegId = getRegId(context); 
+				
+				remote.requestServerForText("api/karnevalister/" + user.id, user.getJson(true), LKRemote.RequestType.PUT, false);
 
+				Log.d(LOG_TAG, "AASDKANSDPOASDJPAOS");
+				Log.d(LOG_TAG, "Stuff: " + user.getJson(true));
+				
+				Log.d(LOG_TAG, "sent to server");
+				 
 				return regId;
 			}
 
 			@Override
 			protected void onPostExecute(String message){
-
+ 
 			}
 
 		}.execute();
