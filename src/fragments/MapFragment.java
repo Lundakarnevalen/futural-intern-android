@@ -426,6 +426,7 @@ public class MapFragment extends LKFragment implements SensorEventListener {
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		synchronized (this) {
+			
 			switch (event.sensor.getType()) {
 			case Sensor.TYPE_ACCELEROMETER:
 				float x = (float)event.values[0];
