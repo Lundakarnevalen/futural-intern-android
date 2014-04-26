@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-   
     <string name="sign_in_button">Log in</string>
     <string name="registration_hurra">HURRAY!</string>
     <string name="registration_status">You want to be karnevalist.</string>
@@ -75,12 +75,9 @@
     <string name="sektion_499">TÄLTNÖJEN - CENTRALT</string>
     <string name="success_msg">Great you want to join!\nWe will get back to you.</string>
 
-    
-     <!-- The great registration password -->
+    <!-- The great registration password -->
     <string name="registrationpassword">FUTURAL</string>
     <string name="app_name">Karnevalisten</string>
-    
-    
     <string name="error">Error</string>
     <string name="fail">Something went wrong, unclear what.</string>
     <string name="welcome">Click to continue!!</string>
@@ -241,45 +238,44 @@
     <string name="info_text_button">You still don’t understand?</string>
     <string name="info_text_button2">OK, I understand!</string>
 
-    
-	<string-array name="sections">
-	   	<item>1|Barnevalen</item>
-	    <item>2|Biljetteriet</item>
-	    <item>3|Blädderiet</item>
-	    <item>4|Cirkusen</item>
-	    <item>5|Dansen</item>
-	    <item>6|Ekonomi</item>
-	    <item>7|Kabarén</item>
-	    <item>8|Fabriken</item>
-	    <item>9|Klipperiet</item>
-	    <item>10|Kommunikation</item>
-	    <item>11|Pub Fine Dine</item>
-	    <item>12|Pub l[a]unchingpad</item>
-	    <item>13|Pub Molnet</item>
-	    <item>14|Pub Nangilima</item>
-	    <item>15|Pub Undervatten</item>
-	    <item>16|Området</item>
-	    <item>17|Musiken</item>
-	    <item>18|Radion</item>
-	    <item>19|Revyn</item>
-	    <item>20|Shoppen</item>
-	    <item>21|Showen</item>
-	    <item>22|Snaxeriet</item>
-	    <item>23|Spexet</item>
-	    <item>24|Säkerhet</item>
-	    <item>25|Tombola</item>
-	    <item>26|Vieriet</item>
-	    <item>100|Festmästeriet - Bamba</item>
-	    <item>101|Festmästeriet - VIP</item>
-	    <item>102|Festmästeriet - Lager</item>
-	    <item>202|Smånöjena - Undergången</item>
-	    <item>203|Smånöjena - Sketcetera</item>
-	    <item>204|Smånöjena - FuturalFuneral</item>
-	    <item>300|Tåget - Vagn</item>
-	    <item>399|Tåget - Centralt</item>
-	    <item>400|Tältnöjen - Tält</item>
-	    <item>499|Tältnöjen - Centralt</item>
-	</string-array>
+    <string-array name="sections">
+        <item>1|Barnevalen</item>
+        <item>2|Biljetteriet</item>
+        <item>3|Blädderiet</item>
+        <item>4|Cirkusen</item>
+        <item>5|Dansen</item>
+        <item>6|Ekonomi</item>
+        <item>7|Kabarén</item>
+        <item>8|Fabriken</item>
+        <item>9|Klipperiet</item>
+        <item>10|Kommunikation</item>
+        <item>11|Pub Fine Dine</item>
+        <item>12|Pub l[a]unchingpad</item>
+        <item>13|Pub Molnet</item>
+        <item>14|Pub Nangilima</item>
+        <item>15|Pub Undervatten</item>
+        <item>16|Området</item>
+        <item>17|Musiken</item>
+        <item>18|Radion</item>
+        <item>19|Revyn</item>
+        <item>20|Shoppen</item>
+        <item>21|Showen</item>
+        <item>22|Snaxeriet</item>
+        <item>23|Spexet</item>
+        <item>24|Säkerhet</item>
+        <item>25|Tombola</item>
+        <item>26|Vieriet</item>
+        <item>100|Festmästeriet - Bamba</item>
+        <item>101|Festmästeriet - VIP</item>
+        <item>102|Festmästeriet - Lager</item>
+        <item>202|Smånöjena - Undergången</item>
+        <item>203|Smånöjena - Sketcetera</item>
+        <item>204|Smånöjena - FuturalFuneral</item>
+        <item>300|Tåget - Vagn</item>
+        <item>399|Tåget - Centralt</item>
+        <item>400|Tältnöjen - Tält</item>
+        <item>499|Tältnöjen - Centralt</item>
+    </string-array>
 
     <!-- lyrics player -->
     <string name="playPart1">JAG KAN INTE SITTA STILL</string>
@@ -294,7 +290,8 @@
     <string name="playPart10">LYFTER HÄNDERNA MOT TAKEN</string>
     <string name="playPart11">INGEN SÖMN PÅ FLERA NÄTTER</string>
     <string name="playPart12">ALDRIG KÄNT MIG MERA VAKEN</string>
-    <string name="playPart13">DET E NU I VÅR DET HÄNDER</string> <!-- Go one more time -->
+    <string name="playPart13">DET E NU I VÅR DET HÄNDER</string>
+ <!-- Go one more time -->
     <string name="playPart14">DET E VART FJÄRDE ÅR</string>
     <string name="playPart15">KOM MÖT UPP MED ALLA VÄNNER</string>
     <string name="playPart16">KOM OCH SKRIK I LUNDAGÅRD</string>
@@ -315,7 +312,8 @@
     <string name="playPart24">KARNEVÖLEN FYLLER GLASEN</string>
     <string name="playPart25">VEM VET NÅT OM MORGONDAGEN</string>
     <string name="playPart26">ALLA DANSAR BORGEN SKAKAR</string>
-    <string name="playPart27">ALDRIG KÄNT MIG MERA VAKEN</string> <!-- stop here -->
+    <string name="playPart27">ALDRIG KÄNT MIG MERA VAKEN</string>
+ <!-- stop here -->
     <string name="playPart28">VI ÄR VÅREN NÄR DET HÄNDER</string>
     <string name="playPart29">VI ÄR VART FJÄRDE ÅR</string>
     <string name="playPart30">VI ÄR ALLESAMMANS VÄNNER</string>
@@ -323,17 +321,14 @@
     <string name="playPart32">VI SKA ÖVERTYGA VÄRLDEN</string>
     <string name="playPart33">ATT FIRA MAJ I LUND</string>
     <string name="playPart34">EXPLODERAR PÅ EN SEKUND</string>
-    
     <string name="return_to_sign_in">RETURN</string>
     <string name="send_me">SEND ME</string>
     <string name="my_password">MY PASSWORD!</string>
     <string name="send">SEND</string>
-    
     <string name="cloud">A cloud</string>
     <string name="welcome_text">WELCOME!</string>
     <string name="prompt_email">ENTER EMAIL</string>
     <string name="prompt_password">ENTER PASSWORD</string>
-
     <string name="countdown_title">HOME</string>
     <string name="inbox_title">INBOX</string>
     <string name="sign_in">SIGN IN</string>
@@ -389,7 +384,6 @@
         <item><![CDATA[42|Tempus futurum|Melodi: Temperaturen är hög uti kroppen|Tempus futurum är det som ska hända <br/>Presens är något som händer just nu <br/><br/>Perfekt är något som redan har varit <br/>Här i vårt presens vi sjunger just nu: <br/><br/>Tempus futurum <br/>Presens och perfekt <br/><br/>Tempus futurum <br/>Presens perfekt <br/><br/>Tempus futurum drack dricka druckit <br/>Det kan va’ roligt att kröka ett verb!]]></item>
     </string-array>
 
-
     <string name="karneval">KARNEVAL</string>
     <string name="karneol">KARNEVÖL</string>
     <string name="efterkarneval">EFTERKARNEVAL</string>
@@ -397,8 +391,9 @@
     <string name="karnelan">KARNELAN</string>
     <string name="karnevalsmelodin">KARNEVALSMELODIN</string>
     <string name="identification_title">IDCARD</string>
-    
-
     <string name="sektion_199">"Festmästeriet - Centralt"</string>
+    <string name="title_activity_id">IDActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
