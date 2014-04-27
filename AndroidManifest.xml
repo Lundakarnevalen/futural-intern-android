@@ -64,6 +64,7 @@
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
         <activity
+			android:theme="@android:style/Theme.Light.NoTitleBar"
             android:name="se.lundakarnevalen.android.IDActivity"
             android:screenOrientation="landscape"
             android:label="@string/title_activity_id" >

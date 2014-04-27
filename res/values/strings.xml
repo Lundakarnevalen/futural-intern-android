@@ -395,5 +395,21 @@
     <string name="title_activity_id">IDActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <string name="karne_lang">festum\n
+        						karneval\n
+        						....\n
+        						karnevalli\n
+        						....\n
+        						...\n
+        						carnaval\n
+        						...\n
+        						...\n
+        						carnevale\n
+        						....\n
+        						karnawat\n
+        						damaashaad\n
+        						zomkhosi\n
+        						farsang\n
+        						inauteriak</string>
+    
 </resources>

@@ -1,9 +1,12 @@
 package fragments;
 
+import se.lundakarnevalen.android.ContentActivity;
+import se.lundakarnevalen.android.IDActivity;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,9 +23,11 @@ import android.widget.ImageView;
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 			View root = inflater.inflate(R.layout.identification_layout, null);
-			getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-			getActivity().getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-			
+			//getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+			//getActivity().getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+			Intent i = new Intent(getActivity(), IDActivity.class);
+            startActivity(i);
+            
 			//getActivity().getActionBar().hide();
 			
 			return root;

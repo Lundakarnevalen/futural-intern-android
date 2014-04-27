@@ -1,34 +1,19 @@
 package se.lundakarnevalen.android;
 
-import java.io.IOException;
-
-import json.Karnevalist;
-import json.Notification;
-import json.Response;
-import se.lundakarnevalen.remote.GCMHelper;
-import se.lundakarnevalen.remote.GCMReceiver;
-import se.lundakarnevalen.remote.LKRemote;
-import se.lundakarnevalen.remote.LKRemote.RequestType;
-import se.lundakarnevalen.remote.LKRemote.TextResultListener;
-import se.lundakarnevalen.remote.LKSQLiteDB;
-import se.lundakarnevalen.remote.LKUser;
-import se.lundakarnevalen.widget.LKInboxArrayAdapter.LKMenuListItem;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.format.Time;
 import android.util.Log;
+import android.view.Display;
+import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.gson.Gson;
+import android.widget.RelativeLayout.LayoutParams;
 
 
 public class IDActivity extends Activity{
@@ -42,7 +27,44 @@ public class IDActivity extends Activity{
 		setContentView(R.layout.activity_id);
 
 		//wrapper = (RelativeLayout) findViewById(R.id.);
-		}
+		
+		 Display display = getWindowManager().getDefaultDisplay();
+	        int width = display.getWidth();  // deprecated
+	        int height = display.getHeight();
+	        ImageView cloud = (ImageView) findViewById(R.id.clouds_start);
+	        Animation a = new TranslateAnimation(0,width,0 ,0);
+	        ImageView movingCloud = (ImageView) findViewById(R.id.clouds_moving);
+	        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	        lp.setMargins(-width, 0, 0, 0);
+	        lp.width = width;
+	        lp.height = height;
+	        movingCloud.setLayoutParams(lp);
+	        
+	        Animation a2 = new TranslateAnimation(0,width*2,0 ,0);
+	        a2.setRepeatCount(Animation.INFINITE);
+	        a.setDuration(15000);
+	        a2.setDuration(30000);  
+	        a2.setInterpolator(new AccelerateDecelerateInterpolator());
+	        a2.setInterpolator(new LinearInterpolator());
+            
+	        
+	        
+	        ImageView movingCloud2 = (ImageView) findViewById(R.id.clouds_moving_2);
+	        Animation a3 = new TranslateAnimation(0,width*2,0 ,0);
+	        a3.setRepeatCount(Animation.INFINITE);
+	        movingCloud2.setLayoutParams(lp);
+	        a3.setDuration(30000);
+	        a.setAnimationListener(new CloudStartListner(cloud, movingCloud2, a3));
+	        a.setInterpolator(new AccelerateDecelerateInterpolator());
+	        a.setInterpolator(new LinearInterpolator());
+	        a3.setInterpolator(new AccelerateDecelerateInterpolator());
+	        a3.setInterpolator(new LinearInterpolator());
+           
+	        cloud.startAnimation(a);
+	       
+	        movingCloud.startAnimation(a2);
+	
+	}
 
 	@Override
 	public void onResume(){
@@ -60,4 +82,34 @@ public class IDActivity extends Activity{
 	}
 
 
+    private class CloudStartListner implements Animation.AnimationListener {
+
+        ImageView view;
+        ImageView movingCloud;
+        Animation a2;
+
+        public CloudStartListner(ImageView view, ImageView movingCloud, Animation a2) {
+            this.view = view;
+            this.movingCloud = movingCloud;
+            this.a2 = a2;
+        }
+
+        @Override
+        public void onAnimationStart(Animation animation) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            view.setVisibility(View.INVISIBLE);
+            if(a2!=null)  {
+                movingCloud.startAnimation(a2);
+            }
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+    }
 }
