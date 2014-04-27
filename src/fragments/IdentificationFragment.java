@@ -16,49 +16,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 
 
-	public class IdentificationFragment extends LKFragment{
-		
+	public class IdentificationFragment extends LKFragment implements OnClickListener{
+		Intent i;
 			
 		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 			View root = inflater.inflate(R.layout.identification_layout, null);
-			//getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-			//getActivity().getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 			LKUser user = new LKUser(getContext());
 			user.getUserLocaly();
-			Intent i = new Intent(getActivity(), IDActivity.class);
+			i = new Intent(getActivity(), IDActivity.class);
             i.putExtra("name", user.fornamn+" "+user.efternamn);
             i.putExtra("pnbr", user.personnummer);
             i.putExtra("sektion", ""+user.tilldelad_sektion);
             i.putExtra("photo", user.imgUrl);
-            Log.d("sektion",""+user.tilldelad_sektion);
-            /*
-            LKRemote remote = new LKRemote(getActivity());
-    		remote.setBitmapResultListener(new BitmapResultListener() {
-    			@Override
-    			public void onResult(Bitmap result) {
-    				Log.d(LOG_TAG, "Got bitmap!");
-    				if (result == null) {
-    					Log.e(LOG_TAG, "bitmap was null"); // Maybe set some
-    														// standard image?
-    				}
-
-    				image.setVisibility(View.VISIBLE);
-    				image.setImageBitmap(result);
-    			}
-    		});
-    		remote.requestServerForBitmap(user.imgUrl);
-
-            */
-            
-            startActivity(i);
-            
+                        
+            View v = root.findViewById(R.id.card);
+            v.setOnClickListener(this);
 			//getActivity().getActionBar().hide();
 			
 			return root;
@@ -68,6 +48,13 @@ import android.widget.ImageView;
 		public void onActivityCreated(Bundle savedInstanceState) {
 			super.onActivityCreated(savedInstanceState);
 			setTitle(getString(R.string.karta));
+		}
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			startActivity(i);
+            
 		}
 		
 		
