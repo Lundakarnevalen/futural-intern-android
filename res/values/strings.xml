@@ -397,19 +397,21 @@
     <string name="action_settings">Settings</string>
     <string name="karne_lang">festum\n
         						karneval\n
-        						....\n
+        						اناجرهم\n
         						karnevalli\n
-        						....\n
-        						...\n
+        						карнавал\n
+        						لاوانراک\n
         						carnaval\n
-        						...\n
-        						...\n
+        						καρναβάλι\n
+        						カーニバル\n
         						carnevale\n
-        						....\n
-        						karnawat\n
+        						狂歡節\n
+        						karnawał\n
         						damaashaad\n
         						zomkhosi\n
         						farsang\n
         						inauteriak</string>
+    <string name="press_card">PRESS TO SHOW YOUR ID</string>
     
+    <string name="id_card">KARNELEG</string>
 </resources>

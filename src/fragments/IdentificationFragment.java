@@ -9,9 +9,11 @@ import se.lundakarnevalen.remote.LKRemote.BitmapResultListener;
 import se.lundakarnevalen.widget.LKInboxArrayAdapter;
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,12 +49,11 @@ import android.widget.ImageView;
 		@Override
 		public void onActivityCreated(Bundle savedInstanceState) {
 			super.onActivityCreated(savedInstanceState);
-			setTitle(getString(R.string.karta));
+			setTitle(getString(R.string.id_card));
 		}
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			startActivity(i);
             
 		}

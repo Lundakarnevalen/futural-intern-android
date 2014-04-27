@@ -417,7 +417,9 @@
     <string name="action_bar_sign_in">LOGGA IN</string>
     
     <string name="action_sign_in_short">Logga in</string>
-    <string name="identification_title">KARNEVALISTLEG</string>
+    <string name="identification_title">KARNELEG</string>
 	
+    <string name="id_card">KARNELEG</string>
+    <string name="press_card">TRYCK FÖR ATT VISA DITT KARNEVALISTLEG</string>
 </resources>
 
