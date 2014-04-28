@@ -1,11 +1,17 @@
 package se.lundakarnevalen.android;
 
+import java.io.ByteArrayOutputStream;
+
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.BitmapResultListener;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -28,6 +34,7 @@ public class IDActivity extends Activity implements OnClickListener{
 	private boolean front = true;
 	ImageView image;
 
+	private String IMAGE_PATH = "karneval.image";
 	private static final String LOG_TAG = "IDACTIVITY";
 
 	@Override
@@ -43,23 +50,49 @@ public class IDActivity extends Activity implements OnClickListener{
         String imgURL = intent.getExtras().getString("photo");        
         
         image = ((ImageView) findViewById(R.id.photo));
-	        
-         LKRemote remote = new LKRemote(this);
+
+        SharedPreferences prefs = getSharedPreferences(IMAGE_PATH, Context.MODE_PRIVATE);
+		String imageString = prefs.getString(IMAGE_PATH, null);
+		if(imageString==null) {
+    		     
+        
+		 LKRemote remote = new LKRemote(this);
     		remote.setBitmapResultListener(new BitmapResultListener() {
     			@Override
     			public void onResult(Bitmap result) {
-    				Log.d(LOG_TAG, "Got bitmap!");
     				if (result == null) {
-    					Log.e(LOG_TAG, "bitmap was null"); // Maybe set some
     														// standard image?
     				}
+    
+    				SharedPreferences prefs = getSharedPreferences(IMAGE_PATH, Context.MODE_PRIVATE);
+    				
+    				ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+    				result.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
+    				byte[] byteArray2 = byteArray.toByteArray();
+    				
+    				String encoded = Base64.encodeToString(byteArray2, Base64.DEFAULT);
+    				prefs.edit().putString(IMAGE_PATH, encoded).commit();
+    
+    				
     				picture = result;
     				image.setImageBitmap(result);
     			}
     		});
     		remote.requestServerForBitmap(imgURL);
 
-		viewFront();
+		} else {
+			byte[] byteArray = Base64.decode(imageString, Base64.DEFAULT);
+			picture = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+			image.setVisibility(View.VISIBLE);
+			image.setImageBitmap(picture);
+		
+		}
+		
+    		
+    
+    		
+    		
+    		viewFront();
 		//wrapper = (RelativeLayout) findViewById(R.id.);
     		
 	         
