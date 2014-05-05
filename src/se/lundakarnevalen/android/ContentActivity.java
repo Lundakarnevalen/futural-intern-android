@@ -1,5 +1,6 @@
 package se.lundakarnevalen.android;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -18,6 +19,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -27,6 +29,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -43,10 +46,10 @@ import com.google.gson.Gson;
 
 import fragments.CountdownFragment;
 import fragments.FrKarnegram;
+import fragments.IdentificationFragment;
 import fragments.InboxFragment;
 import fragments.LKFragment;
 import fragments.LKFragment.MessangerMessage;
-import fragments.MapFragment;
 import fragments.SongGroupsFragment;
 
 public class ContentActivity extends ActionBarActivity implements
@@ -62,6 +65,8 @@ public class ContentActivity extends ActionBarActivity implements
 
 	private LKMenuListItem mapItem = null;
 
+	private String IMAGE_PATH = "karneval.image";
+	
 	boolean drawerOpen;
 	private ActionBar actionBar;
 	private ActionBarDrawerToggle drawerToggle;
@@ -70,6 +75,8 @@ public class ContentActivity extends ActionBarActivity implements
 	private FragmentManager fragmentMgr;
 	LKMenuListItem inboxListItem;
 
+	LKUser user;
+	
 	private RelativeLayout menuButtonWrapper;
 	private RelativeLayout inboxIndicatorWrapper;
 	private TextView actionbarInboxCounter;
@@ -477,6 +484,14 @@ public class ContentActivity extends ActionBarActivity implements
 		
 		listItems.add(sangbok);
 
+		if(user.jobbatAktiv) {
+			
+		LKMenuListItem identification = new LKMenuListItem(
+				getString(R.string.identification_title), 0, new IdentificationFragment(),
+				fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);
+		listItems.add(identification);
+		}
+		
 		adapter = new LKMenuArrayAdapter(this, listItems);
 		menuList.setAdapter(adapter);
 
@@ -488,7 +503,7 @@ public class ContentActivity extends ActionBarActivity implements
 				.findViewById(R.id.user_picture);
 		TextView name = (TextView) menuSigill.findViewById(R.id.user_name);
 
-		LKUser user = new LKUser(this);
+		user = new LKUser(this);
 		user.getUserLocaly();
 
 		if (user.fornamn == null || user.efternamn == null) {
@@ -499,22 +514,38 @@ public class ContentActivity extends ActionBarActivity implements
 
 		}
 
+
+		
+		SharedPreferences prefs = getSharedPreferences(IMAGE_PATH, Context.MODE_PRIVATE);
+		String imageString = prefs.getString(IMAGE_PATH, null);
+		if(imageString==null) {
 		LKRemote remote = new LKRemote(this);
 		remote.setBitmapResultListener(new BitmapResultListener() {
 			@Override
 			public void onResult(Bitmap result) {
-				Log.d(LOG_TAG, "Got bitmap!");
 				if (result == null) {
-					Log.e(LOG_TAG, "bitmap was null"); // Maybe set some
 														// standard image?
 				}
-
+				SharedPreferences prefs = getSharedPreferences(IMAGE_PATH, Context.MODE_PRIVATE);
+				
+				ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+				result.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
+				byte[] byteArray2 = byteArray.toByteArray();
+				
+				String encoded = Base64.encodeToString(byteArray2, Base64.DEFAULT);
+				prefs.edit().putString(IMAGE_PATH, encoded).commit();
+				
 				image.setVisibility(View.VISIBLE);
 				image.setImageBitmap(result);
 			}
 		});
 		remote.requestServerForBitmap(user.imgUrl);
-
+		} else {
+			byte[] byteArray = Base64.decode(imageString, Base64.DEFAULT);
+			Bitmap result = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+			image.setVisibility(View.VISIBLE);
+			image.setImageBitmap(result);
+		}
 	}
 
 	/**
