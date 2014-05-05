@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
     <ImageView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginBottom="@dimen/horizontal_margin"
+        android:layout_marginLeft="@dimen/horizontal_margin_half"
+        android:layout_marginRight="@dimen/horizontal_margin_half"
         android:layout_marginTop="40dp"
-        
-        android:src="@drawable/card_id"
-        />
-    <TextView 
+        android:src="@drawable/card_id" />
+
+    <se.lundakarnevalen.widget.LKTextViewBold
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/press_card"
         android:layout_below="@id/card"
-        android:gravity="center"
         android:layout_centerHorizontal="true"
-        />
-
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.2"
+        android:shadowColor="#000000"
+        android:shadowDy="1"
+        android:shadowRadius="3"
+        android:text="@string/press_card"
+        android:textColor="@color/dark_blue"
+        android:textSize="20sp" />
 
 </RelativeLayout>
