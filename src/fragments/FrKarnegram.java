@@ -17,10 +17,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -42,6 +46,8 @@ public class FrKarnegram extends LKFragment {
 	private GridView gridView;
 	
 	private List<Bitmap> listBitmaps;
+	private ImageView fullSizeImage;
+	private ImageView cameraImage;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,9 +59,13 @@ public class FrKarnegram extends LKFragment {
 		
 		gridView.setAdapter(new ImageAdapter(getContext()));
 
-		ImageView cameraImage = (ImageView) rootView.findViewById(R.id.karnegram_camera_image);
+		cameraImage = (ImageView) rootView.findViewById(R.id.karnegram_camera_image);
+		fullSizeImage = (ImageView) rootView.findViewById(R.id.karnegram_full_size);
+		fullSizeImage.setVisibility(View.INVISIBLE);
 		
 		cameraImage.setOnClickListener(new CameraListener());
+		gridView.setOnItemClickListener(new ImageListener());
+
 	
 		
 		remote = new LKRemote(getContext());
@@ -64,11 +74,30 @@ public class FrKarnegram extends LKFragment {
 		
 		gson = new Gson();
 		
+		
+		gridView.setOnKeyListener(new OnKeyListener(){
+
+			@Override
+			public boolean onKey(View arg0, int keyCode, KeyEvent arg2) {
+				Log.d(TAG,"------------------------HÄÄÄÄÄÄÄÄÄÄÄÄÄRRRRRRRRRRRRR_______----------------------");
+				
+				if(keyCode == KeyEvent.KEYCODE_BACK && fullSizeImage.getVisibility() == View.VISIBLE)
+				{
+					Log.d(TAG,"------------------------HÄÄÄÄÄÄÄÄÄÄÄÄÄRRRRRRRRRRRRR_______----------------------");
+					fullSizeImage.setVisibility(View.INVISIBLE);
+					return true;
+				}
+				return false;
+			}
+			
+		});
+		
 //		getPictures();
 		
 		return rootView;
 	}
-	
+		
+		
 	private class BitmapRecall implements BitmapResultListener {
 		@Override
 		public void onResult(Bitmap result) {
@@ -137,7 +166,18 @@ public class FrKarnegram extends LKFragment {
 			startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
 		}
 	}
+	private class ImageListener implements OnItemClickListener {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+				long arg3) {
+			fullSizeImage.setImageBitmap(listBitmaps.get(position));
+			fullSizeImage.setVisibility(View.VISIBLE);
+		
+		}
+	}
 	
+
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if (requestCode == CAMERA_PIC_REQUEST) {
