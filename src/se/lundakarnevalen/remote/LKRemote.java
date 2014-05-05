@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 import se.lundakarnevalen.android.R;
 import android.app.AlertDialog;
@@ -347,9 +348,10 @@ public class LKRemote {
         @Override
         protected Bitmap doInBackground(String... params) {
                 Log.d(LOG_TAG, "AsyncTask started");
-                Bitmap bitmap = null;
+                Bitmap bitmap = null; 
                 try {
                         URL url = new URL(params[0]);
+                        
                 if (isCancelled()) return null;
                         bitmap = BitmapFactory.decodeStream((InputStream) url.getContent());
                 } catch (MalformedURLException e) {

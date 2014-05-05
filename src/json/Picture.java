@@ -7,5 +7,6 @@ public class Picture {
 	public boolean official;
 	public String thumbnail_url;
 	public String caption;
+	public String image;
 	
 }
