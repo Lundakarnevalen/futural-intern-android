@@ -526,6 +526,7 @@ public class ContentActivity extends ActionBarActivity implements
 				if (result == null) {
 														// standard image?
 				}
+				try {
 				SharedPreferences prefs = getSharedPreferences(IMAGE_PATH, Context.MODE_PRIVATE);
 				
 				ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
@@ -537,6 +538,9 @@ public class ContentActivity extends ActionBarActivity implements
 				
 				image.setVisibility(View.VISIBLE);
 				image.setImageBitmap(result);
+				} catch(NullPointerException e) {
+					
+				}
 			}
 		});
 		remote.requestServerForBitmap(user.imgUrl);

@@ -348,7 +348,7 @@ public class LKRemote {
         @Override
         protected Bitmap doInBackground(String... params) {
                 Log.d(LOG_TAG, "AsyncTask started");
-                Bitmap bitmap = null;
+                Bitmap bitmap = null; 
                 try {
                         URL url = new URL(params[0]);
                         
