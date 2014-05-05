@@ -33,8 +33,8 @@ public class LKRemote {
 
 	Context context;
 
-//	private String remoteAdrOld = "https://karnevalist-stage.herokuapp.com/api/";
-	private String remoteAdr = "http://www.karnevalist.se/";
+	private String remoteAdr = "https://karnevalist-stage.herokuapp.com/";
+//	private String remoteAdr = "http://www.karnevalist.se/";
 	//private String remoteAdr = "http://httpbin.org/put";
 	private boolean showProgressDialog = false;
 	TextResultListener textResultListener; 

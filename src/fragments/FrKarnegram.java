@@ -1,10 +1,22 @@
 package fragments;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import json.Picture;
+import json.PictureList;
+import json.Token;
 import se.lundakarnevalen.android.R;
+import se.lundakarnevalen.remote.LKRemote;
+import se.lundakarnevalen.remote.LKRemote.BitmapResultListener;
+import se.lundakarnevalen.remote.LKRemote.RequestType;
+import se.lundakarnevalen.remote.LKRemote.TextResultListener;
+import se.lundakarnevalen.remote.LKUser;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,18 +26,30 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.google.gson.Gson;
+
 public class FrKarnegram extends LKFragment {
 	
 	private static final int CAMERA_PIC_REQUEST = 1001; 
 	
+	private static final String TAG = FrKarnegram.class.getSimpleName();
+	
 	private Bitmap thumbImage;
+	
+	private LKRemote remote;
+	private Gson gson;
+	
+	private GridView gridView;
+	
+	private List<Bitmap> listBitmaps;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fr_karnegram, null);
 		
+		listBitmaps = new ArrayList<Bitmap>();
 		
-		GridView gridView = (GridView) rootView.findViewById(R.id.karnegram_gridview);
+		gridView = (GridView) rootView.findViewById(R.id.karnegram_gridview);
 		
 		gridView.setAdapter(new ImageAdapter(getContext()));
 
@@ -33,7 +57,76 @@ public class FrKarnegram extends LKFragment {
 		
 		cameraImage.setOnClickListener(new CameraListener());
 	
+		
+		remote = new LKRemote(getContext());
+		remote.setTextResultListener(new TextRecall());
+		remote.setBitmapResultListener(new BitmapRecall());
+		
+		gson = new Gson();
+		
+//		getPictures();
+		
 		return rootView;
+	}
+	
+	private class BitmapRecall implements BitmapResultListener {
+		@Override
+		public void onResult(Bitmap result) {
+			
+			if(result == null) {
+//				TODO Worth bothering that some photo isn't shown?
+				return;
+			}
+			
+			addBitmap(result);			
+		}
+	}
+	
+	private class TextRecall implements TextResultListener {
+		@Override
+		public void onResult(String result) {
+			
+			if(result == null) {
+				Log.d(TAG, "Result was null");
+//				TODO Handle the error
+				return;
+			}
+			Log.d(TAG, "Parsing result, result was: " + result);
+			
+			PictureList jsonPicture = gson.fromJson(result, PictureList.class);
+						
+			if(!jsonPicture.success.equals("true")) {
+				//TODO Handle the error?
+				return;
+			}
+			
+//			Here we know that there was a result and it was successful
+			Log.d(TAG, "Starting to fetch bitmaps from urls");
+			
+			for(Picture picture : jsonPicture.listPictures) {
+				Log.d(TAG, "Requesting bitmaps from server");
+				remote.requestServerForBitmap(picture.url);
+			}
+		}
+	}
+
+	private void getPictures() {
+		
+		if (!LKUser.localUserStored(getContext())) {
+			Log.d(TAG, "No user stored locally, cannot fetch pictures");
+			return;
+		}
+		
+		LKUser user = new LKUser(getContext());
+		user.getUserLocaly();
+		
+		Token token = new Token(user.token);
+		
+		String json = gson.toJson(token);
+		
+		Log.d(TAG, "Requesting Server For text with the token: " + json);
+		
+		remote.requestServerForText("api/photos", json, RequestType.GET, false);
 	}
 	
 	private class CameraListener implements OnClickListener {
@@ -42,7 +135,6 @@ public class FrKarnegram extends LKFragment {
 			Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 			
 			startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
-			
 		}
 	}
 	
@@ -52,11 +144,23 @@ public class FrKarnegram extends LKFragment {
 	        System.out.println("I CAME BACK!!!");
 	        
 	        try {
-	        	thumbImage = (Bitmap) data.getExtras().get("data");
+	        	Bitmap bitmap = (Bitmap) data.getExtras().get("data"); 
+	        	
+	        	sendBitmapToServer(bitmap);
+	        	addBitmap(bitmap);
 	        } catch(NullPointerException e) {
 //	        	Don't do anything
 	        }
 	    }
+	}
+	
+	private void sendBitmapToServer(Bitmap bitmap) {
+		
+	}
+
+	private void addBitmap(Bitmap bitmap) {
+		listBitmaps.add(bitmap);
+		gridView.invalidateViews();
 	}
 	
 	private class ImageAdapter extends BaseAdapter {
@@ -69,7 +173,7 @@ public class FrKarnegram extends LKFragment {
 	    }
 
 	    public int getCount() {
-	        return mThumbIds.length;
+	        return listBitmaps.size();
 	    }
 
 	    public Object getItem(int position) {
@@ -96,31 +200,11 @@ public class FrKarnegram extends LKFragment {
 	           imageView = (ImageView) gridView.findViewById(R.id.karnegram_row_item_image);
 	        }
 
-	        if(thumbImage != null) {
-	        	imageView.setImageBitmap(thumbImage);
-	        } else {
-	        	imageView.setImageResource(mThumbIds[position]);
+	        if(!listBitmaps.isEmpty()) {
+	        	imageView.setImageBitmap(listBitmaps.get(position));	        	
 	        }
 	        
 	        return gridView;
 	    }
-
-	    // references to our images
-	    private Integer[] mThumbIds = {
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken,
-	           R.drawable.fabriken
-	    };
 	}
 }
