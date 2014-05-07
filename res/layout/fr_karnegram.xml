@@ -38,13 +38,5 @@
         android:contentDescription="Camera"
         android:src="@drawable/camera" />
 
-    <ImageView
-        android:id="@+id/karnegram_full_size"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:horizontalSpacing="10dp"
-        android:scaleType="fitXY" />
-
-    
 
 </RelativeLayout>
