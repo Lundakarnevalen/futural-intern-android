@@ -33,6 +33,9 @@ public class LKRemote {
 	private final String LOG_TAG = "API call";
 
 	Context context;
+//	 curl -v -H "Accept: application/json" -H "Content-type: application/json" -X GET https://karnevalist-stage.herokuapp.com/api/photos?token="P6VmxzvTypzP3qb3TEW7"
+//		 05-07 15:48:23.005: D/FrKarnegram(6298): Requesting Server For text with the token: {"token":""}
+
 
 	private String remoteAdr = "https://karnevalist-stage.herokuapp.com/";
 //	private String remoteAdr = "http://www.karnevalist.se/";

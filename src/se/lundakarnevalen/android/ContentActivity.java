@@ -45,11 +45,11 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
 
 import fragments.CountdownFragment;
-import fragments.FrKarnegram;
 import fragments.IdentificationFragment;
 import fragments.InboxFragment;
 import fragments.LKFragment;
 import fragments.LKFragment.MessangerMessage;
+import fragments.futugram.FrKarnegram;
 import fragments.SongGroupsFragment;
 
 public class ContentActivity extends ActionBarActivity implements
