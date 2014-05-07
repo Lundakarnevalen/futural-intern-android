@@ -26,11 +26,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -54,11 +52,12 @@ public class FrKarnegram extends LKFragment {
 	private GridView gridView;
 
 	private List<Bitmap> listBitmaps;
-	private ImageView fullSizeImage;
+
 	private ImageView cameraImage;
 
 	private ContentValues values;
 	private Uri imageUri;
+	FrKarnegramImage frkarnegramimage;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,9 +72,6 @@ public class FrKarnegram extends LKFragment {
 
 		cameraImage = (ImageView) rootView
 				.findViewById(R.id.karnegram_camera_image);
-		fullSizeImage = (ImageView) rootView
-				.findViewById(R.id.karnegram_full_size);
-		fullSizeImage.setVisibility(View.INVISIBLE);
 
 		cameraImage.setOnClickListener(new CameraListener());
 		gridView.setOnItemClickListener(new ImageListener());
@@ -88,25 +84,6 @@ public class FrKarnegram extends LKFragment {
 		getRemote.setBitmapResultListener(new BitmapGetRecall());
 
 		gson = new Gson();
-
-		gridView.setOnKeyListener(new OnKeyListener() {
-
-			@Override
-			public boolean onKey(View arg0, int keyCode, KeyEvent arg2) {
-				Log.d(TAG,
-						"------------------------HÄÄÄÄÄÄÄÄÄÄÄÄÄRRRRRRRRRRRRR_______----------------------");
-
-				if (keyCode == KeyEvent.KEYCODE_BACK
-						&& fullSizeImage.getVisibility() == View.VISIBLE) {
-					Log.d(TAG,
-							"------------------------HÄÄÄÄÄÄÄÄÄÄÄÄÄRRRRRRRRRRRRR_______----------------------");
-					fullSizeImage.setVisibility(View.INVISIBLE);
-					return true;
-				}
-				return false;
-			}
-
-		});
 
 		getPictures();
 
@@ -172,11 +149,8 @@ public class FrKarnegram extends LKFragment {
 
 		LKUser user = new LKUser(getContext());
 		user.getUserLocaly();
-
 		Token token = new Token(user.token);
-
 		String json = gson.toJson(token);
-
 		Log.d(TAG, "Requesting Server For text with the token: " + json);
 
 		getRemote.requestServerForText("api/photos", json, RequestType.GET,
@@ -210,9 +184,9 @@ public class FrKarnegram extends LKFragment {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 				long arg3) {
-			fullSizeImage.setImageBitmap(listBitmaps.get(position));
-			fullSizeImage.setVisibility(View.VISIBLE);
-
+			frkarnegramimage = new FrKarnegramImage();
+			frkarnegramimage.setArguments(listBitmaps.get(position));
+			loadFragment(frkarnegramimage,true);
 		}
 	}
 

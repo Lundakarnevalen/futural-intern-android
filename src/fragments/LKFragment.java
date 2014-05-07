@@ -302,9 +302,5 @@ public class LKFragment extends Fragment {
 	 */
 	public enum MessangerMessage {
 		SET_TITLE, SET_INBOX_COUNT, SHOW_ACTION_BAR_LOGO;
-	}
-
-	
-
-	
+	}	
 }
