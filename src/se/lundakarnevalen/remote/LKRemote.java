@@ -29,15 +29,13 @@ import android.util.Log;
  */
 
 public class LKRemote { 
-
+	
 	private final String LOG_TAG = "API call";
 
-	Context context;
-//	 curl -v -H "Accept: application/json" -H "Content-type: application/json" -X GET https://karnevalist-stage.herokuapp.com/api/photos?token="P6VmxzvTypzP3qb3TEW7"
-//		 05-07 15:48:23.005: D/FrKarnegram(6298): Requesting Server For text with the token: {"token":""}
+	private Context context;
+	private String contentType = "application/json; charset=utf-8";
 
-
-	private String remoteAdr = "https://karnevalist-stage.herokuapp.com/";
+	public static final String remoteAdr = "https://karnevalist-stage.herokuapp.com/";
 //	private String remoteAdr = "http://www.karnevalist.se/";
 	//private String remoteAdr = "http://httpbin.org/put";
 	private boolean showProgressDialog = false;
@@ -50,6 +48,10 @@ public class LKRemote {
 	public LKRemote(Context context){
 		this.context = context;
 	} 
+	
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
 
 	/**
 	 * Creates remote object and sets a listener for the result
@@ -160,6 +162,8 @@ public class LKRemote {
     	this.bitmapListener = l;
     }
 
+    
+    
 
 	/**
 	 * Inner class used to perform http calls with a textresponse. 
@@ -232,7 +236,10 @@ public class LKRemote {
 			} catch (java.net.ProtocolException e) {	
 				Log.e(LOG_TAG, "no such protocol");
 			}
-			con.setRequestProperty("Content-Type", "application/json; charset=utf-8");					
+			
+			
+		
+			con.setRequestProperty("Content-Type", contentType);					
 			con.setRequestProperty("Charset", "UTF-8");
 
 			con.setUseCaches(false);

@@ -91,9 +91,6 @@ public class FrKarnegram extends LKFragment {
 		getAlbumStorageDir("Karnegram");
 
 		getRemote.getPictures();
-		
-		Bitmap b = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.fabriken);
-		sendRemote.sendBitmapToServer(b);
 
 		return rootView;
 	}
@@ -117,7 +114,7 @@ public class FrKarnegram extends LKFragment {
 				bitmapHandler.add(picture);
 				String imageurl = getRealPathFromURI(cameraListener.getUri());
 
-//				sendRemote.sendBitmapToServer(picture, imageurl, "Name1");
+				sendRemote.sendBitmapToServer(imageurl);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -131,8 +128,7 @@ public class FrKarnegram extends LKFragment {
 	 */
 	public String getRealPathFromURI(Uri contentUri) {
 		String[] proj = { MediaStore.Images.Media.DATA };
-		Cursor cursor = getActivity().managedQuery(contentUri, proj, null,
-				null, null);
+		Cursor cursor = getActivity().managedQuery(contentUri, proj, null, null, null);
 		int column_index = cursor
 				.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 		cursor.moveToFirst();
