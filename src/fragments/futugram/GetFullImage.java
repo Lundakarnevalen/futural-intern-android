@@ -29,6 +29,7 @@ public class GetFullImage {
 		Log.d(TAG, "Getting image");
 		this.spinner = spinner;
 		this.imageView = imageView;
+		imageView.setVisibility(View.GONE);
 		
 		LKUser user = new LKUser(context);
 		user.getUserLocaly();
@@ -44,7 +45,8 @@ public class GetFullImage {
 				// TODO Worth bothering that some photo isn't shown?
 				return;
 			}
-			spinner.setVisibility(View.INVISIBLE);
+			spinner.setVisibility(View.GONE);
+			imageView.setVisibility(View.VISIBLE);
 			imageView.setImageBitmap(result);
 		}
 	}
