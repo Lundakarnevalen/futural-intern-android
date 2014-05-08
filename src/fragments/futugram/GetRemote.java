@@ -1,6 +1,5 @@
 package fragments.futugram;
 
-import json.Picture;
 import json.PictureList;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.BitmapResultListener;
@@ -20,10 +19,13 @@ public class GetRemote {
 	private LKRemote getRemote;
 	private Context context;
 	private Gson gson;
+	private int index;
+	private PictureList listPicture;
 		
 	protected GetRemote(Context context, BitmapHandler bitmapHandler) {
 		this.bitmapHandler = bitmapHandler;
 		this.context = context;
+		index = 0;
 		
 		gson = new Gson();
 		
@@ -32,7 +34,6 @@ public class GetRemote {
 		getRemote.setBitmapResultListener(new BitmapGetRecall());
 	}
 	
-	
 	private class BitmapGetRecall implements BitmapResultListener {
 		@Override
 		public void onResult(Bitmap result) {
@@ -40,6 +41,11 @@ public class GetRemote {
 				// TODO Worth bothering that some photo isn't shown?
 				return;
 			}
+			
+			if(index < listPicture.photos.size()) {
+				getPicture(listPicture.photos.get(index).thumb);
+			}
+			
 			bitmapHandler.add(result);
 		}
 	}
@@ -68,9 +74,9 @@ public class GetRemote {
 			}
 			Log.d(TAG, "Parsing result, result was: " + result);
 
-			PictureList jsonPicture = gson.fromJson(result, PictureList.class);
+			listPicture = gson.fromJson(result, PictureList.class);
 
-			if (!jsonPicture.success.equals("true")) {
+			if (!listPicture.success.equals("true")) {
 				// TODO Handle the error?
 				return;
 			}
@@ -78,10 +84,15 @@ public class GetRemote {
 			// Here we know that there was a result and it was successful
 			Log.d(TAG, "Starting to fetch bitmaps from urls");
 
-			for (Picture picture : jsonPicture.photos) {
-				Log.d(TAG, "Requesting bitmaps from server");
-				getRemote.requestServerForBitmap(picture.thumb);
+			if(listPicture.photos.isEmpty()) {
+				return;
 			}
+			getPicture(listPicture.photos.get(index).thumb);
 		}
+	}
+	
+	private void getPicture(String url) {
+		getRemote.requestServerForBitmap(url);
+		index++;
 	}
 }

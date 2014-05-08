@@ -34,9 +34,8 @@ public class BitmapHandler {
 	}
 
 	public void add(Bitmap result) {
-		Log.d(TAG, "Adding photo");
-		listBitmaps.add(listBitmaps.size(), result);
+		Log.d(TAG, "Adding photo with index: " + listBitmaps.size());
+		listBitmaps.add(0, result);
 		gridView.invalidateViews();
-		gridView.invalidate();
 	}
 }
