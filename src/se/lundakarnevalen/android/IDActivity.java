@@ -238,7 +238,7 @@ public class IDActivity extends Activity implements OnClickListener{
 		case 9:
 			return "Klipperiet";
 		case 10:
-			return "Kommunikationen";
+			return "Kommunikation";
 		case 11:
 			 return "Krogarna";
 		case 12:
