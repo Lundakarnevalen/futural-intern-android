@@ -5,6 +5,6 @@ import java.util.List;
 public class PictureList {
 
 	public String success;
-	public List<Picture> listPictures;
+	public List<Picture> photos;
 	
 }

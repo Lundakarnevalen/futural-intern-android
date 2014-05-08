@@ -2,11 +2,11 @@ package fragments.futugram;
 
 import java.io.File;
 
-import se.lundakarnevalen.android.ContentActivity;
 import se.lundakarnevalen.android.R;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -34,8 +34,7 @@ public class FrKarnegram extends LKFragment {
 	private GetRemote getRemote;
 	private SendRemote sendRemote;
 	private CameraListener cameraListener;
-	
-	
+		
 	private GridView gridView;
 
 	private ImageView fullSizeImage;
@@ -51,6 +50,7 @@ public class FrKarnegram extends LKFragment {
 		bitmapHandler = new BitmapHandler(gridView);
 		
 		getRemote = new GetRemote(getContext(), bitmapHandler);
+		sendRemote = new SendRemote(getContext());
 		
 		gridView.setAdapter(new ImageAdapter(getContext(), bitmapHandler));
 
@@ -59,9 +59,9 @@ public class FrKarnegram extends LKFragment {
 		
 		cameraListener = new CameraListener(getContext(), this, cameraImage);
 		
-		fullSizeImage = (ImageView) rootView
-				.findViewById(R.id.karnegram_full_size);
-		fullSizeImage.setVisibility(View.INVISIBLE);
+//		fullSizeImage = (ImageView) rootView
+//				.findViewById(R.id.karnegram_full_size);
+//		fullSizeImage.setVisibility(View.INVISIBLE);
 
 		
 		gridView.setOnItemClickListener(new ImageListener());
@@ -87,10 +87,13 @@ public class FrKarnegram extends LKFragment {
 			}
 
 		});
+		
+		getAlbumStorageDir("Karnegram");
 
 		getRemote.getPictures();
-
-		getAlbumStorageDir("Karnegram");
+		
+		Bitmap b = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.fabriken);
+		sendRemote.sendBitmapToServer(b);
 
 		return rootView;
 	}
@@ -99,11 +102,9 @@ public class FrKarnegram extends LKFragment {
 	private class ImageListener implements OnItemClickListener {
 
 		@Override
-		public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-				long arg3) {
-			fullSizeImage.setImageBitmap(bitmapHandler.get(position));
-			fullSizeImage.setVisibility(View.VISIBLE);
-
+		public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+//			fullSizeImage.setImageBitmap(bitmapHandler.get(position));
+//			fullSizeImage.setVisibility(View.VISIBLE);
 		}
 	}
 
@@ -116,12 +117,11 @@ public class FrKarnegram extends LKFragment {
 				bitmapHandler.add(picture);
 				String imageurl = getRealPathFromURI(cameraListener.getUri());
 
-				sendRemote.sendBitmapToServer(picture, imageurl);
+//				sendRemote.sendBitmapToServer(picture, imageurl, "Name1");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 	}
-
 	/**
 	 * Not sure, copied from the Internet, seems to work even though it is
 	 * depricated
@@ -138,7 +138,6 @@ public class FrKarnegram extends LKFragment {
 		cursor.moveToFirst();
 		return cursor.getString(column_index);
 	}
-
 	public File getAlbumStorageDir(String albumName) {
 		// Get the directory for the user's public pictures directory.
 		File file = new File(
