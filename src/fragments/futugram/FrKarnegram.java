@@ -65,28 +65,7 @@ public class FrKarnegram extends LKFragment {
 
 		
 		gridView.setOnItemClickListener(new ImageListener());
-
-
 		Ion.getDefault(getContext()).configure().setLogging("MyLogs", Log.DEBUG);
-		
-		gridView.setOnKeyListener(new OnKeyListener() {
-
-			@Override
-			public boolean onKey(View arg0, int keyCode, KeyEvent arg2) {
-				Log.d(TAG,
-						"------------------------HÄÄÄÄÄÄÄÄÄÄÄÄÄRRRRRRRRRRRRR_______----------------------");
-
-				if (keyCode == KeyEvent.KEYCODE_BACK
-						&& fullSizeImage.getVisibility() == View.VISIBLE) {
-					Log.d(TAG,
-							"------------------------HÄÄÄÄÄÄÄÄÄÄÄÄÄRRRRRRRRRRRRR_______----------------------");
-					fullSizeImage.setVisibility(View.INVISIBLE);
-					return true;
-				}
-				return false;
-			}
-
-		});
 		
 		getAlbumStorageDir("Karnegram");
 
@@ -100,6 +79,13 @@ public class FrKarnegram extends LKFragment {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+			String url = getRemote.getUrl(position);
+			Bundle bundle = new Bundle();
+			bundle.putString("URL", url);
+			FrKarnegramImage frkarnegramimage = new FrKarnegramImage();
+			frkarnegramimage.setArguments(bundle);
+			loadFragment(frkarnegramimage,true);
+			
 //			fullSizeImage.setImageBitmap(bitmapHandler.get(position));
 //			fullSizeImage.setVisibility(View.VISIBLE);
 		}

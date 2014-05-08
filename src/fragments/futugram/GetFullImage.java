@@ -6,6 +6,7 @@ import se.lundakarnevalen.remote.LKUser;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 public class GetFullImage {
@@ -15,6 +16,7 @@ public class GetFullImage {
 	private LKRemote getRemote;
 	private ImageView imageView;
 	private Context context;
+	private View spinner;
 	
 	public GetFullImage(Context context) {
 		this.context = context;
@@ -23,9 +25,9 @@ public class GetFullImage {
 		getRemote.setBitmapResultListener(new BitmapGetRecall());
 	}
 	
-	public void getImage(String url, ImageView imageView) {
+	public void getImage(String url, ImageView imageView, View spinner) {
 		Log.d(TAG, "Getting image");
-		
+		this.spinner = spinner;
 		this.imageView = imageView;
 		
 		LKUser user = new LKUser(context);
@@ -42,7 +44,7 @@ public class GetFullImage {
 				// TODO Worth bothering that some photo isn't shown?
 				return;
 			}
-			
+			spinner.setVisibility(View.INVISIBLE);
 			imageView.setImageBitmap(result);
 		}
 	}
