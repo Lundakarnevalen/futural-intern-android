@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
+	<string name="futugram">FUTUGRAM</string>
+    
     <string name="sign_in_button">Log in</string>
     <string name="registration_hurra">HURRAY!</string>
     <string name="registration_status">You want to be karnevalist.</string>
