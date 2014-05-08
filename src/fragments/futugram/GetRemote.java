@@ -42,7 +42,7 @@ public class GetRemote {
 				return;
 			}
 			
-			if(index < listPicture.photos.size()) {
+			if(index >= 0) {
 				getPicture(listPicture.photos.get(index).thumb);
 			}
 			
@@ -87,12 +87,14 @@ public class GetRemote {
 			if(listPicture.photos.isEmpty()) {
 				return;
 			}
+			index = listPicture.photos.size() - 1;
+			
 			getPicture(listPicture.photos.get(index).thumb);
 		}
 	}
 	
 	private void getPicture(String url) {
 		getRemote.requestServerForBitmap(url);
-		index++;
+		index--;
 	}
 }

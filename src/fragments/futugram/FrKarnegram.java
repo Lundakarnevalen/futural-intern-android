@@ -149,7 +149,7 @@ public class FrKarnegram extends LKFragment {
 		return file;
 	}
 	
-	@Override
+	@Override 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setTitle(getString(R.string.futugram));
