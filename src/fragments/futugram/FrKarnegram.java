@@ -43,7 +43,7 @@ public class FrKarnegram extends LKFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fr_karnegram, null);
+		View rootView = inflater.inflate(R.layout.fr_karnegram, container, false);
 
 		gridView = (GridView) rootView.findViewById(R.id.karnegram_gridview);
 
