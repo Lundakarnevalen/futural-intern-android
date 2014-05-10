@@ -2,6 +2,6 @@ package json;
 
 public class ReceivePicture {
 
-	public boolean result;
-	public Picture picture;
+	public String success;
+	public Picture photo;
 }

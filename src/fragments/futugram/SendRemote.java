@@ -2,6 +2,8 @@ package fragments.futugram;
 
 import java.io.File;
 
+import json.ReceivePicture;
+
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import se.lundakarnevalen.remote.LKUser;
@@ -69,7 +71,13 @@ public class SendRemote {
 			        if(result != null) {
 			        	String s = result.toString();
 			        	
+			        	ReceivePicture pic = gson.fromJson(s, ReceivePicture.class);
 			        	
+			        	if(pic.success.equals("true")) {
+			        		Toast.makeText(context, "Picture sent!", Toast.LENGTH_LONG).show();
+			        	} else {
+			        		Toast.makeText(context, "Picture not sent.", Toast.LENGTH_LONG).show();
+			        	}
 			        			
 			        	Log.d(TAG, result.toString());
 			        }
