@@ -24,6 +24,7 @@ import android.os.Handler;
 import android.text.format.Time;
 import android.util.Log;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -381,6 +382,9 @@ public class SplashscreenActivity extends Activity{
 				Intent intent;
 				
 				if(LKUser.localUserStored(context)) {
+					
+					
+					
 					Log.d(SplashscreenActivity.class.getSimpleName(), "User stored locally");
 					
 					intent = new Intent(SplashscreenActivity.this, ContentActivity.class);
@@ -434,11 +438,10 @@ public class SplashscreenActivity extends Activity{
 				user.gcmRegId = getRegId(context); 
 				
 				remote.requestServerForText("api/karnevalister/" + user.id, user.getJson(true), LKRemote.RequestType.PUT, false);
-
-				Log.d(LOG_TAG, "AASDKANSDPOASDJPAOS");
+				
 				Log.d(LOG_TAG, "Stuff: " + user.getJson(true));
 				
-				Log.d(LOG_TAG, "sent to server");
+				Log.d(LOG_TAG, "sent to server"); 
 				 
 				return regId;
 			}
@@ -514,5 +517,17 @@ public class SplashscreenActivity extends Activity{
 		//				db.close();
 		//			}
 		//		});
+	}
+	private class ButtonLoginResponse implements LKRemote.TextResultListener {
+
+		@Override
+		public void onResult(String result) {
+			Log.d("", "Yay, some result!"+result);
+			
+			
+			if(result == null) {
+				return;
+			}
+		}
 	}
 }

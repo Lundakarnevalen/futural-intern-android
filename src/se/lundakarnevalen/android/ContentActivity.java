@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import json.MapGet;
 import json.Notification;
 import json.Response;
 import se.lundakarnevalen.remote.LKRemote;
@@ -89,6 +90,7 @@ public class ContentActivity extends ActionBarActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		
 		trackingStart();
 
 		setContentView(R.layout.content_wrapper);
@@ -484,8 +486,9 @@ public class ContentActivity extends ActionBarActivity implements
 		
 		listItems.add(sangbok);
 
-		if(user.jobbatAktiv) {
-			
+		
+		if(user.aktiv) {
+			 
 		LKMenuListItem identification = new LKMenuListItem(
 				getString(R.string.identification_title), 0, new IdentificationFragment(),
 				fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);
@@ -686,5 +689,7 @@ public class ContentActivity extends ActionBarActivity implements
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+	
+
 
 }

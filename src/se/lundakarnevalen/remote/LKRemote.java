@@ -11,6 +11,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import json.LoginCredentialsWrite;
+
+import com.google.gson.Gson;
+
 import se.lundakarnevalen.android.R;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -126,6 +130,7 @@ public class LKRemote {
     	String requestType = getRequestTypeString(type);
     	
     	if(hasInternetConnection(context)){
+    		
     		AsyncTask<String, Void, String> task = new ServerTextTask();
     		task.execute(file, data, requestType);
     	}else{
@@ -214,6 +219,7 @@ public class LKRemote {
 			URL url;
 			try {
 				url = new URL(remoteAdr+file);
+				
 			} catch (MalformedURLException e) {
 				Log.e(LOG_TAG, "Malformed URL");
 				return null;
@@ -221,6 +227,7 @@ public class LKRemote {
 
 			HttpURLConnection con;
 			try {
+
 				con = (HttpURLConnection) url.openConnection();
 			} catch (IOException e) {
 				Log.e(LOG_TAG, "Could not open connection to: "+url.getPath());
@@ -286,6 +293,7 @@ public class LKRemote {
 
 			InputStreamReader isr;
 			try {
+
 				Log.d(LOG_TAG, "Response: "+con.getResponseCode());
 				isr = new InputStreamReader((InputStream) con.getContent());
 			} catch (IOException e) {
@@ -414,4 +422,6 @@ public class LKRemote {
 	public enum RequestType{
 		POST, GET, PUT, DELETE;
 	}
+	
+	
 }

@@ -140,7 +140,6 @@ public class FrSignIn extends Fragment {
 
 		@Override
 		public void onResult(String result) {
-			Log.d(log, "Yay, some result!");
 			
 			showProgress(false);
 			
