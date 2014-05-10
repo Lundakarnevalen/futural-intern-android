@@ -35,8 +35,8 @@ public class LKRemote {
 	private Context context;
 	private String contentType = "application/json; charset=utf-8";
 
-	public static final String remoteAdr = "https://karnevalist-stage.herokuapp.com/";
-//	private String remoteAdr = "http://www.karnevalist.se/";
+//	public static final String remoteAdr = "https://karnevalist-stage.herokuapp.com/";
+	public static final String remoteAdr = "http://www.karnevalist.se/";
 	//private String remoteAdr = "http://httpbin.org/put";
 	private boolean showProgressDialog = false;
 	TextResultListener textResultListener; 

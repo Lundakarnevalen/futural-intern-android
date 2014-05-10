@@ -8,6 +8,7 @@ import se.lundakarnevalen.remote.LKUser;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -51,7 +52,7 @@ public class SendRemote {
 		LKUser user = new LKUser(context);
 		user.getUserLocaly();
 		
-		Log.d(TAG, "Starting sending");
+		Toast.makeText(context, "Sending picture", Toast.LENGTH_LONG).show();
 		
 		Ion.with(context, LKRemote.remoteAdr + "api/photos")
 		.setMultipartParameter("token", user.token)
@@ -66,6 +67,10 @@ public class SendRemote {
 			        }
 			        
 			        if(result != null) {
+			        	String s = result.toString();
+			        	
+			        	
+			        			
 			        	Log.d(TAG, result.toString());
 			        }
 			    }
