@@ -97,4 +97,9 @@ public class GetRemote {
 		getRemote.requestServerForBitmap(url);
 		index--;
 	}
+	
+	public String getUrl(int index){
+		index = listPicture.photos.size() - index - 1;
+		return listPicture.photos.get(index).url;
+	}
 }
