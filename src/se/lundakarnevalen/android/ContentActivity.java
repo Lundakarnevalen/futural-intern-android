@@ -484,7 +484,7 @@ public class ContentActivity extends ActionBarActivity implements
 		
 		listItems.add(sangbok);
 
-		if(user.jobbatAktiv) {
+		if(user.aktiv) {
 			
 		LKMenuListItem identification = new LKMenuListItem(
 				getString(R.string.identification_title), 0, new IdentificationFragment(),
