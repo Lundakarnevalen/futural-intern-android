@@ -2,7 +2,6 @@ package se.lundakarnevalen.remote;
 
 import json.KarnevalistWrite;
 import json.LoginResponse;
-import json.Response;
 import json.User;
 import json.UserWrite;
 import android.content.Context;

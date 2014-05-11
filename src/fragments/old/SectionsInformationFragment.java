@@ -1,7 +1,6 @@
 
 package fragments.old;
 
-import fragments.LKFragment;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.LKTextView;
@@ -14,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import fragments.LKFragment;
 
 public class SectionsInformationFragment extends LKFragment {
 

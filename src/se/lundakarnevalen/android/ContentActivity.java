@@ -49,8 +49,8 @@ import fragments.IdentificationFragment;
 import fragments.InboxFragment;
 import fragments.LKFragment;
 import fragments.LKFragment.MessangerMessage;
-import fragments.futugram.FrKarnegram;
 import fragments.SongGroupsFragment;
+import fragments.futugram.FrKarnegram;
 
 public class ContentActivity extends ActionBarActivity implements
 		LKFragment.Messanger {
