@@ -3,12 +3,10 @@ package fragments.futugram;
 import java.io.File;
 
 import json.ReceivePicture;
-
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
 import se.lundakarnevalen.remote.LKUser;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.Log;
 import android.widget.Toast;
 

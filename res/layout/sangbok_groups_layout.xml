@@ -4,7 +4,7 @@
     android:background="@color/bg_sangbok"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/horizontal_margin" >
+    android:paddingBottom="0dp" >
 
     <LinearLayout
         android:id="@+id/sangbok_groups_layout"

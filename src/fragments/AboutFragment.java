@@ -1,13 +1,8 @@
 package fragments;
 
-import java.util.Calendar;
-
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.android.R.id;
-import se.lundakarnevalen.android.R.layout;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

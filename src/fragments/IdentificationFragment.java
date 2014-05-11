@@ -1,29 +1,17 @@
 package fragments;
 
-import se.lundakarnevalen.android.ContentActivity;
 import se.lundakarnevalen.android.IDActivity;
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKUser;
-import se.lundakarnevalen.remote.LKRemote.BitmapResultListener;
-import se.lundakarnevalen.widget.LKInboxArrayAdapter;
-import se.lundakarnevalen.widget.LKTextView;
-import se.lundakarnevalen.widget.LKTextViewBold;
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff.Mode;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 
 

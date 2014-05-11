@@ -2,13 +2,10 @@ package se.lundakarnevalen.widget;
 
 import java.util.ArrayList;
 
-import fragments.old.SectionsInformationFragment;
-
 import se.lundakarnevalen.android.ContentActivity;
 import se.lundakarnevalen.android.R;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import fragments.old.SectionsInformationFragment;
 
 public class LKSectionsArrayAdapter extends
 		ArrayAdapter<LKSectionsArrayAdapter.LKSectionsItem> implements

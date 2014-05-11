@@ -2,19 +2,15 @@ package fragments;
 
 
 import se.lundakarnevalen.android.R;
-import se.lundakarnevalen.widget.LKButtonGreen;
 import se.lundakarnevalen.widget.LKButtonYellow;
 import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.RelativeLayout;
+import android.view.ViewGroup;
 
 public class InfoTextFragment extends LKFragment {
 	MapFragment mf;

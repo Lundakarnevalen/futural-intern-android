@@ -6,16 +6,13 @@ import se.lundakarnevalen.android.R;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -43,7 +40,7 @@ public class FrKarnegram extends LKFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fr_karnegram, null);
+		View rootView = inflater.inflate(R.layout.fr_karnegram, container, false);
 
 		gridView = (GridView) rootView.findViewById(R.id.karnegram_gridview);
 
