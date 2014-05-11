@@ -95,9 +95,9 @@ public class FrKarnegram extends LKFragment {
 		Log.d(TAG, "onActivityResult");
 		if (requestCode == CameraListener.CAMERA_PIC_REQUEST)
 			try {
-				Bitmap picture = MediaStore.Images.Media.getBitmap(getContext()
-						.getContentResolver(), cameraListener.getUri());
-				bitmapHandler.add(picture);
+//				Bitmap picture = MediaStore.Images.Media.getBitmap(getContext()
+//						.getContentResolver(), cameraListener.getUri());
+//				bitmapHandler.add(picture);
 				String imageurl = getRealPathFromURI(cameraListener.getUri());
 
 				sendRemote.sendBitmapToServer(imageurl);
