@@ -30,7 +30,7 @@ public class FrKarnegramImage extends LKFragment {
 		View spinner = rootView.findViewById(R.id.karnegram_full_size_spinner);
 		
 		GetFullImage fullImage = new GetFullImage(getContext());
-		String url = getArguments().getString("URL");
+		String url = getArguments().getString("url");
 		String caption = getArguments().getString("caption");
 		String name = getArguments().getString("name");
 		
