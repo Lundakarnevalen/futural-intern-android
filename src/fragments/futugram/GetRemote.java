@@ -1,6 +1,6 @@
 package fragments.futugram;
 
-import json.PictureList;
+import json.ListPicture;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKRemote.BitmapResultListener;
 import se.lundakarnevalen.remote.LKRemote.TextResultListener;
@@ -20,7 +20,7 @@ public class GetRemote {
 	private Context context;
 	private Gson gson;
 	private int index;
-	private PictureList listPicture;
+	private ListPicture listPicture;
 		
 	protected GetRemote(Context context, BitmapHandler bitmapHandler) {
 		this.bitmapHandler = bitmapHandler;
@@ -43,7 +43,7 @@ public class GetRemote {
 			}
 			
 			if(index >= 0) {
-				getPicture(listPicture.photos.get(index).thumb);
+				getPicture(listPicture.getThumb(index));
 			}
 			
 			bitmapHandler.add(result);
@@ -74,9 +74,9 @@ public class GetRemote {
 			}
 			Log.d(TAG, "Parsing result, result was: " + result);
 
-			listPicture = gson.fromJson(result, PictureList.class);
+			listPicture = gson.fromJson(result, ListPicture.class);
 
-			if (!listPicture.success.equals("true")) {
+			if (!listPicture.successful()) {
 				// TODO Handle the error?
 				return;
 			}
@@ -84,12 +84,13 @@ public class GetRemote {
 			// Here we know that there was a result and it was successful
 			Log.d(TAG, "Starting to fetch bitmaps from urls");
 
-			if(listPicture.photos.isEmpty()) {
+			if(listPicture.isEmpty()) {
 				return;
 			}
-			index = listPicture.photos.size() - 1;
 			
-			getPicture(listPicture.photos.get(index).thumb);
+			index = listPicture.lastIndex();
+			
+			getPicture(listPicture.getThumb(index));
 		}
 	}
 	
@@ -98,8 +99,7 @@ public class GetRemote {
 		index--;
 	}
 	
-	public String getUrl(int index){
-		index = listPicture.photos.size() - index - 1;
-		return listPicture.photos.get(index).url;
+	public ListPicture getListPictures() {
+		return listPicture;
 	}
 }

@@ -17,7 +17,24 @@
         android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@string/image" 
+        android:contentDescription="@string/image"
+        android:layout_above="@id/name" 
         android:layout_margin="20dp"/>
+    
+    
+    
+    <se.lundakarnevalen.widget.LKTextViewBold android:id="@+id/caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text=""
+        android:layout_alignParentBottom="true" />
+    
+    <se.lundakarnevalen.widget.LKTextViewBold android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_above="@id/caption"
+        android:layout_marginBottom="10dp"
+        android:text=""
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

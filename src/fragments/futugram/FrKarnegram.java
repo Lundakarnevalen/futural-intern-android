@@ -2,6 +2,8 @@ package fragments.futugram;
 
 import java.io.File;
 
+import json.ListPicture;
+
 import se.lundakarnevalen.android.R;
 import android.content.Intent;
 import android.database.Cursor;
@@ -76,9 +78,16 @@ public class FrKarnegram extends LKFragment {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-			String url = getRemote.getUrl(position);
+			ListPicture pictures = getRemote.getListPictures(); 
+			
+			String url = pictures.getUrl(position);
+			String caption = pictures.getCation(position);
+			String name = pictures.getName(position);
+			
 			Bundle bundle = new Bundle();
 			bundle.putString("URL", url);
+			bundle.putString("caption", caption);
+			bundle.putString("name", name);
 			FrKarnegramImage frkarnegramimage = new FrKarnegramImage();
 			frkarnegramimage.setArguments(bundle);
 			loadFragment(frkarnegramimage,true);
