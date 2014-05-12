@@ -338,6 +338,10 @@
     <string name="action_bar_reset_password">RESET PASSWORD</string>
     <string name="action_bar_sign_in">SIGN IN</string>
     <string name="press_play_button">PRESS PLAY BUTTON</string>
+    <string name="futugram_cancel">CANCEL</string>
+    <string name="futugram_send">SEND</string>
+    
+    
 
     <!-- Songboken -->
     <string name="sangbok_title">SONGBOOK</string>
