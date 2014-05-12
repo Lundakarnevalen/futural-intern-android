@@ -22,10 +22,12 @@ public class SendRemote {
 	private LKRemote sendRemote;
 	private Context context;
 	private Gson gson;
+	private FrPrepareSending fragment;
 
-	public SendRemote(Context context) {
+	public SendRemote(Context context, FrPrepareSending fragment) {
+		this.fragment = fragment;
 		this.context = context;
-
+		
 		gson = new Gson();
 
 		sendRemote = new LKRemote(context);
@@ -47,7 +49,7 @@ public class SendRemote {
 		}
 	}
 
-	public void sendBitmapToServer(String imageurl) {
+	public void sendBitmapToServer(String imageurl, String caption) {
 	
 		LKUser user = new LKUser(context);
 		user.getUserLocaly();
@@ -56,7 +58,7 @@ public class SendRemote {
 		
 		Ion.with(context, LKRemote.remoteAdr + "api/photos")
 		.setMultipartParameter("token", user.token)
-		.setMultipartParameter("photo[caption]", "caption?")
+		.setMultipartParameter("photo[caption]", caption)
 		.setMultipartFile("photo[image]", new File(imageurl))
 		.asJsonObject()
 		.setCallback(new FutureCallback<JsonObject>() {
@@ -72,11 +74,12 @@ public class SendRemote {
 			        	ReceivePicture pic = gson.fromJson(s, ReceivePicture.class);
 			        	
 			        	if(pic.success.equals("true")) {
-			        		Toast.makeText(context, "Picture sent!", Toast.LENGTH_LONG).show();
+			        		Toast.makeText(context, "Picture sent! It now awaits approval", Toast.LENGTH_LONG).show();
+			        		fragment.popFragmentStack();
 			        	} else {
-			        		Toast.makeText(context, "Picture not sent.", Toast.LENGTH_LONG).show();
+			        		Toast.makeText(context, "Failed to sent picture. Try again!", Toast.LENGTH_LONG).show();
+			        		fragment.activateCancel();
 			        	}
-			        			
 			        	Log.d(TAG, result.toString());
 			        }
 			    }

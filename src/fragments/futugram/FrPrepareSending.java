@@ -1,23 +1,21 @@
 package fragments.futugram;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import se.lundakarnevalen.android.R;
-import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import fragments.LKFragment;
 
@@ -27,9 +25,12 @@ public class FrPrepareSending extends LKFragment {
 	
 	private View rootView;
 	private SendRemote sendRemote;
+	private EditText viewCaption;
 	
 	private Button buttonCancel;
 	private Button buttonSend;
+	
+	private ProgressBar progress;
 	
 	private ImageView image;
 	
@@ -41,13 +42,17 @@ public class FrPrepareSending extends LKFragment {
 	
 		imageUrl = getArguments().getString("url");
 		
-		sendRemote = new SendRemote(getContext());
+		sendRemote = new SendRemote(getContext(), this);
 		
 		buttonCancel = (Button) rootView.findViewById(R.id.cancel);
 		buttonCancel.setOnClickListener(new CancelButton());
 		
 		buttonSend = (Button) rootView.findViewById(R.id.send);
 		buttonSend.setOnClickListener(new SendButton());
+		
+		viewCaption = (EditText) rootView.findViewById(R.id.caption_edit);
+ 		
+		progress = (ProgressBar) rootView.findViewById(R.id.karnegram_full_size_spinner);
 		
 		RelativeLayout layoutImage = (RelativeLayout) rootView.findViewById(R.id.karnegram_full_size);
 		
@@ -90,7 +95,27 @@ public class FrPrepareSending extends LKFragment {
 
 		@Override
 		public void onClick(View v) {
-			sendRemote.sendBitmapToServer(imageUrl);
+//			Disable the cancel button
+			buttonCancel.setOnClickListener(null);
+			
+			String caption = viewCaption.getText().toString();
+			
+			sendRemote.sendBitmapToServer(imageUrl, caption);
+			
+			image.setVisibility(View.INVISIBLE);
+			viewCaption.setVisibility(View.INVISIBLE);
+			buttonCancel.setVisibility(View.INVISIBLE);
+			buttonSend.setVisibility(View.INVISIBLE);
+			progress.setVisibility(View.VISIBLE);
+			
 		}
+	}
+
+	public void activateCancel() {
+		image.setVisibility(View.VISIBLE);
+		viewCaption.setVisibility(View.VISIBLE);
+		buttonCancel.setVisibility(View.VISIBLE);
+		buttonSend.setVisibility(View.VISIBLE);
+		progress.setVisibility(View.INVISIBLE);
 	}
 }

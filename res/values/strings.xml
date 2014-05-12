@@ -2,7 +2,8 @@
 <resources>
 
 	<string name="futugram">FUTUGRAM</string>
-    
+    <string name="prompt_caption">Enter picture\'s caption </string>
+	
     <string name="sign_in_button">Log in</string>
     <string name="registration_hurra">HURRAY!</string>
     <string name="registration_status">You want to be karnevalist.</string>
