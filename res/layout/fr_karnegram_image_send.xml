@@ -54,6 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/buttons"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginRight="@dimen/horizontal_margin"
         android:layout_marginBottom="5dp"
         android:lines="2"
         android:maxLines="2" />
