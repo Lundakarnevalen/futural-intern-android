@@ -58,7 +58,7 @@ public class SendRemote {
 		Log.d(TAG, "Image url:" + imageurl);
 		Log.d(TAG, "Caption: " + caption);
 
-		Toast.makeText(context, "Sending picture", Toast.LENGTH_LONG).show();
+		Toast.makeText(context, context.getString(R.string.picture_send), Toast.LENGTH_LONG).show();
 
 		Ion.with(context, LKRemote.remoteAdr + "api/photos")
 				.setMultipartParameter("token", user.token)

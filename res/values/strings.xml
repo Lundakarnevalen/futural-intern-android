@@ -5,6 +5,7 @@
     <string name="prompt_caption">Enter picture\'s caption </string>
 	<string name="picture_sent">Picture sent! It now awaits approval</string>
 	<string name="picture_failure">Failed to sent picture. Try again!</string>
+	<string name="picture_send">Skickar bilden</string>
     
 	
     <string name="sign_in_button">Log in</string>
