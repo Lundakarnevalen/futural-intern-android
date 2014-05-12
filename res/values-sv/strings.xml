@@ -417,9 +417,9 @@
     <string name="action_bar_sign_in">LOGGA IN</string>
     
     <string name="action_sign_in_short">Logga in</string>
-    <string name="identification_title">LEGITIMATION</string>
+    <string name="identification_title">ID</string>
 	
-    <string name="id_card">LEGITIMATION</string>
+    <string name="id_card">ID</string>
     <string name="press_card">TRYCK FÖR ATT VISA DITT KARNEVALISTLEG</string>
     
     <string name="futugram_cancel">AVBRYT</string>
