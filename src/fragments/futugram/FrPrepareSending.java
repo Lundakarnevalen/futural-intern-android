@@ -33,6 +33,7 @@ public class FrPrepareSending extends LKFragment {
 	private ProgressBar progress;
 	
 	private ImageView image;
+	private RelativeLayout shadow;
 	
 	private String imageUrl;
 	
@@ -57,6 +58,7 @@ public class FrPrepareSending extends LKFragment {
 		RelativeLayout layoutImage = (RelativeLayout) rootView.findViewById(R.id.karnegram_full_size);
 		
 		image = (ImageView) layoutImage.findViewById(R.id.karnegram_row_item_image);
+		shadow = (RelativeLayout) layoutImage.findViewById(R.id.shadow);
 		
 		loadImage(image, imageUrl);
 		
@@ -95,27 +97,25 @@ public class FrPrepareSending extends LKFragment {
 
 		@Override
 		public void onClick(View v) {
-//			Disable the cancel button
-			buttonCancel.setOnClickListener(null);
-			
-			String caption = viewCaption.getText().toString();
-			
-			sendRemote.sendBitmapToServer(imageUrl, caption);
-			
 			image.setVisibility(View.INVISIBLE);
 			viewCaption.setVisibility(View.INVISIBLE);
 			buttonCancel.setVisibility(View.INVISIBLE);
 			buttonSend.setVisibility(View.INVISIBLE);
+			shadow.setVisibility(View.INVISIBLE);
 			progress.setVisibility(View.VISIBLE);
 			
+			String caption = viewCaption.getText().toString();
+			
+			sendRemote.sendBitmapToServer(imageUrl, caption);
 		}
 	}
 
-	public void activateCancel() {
+	public void returnToSendMode() {
 		image.setVisibility(View.VISIBLE);
 		viewCaption.setVisibility(View.VISIBLE);
 		buttonCancel.setVisibility(View.VISIBLE);
 		buttonSend.setVisibility(View.VISIBLE);
+		shadow.setVisibility(View.VISIBLE);
 		progress.setVisibility(View.INVISIBLE);
 	}
 }

@@ -1,4 +1,10 @@
 <resources >
+    
+    <string name="prompt_caption">Lägg till beskrivning</string>
+    <string name="picture_sent">Bilden skickad! Den inväntar nu godkännande</string>
+    <string name="picture_failure">Kunde inte skicka bilden. Försök igen!</string>
+    
+    
     <!-- The great registration password -->
     <string name="registrationpassword">FUTURAL</string>
     <string name="app_name">Karnevalisten</string>

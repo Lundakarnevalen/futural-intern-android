@@ -18,8 +18,8 @@ import com.google.gson.Gson;
  */
 public class LKUser {
 	private static final String LOG_TAG = "LKUser";
-	private static final String SHARED_PREFS_NAME = "LKUserStorage2";
-	private static final String SHARED_PREFS_JSON = "LKUserToken2";
+	private static final String SHARED_PREFS_NAME = "LKUserStorage";
+	private static final String SHARED_PREFS_JSON = "LKUserToken";
 	
 	Context context;
 	public int id = Integer.MIN_VALUE;

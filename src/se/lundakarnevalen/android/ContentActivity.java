@@ -158,7 +158,7 @@ public class ContentActivity extends ActionBarActivity implements
 								"Created db object. Starting loop. messages.length = "
 										+ messages.length);
 						for (int i = 0; i < messages.length; i++) {
-							Log.d("ContentAct", "loop counter i = " + i);
+//							Log.d("ContentAct", "loop counter i = " + i);
 							if (!db.messageExistsInDb(messages[i].id)) {
 								Log.d("SplashScreen", "Message not in db");
 								db.addItem(new LKInboxArrayAdapter.LKMenuListItem(
@@ -175,13 +175,13 @@ public class ContentActivity extends ActionBarActivity implements
 					}
 				});
 
+		
 		remote.showProgressDialog(false);
 		Log.d("SplashScreen", "Starting server request");
+		
 		LKUser tmpUser = new LKUser(this);
 		tmpUser.getUserLocaly();
 
-		
-		
 		remote.requestServerForText("api/notifications.json?token="
 				+ tmpUser.token, "", RequestType.GET, false);
 
