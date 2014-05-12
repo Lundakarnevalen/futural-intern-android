@@ -24,18 +24,19 @@ public class ListPicture {
 	}
 	
 	public String getUrl(int index){
-		index = convertIndex(index);
-		return photos.get(index).url;
+		int newPosition = convertIndex(index);
+		return photos.get(newPosition).url;
 	}
 
 	public String getCation(int position) {
-		return photos.get(position).caption;
+		int newPosition = convertIndex(position);
+		return photos.get(newPosition).caption;
 	}
 	
 	public String getName(int position) {
-		return photos.get(position).name;
+		int newPosition = convertIndex(position);
+		return photos.get(newPosition).name;
 	}
-	
 	
 	private int convertIndex(int index) {
 		return photos.size() - index - 1;

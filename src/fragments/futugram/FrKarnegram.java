@@ -74,8 +74,7 @@ public class FrKarnegram extends LKFragment {
 	private class ImageListener implements OnItemClickListener {
 
 		@Override
-		public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-				long arg3) {
+		public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 			ListPicture pictures = getRemote.getListPictures();
 
 			String url = pictures.getUrl(position);
@@ -86,6 +85,7 @@ public class FrKarnegram extends LKFragment {
 			bundle.putString("URL", url);
 			bundle.putString("caption", caption);
 			bundle.putString("name", name);
+			
 			FrKarnegramImage frkarnegramimage = new FrKarnegramImage();
 			frkarnegramimage.setArguments(bundle);
 			loadFragment(frkarnegramimage, true);
@@ -138,9 +138,7 @@ public class FrKarnegram extends LKFragment {
 	public File getAlbumStorageDir(String albumName) {
 		// Get the directory for the user's public pictures directory.
 		File file = new File(
-				Environment
-						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-				albumName);
+				Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), albumName);
 
 		Log.d(TAG, "PATH: " + file.getAbsolutePath());
 
