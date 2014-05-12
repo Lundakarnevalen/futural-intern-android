@@ -35,7 +35,7 @@ public class FrKarnegramImage extends LKFragment {
 		String name = getArguments().getString("name");
 		
 		viewCaption.setText(caption);
-		viewName.setText(name);
+		viewName.setText(name.toUpperCase());
 		
 		ImageView image = (ImageView) fullSizeImage.findViewById(R.id.karnegram_row_item_image);
 		RelativeLayout shadow = (RelativeLayout) fullSizeImage.findViewById(R.id.shadow);
