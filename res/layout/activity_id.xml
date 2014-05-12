@@ -7,8 +7,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/horizontal_margin"
+        android:layout_height="match_parent" 
+        android:layout_margin="3dp"
         android:background="@drawable/id_card_bg" >
 
         <ImageView
@@ -31,11 +31,11 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@drawable/clouds" />
-
+ 
         <ImageView
             android:id="@+id/active"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="20dp"
             android:src="@drawable/aktiv_icon" />
 
@@ -57,9 +57,8 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="6dp"
             android:layout_toRightOf="@id/active"
             android:gravity="right"
             android:text="LUNDAKARNEVALEN"
@@ -71,10 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="19dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="62dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginRight="42dp"
             android:gravity="right|top"
-            android:paddingTop="3dp"
             android:text="2014"
             android:textColor="@color/yellow"
             android:textSize="12sp" />
@@ -85,10 +82,9 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_below="@id/title"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="17dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
-            android:paddingTop="5dp"
+            android:paddingTop="3dp"
             android:background="@color/peach"
             android:gravity="right"
             android:paddingLeft="6dp"
@@ -104,7 +100,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignRight="@id/karne"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="3dp"
             android:layout_marginTop="3dp"
             android:src="@drawable/stralfors" />
 
@@ -115,7 +111,7 @@
             android:layout_below="@id/title"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="25dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_toLeftOf="@id/karne"
             android:layout_toRightOf="@id/photo"
             android:background="@color/peach" >
