@@ -43,13 +43,11 @@ public class CameraListener implements OnClickListener {
 	public void onClick(View v) {
 		values = new ContentValues();
 
-		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
-				Locale.UK).format(new Date());
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.UK).format(new Date());
 		values.put(MediaStore.Images.Media.TITLE, "Karnegram " + timeStamp);
 		values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
 
-		imageUri = context.getContentResolver().insert(
-				MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+		imageUri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
 		Log.d(TAG, "IMAGE URI: " + imageUri.toString());
 

@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 public class GetFullImage {
 
@@ -15,6 +16,7 @@ public class GetFullImage {
 	
 	private LKRemote getRemote;
 	private ImageView imageView;
+	private RelativeLayout shadow;
 	private Context context;
 	private View spinner;
 	
@@ -25,10 +27,12 @@ public class GetFullImage {
 		getRemote.setBitmapResultListener(new BitmapGetRecall());
 	}
 	
-	public void getImage(String url, ImageView imageView, View spinner) {
+	public void getImage(String url, ImageView imageView, RelativeLayout shadow,  View spinner) {
 		Log.d(TAG, "Getting image");
 		this.spinner = spinner;
 		this.imageView = imageView;
+		this.shadow = shadow;
+		shadow.setVisibility(View.GONE);
 		imageView.setVisibility(View.GONE);
 		
 		LKUser user = new LKUser(context);
@@ -47,6 +51,7 @@ public class GetFullImage {
 			}
 			spinner.setVisibility(View.GONE);
 			imageView.setVisibility(View.VISIBLE);
+			shadow.setVisibility(View.VISIBLE);
 			imageView.setImageBitmap(result);
 		}
 	}

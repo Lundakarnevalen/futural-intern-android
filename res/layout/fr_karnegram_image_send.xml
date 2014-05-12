@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ProgressBar
+        android:id="@+id/karnegram_full_size_spinner"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <include
+        android:id="@+id/karnegram_full_size"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/name"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        layout="@layout/fr_karnegram_row_item_full"
+        android:contentDescription="@string/image" >
+    </include>
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <se.lundakarnevalen.widget.LKButton
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Send" />
+    </LinearLayout>
+
+    <se.lundakarnevalen.widget.LKEditText
+        android:id="@+id/caption_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/buttons"
+        android:layout_marginBottom="5dp"
+        android:lines="2"
+        android:maxLines="2" />
+
+    <se.lundakarnevalen.widget.LKTextViewBold
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/caption"
+        android:layout_marginBottom="10dp" />
+
+</RelativeLayout>

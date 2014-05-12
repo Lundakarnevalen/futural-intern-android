@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import fragments.LKFragment;
 
 public class FrKarnegramImage extends LKFragment {
-	private ImageView fullSizeImage;
+	private RelativeLayout fullSizeImage;
+	private ImageView image;
 	private TextView viewName;
 	private TextView viewCaption;
 	private View rootView;
@@ -21,7 +23,7 @@ public class FrKarnegramImage extends LKFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fr_karnegram_image, null);
 		
-		fullSizeImage = (ImageView) rootView.findViewById(R.id.karnegram_full_size);
+		fullSizeImage = (RelativeLayout) rootView.findViewById(R.id.karnegram_full_size);
 		viewCaption = (TextView) rootView.findViewById(R.id.caption);
 		viewName = (TextView) rootView.findViewById(R.id.name);
 		
@@ -35,9 +37,12 @@ public class FrKarnegramImage extends LKFragment {
 		viewCaption.setText(caption);
 		viewName.setText(name);
 		
-		fullImage.getImage(url, fullSizeImage, spinner);
+		ImageView image = (ImageView) fullSizeImage.findViewById(R.id.karnegram_row_item_image);
+		RelativeLayout shadow = (RelativeLayout) fullSizeImage.findViewById(R.id.shadow);
 		
-		rootView.setOnClickListener(new OnClickListener() {
+		fullImage.getImage(url, image, shadow, spinner);
+		
+		image.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {

@@ -12,29 +12,26 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
-    <ImageView
+    <include layout="@layout/fr_karnegram_row_item_full"
         android:id="@+id/karnegram_full_size"
-        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
         android:contentDescription="@string/image"
         android:layout_above="@id/name" 
-        android:layout_margin="20dp"/>
-    
-    
+        android:layout_margin="20dp"
+        android:layout_height="match_parent" >
+    </include>
     
     <se.lundakarnevalen.widget.LKTextViewBold android:id="@+id/caption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text=""
         android:layout_alignParentBottom="true" />
     
     <se.lundakarnevalen.widget.LKTextViewBold android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_above="@id/caption"
         android:layout_marginBottom="10dp"
-        android:text=""
         android:layout_height="wrap_content" />
 
 </RelativeLayout>
