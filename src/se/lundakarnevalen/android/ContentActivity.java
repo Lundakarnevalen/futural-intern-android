@@ -45,6 +45,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
 
 import fragments.CountdownFragment;
+import fragments.FrBunny;
 import fragments.IdentificationFragment;
 import fragments.InboxFragment;
 import fragments.LKFragment;
@@ -491,6 +492,8 @@ public class ContentActivity extends ActionBarActivity implements
 				fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);
 		listItems.add(identification);
 		}
+		
+		listItems.add(new LKMenuListItem("Bunny",0,new FrBunny(),fragmentMgr, this,true).closeDrawerOnClick(true, drawerLayout));
 		
 		adapter = new LKMenuArrayAdapter(this, listItems);
 		menuList.setAdapter(adapter);

@@ -217,7 +217,7 @@ public class LKRemote {
 				Log.e(LOG_TAG, "Malformed URL");
 				return null;
 			}
-
+			Log.d("MARKUS!","KO: "+remoteAdr+file);
 			HttpURLConnection con;
 			try {
 				con = (HttpURLConnection) url.openConnection();
