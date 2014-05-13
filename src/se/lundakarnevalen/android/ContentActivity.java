@@ -193,7 +193,7 @@ public class ContentActivity extends ActionBarActivity implements
 		// update JSon form server
 		LKUser user = new LKUser(this);
 		user.getUserLocaly();
-		user.updateFromRemote();
+		user.updateFromRemote(this);
 	}
 
 	/**
@@ -419,7 +419,7 @@ public class ContentActivity extends ActionBarActivity implements
 	/**
 	 * Sets up the ListView in the navigationdrawer menu.
 	 */
-	private void populateMenu() {
+	public void populateMenu() {
 		// Create logo and sigill objects.
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);

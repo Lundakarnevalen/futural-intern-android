@@ -46,6 +46,7 @@
             </intent-filter>
         </activity>
         <activity
+           android:theme="@style/Theme.AppCompat"
             android:name="se.lundakarnevalen.android.ContentActivity"
             android:configChanges="orientation|screenSize"
             android:label="Karnevalisten"
