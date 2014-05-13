@@ -102,8 +102,6 @@ public class ContentActivity extends ActionBarActivity implements
 
 		setupActionBar();
 
-		populateMenu();
-
 		loadFragment(new CountdownFragment(), false);
 
 	}
@@ -120,6 +118,8 @@ public class ContentActivity extends ActionBarActivity implements
 		Log.d(LOG_TAG, "onResume");
 
 		updateUserFromServer();
+		
+		populateMenu();
 
 		// Check if need to register for new gcm.
 		// SharedPreferences sp = getSharedPreferences(LKFragment.SP_GCM_NAME,
