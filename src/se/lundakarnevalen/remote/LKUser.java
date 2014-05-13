@@ -71,50 +71,6 @@ public class LKUser {
 	}
 	
 	
-	public void updateFromRemote(final ContentActivity activity) {
-		if(id != Integer.MIN_VALUE){
-			LKRemote remote = new LKRemote(context, new LKRemote.TextResultListener(){
-				@Override
-				public void onResult(String result) {
-					Log.d(LOG_TAG, "result from get request");
-					Log.d(LOG_TAG, "server: " + result);
-					if(result == null){
-						Log.e(LOG_TAG, "error - null response");
-						return;
-					}
-					// Update user with data
-					Gson gson = new Gson();
-//					Response.GetKarnevalistSpecial data = gson.fromJson(result, Response.GetKarnevalistSpecial.class);
-					
-					LoginResponse data = gson.fromJson(result, LoginResponse.class);
-					data.karnevalist.token = token;
-					data.token = token;
-					
-					Log.d("WAO", "------");
-					Log.d("WAO", data.karnevalist.token);
-					Log.d("WAO", " " + data.success);
-				
-					
-					if(data.success){
-						Log.d("LOG_TAG","successfully fetched user data");
-						getDataFromUser(data.karnevalist, data.token);
-						token = data.token;
-						Log.d(LOG_TAG, "url: "+imgUrl);
-						storeUserLocaly();
-						activity.populateMenu();
-						
-					}else{
-						Log.e(LOG_TAG, "Non successfull request for id="+id+", status=" + data.success);
-					}
-				}
-			});
-			remote.requestServerForText("api/karnevalister/fetch?token="+token, "", LKRemote.RequestType.GET, false);
-			Log.d(LOG_TAG, "requested server for the user with id:"+id + " and token: " + token);
-		}else{
-			// No user downloaded.
-			Log.e(LOG_TAG, "Found no user ID for user");
-		}
-	}
 	
 	/**
 	 * Updates user from remote. 

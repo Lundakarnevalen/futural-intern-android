@@ -193,7 +193,7 @@ public class ContentActivity extends ActionBarActivity implements
 		// update JSon form server
 		LKUser user = new LKUser(this);
 		user.getUserLocaly();
-		user.updateFromRemote(this);
+		user.updateFromRemote();
 	}
 
 	/**
