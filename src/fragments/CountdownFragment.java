@@ -3,7 +3,6 @@ package fragments;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 
 import se.lundakarnevalen.android.R;
 import sound.MySoundFactory;

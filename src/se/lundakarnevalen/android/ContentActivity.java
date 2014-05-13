@@ -1,5 +1,6 @@
 package se.lundakarnevalen.android;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -18,6 +19,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -27,6 +29,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -42,11 +45,12 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
 
 import fragments.CountdownFragment;
+import fragments.IdentificationFragment;
 import fragments.InboxFragment;
 import fragments.LKFragment;
 import fragments.LKFragment.MessangerMessage;
-import fragments.MapFragment;
 import fragments.SongGroupsFragment;
+import fragments.futugram.FrKarnegram;
 
 public class ContentActivity extends ActionBarActivity implements
 		LKFragment.Messanger {
@@ -61,6 +65,8 @@ public class ContentActivity extends ActionBarActivity implements
 
 	private LKMenuListItem mapItem = null;
 
+	private String IMAGE_PATH = "karneval.image";
+	
 	boolean drawerOpen;
 	private ActionBar actionBar;
 	private ActionBarDrawerToggle drawerToggle;
@@ -69,6 +75,8 @@ public class ContentActivity extends ActionBarActivity implements
 	private FragmentManager fragmentMgr;
 	LKMenuListItem inboxListItem;
 
+	LKUser user;
+	
 	private RelativeLayout menuButtonWrapper;
 	private RelativeLayout inboxIndicatorWrapper;
 	private TextView actionbarInboxCounter;
@@ -94,8 +102,6 @@ public class ContentActivity extends ActionBarActivity implements
 
 		setupActionBar();
 
-		populateMenu();
-
 		loadFragment(new CountdownFragment(), false);
 
 	}
@@ -110,67 +116,84 @@ public class ContentActivity extends ActionBarActivity implements
 	public void onResume() {
 		super.onResume();
 		Log.d(LOG_TAG, "onResume");
-		
+
 		updateUserFromServer();
 		
+		populateMenu();
+
 		// Check if need to register for new gcm.
-//		SharedPreferences sp = getSharedPreferences(LKFragment.SP_GCM_NAME, MODE_PRIVATE);
-//		String gcmId = sp.getString(LKFragment.SP_GCM_REGID, null);
+		// SharedPreferences sp = getSharedPreferences(LKFragment.SP_GCM_NAME,
+		// MODE_PRIVATE);
+		// String gcmId = sp.getString(LKFragment.SP_GCM_REGID, null);
 		String gcmId = SplashscreenActivity.getRegId(this);
 		Log.d(LOG_TAG, "gcmId: " + gcmId);
 		if (gcmId == null || gcmId.equals("")) {
-			
+
 			Log.d(LOG_TAG, "gcmId was either null or empty, register again");
 			// Try to get new gcm.
 			GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 			SplashscreenActivity.regInBackground(this, gcm);
 		} else {
-			
-		}
-		
-		Log.d("SplashScreen", "Starting getMessages()");
-		LKRemote remote = new LKRemote(context, new LKRemote.TextResultListener() {
 
-			@Override
-			public void onResult(String result) {
-				Log.d("SplashScreen", "onResult(): "+result);
-				if(result == null) {
-					Log.d("SplashScreen", "Result from server was null");
-					return;
-				}
-				Gson gson = new Gson();
-				Response.Notifications notifications = gson.fromJson(result, Response.Notifications.class);
-				notifications.parseMessages();
-				Notification[] messages = notifications.messages;   
-				LKSQLiteDB db = new LKSQLiteDB(context);
-				Log.d("ContentAct", "Created db object. Starting loop. messages.length = "+messages.length);
-				for(int i=0;i<messages.length;i++) {
-					Log.d("ContentAct", "loop counter i = "+i);
-					if(!db.messageExistsInDb(messages[i].id)) {
-						Log.d("SplashScreen", "Message not in db");
-						db.addItem(new LKInboxArrayAdapter.LKMenuListItem(messages[i].title, messages[i].message, messages[i].created_at, messages[i].recipient_id, messages[i].id, true));
+		}
+
+		Log.d("SplashScreen", "Starting getMessages()");
+		LKRemote remote = new LKRemote(context,
+				new LKRemote.TextResultListener() {
+
+					@Override
+					public void onResult(String result) {
+						Log.d("SplashScreen", "onResult(): " + result);
+						if (result == null) {
+							Log.d("SplashScreen", "Result from server was null");
+							return;
+						}
+						Gson gson = new Gson();
+						Response.Notifications notifications = gson.fromJson(
+								result, Response.Notifications.class);
+						notifications.parseMessages();
+						Notification[] messages = notifications.messages;
+						LKSQLiteDB db = new LKSQLiteDB(context);
+						Log.d("ContentAct",
+								"Created db object. Starting loop. messages.length = "
+										+ messages.length);
+						for (int i = 0; i < messages.length; i++) {
+//							Log.d("ContentAct", "loop counter i = " + i);
+							if (!db.messageExistsInDb(messages[i].id)) {
+								Log.d("SplashScreen", "Message not in db");
+								db.addItem(new LKInboxArrayAdapter.LKMenuListItem(
+										messages[i].title, messages[i].message,
+										messages[i].created_at,
+										messages[i].recipient_id,
+										messages[i].id, true));
+							}
+							Log.d(LOG_TAG, "done");
+						}
+						Log.d(LOG_TAG, "loop done");
+						db.close();
+						Log.d("ContentAct", "Completed getMessages");
 					}
-					Log.d(LOG_TAG, "done");
-				}
-				Log.d(LOG_TAG, "loop done");
-				db.close(); 
-				Log.d("ContentAct", "Completed getMessages");
-				setInboxCount();
-			} 
-		});
+				});
+
+		
 		remote.showProgressDialog(false);
 		Log.d("SplashScreen", "Starting server request");
+		
 		LKUser tmpUser = new LKUser(this);
 		tmpUser.getUserLocaly();
-		remote.requestServerForText("api/notifications.json?token="+tmpUser.token, "", RequestType.GET, false);
-		
-	}
 
+		remote.requestServerForText("api/notifications.json?token="
+				+ tmpUser.token, "", RequestType.GET, false);
+
+		this.setInboxCount();
+
+	}
+	
 	private void updateUserFromServer() {
-		//		update JSon form server
-				LKUser user = new LKUser(this);
-				user.getUserLocaly();
-				user.updateFromRemote();
+		// update JSon form server
+		LKUser user = new LKUser(this);
+		user.getUserLocaly();
+		user.updateFromRemote();
 	}
 
 	/**
@@ -318,7 +341,7 @@ public class ContentActivity extends ActionBarActivity implements
 				int n = db.numberOfUnreadMessages();
 				db.close();
 				Log.d("AsyncTask", "Finnished background process.");
-				Log.d("FUUUCKCKCKC!", n+"");
+				Log.d("FUUUCKCKCKC!", n + "");
 				return n;
 			}
 
@@ -396,7 +419,7 @@ public class ContentActivity extends ActionBarActivity implements
 	/**
 	 * Sets up the ListView in the navigationdrawer menu.
 	 */
-	private void populateMenu() {
+	public void populateMenu() {
 		// Create logo and sigill objects.
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View menuSigill = inflater.inflate(R.layout.menu_static_sigill, null);
@@ -420,7 +443,7 @@ public class ContentActivity extends ActionBarActivity implements
 		// listItems.add(new LKMenuListItem("Sektioner", 0, new
 		// SectionsFragment(), fragmentMgr, this).closeDrawerOnClick(true,
 		// drawerLayout));
- 
+
 		// TODO Map only available on tidningsdagen
 		countDown = new CountdownFragment();
 		listItems.add(new LKMenuListItem(getString(R.string.countdown_title),
@@ -429,37 +452,46 @@ public class ContentActivity extends ActionBarActivity implements
 
 		// TODO fix block
 
-		startTimeMap.set(2014, Calendar.APRIL, 11, 59, 00, 00);
+		startTimeMap.set(2014, Calendar.APRIL, 11, 22, 59, 00);
 		endTimeMap.set(2014, Calendar.APRIL, 13, 05, 30, 00);
 
 		Calendar c = Calendar.getInstance();
 
 		// only add map if before..
-		if (c.after(endTimeMap)) {
-			// Nothing happen
-		} else if (c.after(startTimeMap)) {
-			mapItem = new LKMenuListItem(getString(R.string.karta), 0,
-					new MapFragment(), fragmentMgr, this, true)
-					.closeDrawerOnClick(true, drawerLayout).isMapRow(true);
-			listItems.add(mapItem);
-		} else {
-
-			mapItem = new LKMenuListItem(getString(R.string.karta), 0,
-					new MapFragment(), fragmentMgr, this, false)
-					.closeDrawerOnClick(true, drawerLayout).isMapRow(true);
-			listItems.add(mapItem);
-		}
+//		if (c.after(endTimeMap)) {
+//			// Nothing happen
+//		} else if (c.after(startTimeMap)) {
+//			mapItem = new LKMenuListItem(getString(R.string.karta), 0,
+//					new MapFragment(), fragmentMgr, this, true)
+//					.closeDrawerOnClick(true, drawerLayout).isMapRow(true);
+//			listItems.add(mapItem);
+//		} else {
+//
+//			mapItem = new LKMenuListItem(getString(R.string.karta), 0,
+//					new MapFragment(), fragmentMgr, this, false)
+//					.closeDrawerOnClick(true, drawerLayout).isMapRow(true);
+//			listItems.add(mapItem);
+//		}
 
 		listItems.add(inboxListItem);
 
 		// listItems.add(new LKMenuListItem("Om appen", 0, new AboutFragment(),
 		// fragmentMgr, this).closeDrawerOnClick(true, drawerLayout));
 
-		LKMenuListItem sangbok = new LKMenuListItem(
-				getString(R.string.sangbok_title), 0, new SongGroupsFragment(),
-				fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);
+		LKMenuListItem sangbok = new LKMenuListItem(getString(R.string.sangbok_title), 0, new SongGroupsFragment(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);
+		
+		listItems.add(new LKMenuListItem(getString(R.string.karnegram), 0, new FrKarnegram(), fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout));
+		
 		listItems.add(sangbok);
 
+		if(user.aktiv) {
+			
+		LKMenuListItem identification = new LKMenuListItem(
+				getString(R.string.identification_title), 0, new IdentificationFragment(),
+				fragmentMgr, this, true).closeDrawerOnClick(true, drawerLayout);
+		listItems.add(identification);
+		}
+		
 		adapter = new LKMenuArrayAdapter(this, listItems);
 		menuList.setAdapter(adapter);
 
@@ -471,7 +503,7 @@ public class ContentActivity extends ActionBarActivity implements
 				.findViewById(R.id.user_picture);
 		TextView name = (TextView) menuSigill.findViewById(R.id.user_name);
 
-		LKUser user = new LKUser(this);
+		user = new LKUser(this);
 		user.getUserLocaly();
 
 		if (user.fornamn == null || user.efternamn == null) {
@@ -482,22 +514,42 @@ public class ContentActivity extends ActionBarActivity implements
 
 		}
 
+
+		
+		SharedPreferences prefs = getSharedPreferences(IMAGE_PATH, Context.MODE_PRIVATE);
+		String imageString = prefs.getString(IMAGE_PATH, null);
+		if(imageString==null) {
 		LKRemote remote = new LKRemote(this);
 		remote.setBitmapResultListener(new BitmapResultListener() {
 			@Override
 			public void onResult(Bitmap result) {
-				Log.d(LOG_TAG, "Got bitmap!");
 				if (result == null) {
-					Log.e(LOG_TAG, "bitmap was null"); // Maybe set some
 														// standard image?
 				}
-
+				try {
+				SharedPreferences prefs = getSharedPreferences(IMAGE_PATH, Context.MODE_PRIVATE);
+				
+				ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+				result.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
+				byte[] byteArray2 = byteArray.toByteArray();
+				
+				String encoded = Base64.encodeToString(byteArray2, Base64.DEFAULT);
+				prefs.edit().putString(IMAGE_PATH, encoded).commit();
+				
 				image.setVisibility(View.VISIBLE);
 				image.setImageBitmap(result);
+				} catch(NullPointerException e) {
+					
+				}
 			}
 		});
 		remote.requestServerForBitmap(user.imgUrl);
-
+		} else {
+			byte[] byteArray = Base64.decode(imageString, Base64.DEFAULT);
+			Bitmap result = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+			image.setVisibility(View.VISIBLE);
+			image.setImageBitmap(result);
+		}
 	}
 
 	/**
@@ -622,13 +674,14 @@ public class ContentActivity extends ActionBarActivity implements
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			int backCount = getSupportFragmentManager().getBackStackEntryCount();
-            
-			if (backCount == 0){
+			int backCount = getSupportFragmentManager()
+					.getBackStackEntryCount();
+
+			if (backCount == 0) {
 				if (countDown != null) {
 					countDown.stopMusic();
-				}	
-            } 
+				}
+			}
 			// and so on...
 		}
 		return super.onKeyDown(keyCode, event);

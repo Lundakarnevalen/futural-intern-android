@@ -3,7 +3,6 @@ package fragments;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.widget.LKButtonGreen;
 import se.lundakarnevalen.widget.LKTextView;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;

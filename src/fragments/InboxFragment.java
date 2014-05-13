@@ -11,7 +11,6 @@ import se.lundakarnevalen.widget.LKTextView;
 import se.lundakarnevalen.widget.LKTextViewBold;
 import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;

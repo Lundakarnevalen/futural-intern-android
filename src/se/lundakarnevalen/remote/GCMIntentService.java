@@ -35,7 +35,7 @@ public class GCMIntentService extends IntentService{
 			// Handle data.
 			Log.d(LOG_TAG, extras.toString());
 			int type = Integer.parseInt(extras.getString("message_type"));
-			switch(type){ 
+			switch(type){
 			case TYPE_MESSAGE:
 				Log.d("GCMIntentService", "adding message with id = "+Integer.parseInt(extras.getString("id")));
 				addMessage(extras.getString("title"), extras.getString("message"), extras.getString("created_at"), Integer.parseInt(extras.getString("recipient_id")), Integer.parseInt(extras.getString("id")));

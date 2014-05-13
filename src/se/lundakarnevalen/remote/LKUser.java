@@ -1,10 +1,11 @@
 package se.lundakarnevalen.remote;
 
+import se.lundakarnevalen.android.ContentActivity;
 import json.KarnevalistWrite;
 import json.LoginResponse;
-import json.Response;
 import json.User;
 import json.UserWrite;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -27,7 +28,7 @@ public class LKUser {
 	public String imgUrl, token, gcmRegId, personnummer, fornamn, efternamn, gatuadress, postnr, postort, email, telnr, matpref, engageradKar, engageradNation, engageradStudentikos, engageradEtc, ovrigt;
 	public int step, kon, nation, storlek, terminer, korkort, snallaIntresse, snallaSektion, tilldelad_sektion;
 	public int[] intresse, sektioner;
-	public boolean jobbatHeltid, jobbatStyrelse, jobbatForman, jobbatAktiv, karnevalist2010, villAnsvara, medlemAf, medlemKar, medlemNation, karneveljsbiljett;
+	public boolean jobbatHeltid, jobbatStyrelse, jobbatForman, jobbatAktiv, karnevalist2010, villAnsvara, medlemAf, medlemKar, medlemNation, karneveljsbiljett, aktiv;
 	SharedPreferences sp;
 
 	private static final String log = LKUser.class.getSimpleName();
@@ -69,6 +70,8 @@ public class LKUser {
 			parseJson(json);
 	}
 	
+	
+	
 	/**
 	 * Updates user from remote. 
 	 */
@@ -88,6 +91,8 @@ public class LKUser {
 //					Response.GetKarnevalistSpecial data = gson.fromJson(result, Response.GetKarnevalistSpecial.class);
 					
 					LoginResponse data = gson.fromJson(result, LoginResponse.class);
+					data.karnevalist.token = token;
+					data.token = token;
 					
 					Log.d("WAO", "------");
 					Log.d("WAO", data.karnevalist.token);
@@ -95,17 +100,19 @@ public class LKUser {
 				
 					
 					if(data.success){
+						Log.d("LOG_TAG","successfully fetched user data");
 						getDataFromUser(data.karnevalist, data.token);
 						token = data.token;
 						Log.d(LOG_TAG, "url: "+imgUrl);
 						storeUserLocaly();
+						
 					}else{
 						Log.e(LOG_TAG, "Non successfull request for id="+id+", status=" + data.success);
 					}
 				}
 			});
-			remote.requestServerForText("karnevalister/"+id+".json?token="+token, "", LKRemote.RequestType.GET, false);
-			Log.d(LOG_TAG, "requested server for the user with id:"+id);
+			remote.requestServerForText("api/karnevalister/fetch?token="+token, "", LKRemote.RequestType.GET, false);
+			Log.d(LOG_TAG, "requested server for the user with id:"+id + " and token: " + token);
 		}else{
 			// No user downloaded.
 			Log.e(LOG_TAG, "Found no user ID for user");
@@ -153,6 +160,7 @@ public class LKUser {
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
 		karnevalist.token = this.token;
+		karnevalist.aktiv = this.aktiv;
 		
 		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
 		
@@ -198,6 +206,7 @@ public class LKUser {
 		karnevalist.medlem_nation = this.medlemNation;
 		karnevalist.karneveljsbiljett = this.karneveljsbiljett;
 		karnevalist.google_token = this.gcmRegId;
+		
 		
 		karnevalist.tilldelad_sektion = this.tilldelad_sektion;
 		
@@ -250,6 +259,7 @@ public class LKUser {
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett;
 		this.token = user.token;
+		this.aktiv = user.aktiv;
 		
 		this.tilldelad_sektion = user.tilldelad_sektion;
 		
@@ -300,7 +310,8 @@ public class LKUser {
 		this.medlemKar = user.medlem_kar;
 		this.medlemNation = user.medlem_nation;
 		this.karneveljsbiljett = user.karneveljsbiljett; 
-		
+
+		this.aktiv = user.aktiv;
 		this.tilldelad_sektion = user.tilldelad_sektion;
 	}
 

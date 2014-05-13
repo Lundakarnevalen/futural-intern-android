@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp" >
+
+    <ImageView
+        android:id="@+id/karnegram_row_item_image"
+        android:layout_centerHorizontal="true"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="#FFFFFF"
+        android:contentDescription="@string/image"
+        android:padding="@dimen/padding_sides" />
+
+    <!-- SHADOW for picture -->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:layout_alignLeft="@id/karnegram_row_item_image"
+        android:layout_alignRight="@id/karnegram_row_item_image"
+        android:layout_below="@id/karnegram_row_item_image"
+        android:background="@drawable/shadow" >
+    </RelativeLayout>
+
+</RelativeLayout>

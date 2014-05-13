@@ -1,10 +1,8 @@
 package se.lundakarnevalen.widget;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import se.lundakarnevalen.android.R;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.view.View;

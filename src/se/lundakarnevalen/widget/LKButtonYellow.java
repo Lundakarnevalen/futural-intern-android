@@ -3,9 +3,7 @@ package se.lundakarnevalen.widget;
 import se.lundakarnevalen.android.R;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.Button;
 
 public class LKButtonYellow extends LKButton {
 	private Context context;

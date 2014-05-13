@@ -2,6 +2,7 @@ package se.lundakarnevalen.widget.slotMachine;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import android.view.View;
 import android.widget.LinearLayout;
 

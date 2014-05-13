@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ProgressBar
+        android:id="@+id/karnegram_full_size_spinner"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <include
+        android:id="@+id/karnegram_full_size"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/name"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        layout="@layout/fr_karnegram_row_item_full"
+        android:contentDescription="@string/image" >
+    </include>
+
+    <se.lundakarnevalen.widget.LKTextView
+        android:id="@+id/caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginRight="@dimen/horizontal_margin"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/white_bg_bottom_shadow"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/horizontal_margin"
+        android:paddingBottom="10dp"
+        android:textSize="18sp"
+        android:textColor="@color/dark_blue" />
+
+    <se.lundakarnevalen.widget.LKTextViewBold
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/caption"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="@dimen/horizontal_margin"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:background="@drawable/blue_bg_shadow"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/horizontal_margin"
+        android:textColor="@color/tainted_white" />
+
+</RelativeLayout>
