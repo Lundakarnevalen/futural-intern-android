@@ -362,7 +362,7 @@ public class LKRemote {
                         URL url = new URL(params[0]);
                         
                 if (isCancelled()) return null;
-                        bitmap = BitmapFactory.decodeStream((InputStream) url.getContent());
+                        return  decodeSampledBitmapFromResourceMemOpt((InputStream) url.getContent(),800,800);
                 } catch (MalformedURLException e) {
                         Log.e(LOG_TAG, "Malformed URL");
                         return null;
@@ -370,7 +370,6 @@ public class LKRemote {
                         Log.e(LOG_TAG, "Unknown error");
                         return null;
                 }
-                return bitmap;
         }
         
         /* (non-Javadoc)
@@ -412,5 +411,71 @@ public class LKRemote {
 
 	public enum RequestType{
 		POST, GET, PUT, DELETE;
+	}
+	public Bitmap decodeSampledBitmapFromResourceMemOpt(
+            InputStream inputStream, int reqWidth, int reqHeight) {
+
+        byte[] byteArr = new byte[0];
+        byte[] buffer = new byte[1024];
+        int len;
+        int count = 0;
+
+        try {
+            while ((len = inputStream.read(buffer)) > -1) {
+                if (len != 0) {
+                    if (count + len > byteArr.length) {
+                        byte[] newbuf = new byte[(count + len) * 2];
+                        System.arraycopy(byteArr, 0, newbuf, 0, count);
+                        byteArr = newbuf;
+                    }
+
+                    System.arraycopy(buffer, 0, byteArr, count, len);
+                    count += len;
+                }
+            }
+
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeByteArray(byteArr, 0, count, options);
+
+            options.inSampleSize = calculateInSampleSize(options, reqWidth,
+                    reqHeight);
+            options.inPurgeable = true;
+            options.inInputShareable = true;
+            options.inJustDecodeBounds = false;
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+
+            int[] pids = { android.os.Process.myPid() };
+           // MemoryInfo myMemInfo = mAM.getProcessMemoryInfo(pids)[0];
+           // Log.e(TAG, "dalvikPss (decoding) = " + myMemInfo.dalvikPss);
+
+            return BitmapFactory.decodeByteArray(byteArr, 0, count, options);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
+    }
+	public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+	    // Raw height and width of image
+	    final int height = options.outHeight;
+	    final int width = options.outWidth;
+	    int inSampleSize = 1;
+
+	    if (height > reqHeight || width > reqWidth) {
+
+	        // Calculate ratios of height and width to requested height and width
+	        final int heightRatio = Math.round((float) height / (float) reqHeight);
+	        final int widthRatio = Math.round((float) width / (float) reqWidth);
+
+	        // Choose the smallest ratio as inSampleSize value, this will guarantee
+	        // a final image with both dimensions larger than or equal to the
+	        // requested height and width.
+	        inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+	    }
+
+
+	    return inSampleSize;
 	}
 }
