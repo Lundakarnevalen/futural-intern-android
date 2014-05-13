@@ -87,6 +87,8 @@ public class LKUser {
 //					Response.GetKarnevalistSpecial data = gson.fromJson(result, Response.GetKarnevalistSpecial.class);
 					
 					LoginResponse data = gson.fromJson(result, LoginResponse.class);
+					data.karnevalist.token = token;
+					data.token = token;
 					
 					Log.d("WAO", "------");
 					Log.d("WAO", data.karnevalist.token);
@@ -94,6 +96,7 @@ public class LKUser {
 				
 					
 					if(data.success){
+						Log.d("LOG_TAG","successfully fetched user data");
 						getDataFromUser(data.karnevalist, data.token);
 						token = data.token;
 						Log.d(LOG_TAG, "url: "+imgUrl);
@@ -103,8 +106,8 @@ public class LKUser {
 					}
 				}
 			});
-			remote.requestServerForText("karnevalister/"+id+".json?token="+token, "", LKRemote.RequestType.GET, false);
-			Log.d(LOG_TAG, "requested server for the user with id:"+id);
+			remote.requestServerForText("api/karnevalister/fetch?token="+token, "", LKRemote.RequestType.GET, false);
+			Log.d(LOG_TAG, "requested server for the user with id:"+id + " and token: " + token);
 		}else{
 			// No user downloaded.
 			Log.e(LOG_TAG, "Found no user ID for user");
