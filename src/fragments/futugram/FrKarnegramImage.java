@@ -1,5 +1,7 @@
 package fragments.futugram;
 
+import java.util.Locale;
+
 import se.lundakarnevalen.android.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,11 +15,9 @@ import fragments.LKFragment;
 
 public class FrKarnegramImage extends LKFragment {
 	private RelativeLayout fullSizeImage;
-	private ImageView image;
 	private TextView viewName;
 	private TextView viewCaption;
 	private View rootView;
-	private View spinner;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class FrKarnegramImage extends LKFragment {
 		View spinner = rootView.findViewById(R.id.karnegram_full_size_spinner);
 		
 		GetFullImage fullImage = new GetFullImage(getContext());
-		String url = getArguments().getString("URL");
+		String url = getArguments().getString("url");
 		String caption = getArguments().getString("caption");
 		String name = getArguments().getString("name");
 		

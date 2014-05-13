@@ -49,10 +49,15 @@ public class GetFullImage {
 				// TODO Worth bothering that some photo isn't shown?
 				return;
 			}
+			
 			spinner.setVisibility(View.GONE);
 			imageView.setVisibility(View.VISIBLE);
 			shadow.setVisibility(View.VISIBLE);
-			imageView.setImageBitmap(result);
+			
+			int nh = (int) (result.getHeight() * (512.0 / result.getWidth()));
+			Bitmap scaled = Bitmap.createScaledBitmap(result, 512, nh, true);
+			
+			imageView.setImageBitmap(scaled);
 		}
 	}
 }

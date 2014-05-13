@@ -3,6 +3,10 @@
 
 	<string name="futugram">FUTUGRAM</string>
     <string name="prompt_caption">Enter picture\'s caption </string>
+	<string name="picture_sent">Picture sent! It now awaits approval</string>
+	<string name="picture_failure">Failed to sent picture. Try again!</string>
+	<string name="picture_send">Skickar bilden</string>
+    
 	
     <string name="sign_in_button">Log in</string>
     <string name="registration_hurra">HURRAY!</string>
@@ -399,7 +403,7 @@
     <string name="forkarneval">FÖRKARNEVAL</string>
     <string name="karnelan">KARNELAN</string>
     <string name="karnevalsmelodin">KARNEVALSMELODIN</string>
-    <string name="identification_title">ID CARD</string>
+    <string name="identification_title">ID</string>
     <string name="sektion_199">"Festmästeriet - Centralt"</string>
     <string name="title_activity_id">IDActivity</string>
     <string name="hello_world">Hello world!</string>
@@ -422,5 +426,5 @@
         						inauteriak</string>
     <string name="press_card">PRESS TO SHOW YOUR ID</string>
     
-    <string name="id_card">KARNELEG</string>
+    <string name="id_card">ID</string>
 </resources>

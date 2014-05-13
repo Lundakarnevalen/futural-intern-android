@@ -7,7 +7,6 @@ import se.lundakarnevalen.android.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -51,18 +50,13 @@ public class FrKarnegram extends LKFragment {
 
 		gridView.setAdapter(new ImageAdapter(getContext(), bitmapHandler));
 
-		cameraImage = (ImageView) rootView
-				.findViewById(R.id.karnegram_camera_image);
+		cameraImage = (ImageView) rootView.findViewById(R.id.karnegram_camera_image);
 
 		cameraListener = new CameraListener(getContext(), this, cameraImage);
 
-		// fullSizeImage = (ImageView) rootView
-		// .findViewById(R.id.karnegram_full_size);
-		// fullSizeImage.setVisibility(View.INVISIBLE);
-
 		gridView.setOnItemClickListener(new ImageListener());
-		Ion.getDefault(getContext()).configure()
-				.setLogging("MyLogs", Log.DEBUG);
+		
+		Ion.getDefault(getContext()).configure().setLogging("MyLogs", Log.DEBUG);
 
 		getAlbumStorageDir("Karnegram");
 
@@ -82,7 +76,7 @@ public class FrKarnegram extends LKFragment {
 			String name = pictures.getName(position);
 
 			Bundle bundle = new Bundle();
-			bundle.putString("URL", url);
+			bundle.putString("url", url);
 			bundle.putString("caption", caption);
 			bundle.putString("name", name);
 			
@@ -129,6 +123,7 @@ public class FrKarnegram extends LKFragment {
 	 */
 	public String getRealPathFromURI(Uri contentUri) {
 		String[] proj = { MediaStore.Images.Media.DATA };
+		@SuppressWarnings("deprecation")
 		Cursor cursor = getActivity().managedQuery(contentUri, proj, null, null, null);
 		int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 		cursor.moveToFirst();

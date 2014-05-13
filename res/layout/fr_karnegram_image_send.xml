@@ -59,5 +59,4 @@
         layout="@layout/fr_karnegram_row_item_full"
         android:contentDescription="@string/image" >
     </include>
-
 </RelativeLayout>
