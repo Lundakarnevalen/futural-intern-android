@@ -46,7 +46,7 @@ public class GPSTracker extends Service implements LocationListener, GpsStatus.L
 
     public void invalidateMe(GPSListener listener) {
         if(latitude > 0.0f && longitude>0.0f ) {
-            listener.onNewLocation(latitude, longitude);
+            listener.onNewLocation(latitude, longitude,0,0);
         }
     }
 
@@ -56,7 +56,7 @@ public class GPSTracker extends Service implements LocationListener, GpsStatus.L
     }
 
     public interface GPSListener {
-        public void onNewLocation(double lat, double lng);
+        public void onNewLocation(double lat, double lng, double accuracy, long time);
     }
 
     boolean canGetLocation = false;
@@ -154,9 +154,9 @@ public class GPSTracker extends Service implements LocationListener, GpsStatus.L
 
             for (GPSListener l : mListeners) {
                 if(DEBUG) {
-                    l.onNewLocation(55.705206, 13.192650); // Push fake coordinates
+                    l.onNewLocation(55.705206, 13.192650, location.getAccuracy(),location.getTime()); // Push fake coordinates
                 } else {
-                    l.onNewLocation(lat, lng);
+                    l.onNewLocation(lat, lng, location.getAccuracy(),location.getTime());
                 }
             }
         } else {
