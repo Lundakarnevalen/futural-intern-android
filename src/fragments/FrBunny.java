@@ -361,11 +361,13 @@ public class FrBunny extends LKFragment implements GPSListener {
 		@Override
 		public void onResult(String result) {
 			Log.d("MARKUS!","MARKUS!"+result);
-			Log.d("GetListener get result: ", result);
-
+			
 			if (result == null) {
 				return;
 			}
+			
+			Log.d("GetListener get result: ", result);
+
 			Log.d("GetListener get result: ", result);
 		}
 	}
