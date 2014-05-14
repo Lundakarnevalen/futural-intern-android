@@ -7,6 +7,8 @@ import se.lundakarnevalen.android.IDActivity;
 import se.lundakarnevalen.android.R;
 import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKUser;
+import se.lundakarnevalen.widget.GPSTracker;
+import se.lundakarnevalen.widget.GPSTracker.GPSListener;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff.Mode;
@@ -23,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 
-public class FrBunny extends LKFragment {
+public class FrBunny extends LKFragment implements GPSListener {
 	String token;
 	private final int TRAIN_AUTO = 10000;
 	private final int MY_AUTO = 5000;
@@ -32,6 +34,8 @@ public class FrBunny extends LKFragment {
 	Handler h;
 	Runnable r2;
 	Handler h2;
+	double lat = 0;
+	double lng = 0;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View root = inflater.inflate(R.layout.bunny_layout, null);
@@ -40,7 +44,8 @@ public class FrBunny extends LKFragment {
 		token = user.token;
 		final LKRemote remote1 = new LKRemote(getContext(), new TrainListener());
 		final LKRemote remote2 = new LKRemote(getContext(), new MyPositionListener());
-
+		GPSTracker gpstracker = new GPSTracker(getContext());
+		gpstracker.addListener(this);
 
 		Button myPosition = ((Button)root.findViewById(R.id.my_position));
 		Button trainPosition = ((Button)root.findViewById(R.id.train_position));
@@ -202,11 +207,14 @@ public class FrBunny extends LKFragment {
 	}
 
 	public void send(LKRemote remote, int id,String token ){
-		BunnyCreate bc = new BunnyCreate(1.22f, 1.11f, token, id);
+		if(lat != 0) {
+			
+		BunnyCreate bc = new BunnyCreate((float)lat, (float)lng, token, id);
 		Gson g = new Gson();
 		String json = g.toJson(bc);
 		if(remote != null) { 
 			remote.requestServerForText("api/train_positions/"+id, json, LKRemote.RequestType.PUT, false);
+		}
 		}
 	}
 
@@ -230,6 +238,14 @@ public class FrBunny extends LKFragment {
 			}
 		}
 
+	}
+
+	@Override
+	public void onNewLocation(double lat, double lng) {
+		// TODO Auto-generated method stub
+		Log.d("MARKUS!","lat: "+lat +"lng: "+lng);
+		this.lat = lat;
+		this.lng = lng;
 	}
 
 }
