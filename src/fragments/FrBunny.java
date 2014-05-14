@@ -14,6 +14,7 @@ import se.lundakarnevalen.remote.LKRemote;
 import se.lundakarnevalen.remote.LKUser;
 import se.lundakarnevalen.widget.GPSTracker;
 import se.lundakarnevalen.widget.GPSTracker.GPSListener;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff.Mode;
@@ -29,13 +30,14 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
 public class FrBunny extends LKFragment implements GPSListener {
 	String token;
 	private final int TRAIN_AUTO = 10000;
-	private final int MY_AUTO = 5000;
+	private final int MY_AUTO = 30000;
 	TextView textLng;
 	TextView textLat;
 	TextView textAcc;
@@ -363,12 +365,14 @@ public class FrBunny extends LKFragment implements GPSListener {
 			Log.d("MARKUS!","MARKUS!"+result);
 			
 			if (result == null) {
+				Toast.makeText(getContext(), "Failed to send position", Toast.LENGTH_LONG).show();
 				return;
 			}
 			
-			Log.d("GetListener get result: ", result);
-
-			Log.d("GetListener get result: ", result);
+			if (result.contains("\"success\":true,\"train_position\"")) {
+				Toast.makeText(getContext(), "Uploaded new position", Toast.LENGTH_SHORT).show();
+			}
+			
 		}
 	}
 
@@ -378,8 +382,14 @@ public class FrBunny extends LKFragment implements GPSListener {
 			BunnyCreate bc = new BunnyCreate((float)lat, (float)lng, token, id);
 			Gson g = new Gson();
 			String json = g.toJson(bc);
+
+			if (remote == null || !remote.hasInternetConnection(getContext())) {
+				Toast.makeText(getContext(), "Failed to send position - no internet connection", Toast.LENGTH_LONG).show();
+			}
+			
 			if(remote != null) { 
 				remote.requestServerForText("api/train_positions/"+id, json, LKRemote.RequestType.PUT, false);
+				
 			}
 		}
 	}
